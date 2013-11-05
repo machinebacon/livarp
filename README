@@ -1,0 +1,100 @@
+
+==== livarp 0.4 - the WMs testing machine ====
+
+livarp is a 100% free Debian Wheezy based distro.
+his main goal is to make you (re)discover alternative window managers
+with preconfigured and documented sessions.
+
+http://arpinux.org/livarp
+
+== 12 wm's inside ==
+ - dvtm: tty tiling manager
+ - vtwm: virtual tabbed window manager: the original
+ - dwm: the classic tiling
+ - dwm_reloaded*: a highly patched release of dwm
+ - wmfs²*: highly configurable tiling
+ - awesome: the powerfull tiling
+ - ratpoison: the frame tiling
+ - spectrwm: the minimal tiling
+ - evilwm: the minimal stacking
+ - fluxbox: graphical box-like
+ - openbox: xml box-like (default session)
+ - pekwm: unique stacking/tabbing/floating wm
+
+== apps ==
+ - shell: bash/zsh(default)
+ - terminal: xterm, rxvt-unicode-256color, screen
+ - edit & office: vim, geany, evince, zim(option), abiword/gnumeric(option), libreoffice(option)
+ - file managers: ranger, rox-filer, midnight_commander
+ - menus & panels: fbpanel*, tint2, ratmenu, dmenu, lxpanel
+ - infos & monitoring: htop, ncdu, hardinfo, conky, xosview
+ - web browsers: firefox & links2
+ - mail client: claws-mail
+ - irc & tchat: weechat, pidgin(option)
+ - torrent: transmission-gtk
+ - ftp: filezilla
+ - graphics: gthumb, feh, nitrogen, gcolor2, scrot, gimp-agave-inkscape-xsane(option), cups(option)
+ - tools: dzen2*, xcolorsel, x11-apps, xdotool, xfonts-terminus, ccze, xosview, catfish, pyrenamer
+ - misc: calcurse, fbxkb, most, curl, bc, libnotify-bin
+ - user interface: lxappearance, dmz-cursor-theme, murrine-themes, xcompmgr, arandr
+ - multimedia: mocp, gnome-mplayer, xfburn, oggconvert, winff
+ - archives: file-roller(gui), unrar-free, dtrx(cli) & extract bash-funtion
+ - power: upower, xscreensaver, acpi, laptop-detect-xfce-power-manager(option)
+ - filesystems: gparted, dosfstools, ntfs-3g, mtools, ntfsprogs
+ - admin: gksu, synaptic, apt-show-versions, gdebi
+ - firewall: iptables user script
+ - network: wpasupplicant, wireless-tools, network-manager-gnome, network-manager-openvpn-gnome, network-manager-vpnc-gnome, pppoeconf
+ - auto-mounting by udisks-glue and dzen2
+
+ *added from git/svn sources
+
+== Changelog ==
+
+ - latest liquorix kernel
+ - no more "contrib & non-free" archives (but available on clickmes)
+ - linux-libre kernel available after install
+ - iso-hybrid format
+ - text-install only (who need a graphical intall process...)
+ - zsh as default shell
+ - clickmes : some scripts to install 'softwares-packs':
+    - graphics complete suite : gimp, agave, inkscape, xsane, imagemagick and comix
+    - power-pack : xfce4-power-manager, laptop-detect
+    - office suite (light or full) : libreoffice, abiword, gnumeric &/or zim
+    - printing support
+    - ssh server&client
+    - dev-pack : git, build-essential, debhelper...
+    - flashplugin-nonfree and deb-multimedia archives
+
+ - Droid Sans Mono as default font
+ - grandr replaced by arandr
+ - brasero replaced by xfburn
+ - gpicview replaced by gthumb
+
+ - basic firewall added handled by iptables
+
+ - calcurse, oggconvert, winff light encoder, fslint & vrms  added
+
+ - firefox as default web-browser (luakit removed)
+ - gthumb as default image viewer
+
+ - compiz-session removed
+ - compiz-deskmenu removed
+ - echinus-session removed
+ - zenity removed (dialogs handled by fbpanel, ratmenu, dmenu or scripts)
+ - conky-switcher removed (as there are enough conky inside livarp)
+ - tabdock removed
+
+ - openbox, ratpoison and spectrwm sessions added
+ - new AwesomeWM config (by Aphelion)
+ - new dark-theme, mix of livarp-dark-theme Boje by nale12 & DieHard4 by obscurant (thx)
+ - Boje suite and other themes, curtesy of nale12 <http://nale12.deviantart.com> (big thx to him)
+
+== installation ==
+livarp_0.4 is available on iso-hybrid format. it can be used :
+ - on cd: just burn it
+ - on usbdisk with dd command:
+        'sudo dd if=livarp_0.4.iso of=/dev/sdX bs=4M;sync'
+
+== documentation ==
+ - livarp included a complete off-line & on-line wiki
+ - livarp is available in french or english releases
