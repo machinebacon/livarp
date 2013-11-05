@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Centre d'Aide Livarp - session spectrwm</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang fr|<a href="../../us/sessions/spectrwm.html">gb</a></h2><h1><a href="../../index-fr.html" title="retour au menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>la session spectrwm</h1>
+            <p>spectr/scrotwm est un gestionnaire de fenêtres de type tiling inspiré par xmonad et dwm. spectrwm a été écrit par des hackers pour des hackers et tente de rester rapide, léger et compact.<br />
+            spectrwm est en constant développement et demande encore quelques améliorations, mais ça ne l'empêche pas d'être un gestionnaire de fenêtres très rapide et hautement configurable.</p>
+            <h2>screenshot</h2>
+            <a href="../../pics/livarp_04_spectrwm.png"><img src="../../pics/livarp_04_spectrwm_thb.png" /></a>
+            <p>spectrwm est un tiling window manager, c'est à dire qu'il affiche vos fenêtres (clients) afin qu'elles occupent la totalité de la surface du bureau (tags). les clients sont organisés de différentes façons (layouts) pour optimiser la visibilité de vos applications ouvertes.les layouts s'organisent autour du Master (zone principale) et du Stack (zone d'empilement des autres clients).</p>
+            <h2>lancement</h2>
+            <p>spectrwm est lancé par le script ~/bin/start/spectrwm_start.sh.<br />
+            pour changer vos applications lancées au démarrage, éditer ce fichier: <text class="blockquote">vim bin/start/spectrwm_start.sh</text> ou depuis le menu spectrwm:section wms:spectrwm:éditer le script de lancement</p>
+            <h2>composants</h2>
+            <p>la session spectrwm du livarp dispose de plusieurs éléments:
+            <ul><li><b>spectrwm:</b> le gestionaire de fenêtres lui-même</li>
+                <li><b>statusbar:</b> affiche les tags, la disposition du tag (layout), le client actif et un conky indiquant l'utilisation cpu, mem et disque, le traffic réseau ainsi que la date et l'heure (configurable depuis ~/.conky/conkyrc_spectrwm).</li>
+                <li><b>Menu spectrwm:</b> disponible depuis le coin supérieur gauche de l'écran et géré par fbpanel. il inclut les applications livarp, le menu de configuration de spectrwm, et le systay (configuré depuis ~/.config/fbpanel/default ou depuis le menu lui-même).</li>
+            </ul></p>
+            <h2>configuration</h2>
+            <p>pour <b>conky</b>, il faut éditer son conkyrc: <text class="blockquote">vim .conky/conkyrc_spectrwm</text> ou depuis le menu dwm section wm:spectrwm:statusbar.</p>
+            <p>pour <b>fbpanel</b>, il faut éditer son fichier de configuration <text class="blockquote">vim .config/fbpanel/default</text> ou depuis le menu-lui-même section config:fbpanel:éditer le menu.<br />
+            si vous désirez ajouter des plugins, visitez la <a href="../config/menu.html">page dédiée</a>.</p>
+            <h3>la configuration de spectrwm passe par l'édition du ~/.spectrwm.conf.</h3>
+            <p>le fichier est facilement compréhensible et en partie traduit sur livarp. je vous livre le fichier par défaut de la session spectrwm du livarp_0.4:</p>
+            <pre class="blockquote">
+# PLEASE READ THE MAN PAGE BEFORE EDITING THIS FILE!
+# http://opensource.conformal.com/cgi-bin/man-cgi?spectrwm
+
+# colors for focussed and unfocussed window borders
+# NOTE: all colors in this file are in hex! see XQueryColor for examples
+
+# couleur de la bordure du client ayant le focus
+color_focus             = rgb:0/68/8b
+# couleur de la bordure des clients en arrière plan
+color_unfocus           = rgb:24/24/24
+
+## bar settings
+# afficher la barre
+bar_enabled		    = 1
+# épaisseur de la bordure de la status bar. pas de bordure si 0
+bar_border_width	= 0
+# couleur de la bordure de la status bar sur l'écran x
+bar_border[1]       = rgb:0/68/8b
+# couleur de fond de la status bar sur l'écran x
+bar_color[1]		= grey12
+# couleur de la police de la status bar pour l'écran x
+bar_font_color[1]   = rgb:0/68/8b
+# police utilisée pour la status bar. format Xft ou X Logical Font Description(XLFD).
+# vous pouvez spécifier plusieurs polices séparées par ”,”.
+# si une des polices est en XFT, elle sera utilisée par défaut.
+# notez que dmenu n'utilise pas les polices XFT
+bar_font            = snap
+# script externe à lancer pour un affichage dans la status bar
+bar_action          = spectrwm_status.sh
+# temps de rafraichissement de la barre
+bar_delay           = 1
+# alignement du texte de la status bar. valeurs: left, center, et right
+bar_justify		    = left
+# place la status bar en bas de l'écran
+bar_at_bottom		= 0
+# afficher la disposition dans la status bar
+stack_enabled		= 1
+# affiche l'heure dans la status bar
+clock_enabled       = 0
+# format d'affichage de l'heure
+clock_format        = %a %d/%m   %I:%M %P
+# afficher le titre du client dans la status bar
+title_name_enabled	= 1
+# afficher la class du client dans la status bar
+title_class_enabled	= 0
+# affiche le nom du client, limité à 64 caractères
+window_name_enabled	= 0
+# précise l'affiche de la disposition dans la status bar
+verbose_layout		= 0
+# mode du focus. valeurs: default, follow et manual
+focus_mode		    = default
+# n'affiche pas la bordure si la status bar est masquée et qu'il n'y a qu'un seul client
+disable_border		= 1
+# épaisseur de la bordure des clients. pas de bordures si 0
+border_width		= 1
+# notification des clients urgents
+urgent_enabled      = 0
+
+# spawn app
+program[term]            = urxvtcd
+program[screenshot_all]	 = screenshot -a
+program[screenshot_wind] = screenshot -w
+program[lock]		     = xscreensaver-command -lock
+program[initscr]	     = initscreen.sh
+program[menu]            = dmenu_run -fn $bar_font -nb $bar_color -nf $bar_font_color -sb $bar_font_color -sf $bar_color -p exec:
+spawn_term               = urxvtcd
+
+# ratio des boites de dialogue. entre .3 et 1
+dialog_ratio            = 0.3
+
+# Split a non-Xrandr dual head setup into one region per monitor
+# (non-standard driver-based multihead is not seen by spectrwm)
+# region		= screen[1]:1280x1024+0+0
+# region		= screen[1]:1280x1024+1280+0
+
+# Launch applications in a workspace of choice
+# autorun		= ws[1]:x-terminal-emulator
+# autorun		= ws[2]:xxxterm http://www.openbsd.org
+
+# workspace layout
+# layout		= ws[1]:4:0:0:0:vertical
+# layout		= ws[2]:0:0:0:0:horizontal
+# layout		= ws[3]:0:0:0:0:fullscreen
+
+# mod key, (windows key is Mod4) (apple key on OSX is Mod2)
+# modkey = Mod1
+
+# Clear key bindings and load new key bindings from the specified file.
+# This allows you to load pre-defined key bindings for your keyboard layout.
+#keyboard_mapping        = ~/.spectrwm_fr.conf
+
+# quirks
+# remove with: quirk[class:name] = NONE
+# quirk[MPlayer:xv]			= FLOAT + FULLSCREEN + FOCUSPREV
+# quirk[OpenOffice.org 2.4:VCLSalFrame]	= FLOAT
+# quirk[OpenOffice.org 3.0:VCLSalFrame]	= FLOAT
+# quirk[OpenOffice.org 3.1:VCLSalFrame]	= FLOAT
+# quirk[Firefox-bin:firefox-bin]		= TRANSSZ
+# quirk[Firefox:Dialog]			= FLOAT
+# quirk[Gimp:gimp]			= FLOAT + ANYWHERE
+# quirk[XTerm:xterm]			= XTERM_FONTADJ
+# quirk[xine:Xine Window]			= FLOAT + ANYWHERE
+# quirk[Xitk:Xitk Combo]			= FLOAT + ANYWHERE
+# quirk[xine:xine Panel]			= FLOAT + ANYWHERE
+# quirk[Xitk:Xine Window]			= FLOAT + ANYWHERE
+# quirk[xine:xine Video Fullscreen Window] = FULLSCREEN + FLOAT
+# quirk[pcb:pcb]				= FLOAT
+
+# EXAMPLE: define firefox program and bind to key
+# program[firefox]	= firefox http://spectrwm.org/
+# bind[firefox]		= MOD+Shift+b
+
+# livarp default keybinds
+program[firefox]    = firefox http://arpinux.org/livarp_start
+program[ranger]     = urxvtcd -e ranger
+program[rox]        = rox-filer
+program[vim]        = urxvtcd -e vim
+program[geany]      = geany
+program[mocp]       = urxvtcd -e mocp
+program[mixer]      = urxvtcd -e alsamixer
+program[help]       = urxvtcd -e spectrwm_keys.sh
+bind[firefox]       = Mod4+w
+bind[ranger]        = Mod4+r
+bind[rox]           = Mod4+Shift+r
+bind[vim]           = Mod4+e
+bind[geany]         = Mod4+Shift+e
+bind[mocp]          = Mod4+z
+bind[mixer]         = Mod4+v
+bind[help]          = Mod4+h
+            </pre>
+            <h2>raccourcis clavier/souris</h2>
+            <p>spectrwm est entièrement pilotable depuis le clavier: control, lanceurs, navigation, manipulation des tags et clients...<br />
+            les raccourcis clavier/souris sont définis dans le fichier ~/.spectrwm.conf.</p>
+            <h3>menus:</h3>
+                <ul><li>spectrwm menu: coin supérieur gauche de l'écran</li>
+                    <li>dmenu: Alt+p</li>
+                </ul>
+            <h3>control:</h3>
+                <ul><li>relancer spectrwm: Alt+q</li>
+                    <li>quitter spectrwm:Shift+Alt+q or from spectrwm menu:exit</li>
+                    <li>affiche/masque la statusbar: Alt+b</li>
+                </ul>
+            <h3>windows:</h3>
+                <ul><li>ferme le client: Alt+x</li>
+                    <li>client précédent: Alt+j ou Alt+Tab</li>
+                    <li>client suivant: Alt+k ou Alt+Shift+Tab</li>
+                    <li>échange avec le client précédent: Alt+Shift+k</li>
+                    <li>échange avec le client suivant: Alt+Shift+j</li>
+                    <li>échange le client avec le master: Alt+Enter</li>
+                    <li>attache/libère le client: Alt+t</li>
+                </ul>
+            <h3>navigation:</h3>
+                <ul><li>tag occupé précédent/suivant: Alt+Left/Right</li>
+                    <li>tag précédent/suivant: Alt+Up/Down</li>
+                    <li>visite le dernier tag: Alt+a</li>
+                    <li>region précédente/suivante: Alt+Shift+Down/Up</li>
+                    <li>envoi dans la région précédente/suivante: Alt+Shift+Left/Right</li>
+                    <li>affiche le tag 'n': Alt+'n'</li>
+                    <li>envoi le client sur le tag 'n': Alt+Shift+'n'</li>
+                </ul>
+            <h3>layout</h3>
+                <ul><li>augmente/réduit le master: Alt+l/h</li>
+                    <li>ajoute enlève un client du master: Alt+./,</li>
+                    <li>change de layout: Alt+Space</li>
+                </ul>
+            <h3>launchers:</h3>
+                <ul><li>terminal: Alt+Shift+Enter</li>
+                    <li>lancer ranger: Super+r</li>
+                    <li>lancer rox-filer: Super+Shift+r</li>
+                    <li>lancer firefox: Super+w</li>
+                    <li>lancer vim: Super+e</li>
+                    <li>lancer geany: Super+Shift+e</li>
+                    <li>lecteur de musique: Super+z</li>
+                    <li>controle du volume: Super+v</li>
+                </ul>
+            <p>pour la liste complète des raccourcis et des possibilités de spectrwm, consulter la man, le <a href="http://arpinux.org/x/doku.php/wms:scrotwm">wiki fr</a> en ligne ou le pdf situé dans votre dossier ~/docs.</p>
+            </div>
+        </div>
+    </div>
+    <div id="footer">centre d'aide livarp_0.4 - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

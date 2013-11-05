@@ -1,0 +1,258 @@
+########################################################################
+#                 vtwm configuration file ~/.vtwmrc                    #
+#             author: arpinux 2013 <contact@arpinux.org>               #
+########################################################################
+
+## fonts ###############################################################
+TitleFont           "-*-snap-normal-*-*-*-10-*-*-*-*-*-*-*"
+ResizeFont          "-*-snap-normal-*-*-*-10-*-*-*-*-*-*-*"
+MenuFont            "-*-snap-normal-*-*-*-10-*-*-*-*-*-*-*"
+MenuTitleFont       "-*-snap-normal-*-*-*-10-*-*-*-*-*-*-*"
+IconFont            "-*-snap-normal-*-*-*-10-*-*-*-*-*-*-*"
+IconManagerFont     "-*-snap-normal-*-*-*-10-*-*-*-*-*-*-*"
+# uncomment to display apps name in pager
+#VirtualDesktopFont  "-*-snap-normal-*-*-*-10-*-*-*-*-*-*-*"
+## screen ##############################################################
+AutoPan 100            # pan 100% screen when pointer reach edge
+AutoPanBorderWidth 5   # distance to pan screen
+NaturalAutopanBehavior # move pointer on edge, not on screen
+SnapRealScreen         # snap the realscreen to pandistance x/y
+PanDistanceY 100       # vertical screen% to move
+PanDistanceX 100       # horizontal screen% move
+PanResistance 1000     # time to pan in ms
+## virtual desktop #####################################################
+VirtualDesktop "4x1-5+5" 30 # geometry and ratio of virtual desktop
+DontShowInDisplay {
+    "VTWM Icon Manager"	"VTWM Desktop" "xclock"
+}                           # don't show in the desktop display
+## borders #############################################################
+BorderWidth 1               # general borders
+IconBorderWidth 1           # icon borders
+TitleButtonBorderWidth 0    # buttons borders
+## icon manager ########################################################
+ShowIconManager                            # display IconManager on startup
+IconManagerGeometry "100x700+5+95" 1       # IconManager geometry and columns
+#IconManagerBevelWidth 1                    # 3D looking IconManager entries
+IconManagerDontShow { "xclock" "xosview" } # don't appears in IconManager
+IconifyByUnmapping                         # don't show icons
+## windows #############################################################
+MaxWindowSize "1010x760"   # window maximum size
+RestartPreviousState       # try to restore windows states
+Zoom 8                     # factor of zoom animation
+WindowRing                 # list every window to enable navigation
+AutoRelativeResize         # don't wait to reach an edge to resize
+#AutoRaise                  # raise in auto mode
+#AutoRaiseDelay 1000        # time to raise in ms
+DeiconifyToScreen          # restore iconified window in current screen
+WarpCursor                 # put cursor on window when deiconify
+NoRaiseOnMove              # don't raise window while moving
+NailedDown {
+    "VTWM Icon Manager" "VTWM Desktop" "xclock"
+}                          # show on each screen aka sticky
+DontShowInVtwmWindows {
+    "VTWM Icon Manager"	"VTWM Desktop" "xclock"
+}                          # don't appear in the window menu
+## titlebar ############################################################
+#SqueezeTitle {"URxvt" right 0 0}       # reduce titlebar space
+NoTitle {
+    "xclock""xosview""MPlayer""VTWM *"
+}                                      # windows without titlebar
+ButtonIndent 0                         # reduction factor for buttons
+FramePadding 1                         # elements titlebar's padding
+TitlePadding 4                         # titlebar padding
+## buttons #############################################################
+# icon directories
+IconDirectory "/usr/share/dzicons"
+NoDefaultTitleButtons            # remove default buttons
+# set buttons on titlebars
+LeftTitleButton "error1.xbm"     = f.delete
+LeftTitleButton "downarrow4.xbm" = f.iconify
+LeftTitleButton "stop.xbm"       = f.nail
+RightTitleButton "monocle.xbm"   = f.fullzoom
+RightTitleButton "debian.xbm"    = f.resize
+## highlight ###########################################################
+NoHighlight         # no highlight at all
+NoTitleHighlight    # no highlight on titlebar
+## misc ################################################################
+NoGrabServer              # don't use X server for menu or opaque move
+
+## general colors ######################################################
+Color {
+    BorderColor              "DeepSkyBlue4"
+    BorderTileBackground     "gray25"
+	BorderTileForeground     "gray85"
+    DefaultBackground        "gray25"
+    DefaultForeground        "gray85"
+    TitleBackground          "gray25"
+    TitleForeground          "gray85"
+    MenuBackground           "gray25"
+    MenuForeground           "gray85"
+    MenuTitleBackground      "DeepSkyBlue4"
+    MenuTitleForeground      "gray85"
+    MenuShadowColor          "DeepSkyBlue4"
+    IconBackground           "gray25"
+    IconForeground           "gray65"
+    IconBorderColor          "DeepSkyBlue4"
+    IconManagerBackground    "gray25"
+    IconManagerForeground    "gray85"
+    IconManagerHighlight     "DeepSkyBlue4"
+    VirtualBackground        "gray25"
+	VirtualForeground        "gray85"
+	DesktopDisplayBackground "gray85"
+    DesktopDisplayForeground "gray25"
+    DesktopDisplayBorder     "gray25"
+}
+
+## mousebinds ##########################################################
+# how many pixel before moving
+MoveDelta 1
+# functions
+Function "move-or-lower"   { f.move f.deltastop f.lower }
+Function "move-or-raise"   { f.move f.deltastop f.raise }
+Function "move-or-iconify" { f.move f.deltastop f.iconify }
+Function "resize-or-raise" { f.resize f.deltastop f.raise }
+# mouse actions on root window
+Button1 = : root : f.menu "main"    # open main menu on left-clic
+Button2 = : root : f.identify       # identify window on middle-clic
+Button4 = : root : f.panright "100" # pan screen 100% to the right
+Button5 = : root : f.panleft  "100" # pan screen 100% to the left
+# mouse action on window or icon
+Button1 = m : window|icon : f.function "move-or-lower"   # move/lower with Alt+left-clic
+Button2 = m : window|icon : f.iconify                    # toggle iconify with Alt+middle-clic
+Button3 = m : window|icon : f.function "resize-or-raise" # resize/raise with Alt+right-clic
+# mouse action on window titlebar
+Button1 = : title : f.function "move-or-raise"  # move/raise on left-clic
+Button2 = : title : f.raiselower                # toggle raise on middle-clic
+Button3 = : title : f.menu "window"             # open window menu on right-clic
+# mouse action on icon
+Button1 = : icon : f.function "move-or-iconify" # move/iconify on left-clic
+Button2 = : icon : f.delete                     # close window on middle-clic
+Button3 = : icon : f.iconify                    # toggle iconify on right-clic
+# mouse action on icon-manager
+Button1 = : iconmgr : f.iconify # toggle iconify on left-clic
+Button2 = : iconmgr : f.destroy # kill the window on middle-clic
+Button3 = : iconmgr : f.iconify # toggle iconify on right-clic
+
+## keybinds ############################################################
+# launch applications
+"Return" = c : all :  ! "urxvtcd &"         # Ctrl+Return: default terminal keybind
+"d" = m4 : all : ! "dmenu-bind.sh &"        # Super+d: dmenu launcher
+"t" = m4 : all : ! "urxvtcd &"              # Super+t: terminal
+"r" = m4 : all : ! "urxvtcd -e ranger &"    # Super+r: ranger cli filer
+"r" = s|m4 : all : ! "rox &"                # Super+Shift+r: rox-filer
+"w" = m4 : all : ! "firefox http://arpinux.org/livarp_start &" # Super+w: firefox
+"v" = m4 : all : ! "urxvtcd -e alsamixer &" # Super+v: volume control
+# window navigation
+"Tab" = m : all :   f.warpring "next" # goto next window with Alt+Tab
+"Tab" = s|m : all : f.warpring "prev" # goto prev window with Alt+Shift+Tab
+# navigate through screens
+"Right" = c : all : f.panright "100"
+"Left"  = c : all : f.panleft  "100"
+"Up"    = c : all : f.panup    "100"
+"Down"  = c : all : f.pandown  "100"
+# windows actions
+"m" = m4 : all : f.fullzoom # Super+m: toggle maximize window
+"i" = m4 : all : f.iconify  # Super+i: toggle iconify window
+"q" = m4 : all : f.delete   # Super+q: close window
+"x" = m4 : all : f.destroy  # Super+x: kill window
+# vtwm actions
+"r" = c|m : all : f.restart                # Control+Alt+r to restart vtwm
+"q" = c|s : all : f.quit                   # Control+Shift+q to quit vtwm
+"q" = c|s|m : all : f.exec "dmenu-quit.sh" # Control+Shift+Alt+q to exit
+## menus ###############################################################
+# main menu
+menu "main" {
+    "VTWM"      f.title
+    "URxvt"     f.exec "urxvtcd &"
+    "Ranger"    f.exec "urxvtcd -e ranger &"
+    "Run"       f.exec "dmenu-bind.sh &"
+    "Edit"      f.exec "urxvtcd -e vim &"
+    "Web"       f.exec "firefox http://arpinux.org/livarp_start &"
+    "IRC"       f.exec "urxvtcd -e weechat-curses &"
+    "Music"     f.exec "urxvtcd -e mocp &"
+    "Help"      f.exec "firefox /usr/share/livarp/help_center/index.html &"
+    "Config"    ("DeepSkyBlue4":"gray25")f.menu "config"
+    "System"    ("DeepSkyBlue4":"gray25")f.menu "system"
+    "Windows"   ("DeepSkyBlue4":"gray25")f.menu "window"
+    "Quit"      ("red":"gray25")f.menu "quit"
+}
+# config menu
+menu "config" {
+    "VTWM config"   ("grey85":"DeepSkyBlue4")f.title
+    "Edit"          f.exec "urxvtcd -e vim .vtwmrc &"
+    "Restart"       f.restart
+    "Startup"       f.exec "urxvtcd -e vim bin/start/vtwm_start.sh &"
+    "Conky"         f.exec "urxvtcd -e vim .conky/conkyrc_vtwm &"
+    "Wall"          f.exec "nitrogen &"
+    "Control"       f.menu "window"
+    "Man"           f.exec "urxvtcd -e man vtwm &"
+}
+# system menu
+menu "system" {
+    "System" 	("grey85":"DeepSkyBlue4")f.title
+    "Xosview"	f.exec "xosview &"
+    "HTop"		f.exec "urxvtcd -e htop &"
+    "RooTerm"   f.exec "urxvtcd -e su &"
+}
+# window menu
+menu "window" {
+    "X Windows"     ("grey85":"DeepSkyBlue4")f.title
+    "Title"         f.menu "title"
+    "Position"      f.menu "position"
+    "Navigation"    f.menu "navigation"
+    "Maximize"      f.fullzoom
+    "Minimize"      f.iconify
+    "(un)Stick"     f.nail
+    "Resize"        f.resize
+    "Identify"      f.identify
+    "Close Window"  f.delete
+    "Kill Window"   ("red":"gray25")f.destroy
+    ""              ("gray25":"gray25")f.nop
+    "Twm"           ("grey85":"DeepSkyBlue4")f.title
+    "Hide Iconmgr"  f.hideiconmgr
+    "Show Iconmgr"  f.showiconmgr
+    "Hide Pager"    f.hidedesktopdisplay
+    "Show Pager"    f.showdesktopdisplay
+    "Goto Left"     f.panleft "100"
+    "Goto Right"    f.panright "100"
+}
+# title menu
+menu "title" {
+    "Left"      f.squeezeleft
+    "Center"    f.squeezecenter
+    "Right"     f.squeezeright
+}
+# position menu
+menu "position" {
+    "ZoomRight"     f.rightzoom 
+    "ZoomLeft"      f.leftzoom
+    "ZoomHor"       f.horizoom
+    "ZoomTop"       f.topzoom
+    "ZoomBot"       f.bottomzoom
+}
+# navigation menu
+menu "navigation" {
+    "Prev Window"   f.warpring "prev"
+    "Next Window"   f.warpring "next"
+}
+# exit menu
+menu "quit" {
+    "Quit?" ("red":"gray25")f.title
+    "No"    f.nop
+    "Yes"   f.quit
+}
+## cursors #############################################################
+Cursors {
+    Frame     "left_ptr"
+    Title     "left_ptr"
+    Icon      "left_ptr"
+    IconMgr   "left_ptr"
+    Move      "fleur"
+    Resize    "fleur"
+    Menu      "hand1"
+    Button    "hand2"
+    Wait      "clock"
+    Select    "dot"
+    Destroy   "pirate"
+}
+## EOF #################################################################

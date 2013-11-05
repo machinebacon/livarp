@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openbox_menu xmlns="http://openbox.org/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://openbox.org/                 file:///usr/share/openbox/menu.xsd">
+	<menu id="root-menu" label="Openbox 3">
+		<!--separator label="livarp_0.4" /-->
+		<item label="terminal">
+			<action name="Execute">
+				<execute>urxvtcd</execute>
+			</action>
+		</item>
+		<item label="web browser">
+			<action name="Execute">
+				<execute>firefox http://arpinux.org/livarp_start</execute>
+			</action>
+		</item>
+		<item label="file-manager">
+			<action name="Execute">
+				<execute>rox</execute>
+			</action>
+		</item>
+		<item label="music player">
+			<action name="Execute">
+				<execute>urxvtcd -e mocp</execute>
+			</action>
+		</item>
+		<item label="media player">
+			<action name="Execute">
+				<execute>gnome-mplayer</execute>
+			</action>
+		</item>
+		<item label="text editor">
+			<action name="Execute">
+				<execute>geany</execute>
+			</action>
+		</item>
+		<separator/>
+		<menu execute="cb-places-pipemenu.sh" id="Places" label="places"/>
+		<separator/>
+		<menu id="apps" label="applications">
+			<menu id="web" label="internet">
+				<item label="web browser">
+					<action name="Execute">
+						<execute>firefox http://arpinux.org/livarp_start</execute>
+					</action>
+				</item>
+				<item label="mail client">
+					<action name="Execute">
+						<execute>claws-mail</execute>
+					</action>
+				</item>
+				<item label="irc client">
+					<action name="Execute">
+						<execute>urxvtcd -e weechat-curses</execute>
+					</action>
+				</item>
+				<item label="FTP client">
+					<action name="Execute">
+						<execute>filezilla</execute>
+					</action>
+				</item>
+				<item label="torrent client">
+					<action name="Execute">
+						<execute>transmission-gtk</execute>
+					</action>
+				</item>
+			</menu>
+			<menu id="media" label="multimedia">
+				<item label="media player">
+					<action name="Execute">
+						<execute>gnome-mplayer</execute>
+					</action>
+				</item>
+				<item label="music player">
+					<action name="Execute">
+						<execute>urxvtcd -T player -e mocp</execute>
+					</action>
+				</item>
+				<item label="radio player">
+					<action name="Execute">
+						<execute>urxvtcd -e cli_radio</execute>
+					</action>
+				</item>
+				<item label="cd/dvd burner">
+					<action name="Execute">
+						<execute>xfburn</execute>
+					</action>
+				</item>
+				<item label="ogg converter">
+					<action name="Execute">
+						<execute>oggconvert</execute>
+					</action>
+				</item>
+				<item label="volume">
+					<action name="Execute">
+						<execute>urxvtcd -e alsamixer</execute>
+					</action>
+				</item>
+			</menu>
+			<menu id="graph" label="graphics">
+				<item label="image viewer">
+					<action name="Execute">
+						<execute>gthumb</execute>
+					</action>
+				</item>
+				<item label="gcolor2">
+					<action name="Execute">
+						<execute>gcolor2</execute>
+					</action>
+				</item>
+				<item label="font selector">
+					<action name="Execute">
+						<execute>xfontsel</execute>
+					</action>
+				</item>
+				<menu id="shots" label="screenshot">
+					<item label="now">
+						<action name="Execute">
+							<execute>screenshot -a</execute>
+						</action>
+					</item>
+					<item label="in 5 sec">
+						<action name="Execute">
+							<execute>screenshot -d</execute>
+						</action>
+					</item>
+					<item label="focus in 2 sec">
+						<action name="Execute">
+							<execute>screenshot -w</execute>
+						</action>
+					</item>
+					<item label="select a zone">
+						<action name="Execute">
+							<execute>screenshot -z</execute>
+						</action>
+					</item>
+				</menu>
+			</menu>
+			<menu id="office" label="office">
+				<item label="text editor">
+					<action name="Execute">
+						<execute>geany</execute>
+					</action>
+				</item>
+				<item label="vim editor">
+					<action name="Execute">
+						<execute>urxvtcd -T editor -e vim</execute>
+					</action>
+				</item>
+				<item label="pdf viewer">
+					<action name="Execute">
+						<execute>evince</execute>
+					</action>
+				</item>
+				<item label="agenda">
+					<action name="Execute">
+						<execute>urxvtcd -e calcurse</execute>
+					</action>
+				</item>
+			</menu>
+			<menu id="tools" label="tools">
+				<item label="search tool">
+					<action name="Execute">
+						<execute>catfish</execute>
+					</action>
+				</item>
+				<item label="archiver">
+					<action name="Execute">
+						<execute>file-roller</execute>
+					</action>
+				</item>
+				<item label="calculator">
+					<action name="Execute">
+						<execute>xcalc</execute>
+					</action>
+				</item>
+				<item label="renamer">
+					<action name="Execute">
+						<execute>pyrenamer</execute>
+					</action>
+				</item>
+				<item label="file checker">
+					<action name="Execute">
+						<execute>fslint-gui</execute>
+					</action>
+				</item>
+				<item label="processes">
+					<action name="Execute">
+						<execute>urxvtcd -e htop</execute>
+					</action>
+				</item>
+			</menu>
+			<menu id=" /Debian"/>
+		</menu>
+		<menu id="config" label="configuration">
+			<item label="xinitrc">
+				<action name="Execute">
+					<execute>geany .xinitrc</execute>
+				</action>
+			</item>
+			<item label="display">
+				<action name="Execute">
+					<execute>arandr</execute>
+				</action>
+			</item>
+			<item label="interface">
+				<action name="Execute">
+					<execute>lxappearance</execute>
+				</action>
+			</item>
+			<item label="wallpaper">
+				<action name="Execute">
+					<execute>nitrogen</execute>
+				</action>
+			</item>
+			<menu id="config_openbox" label="openbox">
+				<item label="autostart">
+					<action name="Execute">
+						<execute>geany .config/openbox/autostart</execute>
+					</action>
+				</item>
+				<item label="ObConf">
+					<action name="Execute">
+						<execute>obconf</execute>
+					</action>
+				</item>
+				<item label="ObMenu">
+					<action name="Execute">
+						<execute>obmenu</execute>
+					</action>
+				</item>
+				<item label="edit menu.xml">
+					<action name="Execute">
+						<execute>geany .config/openbox/menu.xml</execute>
+					</action>
+				</item>
+				<item label="edit rc.xml">
+					<action name="Execute">
+						<execute>geany .config/openbox/rc.xml</execute>
+					</action>
+				</item>
+				<separator/>
+				<menu id="config_openbox-help" label="help">
+					<item label="keybinds">
+						<action name="Execute">
+							<execute>conky -q -c .conky/conkyrc_openbox_keys</execute>
+						</action>
+					</item>
+					<item label="manual page">
+						<action name="Execute">
+							<execute>urxvtcd -e man openbox</execute>
+						</action>
+					</item>
+					<item label="main page">
+						<action name="Execute">
+							<execute>firefox http://openbox.org</execute>
+						</action>
+					</item>
+				</menu>
+				<item label="reconfigure">
+					<action name="Reconfigure"/>
+				</item>
+				<item label="restart">
+					<action name="Restart"/>
+				</item>
+			</menu>
+			<menu id="config-tint2" label="tint2">
+				<item label="edit tint2rc">
+					<action name="Execute">
+						<execute>geany .config/tint2/tint2rc</execute>
+					</action>
+				</item>
+				<item label="reload tint2">
+					<action name="Execute">
+						<execute>killall -USR1 tint2</execute>
+					</action>
+				</item>
+			</menu>
+			<menu id="config-screensaver" label="screensaver">
+				<item label="config screensaver">
+					<action name="Execute">
+						<execute>xscreensaver-demo</execute>
+					</action>
+				</item>
+				<item label="reload screensaver">
+					<action name="Execute">
+						<execute>xscreensaver-command -restart</execute>
+					</action>
+				</item>
+				<item label="disable screensaver">
+					<action name="Execute">
+						<execute>xscreensaver-command -exit</execute>
+					</action>
+				</item>
+			</menu>
+			<menu id="config-composite" label="composite">
+				<item label="no effect">
+					<action name="Execute">
+						<execute>xcompmgr_livarp -s</execute>
+					</action>
+				</item>
+				<item label="light effect">
+					<action name="Execute">
+						<execute>xcompmgr_livarp -l</execute>
+					</action>
+				</item>
+				<item label="full effect">
+					<action name="Execute">
+						<execute>xcompmgr_livarp -f</execute>
+					</action>
+				</item>
+                <item label="configure">
+                    <action name="Execute">
+                        <execute>urxvtcd -e sudo vim /usr/local/bin/xcompmgr_livarp</execute>
+                    </action>
+                </item>
+                <item label="manual">
+                    <action name="Execute">
+                        <execute>urxvtcd -e man xcompmgr</execute>
+                    </action>
+                </item>
+			</menu>
+			<menu id="config-conky" label="conky">
+				<item label="edit conkyrc">
+					<action name="Execute">
+						<execute>geany .conky/conkyrc_openbox</execute>
+					</action>
+				</item>
+				<item label="display conky">
+					<action name="Execute">
+						<execute>conky -q -c .conky/conkyrc_openbox</execute>
+					</action>
+				</item>
+			</menu>
+		</menu>
+		<menu id="system" label="system">
+			<item label="gparted">
+				<action name="Execute">
+					<execute>gksu gparted</execute>
+				</action>
+			</item>
+			<item label="default apps">
+				<action name="Execute">
+					<execute>urxvtcd -e sudo update-alternatives --all</execute>
+				</action>
+			</item>
+			<item label="disk usage">
+				<action name="Execute">
+					<execute>urxvtcd -e ncdu</execute>
+				</action>
+			</item>
+			<item label="clickme's">
+				<action name="Execute">
+					<execute>rox bin/clickmes</execute>
+				</action>
+			</item>
+			<item label="packages manager">
+				<action name="Execute">
+					<execute>gksu synaptic</execute>
+				</action>
+			</item>
+			<item label="infos system">
+				<action name="Execute">
+					<execute>hardinfo</execute>
+				</action>
+			</item>
+			<item label="livarp-xs-maker">
+				<action name="Execute">
+					<execute>bin/remove-sessions/livarp-xs-maker</execute>
+				</action>
+			</item>
+			<item label="root terminal">
+				<action name="Execute">
+					<execute>urxvtcd -e su</execute>
+				</action>
+			</item>
+		</menu>
+		<!-- This requires the presence of the 'menu' package to work -->
+		<item label="help center">
+			<action name="Execute">
+				<execute>firefox /usr/share/livarp/help_center/index.html</execute>
+			</action>
+		</item>
+		<separator/>
+		<item label="Lock">
+			<action name="Execute">
+				<execute>xscreensaver-command -lock</execute>
+			</action>
+		</item>
+		<item label="Exit">
+			<action name="Execute">
+				<execute>dmenu-quit.sh</execute>
+			</action>
+		</item>
+	</menu>
+</openbox_menu>

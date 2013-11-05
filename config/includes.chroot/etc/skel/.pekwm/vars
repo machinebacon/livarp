@@ -1,0 +1,4 @@
+$TERM="urxvtcd"
+$FILER="rox-filer"
+$BROWSER="firefox"
+$EDITOR="geany"

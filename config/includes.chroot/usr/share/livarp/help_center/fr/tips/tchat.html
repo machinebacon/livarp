@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Centre d'Aide Livarp - weechat &amp; mcabber</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang fr|<a href="../../us/tips/tchat.html">gb</a></h2><h1><a href="../../index-fr.html" title="retour au menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>l'irc avec weechat</h1>
+            <img src="../../pics/weechat.png" />
+                <h2>1. Démarrer WeeChat</h2>
+                <p>Un émulateur de terminal recommandé pour X (mais pas obligatoire) est rxvt-unicode (il a un bon support UTF-8, et aucun problème avec les touches par défaut).<br />
+                Lancer "weechat-curses" depuis votre shell.</p>
+                <h2>2. Aide en ligne / options</h2>
+                <p>WeeChat dispose d’aide pour toutes les commandes, tapez simplement /help. Pour avoir de l’aide sur une commande, tapez /help commande<br />
+                Pour modifier des options, utilisez /set config.section.option valeur (où config est le nom de la configuration (weechat pour le coeur, ou un nom d’extension), section la section de cette configuration et option le nom de l’option).<br />
+                WeeChat utilise immédiatement la nouvelle valeur (vous n’avez jamais besoin de redémarrer WeeChat après avoir changé la configuration).<br>
+                Vous pouvez utiliser /set avec un nom partiel d’option et le caractère joker "*" au début ou à la fin pour afficher toutes les options contenant ces lettres. Par exemple :</p>
+                <p class="blockquote">/set</p>
+                <p>affiche toutes les options (WeeChat et extensions)</p>
+                <p class="blockquote">/set weechat.*</p>
+                <p>affiche les options WeeChat</p>
+                <p class="blockquote">/set irc.*</p>
+                <p>affiche les options de l’extension IRC</p>
+                <p>Vous pouvez afficher de l’aide sur une option avec /help, par exemple :</p>
+                <p class="blockquote">/help weechat.look.highlight.</p>
+                <p>Toutes les options sont sauvées quand WeeChat quitte (ou avec la commande /save pour forcer une écriture des options).<br />
+                Vous pouvez éditer les fichiers de configuration (*.conf) à la main et les recharger par la commande /reload si vous ne souhaitez pas utiliser la commande /set.</p>
+                <h2>3. Coeur vs extensions</h2>
+                <p>Le coeur de WeeChat ("core") ne fait qu’afficher les données à l'écran et interagir avec l’utilisateur, cela signifie que le coeur sans extension n’a pas grand intérêt (utilisateurs fidèles: IRC faisait partie du coeur dans les versions ≤ 0.2.6).</p>
+                <p>Tous les protocoles réseau comme IRC sont fournis sous forme d’extensions.<br />
+                Utilisez la commande /plugin pour voir les extensions chargées, vous devriez voir "irc" et d’autres extensions dans cette liste.</p>
+                <h2>4. Créer un serveur IRC</h2>
+                <p>Vous pouvez ajouter un serveur IRC par la commande /server, par exemple :</p>
+                <p class="blockquote">/server add oftc irc.oftc.net/6667</p>
+                <p>Comme d’habitude, de l’aide est disponible si vous êtes perdus : /help server</p>
+                <h2>5. Définir les options du serveur IRC</h2>
+                <p>WeeChat utilise des valeurs par défaut pour tous les serveurs, si vous ne spécifiez pas de valeur spécifique pour une option de serveur. Ces options par défaut sont "irc.server_default.*".<br />
+                Pour chaque option d’un serveur, WeeChat utilise sa valeur si elle est définie (non "null"). Sinon WeeChat utilise la valeur par défaut ("irc.server_default.xxx").<br />
+                Par exemple il y a des pseudos par défaut (basés sur votre login un*x), et vous pouvez les écraser pour le serveur oftc avec la commande suivante :</p>
+                <p class="blockquote">/set irc.server.oftc.nicks "pseudo1,pseudo2,pseudo3,pseudo4,pseudo5"</p>
+                <p>Pour modifier le nom d’utilisateur et nom réel :</p>
+                <p class="blockquote">/set irc.server.oftc.username "Mon nom d'utilisateur"<br />
+                /set irc.server.oftc.realname "Mon nom réel"</p>
+                <p>Pour activer la connexion automatique au serveur lors du démarrage :</p>
+                <p class="blockquote">/set irc.server.oftc.autoconnect on</p>
+                <p>Pour lancer une commande après connexion au serveur, par exemple pour s’identifier auprès de nickserv :</p>
+                <p class="blockquote">/set irc.server.oftc.command "/msg nickserv identify xxxxxx"</p>
+                <p>Pour rejoindre automatiquement des canaux lors de la connexion au serveur :</p>
+                <p class="blockquote">/set irc.server.oftc.autojoin "#canal1,#canal2"</p>
+                <h2>6. Se connecter au serveur IRC et rejoindre les canaux</h2>
+                <p class="blockquote">/connect oftc</p>
+                <p>Cette commande peut aussi être utilisée pour créer et se connecter au serveur sans utiliser la commande /server<br />
+                Par défaut, les tampons des serveurs sont mélangés avec le tampon core WeeChat. Pour basculer entre le tampon core et les tampons des serveurs, il faut utiliser la touche ctrl-X.</p>
+                <h2>7. Joindre/quitter les canaux IRC</h2>
+                <p class="blockquote">/join #channel: joindre un canal<br />
+                /part [message de fin]: quitter un canal (en laissant le tampon ouvert)<br />
+                /close [message de fin]: quitter un canal et fermer le tampon (/close est un alias sur /buffer close)</p>
+                <h2>8. Gérer les tampons/fenêtres</h2>
+                <p>Un tampon ("buffer") est un composant lié à une extension, avec une catégorie et un nom. Le tampon contient les données affichées à l'écran.<br />
+                Une fenêtre ("window") est une vue sur un tampon. Par défaut il n’y a qu’une fenêtre affichant un tampon. Si vous divisez l'écran, vous verrez alors plusieurs fenêtres avec plusieurs tampons en même temps.</p>
+                <p>Commandes pour gérer les tampons et les fenêtres :</p>
+                <p class="blockquote">/buffer<br />
+                /window</p>
+                <p>Par exemple, pour découper verticalement l'écran en une petite fenêtre (1/3 de la largeur) et une large (2/3), utilisez la commande :</p>
+                <p class="blockquote">/window splitv 33</p>
+                <h2>9. Raccourcis clavier</h2>
+                <p>WeeChat utilise un certain nombre de touches par défaut. Toutes ces touches sont dans la documentation, mais vous devriez connaître au moins les touches vitales :</p>
+                <pre class="blockquote">
+ > alt + flèches gauche/droite (ou F5/F6): aller au tampon précédent/suivant
+ > F7/F8: aller à la fenêtre précédente/suivante (quand l'écran est divisé)
+ > F9/F10: faire défiler la barre de titre
+ > F11/F12: faire défiler la liste des pseudos
+ > tab: compléter le texte de la barre d’entrée, comme avec votre shell
+ > page préc/suiv: faire défiler le texte dans le tampon courant
+ > alt + A: sauter au tampon avec de l’activité (dans la "hotlist")
+                </pre>
+                <p>Selon votre clavier et/ou vos besoins, vous pouvez associer n’importe quelle touche à une commande avec la commande /key. Une touche utile est meta-k (alt-k) pour trouver le code des touches.<br />
+                Par exemple, pour associer meta-y (alt-y) à la commande /buffer close :</p>
+                <p class="blockquote">/key bind (pressez meta-k) (pressez meta-y) /buffer close</p>
+                <h2>10. Extensions/scripts</h2>
+                <p>Sur certaines distributions comme Debian, les extensions sont disponibles via un paquet séparé (par exemple weechat-plugins). Les extensions sont automatiquement chargées lorsqu’elles sont trouvées (merci de regarder la documentation WeeChat pour charger/décharger des extensions ou des scripts).</p>
+                <p>De nombreux scripts externes (de contributeurs) sont disponibles pour WeeChat : http://www.weechat.org/scripts<br />
+                Vous pouvez gérer les scripts dans WeeChat avec la commande /script (voir /help script pour plus d’info).</p>
+                <p>Vous pouvez maintenant utiliser WeeChat et lire la FAQ/documentation pour toute autre question : http://www.weechat.org/doc</p>
+            </div>
+        </div>
+    </div>
+    <div id="footer">centre d'aide livarp_0.4 - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

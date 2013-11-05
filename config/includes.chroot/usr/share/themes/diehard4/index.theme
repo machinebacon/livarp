@@ -1,0 +1,10 @@
+[X-GNOME-Metatheme]
+Name=Diehard4
+Type=X-GNOME-Metatheme
+Comment=Yippie-kai-yay, motherf*cker! 
+Encoding=UTF-8
+GtkTheme=diehard4
+MetacityTheme=diehard4
+IconTheme=Faenza-Blue-Dark2
+CursorTheme=Shere_Khan_X
+CursorSize=24

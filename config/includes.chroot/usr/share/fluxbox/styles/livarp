@@ -1,0 +1,149 @@
+style.name:             livarp
+style.author:           arpinux <contact@arpinux.org>
+style.date:             2012
+
+background:             fullscreen
+!background.pixmap:      /usr/share/backgrounds/livarp_0.3.9_fluxbox.png
+
+window.font:                    -*-terminus-medium-r-*-*-12-*-*-*-*-*-iso10646-1
+menu.frame.font:                -*-terminus-medium-r-*-*-12-*-*-*-*-*-iso10646-1
+menu.title.font:                -*-terminus-medium-r-*-*-12-*-*-*-*-*-iso10646-1
+toolbar.clock.font:             -*-terminus-medium-r-*-*-12-*-*-*-*-*-iso10646-1
+toolbar.iconbar.focused.font:   -*-terminus-medium-r-*-*-12-*-*-*-*-*-iso10646-1
+toolbar.iconbar.unfocused.font: -*-terminus-medium-r-*-*-12-*-*-*-*-*-iso10646-1
+toolbar.workspace.font:         -*-terminus-medium-r-*-*-12-*-*-*-*-*-iso10646-1
+
+! Window settings --------------
+window.grip.focus:            	Flat Solid
+window.grip.focus.color:        #222222
+
+window.grip.unfocus:            Flat Solid
+window.grip.unfocus.color:      #222222
+
+window.handle.focus:            Flat Solid
+window.handle.focus.color:      #000000
+
+window.handle.unfocus:          Flat Solid
+window.handle.unfocus.color:    #000000
+
+window.label.focus:             Flat Gradient CrossDiagonal
+window.label.focus.color:       #7D7D7D
+window.label.focus.colorTo:     #222222
+window.label.focus.textColor:   #CCCCCC
+window.label.focus.justify:     Center
+
+window.justify:                 Center
+window.label.unfocus:           Flat Solid
+window.label.unfocus.color:     #222222
+window.label.unfocus.textColor: #7D7D7D
+
+window.title.focus:             Flat Solid
+window.title.focus.color:       #7D7D7D
+
+window.title.unfocus:           Flat Solid
+window.title.unfocus.color:     #222222
+
+window.frame.focusColor:        #7D7D7D
+window.frame.unfocusColor:      #222222
+
+window.button.focus:            Flat Gradient CrossDiagonal
+window.button.focus.color:      #222222
+window.button.focus.colorTo:    #7D7D7D
+window.button.focus.picColor:   #CCCCCC
+window.button.unfocus:          Solid
+window.button.unfocus.color:    #222222
+window.button.unfocus.picColor: #222222
+window.button.pressed:          Solid
+window.button.pressed.color:    #ffffff
+
+! Toolbar settings ---------------------
+toolbar.iconbar.focused:                Flat Gradient CrossDiagonal
+toolbar.iconbar.focused.color:          #7D7D7D
+toolbar.iconbar.focused.colorTo:        #222222
+toolbar.iconbar.focused.textColor:      #CCCCCC
+toolbar.iconbar.focused.borderWidth:    0
+toolbar.iconbar.focused.borderColor:    #FFFFFF
+
+toolbar.iconbar.unfocused:              Solid
+toolbar.iconbar.unfocused.color:        #222222
+toolbar.iconbar.unfocused.textColor:	#7D7D7D
+toolbar.iconbar.unfocused.borderWidth:	0
+toolbar.iconbar.unfocused.borderColor:	#555555
+
+toolbar.iconbar.empty:                  Solid
+toolbar.iconbar.empty.color:            #222222
+toolbar.iconbar.empty.borderWidth:      0
+
+toolbar.iconbar.borderWidth:            0
+toolbar.workspace.borderWidth:          0
+
+toolbar.button:                         Flat Gradient CrossDiagonal
+toolbar.button.color:                   #222222
+toolbar.button.colorTo:                 #7D7D7D
+toolbar.button.picColor:                #CCCCCC
+
+toolbar.button.pressed:                 Solid
+toolbar.button.pressed.color:           #ffffff
+
+toolbar.label:                          Flat Gradient CrossDiagonal
+toolbar.label.color:                    #7D7D7D
+toolbar.label.colorTo:                  #222222
+toolbar.label.textColor:                #CCCCCC
+
+toolbar.windowLabel:                    Flat Gradient CrossDiagonal
+toolbar.windowLabel.color:              #7D7D7D
+toolbar.windowLabel.colorTo:            #222222
+toolbar.windowLabel.textColor:          #CCCCCC
+
+toolbar.clock:                          Flat Gradient CrossDiagonal
+toolbar.clock.color:                    #7D7D7D
+toolbar.clock.colorTo:                  #222222
+toolbar.clock.textColor:                #ffffff
+
+toolbar:                                Flat Solid
+toolbar.color:                          #222222
+toolbar.textColor:                      #CCCCCC
+toolbar.justify:                        Center
+
+! Tabs -----------------------------
+window.tab.justify:                 Center
+window.tab.label.focus:             Flat Solid
+window.tab.label.focus.color:       #222222
+window.tab.label.focus.textColor:   #ffffff
+
+window.tab.label.unfocus:           Solid
+window.tab.label.unfocus.color:     #1A1A1A
+window.tab.label.unfocus.textColor: #7D7D7D
+
+window.tab.borderWidth:             1
+window.tab.borderColor:             #222222
+
+! Menu settings ----------------
+menu.frame:                     Flat Gradient CrossDiagonal
+menu.frame.color:               #7D7D7D
+menu.frame.colorTo:             #222222
+menu.frame.textColor:           #CCCCCC
+menu.frame.justify:             Left
+
+menu.title:                     Solid
+menu.title.color:               #222222
+menu.title.textColor:           #CCCCCC
+menu.title.justify:             Center
+
+menu.hilite:                    Flat Gradient CrossDiagonal
+menu.hilite.color:              #7D7D7D
+menu.hilite.colorTo:            #222222
+menu.hilite.textColor:          #ffffff
+
+menu.bullet:                    Cube
+menu.bullet.position:           Right
+menu.frame.disableColor:        #1A1A1A
+
+menu.bevelWidth:                1
+
+! Misc ---------
+handleWidth:    0
+frameWidth:     0
+bevelWidth:     1
+borderWidth:    1
+borderColor:    #7D7D7D

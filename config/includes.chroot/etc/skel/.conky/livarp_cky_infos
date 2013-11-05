@@ -1,0 +1,103 @@
+########################################################################
+# conkyrc infos                                                        #
+# livarp_0.3.9 arpinux@2012                                            #
+# http://arpinux.org/livarp                                            #
+########################################################################
+## Setting                                                             #
+########################################################################
+use_xft yes
+xftfont Terminus:size=8
+xftalpha 1
+override_utf8_locale yes
+use_spacer none
+short_units yes
+text_buffer_size 2048
+background yes
+update_interval 1
+xftalpha 1
+total_run_times 0
+draw_shades no
+default_bar_size 100 10
+default_color gray50
+own_window yes
+own_window_transparent no
+own_window_type override
+draw_borders yes
+border_inner_margin 10
+border_outer_margin 2
+border_width 2
+minimum_size 800 600
+maximum_width 800
+double_buffer yes
+no_buffers yes
+cpu_avg_samples 2
+net_avg_samples 2
+gap_x 0
+gap_y 0
+alignment mm
+if_up_strictness address
+
+# output ###############################################################
+TEXT
+${color #ffffff}${time %a %d %b -- %I:%M} ${hr 1}$color
+$alignr ${nodename} since ${uptime_short}
+power ${acpiacadapter} $alignr Debian livarp
+battery ${if_existing /sys/class/power_supply/BAT0}${battery BAT0} ${battery_time BAT0}${else}${if_existing /sys/class/power_supply/BAT1}${battery BAT1} ${battery_time BAT1}${endif}${endif}${color}$alignr ${sysname} ${kernel}
+
+${color #FF8C00}CPU${goto 35}${cpubar 10,100} ${cpu cpu0}% ${acpitemp}°C ${hr 1}$color
+cpu usage >> ${alignr}processes ${running_processes}/${processes}
+1 :${top name 1} ${top cpu 1}%  ${top pid 1} \
+${goto 300}6 :${top name 6} ${top cpu 6}%  ${top pid 6} \
+${alignr}loadavg ${loadavg}
+2 :${top name 2} ${top cpu 2}%  ${top pid 2} \
+${goto 300}7 :${top name 7} ${top cpu 7}%  ${top pid 7} \
+${alignr}freq ${freq cpu0}Mhz
+3 :${top name 3} ${top cpu 3}%  ${top pid 3} \
+${goto 300}8 :${top name 8} ${top cpu 8}%  ${top pid 8}
+4 :${top name 4} ${top cpu 4}%  ${top pid 4} \
+${goto 300}9 :${top name 9} ${top cpu 9}%  ${top pid 9}
+5 :${top name 5} ${top cpu 5}%  ${top pid 5} \
+${goto 300}10:${top name 10} ${top cpu 10}%  ${top pid 10} \
+${voffset -15}${alignr 5}${cpugraph 20,200}
+
+${voffset -5}${color #75DE00}RAM${goto 35}${membar 10,100} ${memperc}% ${hr 1}$color
+mem usage >> $alignr used ${mem}
+1 :${top_mem name 1} ${top_mem mem 1}%  ${top_mem pid 1} \
+${goto 300}6 :${top_mem name 6} ${top_mem mem 6}%  ${top_mem pid 6} \
+$alignr total ${memmax}
+2 :${top_mem name 2} ${top_mem mem 2}%  ${top_mem pid 2} \
+${goto 300}7 :${top_mem name 7} ${top_mem mem 7}%  ${top_mem pid 7} \
+$alignr free ${memfree}
+3 :${top_mem name 3} ${top_mem mem 3}%  ${top_mem pid 3} \
+${goto 300}8 :${top_mem name 8} ${top_mem mem 8}%  ${top_mem pid 8} \
+$alignr easyfree ${memeasyfree}
+4 :${top_mem name 4} ${top_mem mem 4}%  ${top_mem pid 4} \
+${goto 300}9 :${top_mem name 9} ${top_mem mem 9}%  ${top_mem pid 9}
+5 :${top_mem name 5} ${top_mem mem 5}%  ${top_mem pid 5} \
+${goto 300}10:${top_mem name 10} ${top_mem mem 10}%  ${top_mem pid 10} \
+$alignr swap ${swapperc}%    ${swap} / ${swapmax}
+
+${color #0059B5}HDD${goto 35}${fs_bar /} ${fs_used_perc /}% ${hr 1}$color
+used:${fs_used /} / free:${fs_free /} / total:${fs_size /}\
+${alignr 5}I/O ${diskiograph 10,100} ${diskio}/s
+
+${color #9000B5}music ${hr 1}$color
+${alignc}${if_running mocp}${if_match "${exec mocp -Q %state}" != "PLAY"}\
+moc's waiting${else}on air: \
+${exec mocp -Q %song} - by ${exec mocp -Q %artist} \
+- from ${exec mocp -Q %album} \
+- ${exec mocp -Q %ct}/${exec mocp -Q %tt}$endif$endif
+
+${color #00B5B1}network ${if_up eth0}wired ${hr 1}$color
+download ${goto 70}${downspeedgraph eth0 10,100} ${downspeed eth0}/s $alignr ${addr eth0} / ${texeci 120 ip.sh}
+upload ${goto 70}${upspeedgraph eth0 10,100} ${upspeed eth0}/s $alignr tcp_port(s) ${tcp_portmon 1 65535 count}${else}${if_up wlan0}wifi ${hr 1}$color
+signal ${wireless_link_qual_perc wlan0}% $alignr ${addr wlan0} / ${texeci 120 ip.sh}
+connected to ${wireless_essid wlan0} $alignr tcp_port(s) ${tcp_portmon 1 65535 count}
+mode: ${wireless_mode wlan0}
+access ${wireless_ap wlan0}
+download ${goto 70}${downspeedgraph wlan0 10,100} ${downspeed wlan0}/s
+upload ${goto 70}${upspeedgraph wlan0 10,100} ${upspeed wlan0}/s${else} ${hr 1}$color
+$alignr no network${endif}${endif}
+
+${color #0C9C00}/var/log/messages ${hr 1}$color
+${exec dmesg | tail -n6}}

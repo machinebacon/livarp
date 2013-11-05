@@ -1,0 +1,79 @@
+########################################################################
+# ___ conkyrc                                                          #
+# livarp_0.3.9 arpinux@2012                                            #
+# http://arpinux.org/livarp                                            #
+########################################################################
+## Setting                                                             #
+########################################################################
+update_interval 1
+total_run_times 0
+net_avg_samples 2
+cpu_avg_samples 2
+imlib_cache_size 0
+text_buffer_size 1024
+double_buffer yes
+no_buffers yes
+override_utf8_locale yes
+use_xft yes
+xftalpha 0.5
+xftfont Sans:size=6
+text_buffer_size 2048
+own_window yes
+own_window_type override
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_pager,skip_taskbar
+alignment bl
+gap_x 0
+gap_y 13
+border_inner_margin 0
+border_outer_margin 0
+minimum_size 250 20
+maximum_width 250
+default_color 222222
+draw_shades no
+########################################################################
+## Output                                                              #
+########################################################################
+TEXT
+${if_match ${cpu} > 0 }\
+${color 409900}██${endif}${if_match ${cpu} > 5 }\
+${color 4D9900}██${endif}${if_match ${cpu} > 10 }\
+${color 599900}██${endif}${if_match ${cpu} > 15 }\
+${color 669900}██${endif}${if_match ${cpu} > 20 }\
+${color 739900}██${endif}${if_match ${cpu} > 25 }\
+${color 7F9900}██${endif}${if_match ${cpu} > 30 }\
+${color 8C9900}██${endif}${if_match ${cpu} > 35 }\
+${color 999900}██${endif}${if_match ${cpu} > 40 }\
+${color 998C00}██${endif}${if_match ${cpu} > 45 }\
+${color 998000}██${endif}${if_match ${cpu} > 50 }\
+${color 997300}██${endif}${if_match ${cpu} > 55 }\
+${color 996600}██${endif}${if_match ${cpu} > 60 }\
+${color 995900}██${endif}${if_match ${cpu} > 66 }\
+${color 994D00}██${endif}${if_match ${cpu} > 70 }\
+${color 994000}██${endif}${if_match ${cpu} > 75 }\
+${color 993300}██${endif}${if_match ${cpu} > 80 }\
+${color 992600}██${endif}${if_match ${cpu} > 85 }\
+${color 991900}██${endif}${if_match ${cpu} > 90 }\
+${color 990D00}██${endif}${if_match ${cpu} > 95 }\
+${color 990000}████${endif}
+${if_match ${memperc} > 0 }\
+${color 2B6600}██${endif}${if_match ${memperc} > 5 }\
+${color 336600}██${endif}${if_match ${memperc} > 10 }\
+${color 3C6600}██${endif}${if_match ${memperc} > 15 }\
+${color 446600}██${endif}${if_match ${memperc} > 20 }\
+${color 4D6600}██${endif}${if_match ${memperc} > 25 }\
+${color 556600}██${endif}${if_match ${memperc} > 30 }\
+${color 5E6600}██${endif}${if_match ${memperc} > 35 }\
+${color 666600}██${endif}${if_match ${memperc} > 40 }\
+${color 665E00}██${endif}${if_match ${memperc} > 45 }\
+${color 665500}██${endif}${if_match ${memperc} > 50 }\
+${color 664D00}██${endif}${if_match ${memperc} > 55 }\
+${color 664400}██${endif}${if_match ${memperc} > 60 }\
+${color 663C00}██${endif}${if_match ${memperc} > 66 }\
+${color 663300}██${endif}${if_match ${memperc} > 70 }\
+${color 662B00}██${endif}${if_match ${memperc} > 75 }\
+${color 662200}██${endif}${if_match ${memperc} > 80 }\
+${color 661A00}██${endif}${if_match ${memperc} > 85 }\
+${color 661100}██${endif}${if_match ${memperc} > 90 }\
+${color 660900}██${endif}${if_match ${memperc} > 95 }\
+${color 660000}████${endif}

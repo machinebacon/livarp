@@ -1,0 +1,79 @@
+##
+## livarp_0.4 default packages
+##
+
+##basics
+adduser gnupg user-setup eject desktop-base locales
+console-data console-setup console-setup-linux console-common
+keyboard-configuration iptables iproute net-tools
+
+##xserver - window manager
+xorg dvtm vtwm dwm awesome awesome-extra ratpoison
+spectrwm evilwm fluxbox openbox pekwm
+
+##terminal
+xterm rxvt-unicode-256color screen zsh
+
+##editor
+vim geany evince
+
+##filer
+ranger rox-filer mc
+
+##panel - menu
+tint2 ratmenu lxpanel suckless-tools
+
+##monitor
+htop ncdu hardinfo conky
+
+##network apps
+iceweasel links2 claws-mail
+weechat weechat-plugins transmission-gtk filezilla
+wpasupplicant wireless-tools network-manager-gnome pppoeconf
+network-manager-openvpn-gnome network-manager-vpnc-gnome
+
+##graphics
+feh nitrogen gthumb gcolor2 scrot
+
+##tools
+xcolorsel x11-apps calcurse
+xdotool fbxkb ccze xosview catfish pyrenamer fslint
+most curl bc vlock wmctrl
+mediainfo caca-utils atool
+
+##fonts
+xfonts-terminus fonts-droid fonts-freefont-ttf fonts-liberation
+xfonts-100dpi xfonts-75dpi xfonts-base xfonts-utils ttf-freefont
+
+##theme
+lxappearance arandr xcompmgr openbox-themes obconf obmenu
+murrine-themes gtk2-engines gtk2-engines-pixbuf gtk3-engines-unico
+gnome-themes-standard dmz-cursor-theme
+
+##media
+alsa-base alsa-utils moc moc-ffmpeg-plugin ffmpeg gnome-mplayer xfburn
+oggconvert ffmpeg2theora winff
+gstreamer0.10-ffmpeg gstreamer0.10-plugins-bad gstreamer0.10-plugins-base
+gstreamer0.10-plugins-good gstreamer0.10-plugins-ugly gstreamer0.10-x
+
+##archive
+file-roller unrar-free dtrx p7zip-full
+
+##power
+upower xscreensaver acpi
+
+##filesystem
+gparted dosfstools ntfs-3g mtools ntfsprogs
+
+##admin
+sudo gksu gdebi synaptic apt-show-versions
+firmware-linux-free radeontool live-tools lsb-release
+gnome-keyring libpam-gnome-keyring policykit-1 policykit-1-gnome udisks-glue
+dbus dbus-x11 consolekit pam-dbus-notify libpam-ck-connector accountsservice
+
+##other
+python python-dbus python-gtk2 python-notify python-xdg xdg-utils dfc
+zeroinstall-injector libnotify-bin notification-daemon usbutils telnet
+
+##free
+vrms

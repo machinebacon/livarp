@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Centre d'Aide Livarp - session dwm_reloaded</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang fr|<a href="../../us/sessions/dwm_reloaded.html">gb</a></h2><h1><a href="../../index-fr.html" title="retour au menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>la session dwm_reloaded</h1>
+            <p><b>dwm</b> est écrit en C … pas de rafraichissement automatique .. tu veux configurer ? alors tu dois compiler :)<br />
+            dwm a su rester simple .. vierge je dirais: vierge de tout gadget et autre options qui allourdissent l'environnement et finissent par nuire aux performances de l'ordinateur et de l'utilisateur, alors que ce n'était pas l'idée de départ.<br />
+            dwm est distribué par suckless.org <i>Dedicated to software that sucks less…</i> et adopte la philosophie KISS .<br />
+            dwm est entièrement pilotable depuis le clavier mais sait aussi faire bon usage de votre souris (déplacement des clients, redimensionnement à la volée..).<br />
+            je l'avoue, c'est ma session préférée :)</p>
+            <h2>screenshot</h2>
+            <a href="../../pics/livarp_04_dwm_reloaded.png"><img src="../../pics/livarp_04_dwm_reloaded_thb.png" /></a>
+            <p>DWM est un tiling window manager, c'est à dire qu'il affiche vos fenêtres (clients) afin qu'elles occupent la totalité de la surface du bureau (tags). les tags occupés sont indiqués par un petit carré. les clients sont organisés de différentes façons (layouts) pour optimiser la visibilité de vos applications ouvertes.les layouts s'organisent autour du Master (zone principale) et du Stack (zone d'empilement des autres clients).</p>
+            <h2>lancement</h2>
+            <p>dwm est lancé par le script ~/bin/start/dwm_start.sh.<br />
+            pour changer vos applications lancées au démarrage, éditer ce fichier: <text class="blockquote">vim bin/start/dwm_start.sh</text> ou depuis le menu dwm:section config:dwm:éditer le script de lancement</p>
+            <h2>composants</h2>
+            <p>la session dwm_reloaded du livarp dispose de plusieurs éléments:
+            <ul><li><b>DWM:</b> le gestionaire de fenêtres lui-même, basé sur dwm-6.1 et largement patché afin d'agrémenter et faciliter la prise en main de ce tiling. (liste des patchs appliqués en bas de page)</li>
+                <li><b>dwm-statusbar:</b> affiche les tags, la disposition du tag (layout), les clients ouverts et un conky minimal indiquant l'utilisation cpu, mem et disque, ainsi que la date et l'heure (configurable depuis ~/.conky/conkyrc_dwm).</li>
+                <li><b>Menu dwm:</b> disponible depuis le coin supérieur gauche de l'écran et géré par fbpanel. il inclut les applications livarp, le menu de configuration de dwm, et le systay (configuré depuis ~/.config/fbpanel/default ou depuis le menu lui-même).</li>
+            </ul></p>
+            <h2>configuration</h2>
+            <p>pour <b>conky</b>, il faut éditer son conkyrc: <text class="blockquote">vim .conky/conkyrc_dwm</text> ou depuis le menu dwm section config:dwm:conky.</p>
+            <p>pour <b>fbpanel</b>, il faut éditer son fichier de configuration <text class="blockquote">vim .config/fbpanel/default</text> ou depuis le menu-lui-même section config:fbpanel:éditer le menu.<br />
+            si vous désirez ajouter des plugins, visitez la <a href="../config/menu.html">page dédiée</a>.</p>
+            <h3>la configuration de dwm_reloaded passe par la compilation des sources.</h3>
+            <p>dwm ne possède pas de fichier de configuration, si vous désirez modifier son comportement, il faut recompiler dwm depuis les sources. une archive contenant les sources fr/us est située dans le dossier /usr/share/livarp/sources.<br />
+            un mini-tuto vous explique le processus à la fin de cette aide.</p>
+            <h2>raccourcis clavier/souris</h2>
+            <p>dwm est entièrement pilotable depuis le clavier: control, lanceurs, navigation, manipulation des tags et clients...<br />
+            les raccourcis clavier/souris sont définis dans le fichier config.h des sources lors de la compilation. certaines applications sont configurées pour s'ouvrir dans des tags spécifiques.</p>
+            <h3>menus:</h3>
+                <ul><li>menu dwm: coin supérieur gauche de l'écran</li>
+                    <li>dmenu: Alt+p ou Super+d</li>
+                    <li>dmenu-google: Super+g</li>
+                    <li>dmenu-home: Super+h</li>
+                </ul>
+            <h3>control:</h3>
+                <ul><li>relancer dwm: Ctrl+Alt+r</li>
+                    <li>quitter dwm: Ctrl+Shift+Alt+q ou depuis le menu dwm:exit</li>
+                    <li>masquer/afficher la statusbar: Alt+b</li>
+                </ul>
+            <h3>fenêtres:</h3>
+                <ul><li>fermer le client: Alt+q</li>
+                    <li>client précédent: Alt+j</li>
+                    <li>client suivant: Alt+k</li>
+                    <li>faire decendre le client dans la liste: Ctrl+Alt+j</li>
+                    <li>faire monter le client dans la liste: Ctrl+Alt+k</li>
+                    <li>placer le client dans le master: Alt+Enter ou clic-droit sur le titre du client dans la statusbar</li>
+                    <li>libère/tile le client: Alt+Shift+Space</li>
+                    <li>déplacer la fenêtre: Alt+clic-gauche</li>
+                    <li>redimensionner la fenêtre: Alt+clic-droit</li>
+                </ul>
+            <h3>navigation:</h3>
+                <ul><li>tag précédent/suivant: Ctrl+Gauche/Droite</li>
+                    <li>échange avec le tag précédent: Alt+Tab</li>
+                    <li>aficher tous les tags: Alt+à (pour revenir, Alt+'numéro')</li>
+                    <li>client visible sur tous les tags: Alt+Shift+à (pour revenir Alt+Shift+'numéro')</li>
+                    <li>aller à l'écran précédent/suivant: Alt+Bas/Haut</li>
+                    <li>envoyer à l'écran précédent/suivant: Alt+Shift+Bas/Haut</li>
+                    <li>afficher le tag 'n': Alt+'n' ou clic-gauche sur le tag dans la statusbar</li>
+                    <li>envoyer sur le tag 'n': Alt+Shift+'n' ou Alt+clic-gauche sur la tag dans la statusbar</li>
+                    <li>afficher/masquer les client du tag 'n': Ctrl+Alt+'n' ou clic-droit sur le tag dans la statusbar</li>
+                </ul>
+            <h3>disposition (layout)</h3>
+                <ul><li>augmenter la surface du master: Alt+l</li>
+                    <li>diminuer la surface du master: Alt+h</li>
+                    <li>augmenter le nombre de clients dans le master: Alt+i</li>
+                    <li>diminuer le nombre de clients dans le master: Alt+d</li>
+                    <li>disposition tile: Alt+t ou clic-gauche sur le bouton de layout. (master à gauche, stack à droite [|])</li>
+                    <li>disosition bottomstack: Alt+s ou clic-central sur le bouton de layout. (master en haut, stack en bas [-])</li>
+                    <li>disposition monocle: Alt+m ou clic-droit sur le bouton de layout. (clients maximisés, le nombre de clients ouverts est indiqué dans le bouton de layout) [0]</li>
+                    <li>disposition libre: Alt+f (pas d'organisation des clients) [ ]</li>
+                    <li>dernière disposition: Alt+Space</li>
+                    <li>disposition suivante: Super+Space</li>
+                    <li>disposition précédente: Super+Shift+Space</li>
+                </ul>
+            <h3>lanceurs:</h3>
+                <ul><li>lanceur de terminal par défaut: Ctrl+Enter</li>
+                    <li>afficher/masquer le scratchpad: F12 (terminal libre en popup)</li>
+                    <li>lancer ranger: Alt+r</li>
+                    <li>lancer rox-filer: Alt+Shift+r</li>
+                    <li>lancer firefox: Alt+w</li>
+                    <li>lancer vim: Alt+e</li>
+                    <li>lancer geany: Alt+Shift+e</li>
+                    <li>lancer weechat: Alt+x</li>
+                    <li>lecteur de musique: Alt+z</li>
+                    <li>control du volume: Alt+v</li>
+                </ul>
+            <h2>compilation de dwm</h2>
+            <p>ce processus peut sembler obscur ou effrayant mais c'est très simple: le but est de construire le fichier exécutable "dwm" depuis les sources. on récupère les sources, on les modifie, puis on applique le fameux "make/sudo make install/make clean" et voilà :) . une archive contenant ces sources est disponible dans votre /usr/share/livarp/sources/dwm-6.1-reloaded.zip.</p>
+            <h3>détails du processus de compilation</h3>
+            <ul><li>récupération des sources:</li></ul>
+            <p class="blockquote">cd ~/tmp<br />
+            cp /usr/share/livarp/sources/dwm_reloaded_l4.tgz .<br />
+            extract dwm_reloaded_l4.tgz</p>
+            <ul><li>on se place dans le répertoire fr puis on édite le fichier config.h qui contient la configuration de dwm:</li></ul>
+            <p class="blockquote">cd dwm_reloaded_l4/fr<br />
+            vim config.h<br />
+            ou bien<br />
+            geany config.h</p>
+            <ul><li>une fois vos modifications appliquées, on compile</li></ul>
+            <p class="blockquote">make<br />
+            sudo make install<br />
+            make clean</p>
+            <p>votre nouveau dwm est installé, pour relancer dwm, Ctrl+Alt+r</p>
+            <h2>liste des patchs appliqués à dwm-6.1</h2>
+            <pre class="blockquote">
+/* dwm_reloaded for livarp_0.4 based on dwm_6.1
+ * patches &amp; mods :
+ * attachabove          http://dwm.suckless.org/patches/attachabove
+ * azertykeys           http://dwm.suckless.org/patches/azertykey
+ * bottomstack          http://dwm.suckless.org/patches/bottom_stack
+ * float_border_color   http://dwm.suckless.org/patches/float_border_color
+ * push up/down         http://dwm.suckless.org/patches/push
+ * pertag               http://dwm.suckless.org/patches/pertag
+ * scratchpad           https://github.com/ok100/dwm/blob/master/03-dwm-6.0-scratchpad-stay.diff
+ * cycle-layout         https://bbs.archlinux.org/viewtopic.php?id=103402
+ * ansistatuscolors     http://dwm.suckless.org/patches/ansistatuscolors
+ * view_prev/next_tag   forum post
+ * urgent_tag color     http://www.mail-archive.com/dwm@suckless.org/msg06657.html
+*/</pre>
+            </div>
+        </div>
+    </div>
+    <div id="footer">centre d'aide livarp_0.4 - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

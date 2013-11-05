@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Centre d'Aide Livarp - ranger cli manager</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang fr|<a href="../../us/tips/ranger.html">gb</a></h2><h1><a href="../../index-fr.html" title="retour au menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>ranger: navigateur de fichier en console</h1>
+            <p><b>ranger</b> est un navigateur de fichier écrit en python adoptant les raccourcis clavier de vim. très léger, il n'en est pas moins hautement configurable: definitions des raccourcis, des applications associées aux types de fichiers, utilisation de scripts externes…<br />
+            ranger utilise les raccourcis vim mais aussi mc:</p>
+            <xmp>    <F1> help
+    <F3> display_file
+    <F4> edit
+    <F5> copy
+    <F6> cut
+    <F7> console mkdir
+    <F8> console delete seriously?
+    <F10> exit
+</xmp>
+            <p>ranger utilise les raccoucis vim pour les actions et la navigation ainsi que les flêches directionnelles.</p>
+            <pre>
+    yy copy
+    pp paste
+    dd cut
+    / recherche
+    n rechercher le suivant
+    ….
+</pre>
+            <p>le plus de ranger est qu'il propose une organisation en colonnes qui permet de visualiser l'arborescence des dossiers mais aussi les fichiers textes directement.</p>
+            <img src="../../pics/ranger.png" />
+            <p>ranger offre une aide directe dans la fenêtre du terminal: lorsque vous démarrez un keybind, ranger vous donne les combinaisons possibles: ici, en commencant par 'g'</p>
+            <img src="../../pics/ranger_keybinds.png" />
+            <p>ranger supporte les bookmarks: placez-vous dans un dossier, puis appuyez sur 'm', ranger vous demande alors de taper une autre lettre qui servira d'identifiant au bookmark. il vous suffit ensuite de taper " ' " puis votre lettre identifiante pour accéder aux raccourcis configurés.</p>
+            <p>ranger gère les onglets: pour ouvrir un onglet "gn" pour naviguer entre les onglets " g'n' " ou [Tab]</p>
+            <img src="../../pics/ranger_tabs.png" />
+            <p>la configuration de ranger passe par l'édition des fichiers contenus dans ~/.config/ranger/ . vous pourrez déterminer les applications associées aux fichiers, le nombre de colonnes affichés, les raccourcis etc ...</p>
+            </div>
+        </div>
+    </div>
+    <div id="footer">centre d'aide livarp_0.4 - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

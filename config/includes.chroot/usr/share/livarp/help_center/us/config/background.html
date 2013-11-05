@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Livarp Help Center - wallpaper configuration</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang <a href="../../fr/config/background.html">fr</a>|gb</h2><h1><a href="../../index.html" title="back to main menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>background</h1>
+            <p>wallpaper management is provided by feh in the default configuration, and can be determined in your $HOME/bin/start/your_wm_start.sh..<br />
+            but if you want to choose your wallpaper the gui'way, livarp includes <strong>nitrogen</strong>.<br />
+            <img src="../../pics/config_nitrogen.png"><br />
+            nitrogen can be found on the different livarp menus: section configuration:background/wallpaper.</p>
+            <p>if you want to restore the wallpaper set by nitrogen, you have to edit your $HOME/bin/start/your_wm_start.sh or $HOME/.config/openbox/autostart:
+            <ul>
+            <li>comment the feh line (add a "#")</li>
+            <li>uncomment the nitrogen line (delete the "#")</li>
+            </ul>
+            </p>
+            <h1>random wallpaper</h1>
+            <p>to display a different wallpaper for each session, and change during the session, we will use feh. Here is a small script that displays a random wallpaper from a folder specified at the beginning of the session, then change the wallpaper at regular intervals</p>
+            <p class="blockquote">
+            #! /bin/sh<br />
+            # random wallpaper script<br />
+            # images directory<br />
+            DIR="/path_to_directory"<br />
+            # wall rotation delay in seconds<br />
+            INT="600"<br />
+            while true; do<br />
+            find $DIR -type f -name '*.jpg' -o -name '*.png' | shuf -n 1 | xargs feh --no-xinerama --bg-scale &amp;<br />
+            sleep $INT<br />
+            done<br />
+            exit 0</p>
+            <p>you just have to run this script from one of your $HOME/bin/start scripts.</p>
+            <p class="blockquote">
+            # random wallpaper<br />
+            randwalls.sh &amp;
+            </p>
+            </div>
+        </div>
+    </div>
+    <div id="footer">livarp_0.4 help center - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

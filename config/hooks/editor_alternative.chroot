@@ -1,0 +1,5 @@
+#!/bin/sh
+# set vim as default X terminal emulator.
+#########################################
+set -e
+update-alternatives --install /usr/bin/editor editor /usr/bin/vim.basic 30

@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Livarp Help Center - weechat &amp; mcabber</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang <a href="../../fr/tips/tchat.html">fr</a>|gb</h2><h1><a href="../../index.html" title="back to main menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>using irc with weechat</h1>
+            <img src="../../pics/weechat.png" />
+                <h2>1. Start WeeChat</h2>
+                <p>A recommended terminal emulator for X (but not mandatory) is rxvt-unicode (it has good UTF-8 support, and no problem with default keyboard bindings).<br />
+                Run "weechat-curses" from your shell.</p>
+                <h2>2. on-line help / options</h2>
+                <p>WeeChat has help for all commands, just issue /help. To get help on a specific command, issue /help command.<br />
+                To set options, use /set config.section.option value (where config is configuration name (weechat for core, or a plugin name), section the section of this configuration and option the option name).</p>
+                <p>WeeChat immediately uses the new value (you never need to restart WeeChat after changes to configuration).</p>
+                <p>You can use /set option with partial name and wildcard "*" at the beginning or end to display all options containing letters. For example:</p>
+                <p class="blockquote">/set</p>
+                <p>display all options (WeeChat and plugins) </p>
+                <p class="blockquote">/set weechat.*</p>
+                <p>display WeeChat options</p>
+                <p class="blockquote">/set irc.*</p>
+                <p>display IRC plugin options</p>
+                <p>You can display help for an option with /help, for example:</p>
+                <p class="blockquote">/help weechat.look.highlight.</p>
+                <p>All settings are saved when WeeChat ends (or with /save command to force a write of the options).<br />
+                You can edit configuration files (*.conf) by hand and reload them by /reload command if you don’t want to use /set command.</p>
+                <h2>3. Core vs plugins</h2>
+                <p>WeeChat "core" is only used to display data on screen and interact with the user, that means weechat core without plugins is useless (faithful users: IRC was part of core for versions ≤ 0.2.6).</p>
+                <p>All network protocols like IRC are provided in separate plugins.<br />
+                Use the /plugin command to list loaded plugins, you should see "irc" and other plugins in the list.</p>
+                <h2>4. Create an IRC server</h2>
+                <p>You can add an IRC server with /server command, for example:</p>
+                <p class="blockquote">/server add oftc irc.oftc.net/6667</p>
+                <p>As usual, help is available if you’re lost: /help server</p>
+                <h2>5. Set custom IRC server options</h2>
+                <p>WeeChat uses default values for all servers ("fall backs"), if you don’t specify a specific value for a server option. These default options are "irc.server_default.*".<br />
+                For each server option, WeeChat uses its value if it is defined (not "null"). Otherwise WeeChat uses default value ("irc.server_default.xxx").<br />
+                For example there’s default nicks (based on your un*x login), and you can override them for oftc server with following command:</p>
+                <p class="blockquote">/set irc.server.oftc.nicks "nick1,nick2,nick3,nick4,nick5"</p>
+                <p>To set username and realname:</p>
+                <p class="blockquote">/set irc.server.oftc.username "my user name"<br />
+                /set irc.server.oftc.realname "Mon nom réel"</p>
+                <p>To enable auto-connect to server at startup:</p>
+                <p class="blockquote">/set irc.server.oftc.autoconnect on</p>
+                <p>To run a command after connection to server, for example to identify with nickserv:</p>
+                <p class="blockquote">/set irc.server.oftc.command "/msg nickserv identify xxxxxx"</p>
+                <p>To auto-join some channels when connecting to server:</p>
+                <p class="blockquote">/set irc.server.oftc.autojoin "#chan1,#chan2"</p>
+                <h2>6. Connect to IRC server and auto-join channels</h2>
+                <p class="blockquote">/connect oftc</p>
+                <p>This command can be used to create and connect to a new server without using /server command<br />
+                By default, server buffers are merged with WeeChat core buffer. To switch between core buffer and server buffers, you can use ctrl-X.</p>
+                <h2>7. Join/part IRC channels</h2>
+                <p class="blockquote">/join #channel: join a channel<br />
+                /part [quit message]: part a channel (keeping buffer open) <br />
+                /close [quit message]: close server or channel buffer (/close is an alias for /buffer close) </p>
+                <h2>8. Buffer/window management</h2>
+                <p>A buffer is a component linked to a plugin with a number, a category, and a name. A buffer contains the data displayed on the screen.<br />
+                A window is a view on a buffer. By default there’s only one window displaying one buffer. If you split screen, you will see many windows with many buffers at same time.<br />
+                Commands to manage buffers and windows:</p>
+                <p class="blockquote">/buffer<br />
+                /window</p>
+                <p>For example, to vertically split your screen into a small window (1/3 width), and a large window (2/3), use command:</p>
+                <p class="blockquote">/window splitv 33</p>
+                <h2>9. Raccourcis clavier</h2>
+                <p>WeeChat uses many keys by default. All these keys are in the documentation, but you should know at least some vital keys:</p>
+                <pre class="blockquote">
+ > alt + left/right arrows (or F5/F6): switch to previous/next buffer 
+ > F7/F8: switch to previous/next window (when screen is split)
+ > F9/F10: scroll title bar
+ > F11/F12: scroll nicklist 
+ > tab: complete text in input bar, like in your shell
+ > page up/down: scroll text in current buffer 
+ > alt + A: jump to buffer with activity (in hotlist)
+                </pre>
+                <p>According to your keyboard and/or your needs, you can rebind any key to a command with /key command. A useful key is meta-k (alt-k) to find key codes.<br />
+                For example, to bind meta-y (alt-y) to command /buffer close:</p>
+                <p class="blockquote">/key bind (press meta-k) (press meta-y) /buffer close</p>
+                <h2>10. Plugins/scripts</h2>
+                <p>On some distros like Debian, plugins are available via a separate package (like weechat-plugins). Plugins are automatically loaded when found (please look at the WeeChat documentation to load/unload plugins or scripts).</p>
+                <p>Many external scripts (from contributors) are available for WeeChat: http://www.weechat.org/scripts<br />
+                You can manage scripts in WeeChat with command /script (see /help script for more info).</p>
+                <p>You can now use WeeChat and read FAQ/documentation for any other questions: http://www.weechat.org/doc</p>
+            </div>
+        </div>
+    </div>
+    <div id="footer">livarp_0.4 help center - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

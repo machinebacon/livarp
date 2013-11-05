@@ -1,0 +1,63 @@
+########################################################################
+# evilwm conkyrc                                                       #
+# livarp_0.4 arpinux@2013                                              #
+# http://arpinux.org/livarp                                            #
+########################################################################
+#  Settings                                                            #
+########################################################################
+background yes
+font -*-snap-normal-*-*-*-10-*-*-*-*-*-iso10646-*
+use_xft no
+#xftfont Terminus:pixelsize=11
+#xftalpha 0.8
+update_interval 2.0
+total_run_times 0
+own_window yes
+own_window_transparent yes
+own_window_argb_visual yes
+own_window_colour black
+own_window_type override
+own_window_title Infos
+own_window_hints skip_pager
+double_buffer yes
+minimum_size 1000 0
+maximum_width 1000
+draw_shades no
+draw_outline no
+draw_borders no
+border_inner_margin 0
+border_outer_margin 0
+border_width 1
+draw_graph_borders yes
+default_color grey40
+color1 FF4300        # orange
+color2 E0E0E0        # light
+color3 6EFF00        # light green
+color4 006EFF        # blue
+color6 00A6C9        # light blue
+color5 008B08        # dark green
+color7 C90058        # purple
+default_shade_color black
+default_outline_color white
+alignment tr
+gap_x 0
+gap_y 0
+no_buffers yes
+uppercase no
+text_buffer_size 1024
+cpu_avg_samples 2
+show_graph_scale no
+show_graph_range no
+short_units yes
+override_utf8_locale yes
+use_spacer right
+if_up_strictness address
+########################################################################
+#  Output                                                              #
+########################################################################
+TEXT
+${goto 330}${color2}${time %I:%M} ${color}${time %a %d %b} ${goto 440}${color1}CPU $cpu % $color ${color3}RAM $memperc % ${color grey60}HDD ${fs_used_perc /} %${color}  Uptime ${uptime_short} \
+${if_gw}${if_up eth0}${alignr 5}${color grey70}eth0${color} Up${color6} ${upspeed eth0}${color} Dl ${color7}${downspeed eth0}${color}${else} \
+${if_up eth1}${alignr 5}${color grey70}eth1${color} Up${color6} ${upspeed eth1}${color} Dl ${color7}${downspeed eth1}${color}${else} \
+${if_up wlan0}${alignr 5}${color grey70}wlan0${color} Up${color6} ${upspeed wlan0}${color} Dl ${color7}${downspeed wlan0}${color}${endif}${endif}${endif}${endif} 
+${alignr}${if_running mocp}${texeci 5 ~/.conky/conky_mocp_infos.sh}${else}no zik  ${endif} 

@@ -1,0 +1,358 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Centre d'Aide Livarp - les panels</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang fr|<a href="../../us/config/panel.html">gb</a></h2><h1><a href="../../index-fr.html" title="retour au menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>les panels</h1>
+            <p>livarp utilise <b>tint2</b> dans openbox et <b>lxpanel</b> dans pekwm.</p>
+            <h2>lxpanel</h2>
+            <p>lxpanel est utilisé dans la session pekwm du livarp. il a l'avantage d'inclure un gestionnaire de configuration en mode graphique déclenché au clic-droit sur le panel. vous pouvez l'utiliser dans d'autres sessions, mais il ne conviendra pas pour les sessions en tiling (dwm, ratpoison, spectrwm, wmfs, awesome).</p>
+            <img src="../../pics/lxpanel_config.png" />
+            <p>le menu de configuration de lxpanel est détaillé et explicite:</p>
+            <img src="../../pics/lxpanel_config_geometry.png" />  <img src="../../pics/lxpanel_config_appearance.png" />  <img src="../../pics/lxpanel_config_applets.png" />  <img src="../../pics/lxpanel_config_advanced.png" />
+            <h2>tint2</h2>
+            <p>tint2 est un panel multi-fonction qui a de plus en plus de succès. il est léger, rapide et hautement configurable. il est indépendant et s'intègre dans quasi tous les gestionnaires de fenêtres. c'est le panel par défaut de la distribution crunchbanglinux sur openbox et je l'utilse sur livarp pour la session openbox dans son mode tasklist.</p>
+            <h3>configuration</h3>
+            <p>la configuration de tint2 peut se faire en GUI grâce à tint2conf, mais je ne vous le conseille pas. le logiciel fonctionne bien mais son organisation prête à confusion et de nombreux utilisateurs ont effacés leurs configurations préférées avec tint2conf. nous allons donc configurer tint2 "à l'ancienne", en éditant son fichier de configuration.</p>
+            <p>notez que vous pouvez lancer plusieurs instances de tint2 avec leurs configurations respectives.<br />
+            pour l'exemple, nous prendrons le fichier de configuration du tint2 de crunchbanglinux (plus d'options utilisées que pour livarp):</p>
+            <img src="../../pics/tint2.png"/>
+            <p>l'avantage de tint2 est que vous pouvez tout configurer: l'apparence, la position, les widgets, la disposition interne au panel, les actions de la souris sur le panel…. alors allons-y: voici le fichier de configuration correspondant à l'image ci-dessus:</p>
+            <pre class="blockquote">#---------------------------------------------
+# TINT2 CONFIG FILE
+#---------------------------------------------
+# For more information about tint2, see:
+# http://code.google.com/p/tint2/wiki/Welcome
+#
+# For more config file examples, see:
+# http://crunchbanglinux.org/forums/topic/3232/my-tint2-config/
+
+# Background definitions
+# ID 1
+rounded = 0
+border_width = 0
+background_color = #ffffff 5
+border_color = #828282 0
+
+# ID 2 - task active
+rounded = 1
+border_width = 0
+background_color = #d8d8d8 30
+border_color = #d8d8d8 30
+
+# ID 3 - task
+rounded = 1
+border_width = 0
+background_color = #000000 0
+border_color = #000000 0
+
+# ID 4
+rounded = 1
+border_width = 1
+background_color = #888888 20
+border_color = #ED2323 60
+
+# ID 5 - taskbar
+rounded = 0
+border_width = 1
+background_color = #000000 0
+border_color = #000000 0
+
+# ID 6 - active taskbar
+rounded = 0
+border_width = 1
+background_color = #d8d8d8 8
+border_color = #d8d8d8 0
+
+# ID 7 - tooltip
+rounded = 3
+border_width = 0
+background_color = #222222 90
+border_color = #222222 90
+
+# ID 8
+rounded = 1
+border_width = 1
+background_color = #888888 20
+border_color = #888888 20
+
+# Panel
+panel_monitor = all
+panel_position = top center horizontal
+panel_items = LTSC
+panel_size = 100% 30
+panel_margin = 0 -1
+panel_padding = 0 0
+panel_dock = 0
+wm_menu = 1
+panel_layer = bottom
+panel_background_id = 1
+
+# Panel Autohide
+autohide = 0
+autohide_show_timeout = 0.3
+autohide_hide_timeout = 1.5
+autohide_height = 6
+strut_policy = follow_size
+
+# Taskbar
+taskbar_mode = multi_desktop
+taskbar_padding = 6 0 6
+taskbar_background_id = 5
+taskbar_active_background_id = 6
+taskbar_name = 1
+taskbar_name_background_id = 0
+taskbar_name_active_background_id = 0
+taskbar_name_font = Liberation Sans 9
+taskbar_name_font_color = #828282 100
+taskbar_name_active_font_color = #828282 100
+
+# Tasks
+urgent_nb_of_blink = 20
+task_icon = 1
+task_text = 0
+task_centered = 1
+task_maximum_size = 40 40
+task_padding = 2 2
+task_background_id = 3
+task_active_background_id = 2
+task_urgent_background_id = 4
+task_iconified_background_id = 3
+
+# Task Icons
+task_icon_asb = 80 0 0
+task_active_icon_asb = 100 0 0
+task_urgent_icon_asb = 100 0 0
+task_iconified_icon_asb = 80 0 0
+
+# Fonts
+task_font = Liberation Sans 06_55 6
+task_font_color = #828282 60
+task_active_font_color = #828282 100
+task_urgent_font_color = #FFFFFF 100
+task_iconified_font_color = #d8d8d8 60
+font_shadow = 0
+
+# Launcher
+launcher_padding = 8 4 4
+launcher_background_id = 0
+launcher_icon_size = 24
+# Specify icon theme names with launcher_icon_theme. 
+# if you have an XSETTINGS manager running (like xfsettingsd), tint2 will follow your current theme.
+launcher_icon_theme = gnome-colors-statler
+# Each launcher_item_app must be a full path to a .desktop file
+launcher_item_app = /usr/share/applications/terminator.desktop
+launcher_item_app = /usr/share/applications/Thunar.desktop
+launcher_item_app = /usr/share/applications/geany.desktop
+launcher_item_app = /usr/share/applications/iceweasel.desktop
+
+# System Tray
+systray = 1
+systray_padding = 4 2 3
+systray_sort = ascending
+systray_background_id = 0
+systray_icon_size = 24
+systray_icon_asb = 100 0 0
+
+# Clock
+time1_format = %H:%M:%S
+time1_font = Liberation Mono 10
+#time2_format = %A %d %B
+#time2_font = Liberation Sans 6
+clock_font_color = #828282 100
+clock_padding = 12 4
+clock_background_id = 0
+clock_lclick_command = gsimplecal
+clock_rclick_command = gsimplecal
+
+# Tooltips
+tooltip = 1
+tooltip_padding = 2 2
+tooltip_show_timeout = 0.0
+tooltip_hide_timeout = 0.0
+tooltip_background_id = 7
+tooltip_font_color = #d8d8d8 100
+tooltip_font = Liberation Sans normal 9.0
+
+# Mouse
+mouse_middle = none
+mouse_right = toggle
+mouse_scroll_up = toggle
+mouse_scroll_down = iconify
+
+# Battery
+battery = 1
+battery_low_status = 20
+battery_low_cmd = notify-send "battery low"
+battery_hide = 96
+bat1_font = Liberation Sans 10
+bat2_font = Liberation Sans 8
+battery_font_color = #FFFFFF 100
+battery_padding = 2 0
+battery_background_id = 0
+
+# End of config</pre>
+            <p>détaillons à présent ce fichier: il est organisé par sections contrôlant chacune une partie de tint2:</p>
+            <ul>
+            <li># backgrounds definitions: réglage des fonds et bordures de tint2, chaque 'ID' peut être assigné à une ou plusieurs parties de tint2.
+                <ul>
+                <li>rounded: taille en pixel de l'arrondi des angles (0=angle droit)</li>
+                <li>background_color: couleur et pourcentage d'opacité de l'arrière plan</li>
+                <li>border_width: epaisseur de la bordure</li>
+                <li>border_color: couleur et pourcentage d'opacité de la bordure</li>
+                </ul>
+            </li>
+            <li># panel: position et disposition du panel
+                <ul>
+                <li>panel_monitor: écran d'affichage et de gestion de tint2, mettre sur 'all' pour un affichage sur les différents écrans.</li>
+                <li>panel_position: placement sur l'écran sous la forme 'place' 'alignement' 'disposition'</li>
+                <li>panel_items: organisation du panel, 'L'launcher - 'T'askbar - 'S'systray - 'B'batterie - 'C'clock</li>
+                <li>panel_size: taille du panel sous la forme 'largeur' 'hauteur'</li>
+                <li>panel_margin: décallage au bord d'écran sous la forme 'marge horizontale' 'marge verticale'</li>
+                <li>panel_padding: marge intérieure à tint2 sous la forme 'marge horizontale' 'marge verticale' 'espace entre les éléments'</li>
+                <li>panel_dock: traite tint2 comme un dock (0 non, 1 oui)</li>
+                <li>wm_menu: un clic-droit affiche le menu du gestionnaire de fenêtres si il existe (0 non, 1 oui)</li>
+                <li>panel_layer: profondeur du panel sous la forme 'bottom'en-dessous - 'normal'normal - 'top'au-dessus</li>
+                <li>panel_background_id: background appliqué au panel</li>
+                </ul>
+            </li>
+            <li># panel autohide: propriétés du masquage automatique
+                <ul>
+                <li>autohide: 0 non - 1 oui</li>
+                <li>autohide_show_timeout: delai d'affichage de tint2</li>
+                <li>autohide_hide_timeout: delai de masquage de tint2</li>
+                <li>autohide_height: taille de tint2 masqué en pixels</li>
+                <li>strut_policy: conditions d'affichage sous la forme 'follow_size' suit la taille des fenêtres maximisées - 'minimum' utile avec de l'autohide - 'none' aucune</li>
+                </ul>
+            </li>
+            <li># taskbar: réglages de la barre de tâches
+                <ul>
+                <li>taskbar_mode: 'single_desktop' ne gère qu'un bureau - 'multi_desktop' gère tous les bureaux</li>
+                <li>taskbar_padding: marge intérieure à la taskbar sous la forme 'marge horizontale' 'marge verticale' 'espace entre les tâches'</li>
+                <li>taskbar_background_id: background appliqué à la barre de tâche</li>
+                <li>taskbar_active_background_id: background appliqué à la barre de tâche active</li>
+                <li>taskbar_name: afficher le nom du bureau (O non, 1 oui)</li>
+                <li>taskbar_name_background_id: background appliqué au nom du bureau</li>
+                <li>taskbar_name_active_background_id: background appliqué au nom du bureau actif</li>
+                <li>taskbar_name_font: police utilisée pour le nom du bureau</li>
+                <li>taskbar_name_font_color: couleur et pourcentage d'opacité du texte du nom du bureau</li>
+                <li>taskbar_name_active_font_color: couleur et pourcentage d'opacité du texte du nom du bureau actif</li>
+                </ul>
+            </li>
+            <li># tasks: réglage des fenêtres de tâches
+                <ul>
+                <li>urgent_nb_of_blink: nombre de flash sur l'application urgente</li>
+                <li>task_icon: afficher les icones des tâches (O non, 1 oui)</li>
+                <li>task_text: afficher le texte des tâches (0 non, 1 oui)</li>
+                <li>task_centered: centrer l'affichage dans les tâches (0 non, 1 oui)</li>
+                <li>task_maximum_size: taille maximale des tâches sous la forme 'largeur max' 'hauteur max'</li>
+                <li>task_padding: marges internes aux tâches sous la forme 'marge horizontale ' marge verticale'</li>
+                <li>task_background_id: background appliqué aux tâches</li>
+                <li>task_active_background_id: background appliqué aux tâches actives</li>
+                <li>task_urgent_background_id: background appliqué aux tâches urgentes</li>
+                <li>task_iconified_background_id: background appliqué aux tâches minimisées</li>
+                </ul>
+            </li>
+            <li># task icons: réglages des icones dans la barre de tâches
+                <ul>
+                <li>task_icon_asb: coloration des icones sous la forme 'alpha'de 0 à 100 - 'saturation' de -100 à 100 - 'luminosité' de -100 à 100</li>
+                <li>task_active_icon_asb: coloration des icones actives</li>
+                <li>task_urgent_icon_asb: coloration des icones urgentes</li>
+                <li>task_iconified_icon_asb: coloration des icones minimisées</li>
+                </ul>
+            </li>
+            <li># fonts: réglages des polices utilisées
+                <ul>
+                <li>task_font: police de la barre de tâches sous la forme 'police' 'style' 'taille'</li>
+                <li>task_font_color: couleur et pourcentage d'opacité de la police des tâches</li>
+                <li>task_active_font_color: couleur et pourcentage d'opacité de la police des tâches actives</li>
+                <li>task_urgent_font_color: couleur et pourcentage d'opacité de la police des tâches urgentes</li>
+                <li>task_iconified_font_color: couleur et pourcentage d'opacité de la police des tâches minimisées</li>
+                <li>font_shadow: ombre portée au texte (0 non, 1 oui)</li>
+                </ul>
+            </li>
+            <li># launcher: réglages des lanceurs
+                <ul>
+                <li>launcher_padding: marges internes à la section launcher sous la forme 'marge horizontale' 'marge verticale' 'espace entre les lanceurs'</li>
+                <li>launcher_background_id: background appliqué aux lanceurs</li>
+                <li>launcher_icon_size: taille des icones des lanceurs</li>
+                <li>launcher_icon_theme: theme d'où sont issues les icones des lanceurs</li>
+                <li>launcher_item_app: adresse du lanceur (au format .desktop)</li>
+                </ul>
+            </li>
+            <li># system tray: réglages de la zone de notification
+                <ul>
+                <li>systray: afficher la zone de notification (O non, 1 oui)</li>
+                <li>systray_sort: classement des icones dans la zone de notification</li>
+                <li>systray_background_id: background appliqué à la zone de notification</li>
+                <li>systray_icon_size: taille des icones de la zone de notification</li>
+                <li>systray_icon_asb: coloration des icones sous la forme 'alpha'de 0 à 100 - 'saturation' de -100 à 100 - 'luminosité' de -100 à 100</li>
+                </ul>
+            </li>
+            <li># clock: réglages de l'horloge
+                <ul>
+                <li>time1_format: format de la première ligne (man strftime)</li>
+                <li>time1_font: police utilisée pour la première ligne</li>
+                <li>time2_format: format de la seconde ligne</li>
+                <li>time2_font: police utilisée pour la seconde ligne</li>
+                <li>clock_font_color: couleur et pourcentage d'opacité de la police de l'horloge</li>
+                <li>clock_padding: marges internes à l'horloge sous la forme 'marge horizontale' 'marge verticale'</li>
+                <li>clock_background_id: background appliqué à l'horloge</li>
+                <li>clock_lclick_command: action lors d'un clic gauche sur l'horloge</li>
+                <li>clock_rclick_command: action lors d'un clic droit sur l'horloge</li>
+                </ul>
+            </li>
+            <li># tooltips: réglages des bulles d'aides
+                <ul>
+                <li>tooltip: afficher les bulles d'aides (0 non, 1 oui)</li>
+                <li>tooltip_padding: marges internes aux bulles d'aides sous la forme 'marge horizontale' 'marge verticale'</li>
+                <li>tooltip_show_timeout: delai d'affichage des bulles d'aides</li>
+                <li>tooltip_hide_timeout: delai de masquage des bulles d'aides</li>
+                <li>tooltip_background_id: background appliqué aux bulles d'aides</li>
+                <li>tooltip_font_color: couleur et pourcentage d'opacité de la police des bulles d'aides</li>
+                <li>tooltip_font: police utilisée pour les bulles d'aides sous la forme 'police' 'style' 'taille'</li>
+                </ul>
+            </li>
+            <li># mouse: réglages des actions de la souris sur les tâches: accepte les arguments suivants: none (aucun), close(fermer la fenêtre), toggle(bascule le focus), iconify(minimise), shade(enroule), toggle_iconify(minimise/restaure), maximize_restore(maximise/restaure), desktop_left(envoi au bureau de gauche), desktop_right(envoi au bureau de droite), next_task(tâche suivante), prev_task(tâche précédente).
+                <ul>
+                <li>mouse_middle: action au clic central</li>
+                <li>mouse_right: action au clic droit</li>
+                <li>mouse_scroll_up: action au défilement vers le haut</li>
+                <li>mouse_scroll_down: action au défilement ders le bas</li>
+                </ul>
+            </li>
+            <li># battery: réglages du contrôleur d'alimentation
+                <ul>
+                <li>battery: affiche la batterie (0 non, 1 oui)</li>
+                <li>battery_low_status: pourcentage de charge pour le status 'faible'</li>
+                <li>battery_low_cmd: commande éxécutée lors du status 'faible'</li>
+                <li>battery_hide: pourcentage de charge maximum pour afficher la batterie</li>
+                <li>bat1_font: police utilisée pour la batterie</li>
+                <li>bat2_font: ?</li>
+                <li>battery_font_color: couleur et pourcentage d'opacité de la police de la batterie</li>
+                <li>battery_padding: marges internes à la batterie</li>
+                <li>battery_background_id: background appliqué à la batterie</li>
+                </ul>
+            </li>
+            </ul>
+            </div>
+        </div>
+    </div>
+    <div id="footer">centre d'aide livarp_0.4 - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

@@ -1,0 +1,76 @@
+(Format: Day.Month.Year)
+Changes for revision 25:
+------------------------
+Changes for revision 24:
+*23.10.2005:
+  * Added some warning dialogs.
+    fluxMenu.py
+------------------------
+Changes for revision 22:
+*23.10.2005
+  * Changes in the naming scheme of functions etc for
+    pyDoc. Now the functions should be compatible.
+    A big thanks to errr for this ^^
+    fluxMenu.py project1.glade
+*20.10.2005
+  * Fixed a bug with comments before a [begin] -element
+    handleMenu.py fluxMenu.py
+  * Generate button now works.
+    fluxMenu.py
+------------------------
+Changes for revision 21:
+*19.10.2005
+  * Can now be run from any pwd, like ./fluxmenu/fluxMenu.py
+    Earlier had to be in the same dir.
+    fluxMenu.py
+*25.09.2005
+  * Fixed behaviour when deleting an item, now focus is 
+    given to the next item
+    fluxMenu.py
+  * Fixed my email :P
+    project1.glade
+------------------------
+Changes for revision 20:
+*25.09.2005
+  * Added a visible -togglebutton to menuitems that handles
+    commenting out items in the menu.
+    fluxMenu.py handleMenu.py
+  * Modified layout to be a bit simpler.
+    project1.glade
+  * Fixed some stupidness in my comment-detecting algorithm.
+    handleMenu.py
+*19.09.2005
+  * Added a clear-button to remove an icon from menuitem
+    fluxMenu.py project1.glade
+  * Made use icons -setting to affect iconbuttons in main window.
+    fluxMenu.py
+------------------------
+Changes for revision 18:
+*19.09.2005:
+  * Stupid mistake broke the package.
+    fluxMenu.py
+  * Cleaned up the menu-saving: does not save empty fields
+    anymore.
+    handleMenu.py
+------------------------
+Changes for revision 17:
+*19.09.2005
+  * Default response for file-selector-dialogs is now OK,
+    so double clicking a file name opens it, used to cancel.
+    fluxMenu.py
+  * Fixed item info to show correct info when creating new item
+    fluxMenu.py
+  * Added an "All files" -filter to open menu -dialog.
+    fluxMenu.py
+  * Little tweaks to the about-dialog.
+    project1.glade
+------------------------
+Changes for revision 14:
+*28.06.2005
+  * Fixed undo. Does not copy menu.bck over menu but loads it.
+    fluxMenu.py
+  * Removed strange widget from window
+    project1.glade
+  * Preferences-dialog now works and reads all settings to
+    variables. Still needs work to save/load them.
+    fluxMenu.py

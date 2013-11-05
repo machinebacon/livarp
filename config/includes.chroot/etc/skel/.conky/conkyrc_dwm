@@ -1,0 +1,46 @@
+########################################################################
+# dwm conkyrc                                                          #
+# livarp_0.4 arpinux@2013                                              #
+# http://arpinux.org/livarp                                            #
+########################################################################
+#  Settings                                                            #
+########################################################################
+background yes
+out_to_x no
+out_to_console yes
+update_interval 2.0
+total_run_times 0
+top_name_width 10
+use_spacer none
+double_buffer yes
+cpu_avg_samples 2
+text_buffer_size 2048
+if_up_strictness address
+########################################################################
+#  Output                                                              #
+########################################################################
+TEXT
+[ ${execi 1000 echo "\033[38;5;33mcpu"}${execi 1000 echo "\033[0;37m"}${cpu}${execi 1000 echo "\033[0m"}% \
+${execi 1000 echo "\033[0;37m"}${acpitemp}${execi 1000 echo "\033[0m"}C | \
+${execi 1000 echo "\033[38;5;33mram"}\
+${execi 1000 echo "\033[0;37m"}${memperc}${execi 1000 echo "\033[0m"}% | \
+${execi 1000 echo "\033[38;5;33mhdd"}\
+${execi 1000 echo "\033[0;37m"}${fs_used_perc /}${execi 1000 echo "\033[0m"}% | \
+${execi 1000 echo "\033[0;37m"}${if_gw}\
+${if_up eth0}\
+${if_match ${upspeedf eth0} > 1}${execi 1000 echo "\033[38;5;33m"}${else}\
+${if_match ${downspeedf eth0} > 1}${execi 1000 echo "\033[38;5;33m"}${else}\
+${execi 1000 echo "\033[0m"}${endif}${endif}wired${endif}\
+${if_up eth1}\
+${if_match ${upspeedf eth1} > 1}${execi 1000 echo "\033[38;5;33m"}${else}\
+${if_match ${downspeedf eth1} > 1}${execi 1000 echo "\033[38;5;33m"}${else}\
+${execi 1000 echo "\033[0m"}${endif}${endif}wifi${endif}\
+${else}${execi 1000 echo "\033[1;31m"}net${endif}${execi 1000 echo "\033[0m"} | \
+${if_existing /sys/class/power_supply/BAT0}${execi 1000 echo "\033[38;5;33mbat"}\
+${if_match "$acpiacadapter" == "on-line"}+${else}-$endif\
+${execi 1000 echo "\033[0;37m"}${battery_percent BAT0}${execi 1000 echo "\033[0m%"} | ${endif}\
+${execi 1000 echo "\033[38;5;33mup"}\
+${execi 1000 echo "\033[0;37m"}${uptime_short}${execi 1000 echo "\033[0m"} | \
+${execi 1000 echo "\033[0m"}${time %a %d/%m} \
+${execi 1000 echo "\033[1;37m"}${time %I:%M}\
+${execi 1000 echo "\033[0;m ] "}

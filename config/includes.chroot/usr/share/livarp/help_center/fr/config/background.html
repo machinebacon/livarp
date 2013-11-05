@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Centre d'Aide Livarp - fond d'écran</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang fr|<a href="../../us/config/background.html">gb</a></h2><h1><a href="../../index-fr.html" title="retour au menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>fond d'écran</h1>
+            <p>la gestion des fonds d'écran est assurée par <strong>feh</strong> dans la configuration par défaut, et se détermine dans le script $HOME/bin/start/votre_wm_start.sh.<br />
+            mais si vous désirez choisir graphiquement votre fond décran, livarp intègre le programme <strong>nitrogen</strong>.<br />
+            <img src="../../pics/config_nitrogen.png"><br />
+            il se lance depuis les différents menus du livarp: section configuration:fond d'écran.</p>
+            <p>si vous désirez retrouver votre fond d'écran configuré par nitrogen, vous devez éditer votre $HOME/bin/start/votre_wm_start.sh ou $HOME/.config/openbox/autostart:
+            <ul>
+            <li>commenter la ligne correspondant à feh (ajouter un "#")</li>
+            <li>décommenter la ligne concernant nitrogen (en enlevant le "#")</li>
+            </ul>
+            </p>
+            <h1>fond d'écran aléatoire</h1>
+            <p>afin d'afficher un fond d'écran différent à chaque session, et le changer durant la session, nous allons utiliser feh. voici un petit script qui permet d'afficher un fond d'écran aléatoire issu d'un dossier spécifié en début de session, puis de changer de fond d'écran à intervalle régulier.</p>
+            <p class="blockquote">
+            #! /bin/sh<br />
+            # random wallpaper script<br />
+            # dossier d'images<br />
+            DIR="/path_to_directory"<br />
+            # temps de rotation des images en secondes<br />
+            INT="600"<br />
+            while true; do<br />
+            find $DIR -type f -name '*.jpg' -o -name '*.png' | shuf -n 1 | xargs feh --no-xinerama --bg-scale &amp;<br />
+            sleep $INT<br />
+            done<br />
+            exit 0</p>
+            <p>il ne vous reste plus qu'à lancer ce script dans votre fichier ~autostart.</p>
+            <p class="blockquote">
+            # random wallpaper<br />
+            randwalls.sh &amp;
+            </p>
+            </div>
+        </div>
+    </div>
+    <div id="footer">centre d'aide livarp_0.4 - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

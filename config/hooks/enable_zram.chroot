@@ -1,0 +1,5 @@
+#!/bin/sh
+# zram initialization
+#####################
+set -e
+update-rc.d zram defaults

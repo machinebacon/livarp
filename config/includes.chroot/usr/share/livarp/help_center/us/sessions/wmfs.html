@@ -1,0 +1,358 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Livarp Help Center - wmfs session</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang <a href="../../fr/sessions/wmfs.html">fr</a>|gb</h2><h1><a href="../../index.html" title="back to main menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>the wmfs session</h1>
+            <p>WMFS² is a lightweight and highly configurable tiling window manager for X written in C. wmfs² is a free software distributed under the BSD license. it can be drive from keyboard or mouse and it's configuration stands in one text file easily understandable.<br />
+            wmfs is french and is developed by Martin Duquesnoy aka xorg62. wmfs is still developing, but is particularly stable and promising with a very active community and motivated devs.<br />
+            some of its core features include:
+            <ul><li>extendible application launcher with autocompletion (prompt).</li>
+                <li>built-in system tray.</li>
+                <li>Xinerama multi-head support.</li>
+                <li>extended window manager hints (EWMH) compliance.</li>
+                <li>editable rules for tags/clients.</li>
+                <li>complete mouse support.</li>
+                <li>on-the-fly configuration reloading.</li>
+                <li>dynamic tag creation/deletion.</li>
+                <li>statusbar with support for progressbar, color, images (imlib2) and status pipes.</li>
+                <li>manual layout: wmfs has no fixed layout, you can create/arrange layouts as you want/need.</li>
+                <li>tab, move and resize clients with direction.</li>
+                <li>themes support for statusbar and clients.</li>
+                <li>”@include” support split configuration file.</li>
+            </ul></p>
+            <h2>screenshot</h2>
+            <a href="../../pics/livarp_04_wmfs.png"><img src="../../pics/livarp_04_wmfs_thb.png" /></a>
+            <h2>startup</h2>
+            <p>wmfs is launched by the ~/bin/start/wmfs_start.sh script.<br />
+            to change startup applications, simply edit this file<text class="blockquote">vim bin/start/wmfs_start.sh</text> or from the wmfs menu:section config:wmfs:edit the startup script
+            </p>
+            <h2>components</h2>
+            <p><b>wmfs</b> is sufficient in itself, but I still added a menu managed by fbpanel for ease of use. wmfs menu is available from the top-left corner of your screen.
+            </p>
+            <p>wmfs has a status bar (optional) including a list of tags, statusText a prompt and a systray.<br />
+            note that wmfs could work without any bars.
+            </p>
+            <h2>general configuration</h2>
+            <p>to configure <b>fbpanel</b>, edit its configuration file <text class="blockquote">vim .config/fbpanel/default</text> or from the fbpanel menu itself: section config:fbpanel:edit menu.<br />
+            if you want to add plugins, please visit the <a href="../config/menu.html">dedicated page</a>.</p>
+            <p><b>WMFS</b> is configured by its main configuration file in text mode: ~/.config/wmfs/wmfsrc. to modify wmfs, simply edit this file <text class="blockquote">vim .config/wmfs/wmfsrc</text> or from the wmfs menu:section config:wmfs:edit wmfsrc , then reload wmfs with the Ctrl+Alt+r keybind.
+            </p>
+            <p><b>note:</b> the 'config' button in the wmfs topbar:let-click to edit wmfs configuration files, right-click to edit wmfs bars configuration files.</p>
+            <p>be careful in modifying configuration files: wmfs is still in development, and even more stable, an error in the config wmfs cause a crash.
+            </p>
+            <h3>wmfs_rules: clients properties</h3>
+            <p>the wmfsrc <b>[rules]</b> section: determine specific behaviors depending on the application, its class, its role (as determined by the command 'xprop'). you can determine the theme used by the application, the tag/screen opening, management (free/tiled/visible everywhere) and its location (in tab).<br />
+            to configure wmfs 'rules', simply edit the file<text class="blockquote">vim .config/wmfs/wmfsrc</text> or from the menu wmfs:section config:wmfs:wmfsrc
+            </p>
+            <pre class="blockquote">#rules for wmfs²
+[rules]
+    [rule]
+        class       = "MPlayer"    # second part of WM_CLASS
+        #instance   = "xv"         # first part of WM_CLASS
+        #role       = ""           # WM_WINDOW_ROLE
+        #name       = ""           # NET_WM_NAME
+        theme       = "titleless"  # theme to use
+        #tag        = 1            # tag to open
+        screen      = 0            # screen to open
+        free        = true         # open free or not
+        tab         = false        # open tabbed or not
+        ignore_tag  = false        # on all tags or not
+    [/rule]
+(...)
+[/rules]</pre>
+            <p>&nbsp;</p>
+            <h3>wmfs_themes: wmfs appearance</h3>
+            <p>the wmfsrc <b>[themes]</b> section: define the look of your clients/bars. each element can have a separate theme (indication have to be in wmfsrc)</p>
+            <p>complete list of the [themes] section options(note: statusline syntax is explained in the [statusbar] section):</p>
+            <ul><li>name theme name: will be used in the next sections</li>
+                <li>font theme font, in XLFD (X Logical Font Description) format. ex "-*-terminus-medium-*-*-*-12-*-*-*-*-*-*-*"</li>
+                <li>bars:</li>
+                <ul><li>bars_width: bar height pixels</li>
+                    <li>bars_fg: statusbar text color</li>
+                    <li>bars_bg: statusbar color</li>
+                </ul>
+                <li>tags:</li>
+                <ul><li>tags_normal_fg: normal tag text color</li>
+                    <li>tags_normal_bg: normal tag button color</li>
+                    <li>tags_normal_statusline: normal tag statusline</li>
+                    <li>tags_sel_fg: selected tag text color</li>
+                    <li>tags_sel_bg: selected tag button color</li>
+                    <li>tags_sel_statusline: selected tag statusline</li>
+                    <li>tags_occupied_fg: occupied tag text color</li>
+                    <li>tags_occupied_bg: occupied tag button color</li>
+                    <li>tags_occupied_statusline: occupied tag statusline</li>
+                    <li>tags_urgent_fg: urgent tag text color</li>
+                    <li>tags_urgent_bg: urgent tag button color</li>
+                    <li>tags_urgent_statusline: urgent tag statusline</li>
+                    <li>tags_border_color: tag button border color</li>
+                    <li>tags_border_width: tag button border width</li>
+                </ul>
+                <li>clients:</li>
+                <ul><li>client_normal_fg: normal client titlebar text color</li>
+                    <li>client_normal_bg: normal client titlebar color</li>
+                    <li>client_normal_statusline: normal client statusline</li>
+                    <li>client_sel_fg: selected client titlebar text color</li>
+                    <li>client_sel_bg: selected client titlebar color</li>
+                    <li>client_sel_statusline: selected client titlebar statusline</li>
+                    <li>client_free_statusline: free client titlebar statusline</li>
+                    <li>frame_bg: client color</li>
+                    <li>client_titlebar_width: client titlebar height in pixels</li>
+                    <li>client_border_width: client border width in pixels</li>
+                </ul>
+            </ul>
+            <p>&nbsp;</p>
+            <h3>wmfsrc configuration</h3>
+            <p>wmfsrc includes all section configuration. here is the full list of options:</p>
+            <ul><li><b>[bars]</b>: wmfs² handles several statusbar if you need. each bar support configuration and theme.</li>
+                <ul><li>positon: position of the statusbar on the screen. 0:top, 1:bottom, 2:hide</li>
+                    <li>screen: screen to display statusbar (start at 0), set to -1 to display on every screen</li>
+                    <li>elements: ordre d’affichage des composants de la barre. t:tags, s:statustext, y:systray(ne faire apparaitre qu’une fois), l:launcher</li>
+                    <li>theme: apply theme on the statusbar, must be an existing theme-name</li>
+                </ul>
+                <li><b>[tags]</b>: tags configuration: number, name, screen, mousebinds.</li>
+                <ul><li>circular: tag wrapping navigation</li>
+                    <li>screen: screen to display tag. use no screen option or screen = -1 to set tag on each screen</li>
+                    <li>name: display tagname</li>
+                    <li>statusline: draw a custom statusline in the specific tag (can display any sequences)</li>
+                    <li>mousebinds: mouse actions on the tag buttons</li>
+                </ul>
+                <li><b>[client]</b>: client theme and behaviour.</li>
+                <ul><li>padding: padding between clients in pixels</li>
+                    <li>autofocus: give focus to new created client (default is false)</li>
+                    <li>theme: apply theme to client by default (can be overwrite in the [rules] section).</li>
+                    <li>key_modifier: key modifier to perform actions on clients. (Alt, Super, Control, Shift…)</li>
+                    <li>focus: select the focus mouse options: enter, focus follow mouse – click, click to focus – everything-else, desable mouse support for client focus(focus in handled by keyboard shortcuts)</li>
+                    <li>mousebinds: mouse actions on client. see the complete list of UICB functions at the bottom of this page</li>
+                </ul>
+                <li><b>[launchers]</b>: wmfs² has a prompt that support autocompletion</li>
+                <ul><li>name: launcher-name, will be used in the [keys] section</li>
+                    <li>prompt: display text at the beginning of the prompt</li>
+                    <li>command: command used by the launcher. can be an uicb function or an uicb function + extension</li>
+                </ul>
+                <li><b>[keys]</b>: les racourcis clavier sont définis dans cette section.</li>
+                <ul><li>mod: key modifier’s). ex:{"Control", "Alt"}</li>
+                    <li>key: key to press.</li>
+                    <li>func: uicb function to launch (functions list at bottom of this page)</li>
+                    <li>cmd: if func = spawn, set the command to launch. ex:func = "spawn" cmd = "cream-browser"</text></li>
+                </ul>
+            </ul>
+            <h2>statusbar configuration</h2>
+            <p>the wmfs statusbar displays tags and systray, but it can display many other datas with the wmfs -c status command.<br />
+            this way, you can display result of a bash script, a conky or a simple command. statusbar supports progressbars, graphs, positionbars, colors, rectangles, images and themes.<br />
+            livarp uses conky to write in the statusbar. topbar includes taglist and informations, bottombar includes launchers and systray.</p>
+            <h3>wmfs -c status possibilities</h3>
+            <ul><li>basic use:<br />wmfs -c status "barname TEXT visible on 'barname'"</li>
+                <li>display colors:<br />wmfs -c status "barname ^s[position;color;text]"</li>
+                <li>display rectangles:<br />wmfs -c status "barname ^R[position;dimensions;color]"</li>
+                <li>display images (support by imlib2):<br />wmfs -c status "barname ^i[position;dimensions;imagepath]"</li>
+                <li>display progressbars:<br />wmfs -c status "barname ^p[position;dimensions;border;value;valuemax;bgcolor;fgcolor]"</li>
+                <li>display positionbars:<br />wmfs -c status "barname ^P[position;dimensions;curser;value;valuemax;bgcolor;fgcolor]"</li>
+                <li>display graph:<br />wmfs -c status "barname ^g[position;dimensions;value;valuemax;bgcolor;fgcolor;name]"</li>
+            </ul>
+            <p><b>mousebinds:</b><br />
+            sequences supports mousebinds with format (key;uicb-function) or (key;spawn;command)<br />
+            example:<text class="blockquote">wmfs -c status "barname ^R[position;dimensions;color](1;spawn;urxvt -e ranger)"</text>  will display a rectangle that open ranger file-manager in urxvtc on click (button1).</p>
+            <p><b>popup status:</b><br />
+            you can display popups from the statusbar with the mousebind (key;status_surface;position,dimension,color datas)<br />
+            note: with “status_surface”, the argument “position” is optional. if not given, default position is under the pointer.</p>
+            <p><b>syntaxe:</b><br />
+            <ul><li>position: "left/right" (relative position) ou "x;y" (absolute position)</li>
+                <li>dimension: “ww;hh” for width;height of the rectangle or the image, to display an image at its original dimension, set it to “0;0”.</li>
+                <li>couleur: "#rrggbb"</li>
+                <li>imagepath: absolute path for the image</li>
+                <li>border: width of the progressbar border in pixels</li>
+                <li>curser: width of the curser in the positionbar</li>
+                <li>value: a variable, to draw progressbar</li>
+                <li>valuemax: maximum value of the ‘value’ used in the progressbar</li>
+            </ul>
+            note: “^” can be replaced by “\” in the sequences.<br />
+            to display a ”]”, you’ll have to put a “\” as prefix.<br />
+            when using ^p[...], if w lower than h , the progressbar will be vertical..</p>
+            <h3>wmfsrc integration</h3>
+            <p>the classic wmfs -c status "barname datas" format implies that you’ve declared the ‘barname’ in the [bars] section of your wmfsrc that way:</p>
+            <pre class="blockquote">[bar]
+    name = "barname"
+    position = 0
+    screen = 0
+    elements = "tlsy"   # element order in bar
+    theme = "default"
+[/bar]</pre>
+            <h2>keybinds/mousebinds</h2>
+            <p>wmfs is fully controllable from the keyboard: control, launchers, navigation, tags and clients  manipulation...<br />
+            wmfs keybinds/mousebinds are defined in the wmfsrc [keys] section and are available from the wmfs menu:section config:wmfs: shortcuts/keys.</p>
+            <h3>menus:</h3>
+                <ul><li>wmfs menu: bottom-left corner of your screen</li>
+                    <li>dmenu: Alt+d</li>
+                    <li>dmenu-home: Ctrl+Alt+h</li>
+                </ul>
+            <h3>control:</h3>
+                <ul><li>reload wmfs: Ctrl+Alt+r</li>
+                    <li>quit wmfs: Ctrl+Alt+q or from wmfs menu:exit</li>
+                    <li>quit livarp: Ctrl+Shift+Alt+q or from wmfs menu:exit</li>
+                </ul>
+            <h3>clients:</h3>
+                <ul><li>close client: Super+q</li>
+                    <li>toggle free client: Super+f</li>
+                    <li>previous client: Alt+Shift+Tab</li>
+                    <li>next client: Alt+Tab</li>
+                    <li>previous tabbed client: Super+Shift+Tab</li>
+                    <li>next tabbed client: Super+Tab</li>
+                    <li>left/right/top/bottom client: Alt+h/l/k/j</li>
+                    <li>swap client left/right/top/bottom: Ctrl+Shift+h/l/k/j</li>
+                    <li>tab left/right/top/bottom client: Alt+Shift+h/l/k/j</li>
+                    <li>untab client: Alt+Shit+u</li>
+                    <li>move client: Alt+left-click</li>
+                    <li>resize client: Alt+right-click</li>
+                    <li>increase client on left: Super+h</li>
+                    <li>decrease client from left: Super+l</li>
+                    <li>increase client on top: Super+k</li>
+                    <li>decrease client from top: Super+j</li>
+                    <li>decrease client from right: Super+Ctrl+h</li>
+                    <li>increase client on right: Super+Ctrl+l</li>
+                    <li>decrease client from bottom: Super+Ctrl+k</li>
+                    <li>increase client on bottom: Super+Ctrl+j</li>
+                    <li>integrate client to left: Super+Ctrl+Alt+h</li>
+                    <li>integrate client to right: Super+Ctrl+Alt+l</li>
+                    <li>integrate client to top: Super+Ctrl+Alt+k</li>
+                    <li>integrate client to bottom: Super+Ctrl+Alt+j</li>
+                </ul>
+            <h3>navigation:</h3>
+                <ul><li>previous/next tag: Ctrl+Left/Right</li>
+                    <li>previous/next screen: Alt+Down/Up</li>
+                    <li>display tag 'n': Super+F'n' or left-click on tag in the statusbar</li>
+                    <li>tag client with tag 'n': Super+Shift+F'n'</li>
+                    <li>add a tag: Super+Shift+-</li>
+                    <li>delete a tag: Super+-</li>
+                </ul>
+            <h3>layout</h3>
+                <ul><li>horizontal layout: Super+Shift+m</li>
+                    <li>vertical layout: Super+m</li>
+                    <li>layout rotate right: Super+r</li>
+                    <li>layout rotate left: Super+Shift+r</li>
+                    <li>toggle free client: Super+f</li>
+                </ul>
+            <h3>launchers:</h3>
+                <ul><li>default terminal: Super+Enter</li>
+                    <li>open prompt: Alt+p</li>
+                    <li>launch ranger: Alt+r</li>
+                    <li>launch rox-filer: Alt+Shift+r</li>
+                    <li>launch firefox: Alt+w</li>
+                    <li>launch vim: Alt+e</li>
+                    <li>launch geany: Alt+Shift+e</li>
+                    <li>launch weechat: Alt+x</li>
+                    <li>music player: Alt+z</li>
+                    <li>volume control: Alt+v</li>
+                </ul>
+            <h2>UICB functions list</h2>
+            <p><b>UICB</b> functions list. for “User Interface Call Backs”.<br />
+            examples:
+            <ul><li>in the wmfsrc: func = "tag_next" ou func = "spawn" cmd = "urxvt -e vim"</li>
+                <li>in the status.sh: wmfs -c status "barname ^s[position;color;next](1;tag_next)"</li>
+                <li>in the terminal: wmfs -c tag_next</li>
+            </ul>
+            here is the complete functions list accepted by wmfs:</p>
+            <ul><li>système:</li>
+                <ul><li>spawn: execute a command. ex: func = "spawn" cmd = "urxvtc -e screen irssi".</li>
+                    <li>quit: quit wmfs.</li>
+                    <li>reload: reload wmfs configuration.</li>
+                </ul>
+                <li>infobar:</li>
+                <ul><li>infobar_toggle_hide: toggle hide infobar. ex: func = "infobar_toggle_hide" cmd = "default" display/hide the “default” bar.</li>
+                </ul>
+                <li>tags:</li>
+                <ul><li>tag_set: display tag by n°. ex: func = "tag_set" cmd = "0" display tag n°0.</li>
+                    <li>tag: display tag by name. ex: func = "tag" cmd = "web" display named tag ‘web’.</li>
+                    <li>tag_next: display next tag.</li>
+                    <li>tag_prev: display previous tag.</li>
+                    <li>tag_client: tag the client. ex func = "tag_client" cmd = "2" tag client with tag n°2.</li>
+                    <li>tag_client_and_set: tag the client and display tag.</li>
+                    <li>tag_move_client_next: tag client with next tag.</li>
+                    <li>tag_move_client_prev: tag client with previous tag.</li>
+                    <li>tag_click: display tag with a left-click.</li>
+                    <li>tag_new: add a tag.</li>
+                    <li>tag_del: delete atag.</li>
+                </ul>
+                <li>layouts:</li>
+                <ul><li>layout_vmirror: vertical mirror tiling.</li>
+                    <li>layout_hmirror: horizontal mirror tiling.</li>
+                    <li>layout_rotate_left: tiling rotate anti-clockwise.</li>
+                    <li>layout_rotate_right: tiling rotate clockwise.</li>
+                    <li>layout_prev_set: back to previous set layout.</li>
+                    <li>layout_next_set: go to next set layout.</li>
+                    <li>layout_integrate_left: client integration in the left client zone.</li>
+                    <li>layout_integrate_right: client integration in the right client zone.</li>
+                    <li>layout_integrate_top: client integration in the top client zone.</li>
+                    <li>layout_integrate_bottom: client integration in the bottom client zone.</li>
+                </ul>
+                <li>clients:</li>
+                <ul><li>client_close: close client.</li>
+                    <li>client_resize_right: resize client from the right. ex: "client_resize_right" cmd = "-20" decrease the client from the right.</li>
+                    <li>client_resize_left: resize client from the left. ex "client_resize_left" cmd = "20" increase the client to the left.</li>
+                    <li>client_resize_top: resize client from the top.</li>
+                    <li>client_resize_bottom: resize client from the bottom.</li>
+                    <li>client_focus_right: move focus on the right.</li>
+                    <li>client_focus_left: move focus on the left.</li>
+                    <li>client_focus_top: move focus on top.</li>
+                    <li>client_focus_bottom: move focus on bottom.</li>
+                    <li>client_tab_right: move the client in tab on the right client.</li>
+                    <li>client_tab_left: move the client in tab on the left client.</li>
+                    <li>client_tab_top: move the client in tab on the top client.</li>
+                    <li>client_tab_bottom: move the client in tab on the bottom client.</li>
+                    <li>client_swap_right: swap client with the right client.</li>
+                    <li>client_swap_left: swap client with the left client.</li>
+                    <li>client_swap_top: swap client with the top client.</li>
+                    <li>client_swap_bottom: swap client with the bottom client.</li>
+                    <li>client_focus_next: move focus to the next client.</li>
+                    <li>client_focus_prev: move focus to the previous client.</li>
+                    <li>client_swap_next: swap client with the next client.</li>
+                    <li>client_swap_prev: swap client with the previous client.</li>
+                    <li>client_untab: untab the client.</li>
+                    <li>client_focus_next_tab: move focus to next tab-client.</li>
+                    <li>client_focus_prev_tab: move focus to previous tab-client.</li>
+                    <li>client_focus_click: give focus to client with a click.</li>
+                    <li>client_toggle_free: toggle free the client.</li>
+                    <li>client_toggle_ignore_tag: toggle ignore_tag the client.</li>
+                    <li>client_tab_next_opened: open the client in a tab.</li>
+                </ul>
+                <li>status:</li>
+                <ul><li>status: display the argument text in the statusbar.</li>
+                    <li>status_surface: display a surface. can contain sequences.</li>
+                </ul>
+                <li>mouse:</li>
+                <ul><li>mouse_resize: resize the client.</li>
+                    <li>mouse_move: move the client.</li>
+                    <li>mouse_swap: swap clients.</li>
+                    <li>mouse_tab: tab the client.</li>
+                </ul>
+                <li>screen:</li>
+                <ul><li>screen_next: go to next screen.</li>
+                    <li>screen_prev: back to previous screen.</li>
+                    <li>screen_move_client_next: move the client to next screen.</li>
+                    <li>screen_move_client_prev: move the client to previous screen.</li>
+                </ul>
+                <li>launcher:</li>
+                <ul><li>launcher: native prompt. ex: func = "launcher" cmd = "exec" display the “exec” launcher.</li>
+                </ul>
+            </ul>
+            </div>
+        </div>
+    </div>
+    <div id="footer">livarp_0.4 help center - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Centre d'Aide Livarp - session evilwm</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang fr|<a href="../../us/sessions/evilwm.html">gb</a></h2><h1><a href="../../index-fr.html" title="retour au menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>la session evilwm</h1>
+            <p><b>evil</b> est le window-manager en floating minimal par excellence ! pas de panel, pas de menu, pas de décorations de fenêtres hormis une bordure de 1px, pas de raccourcis clavier hormis un terminal avec [Ctrl+Alt+Return], bref, rien pour perturber le boulot ... pour reprendre la présentation du <a href="http://www.6809.org.uk/evilwm/">site principal</a>: "'Minimaliste 'ici ne signifie pas qu'il ne soit trop strict pour être utilisable - cela signifie juste qu'il omet beaucoup de choses qui rendent inutilisables les autres gestionnaires de fenêtres."</p>
+            <a href="../../pics/livarp_04_evilwm.png"><img src="../../pics/livarp_04_evilwm_thb.png" /></a>
+            <h2>lancement</h2>
+            <p>evilwm est lancé par le script ~/bin/start.evil_start.sh.<br />
+            pour changer vos applications lancées au démarrage, éditer ce fichier: <text class="blockquote">vim bin/start/evil_start.sh</text> ou depuis le menu evil:section config:evilwm:éditer le script de lancement</p>
+            <h2>composants</h2>
+            <p>la session evilwm du livarp s'organise autour de:
+            <ul><li><b>fbpanel:</b> avec le menu listant les applications et permettant de configurer tous les aspects de la session evilwm. et le systray, disponible depuis le coin supérieur gauche.</li>
+                <li><b>conky:</b> en ligne pour rester discret en haut de votre écran, il se configure depuis son fichier ~/.conky/conkyrc_evil <text class="blockquote">vim .conky/conkyrc_evil</text> ou depuis le menu evil:section config:evil:conky</li>
+            </ul>
+            </p>
+            <h2>configuration</h2>
+            <p>evil accepte un fichier de configuration en option (livarp ne s'en sert pas), mais fonctionne grâce aux commandes passées en argument lors de son lancement:</p>
+            <p>lancement de evilwm sur livarp
+            <pre class="blockquote">while true; do
+    evilwm -snap 10 -term urxvtcd -nosoliddrag 2> ~/.evilwm.log
+done</pre></p>
+            <p>signifie: lancer evilwm dans une boucle avec écriture des erreurs dans un fichier de log, le terminal par défaut est urxvtc, le déplacement des fenêtres est en cadre et la distance d'attirance est de 10px.</p>
+            <h3>les options evilwm</h3>
+            <ul><li>-dis­play string : sur quel X se lan­ce evilwm. (uti­liser seule­ment si vous en avez plusieurs)</li>
+            <li>-term nom_du_terminal : terminal utilisé par défaut lancé par [Ctrl][Alt][Return]</li>
+            <li>-fn font­name : police utilisé pour les infos des fenêtres</li>
+            <li>-fg #RRGGBB : cou­leur de la bor­dure des fenêtres actives</li>
+            <li>-fc #RRGGBB : cou­leur de la bor­dure des fenêtres fixes</li>
+            <li>-bg #RRGGBB : cou­leur de la bor­dure des fenêtres inactives</li>
+            <li>-bw n_en_pixel : taille de la bordure des fenêtres</li>
+            <li>-snap n_en_pixel- : distance d'adhérence avec les bords et les autre fenêtres</li>
+            <li>-mask1 modi­fiers* : touche de modification 1 [Ctrl][Alt] par défaut</li>
+            <li>-mask2 modi­fiers* : touche de modification 2 [Alt] par défaut</li>
+            <li>-alt­mask modi­fier* : touche de modification secondaire [Shift] par défaut</li>
+            <li>-app name/class (définis par xprop): spécifier les propriétés des fenêtres citées. les options -g -v et -s qui suivent seront appli­qués à cette application.</li>
+            <li>-g geo­me­try : taille et position de la fenêtre selon la conven­tion de X</li>
+            <li>-v vdesk : designe le bureau virtuel à utiliser</li>
+            <li>-s : fenêtre visible sur tous les bureaux</li>
+            <li>-noso­lid­drag : ne dessine pas l'intérieur des fenêtres lors du déplacement</li>
+            <li>-V : version de evilwm</li>
+            </ul>
+            <i>*liste des 'modifiers' admis par evilwm: shift, lock, control, alt, mod1, mod2, mod3, mod4, mod5.</i>
+            <h2>utilisation</h2>
+            <p>evilwm a un comportement simple:
+            <ul><li>suivi du focus: le focus suit la souris</li>
+                <li>raise on clic: clic pour mettre au premier plan</li>
+                <li>floating wm: les fenêtres s'affichent “librement”(pas de tiling) sauf si une propriété a été spécifié dans la commande de lancement ou dans le ~/.evilwmrc</li>
+            </ul></p>
+            <p>evilwm est piloté par le clavier. voici les rassourcis par défaut:</p>
+            <pre class="blockquote">modifier            touche/bouton   fonctions
+[Alt]               clic gauche     place la fenêtre au premier plan, deplace la fenêtre
+                    clic central    redimensionne la fenêtre
+                    clic droit      passe la fenêtre en arrière plan
+                    [Tab]           navigue entre les fenêtres
+[Ctrl][Alt]         return          ouvre le terminal par défaut ou celui spécifié avec l'option -term
+                    i               affiche les informations sur la fenêtre
+                    =               (des)active la maximisation verticale
+                    x               (des)active la maximisaton complète
+                    d               affiche/masque les docks, pager ou panels
+                    f               (des)active la visibilité sur tous les bureaux
+                    1-8             va au bureau N(1-8). ne fonctionne pas avec tous les claviers
+                    left,right      va au bureau de gauche/droite
+                    a               va/revient au/du précédent bureau
+                    s               switch/permute les écrans
+                    escape          ferme la fenêtre
+                    insert          passe la fenêtre en arrière-plan
+                    h,j,k,l         deplace la fenêtre de 16px. direction: gauche, bas, haut, droite
+                    y,u,b,n         deplace la fenêtre dans un coin d'écran.
+                                    direction: top-left, top-right, bottom-left, bottom-right
+[Ctrl][Alt][Shift]  h,j,k,l         redimensionne la fenêtre de 16px. direction: gauche, bas, haut, droite
+                    =               (des)active la maximisation horizontale</pre>
+            </div>
+        </div>
+    </div>
+    <div id="footer">centre d'aide livarp_0.4 - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

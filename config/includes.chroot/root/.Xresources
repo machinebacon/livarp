@@ -1,0 +1,216 @@
+! author: arpinux <http://arpinux.org>
+! ~/.Xresources configuration file
+!-----------------------------------------------------------------------
+! colors
+! link
+*colorUL: #507F24
+! black
+*color0:  #3D4041
+*color8:  #545653
+! red
+*color1:  #9D2121
+*color9:  #B33A3A
+! green
+*color2:  #507F24
+*color10: #75AB40
+! yellow
+*color3:  #998221
+*color11: #BAAF51
+! blue
+*color4:  #005885
+*color12: #66819F
+! purple
+*color5:  #68526C
+*color13: #8A6E87
+! cyan
+*color6:  #247D7F
+*color14: #40ABAB
+! white
+*color7:  #A2A49F
+*color15: #B2B2B0
+
+! dzen2 ----------------------------------------------------------------
+dzen2.font:         -artwiz-anorexia-medium-r-normal-*-11-*-*-*-*-*-*-*
+dzen2.foreground:   #005885
+dzen2.background:   #222222
+
+! ratmenu --------------------------------------------------------------
+ratmenu*fgcolor:  #222222
+ratmenu*bgcolor:  #005885
+ratmenu*font:     -artwiz-anorexia-medium-r-normal-*-11-*-*-*-*-*-*-*
+! Possible values: snazzy, dreary
+ratmenu*style:    snazzy
+! Possible values: true, false
+ratmenu*persist:  false
+! Possible values: left, center, right
+ratmenu*align:    center
+
+! Xcursor settings -----------------------------------------------------
+Xcursor.theme: ATER_Blue
+
+! Xft settings ---------------------------------------------------------
+Xft.dpi: 96
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
+Xft.antialias: 1
+Xft.rgba: rgb
+Xft.hinting: 1
+Xft.hintstyle: hintfull
+
+! xterm ----------------------------------------------------------------
+xterm*saveLines: 1000
+xterm*AllowIconInput: on
+xterm*Background: black
+xterm*Border: gray
+xterm*DeiconifyWarp: off
+xterm*Font: -*-terminus-medium-*-*-*-12-*-*-*-*-*-*-*
+xterm*Foreground: grey80
+xterm*InternalBorder: 1
+xterm*MarginBell: off
+xterm*MenuFont: fixed8
+xterm*Mouse: yellow
+xterm*TitleFont: vtbold
+xterm*charClass: 33:48,37:48,45-47:48,64:48
+xterm*colorAttrMode: true
+xterm*colorMode: true
+xterm*curses: on
+xterm*cutNewline: off
+xterm*jumpScroll: on
+xterm*multiClickTime: 500
+xterm*multiScroll: on
+xterm*reverseVideo: on
+xterm*reverseWrap: off
+xterm*scrollBar: off
+
+! xcolorsel ------------------------------------------------------------
+xcolorsel*Background: grey20
+xcolorsel*Foreground: grey80
+xcolorsel*Font: -*-terminus-medium-*-*-*-12-*-*-*-*-*-*-*
+xcolorsel.geometry: 399x595
+xcolorsel*displayFormat: #rrggbb
+xcolorsel*maxRows: 99
+
+! xfontsel -------------------------------------------------------------
+xfontsel*Background: grey20
+xfontsel*Foreground: grey80
+
+! xosview --------------------------------------------------------------
+xosview*font: -*-terminus-medium-*-*-*-12-*-*-*-*-*-*-*
+xosview*background: grey20
+xosview*foreground: grey80
+xosview*net: true
+xosview*netIface: eth0
+
+! xscreensaver ---------------------------------------------------------
+!font settings
+xscreensaver.Dialog.headingFont:        -*-Modd-bold-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.Dialog.bodyFont:           -*-Modd-medium-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.Dialog.labelFont:          -*-Modd-medium-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.Dialog.unameFont:          -*-Modd-medium-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.Dialog.buttonFont:         -*-Modd-bold-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.Dialog.dateFont:           -*-Modd-medium-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.passwd.passwdFont:         -*-Modd-bold-r-*-*-10-*-*-*-*-*-*-*
+!!general dialog box (affects main hostname, username, password text)
+xscreensaver.Dialog.foreground:         #000000
+xscreensaver.Dialog.background:         #525252
+xscreensaver.Dialog.topShadowColor:     #333333
+xscreensaver.Dialog.bottomShadowColor:  #333333
+xscreensaver.Dialog.Button.foreground:  #000000
+xscreensaver.Dialog.Button.background:  #525252
+!!username/password input box and date text colour
+xscreensaver.Dialog.text.foreground:    #000000
+xscreensaver.Dialog.text.background:    #525252
+xscreensaver.Dialog.internalBorderWidth:0
+xscreensaver.Dialog.borderWidth:        0
+xscreensaver.Dialog.shadowThickness:    1
+!!timeout bar (background is actually determined by Dialog.text.background)
+xscreensaver.passwd.thermometer.foreground:  #005885
+xscreensaver.passwd.thermometer.background:  #222222
+xscreensaver.passwd.thermometer.width:       8
+!!datestamp format--see the strftime(3) manual page for details
+xscreensaver.dateFormat:%A, %B %d
+
+! xclock ---------------------------------------------------------------
+xclock*update: 1
+xclock*analog: false
+xclock*foreground: grey60
+xclock*background: black
+xclock*font: -*-fixed-*-*-*-*-8-*-*-*-*-*-*-*
+
+! urxvt config ---------------------------------------------------------
+URxvt.termName: rxvt-unicode
+URxvt.imLocale: fr_FR.UTF-8
+URxvt.saveLines: 5000
+URxvt.cursorBlink: true
+URxvt.foreground: #bcbcbc
+URxvt.background: #000000
+URxvt.cursorColor: #e0e080
+URxvt.throughColor: #8080f0
+URxvt.highlightColor: #343434
+URxvt.fadecolor: #222222
+URxvt.fading: 60
+URxvt.transparent: true
+URxvt.tintColor: #707070
+URxvt.visualBell: false
+URxvt.urgentOnBell: true
+URxvt.font: -*-terminus-medium-*-*-*-12-*-*-*-*-*-*-*
+!URxvt.font: -artwiz-anorexia-medium-r-normal-*-11-*-*-*-*-*-*-*
+!URxvt.font: -*-snap-normal-*-*-*-10-*-*-*-*-*-*-*
+URxvt.scrollBar: false
+URxvt.scrollBar_right: false
+URxvt.urlLauncher: firefox
+URxvt.matcher.button: 1
+URxvt.perl-ext-common: default,matcher
+!URxvt.perl-ext-common: default,tabbed,matcher !uncomment = autotabs in URxvt
+URxvt.tabbed.tabbar-fg: 4
+URxvt.tabbed.tabbar-bg: 0
+URxvt.tabbed.tab-fg: 7
+URxvt.tabbed.tab-bg: 4
+
+! xcalc ----------------------------------------------------------------
+xcalc*geometry: 200x275
+xcalc.ti.bevel.background: #111111
+xcalc.ti.bevel.screen.background: #000000
+xcalc.ti.bevel.screen.DEG.background: #000000
+xcalc.ti.bevel.screen.DEG.foreground: LightSeaGreen
+xcalc.ti.bevel.screen.GRAD.background: #000000
+xcalc.ti.bevel.screen.GRAD.foreground: LightSeaGreen
+xcalc.ti.bevel.screen.RAD.background: #000000
+xcalc.ti.bevel.screen.RAD.foreground: LightSeaGreen
+xcalc.ti.bevel.screen.INV.background: #000000
+xcalc.ti.bevel.screen.INV.foreground: Red
+xcalc.ti.bevel.screen.LCD.background: #000000
+xcalc.ti.bevel.screen.LCD.foreground: LightSeaGreen
+xcalc.ti.bevel.screen.LCD.shadowWidth: 0
+xcalc.ti.bevel.screen.M.background: #000000
+xcalc.ti.bevel.screen.M.foreground: LightSeaGreen
+xcalc.ti.bevel.screen.P.background: #000000
+xcalc.ti.bevel.screen.P.foreground: Yellow
+xcalc.ti.Command.foreground: White
+xcalc.ti.Command.background: #777777
+xcalc.ti.button5.background: Orange3
+xcalc.ti.button19.background: #611161
+xcalc.ti.button18.background: #611161
+xcalc.ti.button20.background: #611111
+!uncomment to change label on division button
+!xcalc.ti.button20.label:      /
+xcalc.ti.button25.background: #722222
+xcalc.ti.button30.background: #833333
+xcalc.ti.button35.background: #944444
+xcalc.ti.button40.background: #a55555
+xcalc.ti.button22.background: #222262
+xcalc.ti.button23.background: #222262
+xcalc.ti.button24.background: #222272
+xcalc.ti.button27.background: #333373
+xcalc.ti.button28.background: #333373
+xcalc.ti.button29.background: #333373
+xcalc.ti.button32.background: #444484
+xcalc.ti.button33.background: #444484
+xcalc.ti.button34.background: #444484
+xcalc.ti.button37.background: #555595
+xcalc.ti.button38.background: #555595
+xcalc.ti.button39.background: #555595
+XCalc*Cursor: hand2
+XCalc*ShapeStyle: rectangle
+!
+! eof ------------------------------------------------------------------

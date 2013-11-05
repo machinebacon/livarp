@@ -1,0 +1,34 @@
+#!/bin/sh
+# build script - livarp_0.4.2
+# http://arpinux.org/livarp
+#############################
+lb config noauto \
+    --mode "debian" \
+    --system "live" \
+    --architectures "i386" \
+    --distribution "wheezy" \
+    --linux-flavours "686" \
+    --archive-areas "main" \
+    --security "true" \
+    --updates "true" \
+    --backports "true" \
+    --binary-filesystem "fat32" \
+    --binary-images "iso-hybrid" \
+    --apt-indices "true" \
+    --apt-recommends "false" \
+    --apt-secure "true" \
+    --apt-source-archives "true" \
+    --linux-package "linux-image-liquorix" \
+    --bootloader "syslinux" \
+    --debian-installer "live" \
+    --debian-installer-gui "false" \
+    --iso-publisher "livarp project; http://arpinux.org/livarp/; arpinux@member.fsf.org" \
+    --iso-application "livarp_0.4.2" \
+    --iso-volume "livarp_0.4.2" \
+    --memtest "none" \
+    --win32-loader "false" \
+    --debug \
+    --verbose \
+    --source "false" \
+    --clean \
+	"${@}"

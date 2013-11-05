@@ -1,0 +1,12 @@
+The old BUGS -file got corrupted so I don't remember what bugs there was...
+Please inform me of them.
+
+* Drag and drop allows dropping on other items than submenus that will make
+  the item work like a submenu. That will possibly break the menu when saving
+  (though it may look good in editor)
+
+* Loading a corrupted menu could lead to crash. This is not tested
+
+* Undo seems to work, I have not yet fully tested it though.
+
+* Adding a big icon, like 1000x1000 breaks the UI. I could use some scaling.

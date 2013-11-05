@@ -1,0 +1,117 @@
+# livarp fluxbox menu --------------------------------------------------
+#------------------------------------------------------------ usual apps
+[begin] (livarp)
+[exec] (Terminal) {urxvtcd}
+[exec] (Rox-filer) {rox-filer}
+[exec] (Ranger (cli\)) {urxvtcd -e ranger}
+[exec] (Firefox) {firefox http://arpinux.org/livarp_start}
+[exec] (Claws-Mail) {claws-mail}
+[exec] (Weechat (cli\)) {urxvtcd -e weechat-curses}
+[exec] (Geany editor) {geany}
+[separator]
+#------------------------------------------------------------------ apps
+[submenu] (Applications)
+    #--------------------------------------------------------------- web
+    [submenu] (web)
+        [exec] (firefox) {firefox http://arpinux.org/livarp_start}
+        [exec] (claws-mail) {claws-mail}
+        [exec] (weechat) {urxvtcd -e weechat-curses}
+        [exec] (filezilla) {filezilla}
+        [exec] (transmission) {transmission-gtk}
+    [end]
+    #------------------------------------------------------------- graph
+    [submenu] (Graphics)
+        [exec] (gthumb) {gthumb}
+        [exec] (gcolor2) {gcolor2}
+        [exec] (xcolorsel) {xcolorsel}
+        [exec] (xfontsel) {xfontsel}
+        [submenu] (screenshot)
+            [exec] (now) {screenshot -a}
+            [exec] (in 5 sec.) {screenshot -d}
+            [exec] (in a zone) {screenshot -z}
+        [end]
+    [end]
+    #------------------------------------------------------------- media
+    [submenu] (Media)
+        [exec] (mplayer) {gnome-mplayer}
+        [exec] (mocp) {urxvtcd -T player -e mocp}
+        [exec] (xfburn) {xfburn}
+        [exec] (volume) {urxvtcd -T sound -e alsamixer}
+    [end]
+    #------------------------------------------------------------ office
+    [submenu] (Office)
+        [exec] (geany) {geany}
+        [exec] (evince) {evince}
+        [exec] (vim) {urxvtcd -e vim}
+    [end]
+    #------------------------------------------------------------- utils
+    [submenu] (Utils)
+        [exec] (catfish) {catfish}
+        [exec] (archiver) {file-roller}
+        [exec] (calculator) {xcalc}
+        [exec] (htop) {urxvtcd -e htop}
+        [exec] (pyrenamer) {pyrenamer}
+        [exec] (force quit) {xkill}
+    [end]
+    #------------------------------------------------------------ debian
+    [submenu] (Debian) {}
+        [include] (/etc/X11/fluxbox/fluxbox-menu)
+    [end]
+[end]
+#---------------------------------------------------------------- config
+[submenu] (Configuration)
+    [exec] (~.xinitrc) {geany .xinitrc}
+    [exec] (flux startup) {geany bin/start/fluxbox_start.sh}
+    [submenu] (Fluxbox) {}
+        [exec] (gui menu editor) {fluxmenu}
+        [exec] (edit fluxbox menu) {geany .fluxbox/menu}
+        [exec] (edit fluxbox keys) {geany .fluxbox/keys}
+        [exec] (edit fluxbox rules) {geany .fluxbox/apps}
+        [config] (fluxbox config)
+        [submenu] (fluxbox styles) {}
+            [stylesdir] (/usr/share/fluxbox/styles)
+            [stylesdir] (~/.fluxbox/styles)
+        [end]
+        [exec] (man fluxbox) {urxvtcd -e man fluxbox}
+        [reconfig] (Reconfigure)
+        [restart] (Restart)
+    [end]
+    [exec] (interface) {lxappearance}
+    [exec] (wallpaper) {nitrogen}
+    [exec] (edit conky) {geany .conky/conkyrc_fluxbox}
+    [exec] (display) {arandr}
+    [submenu] (composite) {}
+        [exec] (stop composite) {xcompmgr_livarp -s}
+        [exec] (light composite) {xcompmgr_livarp -l}
+        [exec] (full composite) {xcompmgr_livarp -f}
+        [exec] (configure) {urxvtcd -e sudo vim /usr/local/bin/xcompmgr_livarp}
+        [exec] (man page) {urxvtcd -e man xcompmgr}
+    [end]
+    [submenu] (screensaver) {}
+        [exec] (configure) {xscreensaver-demo}
+        [exec] (reload) {xscreensaver-command -restart}
+        [exec] (stop) {xscreensaver-command -exit}
+    [end]
+[end]
+#----------------------------------------------------------------- admin
+[submenu] (Administration)
+    [exec] (root term) {gksu urxvtcd}
+    [exec] (gparted) {gksu gparted}
+    [exec] (package manager) {gksu synaptic}
+    [exec] (info system) {hardinfo}
+    [exec] (disk usage) {urxvtcd -e ncdu}
+    [exec] (default apps) {urxvtcd -e sudo update-alternatives --all}
+    [exec] (clickmes) {rox ~/bin/clickmes}
+    [exec] (livarp-xs-maker) {~/bin/remove-sessions/livarp-xs-maker}
+[end]
+#------------------------------------------------------------------ help
+[submenu] (Livarp help)
+    [exec] (flux center) {firefox /usr/share/livarp/help_center/us/sessions/fluxbox.html}
+    [exec] (help center) {firefox /usr/share/livarp/help_center/index.html}
+    [exec] (main site) {firefox http://arpinux.org/livarp}
+    [exec] (livarp irc) {firefox http://arpinux.org/livarp/irc.html}
+[end]
+[separator]
+#------------------------------------------------------------------ exit
+[exec] (Exit Menu) {dmenu-quit.sh}
+[end]

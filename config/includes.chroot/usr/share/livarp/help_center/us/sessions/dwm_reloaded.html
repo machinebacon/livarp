@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Livarp Help Center - dwm_reloaded session</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang <a href="../../fr/sessions/dwm_reloaded.html">fr</a>|gb</h2><h1><a href="../../index.html" title="back to main menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>the dwm_reloaded session</h1>
+            <p><b>dwm</b> is written in C ... no automatic refresh .. you want to configure? then you must compile :)<br />
+             dwm has remained simple ..virgin i would say: virgin from any gadget and other options that slow down environment and ultimately affect the performance of the computer and the user, while it was not the primary idea. <br />
+             dwm is distributed by suckless.org <i>Dedicated to software that sucks less ...</i> and adopts the KISS philosophy.<br />
+             dwm is fully controllable from the keyboard but can also make good use of your mouse (moving clients, resize on the fly ..).<br />
+            i have to admit ... it's my favorite session :)</p>
+            <h2>screenshot</h2>
+            <a href="../../pics/livarp_04_dwm_reloaded.png"><img src="../../pics/livarp_04_dwm_reloaded_thb.png" /></a>
+            <p>DWM is a tiling window manager, it displays your windows (clients) so that they occupy the entire surface of the desk (tags). occupied tags are indicated by a small square. clients are organized in different ways (layouts) to optimize the visibility of your applications. layouts are organized around the Master (main zone) and Stack (stacking area from other clients).</p>
+            <h2>startup</h2>
+            <p>dwm is launched from the ~/bin/start/dwm_start.sh script.<br />
+            to modify startup applications, simply edit this file: <text class="blockquote">vim bin/start/dwm_start.sh</text> or from the dwm menu:section config:dwm:edit startup script</p>
+            <h2>components</h2>
+            <p>dwm_reloaded session is organized with different elements:
+            <ul><li><b>DWM:</b>the window manager itself, based on dwm-6.1 and largely patched to enhance and facilitate the handling of the tiling. (list of patches applied at the bottom of page)</li>
+                <li><b>dwm-statusbar:</b> display taglist, tag layout button, tasklist and a minimal conky: cpu, ram and hdd usage, date and time (configurable from ~/.conky/.conkyrc_dwm).</li>
+                <li><b>dwm menu:</b> available from top-left corner and handled by fbpanel. it includes a complete menu of installed applications, configuration section and a systray (configurable from ~/.config/fbpanel/default or from the menu itself).</li>
+            </ul></p>
+            <h2>configuration</h2>
+            <p>to configure <b>conky</b>, you have to edit its conkyrc: <text class="blockquote">vim .conky/conkyrc_dwm</text> or from the dwm menu:section config:conky.</p>
+            <p>to configure <b>fbpanel</b>, edit its configuration file <text class="blockquote">vim .config/fbpanel/default</text> or from the fbpanel menu itself: section config:fbpanel:edit menu.<br />
+            if you want to add plugins, please visit the <a href="../config/menu.html">dedicated page</a>.</p>
+            <h3>dwm configuration through the compilation of sources.</h3>
+            <p>dwm does not have a configuration file, if you want to change behavior, you must recompile dwm from source. an archive containing the sources fr/us is located in /usr/share/livarp/sources.<br />
+            a mini tutorial explains the process at the end of this page.</p>
+            <h2>keybinds/mousebinds</h2>
+            <p>dwm is fully controllable from the keyboard: control, launchers, navigation, tags and clients  manipulation...<br />
+            keybinds/mousebinds are defined in the config.h file from sources when compiling. Some applications are configured to open in specific tags</p>
+            <h3>menus:</h3>
+                <ul><li>dwm menu: top-left corner of the screen</li>
+                    <li>dmenu: Alt+p or Super+d</li>
+                    <li>dmenu-google: Super+g</li>
+                    <li>dmenu-home: Super+h</li>
+                </ul>
+            <h3>control:</h3>
+                <ul><li>reload dwm: Ctrl+Alt+r</li>
+                    <li>quit dwm:Ctrl+Shift+Alt+q or from dwm menu:exit</li>
+                    <li>toggle hide the statusbar: Alt+b</li>
+                </ul>
+            <h3>windows:</h3>
+                <ul><li>close client: Alt+q</li>
+                    <li>previous client: Alt+j</li>
+                    <li>next client: Alt+k</li>
+                    <li>pushdown client in the list: Ctrl+Alt+j</li>
+                    <li>pushup the client in the list: Ctrl+Alt+k</li>
+                    <li>put the client in the master: Alt+Enter or right-click on the client title in the statusbar</li>
+                    <li>toggle free client: Alt+Shift+Space</li>
+                    <li>move client: Alt+left-click</li>
+                    <li>resize client: Alt+right-click</li>
+                </ul>
+            <h3>navigation:</h3>
+                <ul><li>previous/next tag: Ctrl+Left/Right</li>
+                    <li>swap the previous tag: Alt+Tab</li>
+                    <li>view alltag: Alt+0 (to escape, Alt+'number')</li>
+                    <li>tag client with alltags: Alt+Shift+0 (to escape Alt+Shift+'number')</li>
+                    <li>view previous/next screen: Alt+Down/Up</li>
+                    <li>tag client with previous/next screen: Alt+Shift+Down/up</li>
+                    <li>view tag 'n': Alt+'n' or left-click on the tag in the taglist</li>
+                    <li>tag client with tag 'n': Alt+Shift+'n' or Alt+left-click on the tag in the taglist</li>
+                    <li>toggle view client in tag 'n': Ctrl+Alt+'n' or right-click on the tag in the taglist</li>
+                </ul>
+            <h3>layout</h3>
+                <ul><li>increase master area: Alt+l</li>
+                    <li>decrease master area: Alt+h</li>
+                    <li>increase clients in master area: Alt+i</li>
+                    <li>decrease clients in master area : Alt+d</li>
+                    <li>tile layout: Alt+t or left-click on layout button. (master on left, stack on right [|])</li>
+                    <li>bottomstack layout: Alt+s or middle-click on layout button. (master on top, stack on bottom [-])</li>
+                    <li>monocle layout: Alt+m or right-click on layout button. (clients maximised, number of clients is indicated in the layout button) [0]</li>
+                    <li>free layout: Alt+f (no layout at all) [ ]</li>
+                    <li>last layout: Alt+Space</li>
+                    <li>next layout: Super+Space</li>
+                    <li>previous layout: Super+Shift+Space</li>
+                </ul>
+            <h3>launchers:</h3>
+                <ul><li>default terminal: Ctrl+Enter</li>
+                    <li>toggle hide the scratchpad: F12 (free popup terminal)</li>
+                    <li>launch ranger: Alt+r</li>
+                    <li>launch rox-filer: Alt+Shift+r</li>
+                    <li>launch firefox: Alt+w</li>
+                    <li>launch vim: Alt+e</li>
+                    <li>launch geany: Alt+Shift+e</li>
+                    <li>launch weechat: Alt+x</li>
+                    <li>music player: Alt+z</li>
+                    <li>volume control: Alt+v</li>
+                </ul>
+            <h2>dwm compilation</h2>
+            <p>this process may seem dark or scary but it is very simple: the goal is to build the executable file "dwm" from source. sources are recovered, they are modified, then we apply the famous "make/sudo make install/make clean" and voila :). an archive containing these sources is available in your / usr/share/livarp/sources/dwm-6.1-reloaded.zip.</p>
+            <h3>compilation process</h3>
+            <ul><li>sources recovery:</li></ul>
+            <p class="blockquote">cd ~/tmp<br />
+            cp /usr/share/livarp/sources/dwm_reloaded_l4.tgz .<br />
+            extract dwm_reloaded_l4.tgz</p>
+            <ul><li>cd into the us directory then edit the file with dwm configuration, config.h:</li></ul>
+            <p class="blockquote">cd dwm_reloaded_l4/fr<br />
+            vim config.h<br />
+            or<br />
+            geany config.h</p>
+            <ul><li>once modifications made, let's compile</li></ul>
+            <p class="blockquote">make<br />
+            sudo make install<br />
+            make clean</p>
+            <p>your new dwm release is installed, to reload dwm, Ctrl+Alt+r</p>
+            <h2>patchs list applied to dwm-6.1</h2>
+            <pre class="blockquote">
+/* dwm_reloaded for livarp_0.4 based on dwm_6.1
+ * patches &amp; mods :
+ * attachabove          http://dwm.suckless.org/patches/attachabove
+ * bottomstack          http://dwm.suckless.org/patches/bottom_stack
+ * float_border_color   http://dwm.suckless.org/patches/float_border_color
+ * push up/down         http://dwm.suckless.org/patches/push
+ * pertag               http://dwm.suckless.org/patches/pertag
+ * scratchpad           https://github.com/ok100/dwm/blob/master/03-dwm-6.0-scratchpad-stay.diff
+ * cycle-layout         https://bbs.archlinux.org/viewtopic.php?id=103402
+ * ansistatuscolors     http://dwm.suckless.org/patches/ansistatuscolors
+ * view_prev/next_tag   forum post
+ * urgent_tag color     http://www.mail-archive.com/dwm@suckless.org/msg06657.html
+*/</pre>
+            </div>
+        </div>
+    </div>
+    <div id="footer">livarp_0.4 help center - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

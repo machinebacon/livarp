@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Centre d'Aide Livarp - vider la corbeille</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang fr|<a href="../../us/tips/trash.html">gb</a></h2><h1><a href="../../index-fr.html" title="retour au menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>vider la corbeille</h1>
+            <p>comme vous avez pu le constater, Rox-Filer n'utilise pas de corbeille, mais d'autres applications l'utilise (comme transmission…). il se peut que vous désiriez vider la corbeille de temps en temps :) il vous suffit de supprimer le dossier ~/.local/share/Trash:</p>
+            <h2>avec ranger cli-manager:</h2>
+            <ul>
+            <li>ouvrir ranger: Alt+r</li>
+            <li>afficher les fichiers cachés: “zh” dans le client ranger</li>
+            <li>selectionner ~/.local, puis 'share' puis 'Trash'</li>
+            <li>effacer le répertoire: dans le client ranger, taper ”:delete” puis “y” quand il vous demande “delete seriously ?”</li>
+            </ul>
+            <h2>avec Rox-Filer:</h2>
+            <ul>
+            <li>ouvrir rox: Alt+Shift+r</li>
+            <li>afficher les fichiers cachés: Ctrl+h</li>
+            <li>naviguer jusqu'à ~/.local/share</li>
+            <li>effacer le dossier Trash en ouvrant le menu contextuel (clic gauche) puis “effacer” ou alors, sélectionner puis Ctrl+x.</li>
+            </ul>
+            <h2>avec une commande:</h2>
+            <p class=blockquote>$ rm -f -R /home/$USER/.local/share/Trash</p>
+            </div>
+        </div>
+    </div>
+    <div id="footer">centre d'aide livarp_0.4 - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

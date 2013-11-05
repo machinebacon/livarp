@@ -1,0 +1,10 @@
+#!/bin/bash
+# exit menu for ratpoison
+# more infos : man ratmenu
+##########################
+exec ratmenu -style "snazzy" -label "rmenu" -align "center" -fg "#222222" -bg "#005885" -font "-*-anorexia-*-*-normal-*-11-*-*-*-*-*-*-*" \
+    "cancel" "" \
+    "exit rat" "ratpoison -c quit" \
+    "exit livarp" "sudo shutdown -h now" \
+    "reboot" "sudo shutdown -r now"
+exit 0

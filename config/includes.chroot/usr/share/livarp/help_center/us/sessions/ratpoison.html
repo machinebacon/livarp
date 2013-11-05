@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Livarp Help Center - dwm session</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang <a href="../../index-fr.html">fr</a>|gb</h2><h1><a href="../../index.html" title="back to main menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>ratpoison session</h1>
+            <p>ratpoison is a simple Window Manager with no fat library dependencies, no fancy graphics, no window decorations, and no rodent dependence. It is largely modeled after GNU Screen which has done wonders in the virtual terminal market. All interaction with the window manager is done through keystrokes. ratpoison has a prefix map to minimize the key clobbering that cripples Emacs and other quality pieces of software. ratpoison was written by Shawn Betts.</p>
+            <h2>frames concept</h2>
+            <p>ratpoison uses the concept of panes to place and size windows. Instead of allowing windows to have arbitary shapes at arbitary locations on the screen, the display is divided into panes, the same way a physical window might contain several pieces of glass seperated by wood. In ratpoison, the panes are called frames, and windows are placed in them, maximised. ratpoison starts with one frame, which can be split into an arbitary number of smaller ones. Each frame can be split in half either horizontally or vertically. You can move among them, making different ones the current.</p>
+            <p>Each frame has at most one window associated with it, which is visible in that frame. If you select a window that is associated with a frame, the focus will move to its associated frame, rather than moving the window to the current frame. If you select a window that is not associated with a frame, that window will be opened in the current frame and resized to fit that frame.<br />
+            If the window associated with a frame does not fill the frame completely, the various gravity commands control how it is placed.<br />
+            If no window was open in that frame before the current window was opened, the X root will be visible behind it.</p>
+            <p>a complete documentation is available in your ~/docs/ratpoison.pdf.</p>
+            <h2>screenshot</h2>
+            <a href="../../pics/livarp_04_ratpoison.png"><img src="../../pics/livarp_04_ratpoison_thb.png" /></a>
+            <p></p>
+            <h2>startup</h2>
+            <p>ratpoison is launched from the ~/bin/start/ratpoison_start.sh script.<br />
+            to change startup applications, simply edit this file:<text class="blockquote">vim bin/start/ratpoison_start.sh</text> or from the fbpanel menu:section wms:ratpoison:startup script</p>
+            <h2>components</h2>
+            <p>ratpoison session is ultra minimal:
+            <ul><li><b>ratpoison:</b> the window-manager itself, idealy built to work.</li>
+                <li><b>livarp menu:</b> available from top-left corner and handled by fbpanel. it includes a complete menu of installed applications, configuration section and a systray (configurable from ~/.config/fbpanel/default or from the menu itself).</li>
+                <li><b>Menu ratpoison:</b> handled by ratmenu and configurable from the ~/.ratpoison/rat_main_menu file.</li>
+            </ul></p>
+            <h2>configuration</h2>
+            <p>to configure <b>fbpanel</b>, edit its configuration file <text class="blockquote">vim .config/fbpanel/default</text> or from the fbpanel menu itself: section config:fbpanel:edit menu.<br />
+            if you want to add plugins, please visit the <a href="../config/menu.html">dedicated page</a>.</p>
+            <h3>configure ratpoison with its ~/.ratpoisonrc.</h3>
+            <p>On startup ratpoison looks for ~/.ratpoisonrc and runs it through the command parser. If ~/.ratpoisonrc does not exist, ratpoison tries /etc/ratpoisonrc. This means any command you can bind a key to or run at the command prompt (C-t :) you can execute in this rc file.<br />
+            You can also use the -f option to specify another startup file, allowing you to switch between different configurations<br />
+            note that this file is read each time you restart ratpoison “C-t :restart”.</p>
+            <h2>keybindings</h2>
+            <p>ratpoison is fully controllable from the keyboard: control, navigation, frames and clients  manipulation...<br />
+            keybinds can be configured from ~/.ratpoisonrc. here are some shortcuts for livarp_0.4 ratpoison session: (note: keybinds list is available with 'C-t + ?')</p>
+            <h3>menus:</h3>
+                <ul><li>livarp menu: top-left corner of the screen</li>
+                    <li>ratpoison menu: C-t + m</li>
+                    <li>dmenu: C-t + d</li>
+                </ul>
+            <h3>control:</h3>
+                <ul><li>restart ratpoison: C-t : restart</li>
+                    <li>quit ratpoison: C-t : quit or from livarp menu:exit</li>
+                </ul>
+            <h3>windows:</h3>
+                <ul><li>close client: C-t + k</li>
+                    <li>previous client: C-t + p</li>
+                    <li>next client: C-t + n, C-t + space, C-t + Enter</li>
+                </ul>
+            <h3>frames:</h3>
+                <ul><li>previous/next frame: C-t + Tab</li>
+                    <li>horizontal split: C-t + s</li>
+                    <li>vertical split: C-t + S</li>
+                    <li>delete a frame: C-t + R</li>
+                    <li>delete all frames (back to fullscreen mode): C-t + Q</li>
+                </ul>
+            <h3>resizing frames</h3>
+            <p>ratpoison provides a command, resize, that resizes the current frame. It is bound to the key C-t r by default. resize can be used non-interactively by providing two arguments: the number of pixels to grow horizontally and the number to grow vertically. For example, if you wanted to grow the current window by 10 pixels horizontally and shrink it vertically by 50 you could enter the command: resize 10 -50.<br />
+            When resizing interactively, the following keys are used:
+            <ul><li>Grow the frame vertically : C-t r C-p/Up</li>
+                <li>Shrink the frame vertically : C-t r C-n/Down</li>
+                <li>Grow the frame horizontally : C-t r C-f/Left/Right</li>
+                <li>Shrink the frame horizontally : C-t r C-b/Left/Right</li>
+                <li>Accept the new frame size : return</li>
+                <li>Abort and restore the frame to its original size : C-t r C-g/Esc</li>
+            </ul></p>
+            <h3>launchers:</h3>
+                <ul><li>default terminal: C-t c</li>
+                    <li>display shell command dialog: C-t !</li>
+                    <li>display ratpoison command dialog: C-t :</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="footer">livarp_0.4 help center - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

@@ -1,0 +1,15 @@
+#! /bin/bash
+# screenshooter - depends on scrot
+# arpinux 2013 <http://arpinux.org>
+if [ "$1" == "-a" ]; then scrot &
+elif [ "$1" == "-d" ]; then scrot -d 5 &
+elif [ "$1" == "-w" ]; then scrot -d 2 -u -b &
+elif [ "$1" == "-z" ]; then scrot -s &
+else
+    echo "screenshot needs an argument:"
+    echo ""
+    echo " -a : scrot the desktop now"
+    echo " -d : scrot the desktop in 5 seconds"
+    echo " -w : scrot the active window in 2 seconds"
+    echo " -z : select zone then scrot"
+fi

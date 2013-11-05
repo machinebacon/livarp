@@ -1,0 +1,25 @@
+#!/bin/bash
+# basic menu for ratpoison
+# more infos : man ratmenu
+##########################
+exec ratmenu -style "snazzy" -label "rmenu" -align "center" -fg "#222222" -bg "#005885" -font "-*-anorexia-*-*-normal-*-11-*-*-*-*-*-*-*" \
+    "terminal" "urxvtcd" \
+    "ranger" "urxvtcd -e ranger" \
+    "rox-filer" "rox" \
+    "vim" "urxvtcd -e vim" \
+    "geany" "geany" \
+    "firefox" "firefox" \
+    "# irc" "urxvtcd -e weechat-curses" \
+    "music" "urxvtcd -e mocp" \
+    "radio" "urxvtcd -e cli_radio" \
+    "volume" "urxvtcd -title sound -e alsamixer" \
+    "----" "" \
+    "Debian" "/etc/X11/ratpoison/ratpoisonmenu" \
+    "config" ".ratpoison/rat_config_menu" \
+    "----" "" \
+    "htop" "urxvtcd -e htop" \
+    "uptime" "ratpoison -c 'echo `uptime`'" \
+    "----" "" \
+    "exit" ".ratpoison/rat_exit_menu" \
+    "----" ""
+exit 0

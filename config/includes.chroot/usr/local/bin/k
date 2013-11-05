@@ -1,0 +1,56 @@
+#! /bin/bash
+# dvtm k file
+###################
+
+## colors --------------------------------------------------------------
+green='\e[0;32m'      # green on default
+bGREEN='\e[0;42;30m'  # black on green
+red='\e[0;31m'        # red on default
+bBLUE='\e[0;44;30m'   # black on blue
+blue='\e[0;34m'       # blue on default
+bCYAN='\e[46;30m'     # black on cyan
+cyan='\e[0;36m'       # cyan on default
+yellow='\e[0;33m'     # yellow on default
+## No Color
+NC='\e[0m'
+## background colors ---------------------------------------------------
+RED='\e[41m'
+BLUE='\e[44m'
+CYAN='\e[46m'
+GREEN='\e[42m'
+YELLOW='\e[43m'
+## output --------------------------------------------------------------
+clear
+echo ""
+echo -e "     ${green}-- welcome to livarp_0.4 --$NC"
+echo ""
+echo -e "     ${BLUE} available keybinds $NC"
+echo -e "     ${BLUE} modkey is [Ctrl+g] $NC"
+echo ""
+echo -e "  ${bGREEN} open a shell         $NC Mod + c"
+echo -e "  ${bGREEN} close a shell        $NC Mod + x"
+echo -e "  ${bGREEN} increase master      $NC Mod + l"
+echo -e "  ${bGREEN} decrease master      $NC Mod + h"
+echo -e "  ${bGREEN} focus next           $NC Mod + j"
+echo -e "  ${bGREEN} focus previous       $NC Mod + k"
+echo -e "  ${bGREEN} toggle minimization  $NC Mod + ."
+echo ""
+echo -e "  ${bBLUE} toggle layout        $NC Mod + Space"
+echo -e "  ${bBLUE} fullscreen layout    $NC Mod + m"
+echo -e "  ${bBLUE} tiling layout        $NC Mod + t"
+echo -e "  ${bBLUE} bottom stack layout  $NC Mod + b"
+echo -e "  ${bBLUE} grid layout          $NC Mod + g"
+echo ""
+echo -e "  ${bCYAN} zoom/cycles to/from master $NC Mod + Enter"
+echo -e "  ${bCYAN} redraw the screen          $NC Mod + r"
+echo -e "  ${bCYAN} lock screen                $NC Mod + X"
+echo -e "  ${bCYAN} toggle bell                $NC Mod + B"
+echo -e "  ${bCYAN} scrollup    $NC Mod + PageUp"
+echo -e "  ${bCYAN} scrolldown  $NC Mod + PageDown"
+echo ""
+echo -e " ${green} full dvtm manual with [man dvtm]$NC"
+echo -e " ${green} to display dvtm help, hit [h]+Enter"
+echo -e " ${red} to display dvtm keys, hit [k]+Enter$NC"
+echo -n " hit Enter to leave"
+read anykey
+exit 0

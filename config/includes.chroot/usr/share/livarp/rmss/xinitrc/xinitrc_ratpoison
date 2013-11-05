@@ -1,0 +1,41 @@
+#! /bin/bash
+######################################################
+# livarp_0.4-xs-ratpoison ~/.xinitrc by arpinux 2013 #
+######################################################
+source ~/.bashrc
+## D-Bus ##
+if which dbus-launch >/dev/null && test -z "$DBUS_SESSION_BUS_ADDRESS"; then
+        eval "$(dbus-launch --sh-syntax --exit-with-session)"
+fi
+
+## clean-up conky deamon ##
+killall conky &
+killall conkyd &
+
+## dualscreen - edit script before use ##
+#~/bin/dualdetect.sh
+
+## read ~.Xresources file ##
+xrdb -merge ~/.Xresources
+
+## enable snap font ##
+xset fp+ /usr/share/fonts/livarp_fonts/artwiz-latin1/
+xset fp rehash
+
+## launch screensaver ##
+xscreensaver-command -exit
+xscreensaver -no-splash &
+
+## set cursor ##
+xsetroot -cursor_name left_ptr
+
+## set ctrl_alt_bksp as session-killer ##
+setxkbmap -option terminate:ctrl_alt_bksp
+
+## startup-wall - customize your start-screen ##
+feh --no-xinerama --bg-fill /usr/share/backgrounds/livarp_04.png
+
+#-----------------------------------------------------------------------
+
+## launch ratpoison ##
+exec ck-launch-session ~/bin/start/ratpoison_start.sh

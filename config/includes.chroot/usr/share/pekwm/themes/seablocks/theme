@@ -1,0 +1,260 @@
+# for statler / tested with pekwm ver. 0.1.12
+# License: GPL
+# Author: Hanna P
+# Homepage: http://queenpenguin.org
+# Font: http://www.dafont.com/florencesans-sc.font
+# CHANGE LOG
+
+$FONT = "XFT#Florencesans SC:size=8#Left"
+$FONT_TITLE = "XFT#Florencesans SC:size=8#Center"
+
+Require {
+  Templates = "True"
+}
+
+Define = "BaseDecor" {
+  Height = "15"
+
+  # Increase first number to bring title text downwards
+  Pad = "-1 4 4 4"
+
+  Focused = "Image title.png#tiled"
+  Unfocused = "Image title.png #tiled"
+
+  Tab {
+    Focused = "Image title.png#tiled"
+    FocusedSelected = "Image title.png#tiled"
+    Unfocused = "Image title.png#tiled"
+    UnfocusedSelected = "Image title.png#tiled"
+  }
+  Separator {
+    Focused = "Image tab_sep.png#tiled"
+    Unfocused = "Image tab_sep_un.png#tiled"
+  }
+  Font {
+    Focused = "$FONT_TITLE"
+  }
+  FontColor {
+    Focused = "#BBBBBB"
+    FocusedSelected = "#BBBBBB"
+    Unfocused = "#666666"
+    UnfocusedSelected = "#666666"
+  }
+  Border {
+    Focused {
+      TopLeft = "Image act_border_main_topl.png"
+      Top = "Image act_border_main_top.png"
+      TopRight = "Image act_border_main_topr.png"
+      Left =  "Image act_border_main_left.png"
+      Right = "Image act_border_main_right.png"
+      BottomLeft = "Image act_border_main_bottoml.png"
+      Bottom = "Image act_border_main_bottom.png"
+      BottomRight = "Image act_border_main_bottomr.png"
+    }
+    Unfocused {
+      TopLeft = "Image border_main_topl.png"
+      Top = "Image border_main_top.png"
+      TopRight = "Image border_main_topr.png"
+      Left =  "Image border_main_left.png"
+      Right = "Image border_main_right.png"
+      BottomLeft = "Image border_main_bottoml.png"
+      Bottom = "Image border_main_bottom.png"
+      BottomRight = "Image border_main_bottomr.png"
+    }
+  }
+}
+
+Define = "BaseButtons" {
+  Buttons {
+    Right = "Close" {
+      Focused = "Image button_close.png"
+      Unfocused = "Image button_close.png"
+      Hoover = "Image button_act.png"
+      Pressed = "Image button_act.png"
+      Button = "1" { Actions = "Close" }
+      Button = "3" { Actions = "Kill" }
+    }
+
+    Right = "Maximize" {
+      Focused = "Image button_max.png"
+      Unfocused = "Image button_max.png"
+      Hoover = "Image button_act.png"
+      Pressed = "Image button_act.png"
+      Button = "1" { Actions = "Toggle Maximized 1 1" }
+    }
+
+    Right = "Iconify" {
+      Focused = "Image button_min.png"
+      Unfocused = "Image button_min.png"
+      Hoover = "Image button_act.png"
+      Pressed = "Image button_act.png"
+      Button = "1" { Actions = "Set Iconified" }
+    }
+      
+    Left = "Shade" {
+        Focused = "Image button_shade.png"
+        Unfocused = "Image button_shade.png"
+        Hoover = "Image button_act.png"
+        Pressed = "Image button_act.png"
+        Button = "1" { Actions = "Toggle Shaded" }
+    }
+  }
+}
+
+Define = "EmptyDecor" {
+  Focused = "Empty"
+  Unfocused = "Empty"
+
+  Tab {
+    Focused = "Empty"
+    FocusedSelected = "Empty"
+    Unfocused = "Empty"
+    UnfocusedSelected = "Empty"
+  }
+
+  Separator {
+    Focused = "Empty"
+    Unfocused = "Empty"
+  }
+
+  Font {
+    Focused = "$FONT_TITLE"
+  }
+
+  FontColor {
+    Focused = "#BBBBBB"
+    FocusedSelected = "#BBBBBB"
+    Unfocused = "#666666"
+    UnfocusedSelected = "#666666"
+  }    
+
+  Border {
+    Focused {
+      TopLeft = "Image act_border_main_topl.png"
+      Top = "Image act_border_main_top.png"
+      TopRight = "Image act_border_main_topr.png"
+      Left =  "Image act_border_main_left.png"
+      Right = "Image act_border_main_right.png"
+      BottomLeft = "Image act_border_main_bottoml.png"
+      Bottom = "Image act_border_main_bottom.png"
+      BottomRight = "Image act_border_main_bottomr.png"
+    }
+    Unfocused {
+      TopLeft = "Image border_main_topl.png"
+      Top = "Image border_main_top.png"
+      TopRight = "Image border_main_topr.png"
+      Left =  "Image border_main_left.png"
+      Right = "Image border_main_right.png"
+      BottomLeft = "Image border_main_bottoml.png"
+      Bottom = "Image border_main_bottom.png"
+      BottomRight = "Image border_main_bottomr.png"
+    }
+  }
+}
+
+PDecor {
+  Decor = "Default" {
+    Title {
+      @BaseDecor
+      @BaseButtons
+    }
+  }
+
+
+Decor = "Menu" {
+	Title {
+		@BaseDecor
+		Border {
+		   Focused {
+      TopLeft = "Image act_border_main_topl.png"
+      Top = "Image act_border_main_top.png"
+      TopRight = "Image act_border_main_topr.png"
+      Left =  "Image act_border_main_left.png"
+      Right = "Image act_border_main_right.png"
+      BottomLeft = "Image act_border_main_bottoml.png"
+      Bottom = "Image act_border_main_bottom.png"
+      BottomRight = "Image act_border_main_bottomr.png"
+		        }
+		    Unfocused {
+      TopLeft = "Image border_main_topl.png"
+      Top = "Image border_main_top.png"
+      TopRight = "Image border_main_topr.png"
+      Left =  "Image border_main_left.png"
+      Right = "Image border_main_right.png"
+      BottomLeft = "Image border_main_bottoml.png"
+      Bottom = "Image border_main_bottom.png"
+      BottomRight = "Image border_main_bottomr.png"
+			}
+		}
+	}		
+  }
+
+
+  Decor = "Titlebarless" {
+    Title {
+      @EmptyDecor
+    }
+  }
+
+  Decor = "Statuswindow" {
+    Title {
+      @EmptyDecor
+    }
+  }
+}
+
+Harbour {
+  Texture = "Solid #303030"
+}
+
+Menu {
+  Pad = "2 2 2 2"
+
+  Focused {
+    Font = "$FONT"
+    Background = "Solid #303030"
+    Item = "Empty"
+    Text = "#808080" 
+    Separator = "Image menuline.png#tiled"
+    Arrow = "Image arrow.png"
+  }
+  Unfocused { 
+Font = "$FONT"
+    Background = "Solid #303030"
+    Item = "Empty"
+    Text = "#707070"
+    Separator = "Image menuline.png#tiled"
+    Arrow = "Image arrow.png"
+  }
+  Selected {
+    Font = "$FONT"
+    Background = "Solid #303030"
+    Item = "Image bg.png#tiled"
+    Text = "#BBBBBB"
+    Arrow = "Image arrow_sel.png"
+  }
+}
+
+CmdDialog {
+  Font = "$FONT"
+  Texture = "Solid #5e5e5e"
+  Text = "#BBBBBB"
+  Pad = "3 0 1 10"
+}
+
+Status {
+  Font = "$FONT"  
+  Texture = "Solid #303030"
+  Text = "#BBBBBB"
+  Pad = "2 2 10 10"
+}
+
+WorkspaceIndicator {
+  Font = "$FONT"  
+  Background = "Solid #303030"
+  Workspace = "solid #2e2e2e"
+  WorkspaceActive = "Solid #5b8f76"
+  Text = "#BBBBBB"
+  EdgePadding = "2 2 2 2"
+  WorkspacePadding = "2 2 2 2"
+}

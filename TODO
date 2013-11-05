@@ -1,0 +1,9 @@
+- restore compiz-deskmenu
+- merge us/fr release with selector
+- simplify clickme's with .desktop
+- add zram config tool
+- check mocp mp3 capabilities
+- restore zenity-keyboard-selector
+- add scripts
+- include libre-kernel
+- clean-up

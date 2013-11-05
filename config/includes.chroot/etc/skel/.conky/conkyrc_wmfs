@@ -1,0 +1,77 @@
+########################################################################
+# wmfs2 conkyrc                                                        #
+# taglist - statusbar - systray                                        #
+# livarp_0.4 arpinux@2013                                              #
+# http://arpinux.org/livarp                                            #
+########################################################################
+## wmfs topbar colors                                                  #
+########################################################################
+# 005885 livarp blue
+# 6DDD00 green
+# 43E000 light green
+# 222222 dark grey
+# 7D7D7D grey
+# B7B7B7 clear grey (default)
+# E07C00 orange
+# E00B00 red (alarm)
+# 008BE0 blue (hdd)
+# 63b8ff clear blue (vol)
+########################################################################
+## settings                                                            #
+########################################################################
+background yes
+out_to_x no
+out_to_console yes
+update_interval 2
+total_run_times 0
+uppercase no
+short_units yes
+use_spacer none
+if_up_strictness address
+text_buffer_size 2048
+cpu_avg_samples 2
+double_buffer yes
+########################################################################
+## output                                                              #
+########################################################################
+TEXT
+# tag previous/next - clic to navigate ---------------------------------
+^s[10;11;\#B7B7B7; <](1;tag_prev)\
+^s[20;11;\#B7B7B7; >](1;tag_next)\
+\
+# battery section - mess@10% - alarm@20%,30% - only for BAT0/1 ---------
+${if_existing /sys/class/power_supply/BAT0}^s[right;\#005885; :: ]\
+${if_match ${battery_percent BAT0} < 10 }^s[right;\#E00B00;!! low battery !! ${battery_percent BAT0}%]${else}\
+^s[right;${if_match ${battery_percent BAT0} < 20 }\#E00B00${else}\#B7B7B7${endif};bat:] \
+^s[right;${if_match ${battery_percent BAT0} < 20 }\#E00B00${else}${if_match ${battery_percent BAT0} < 30 }\#E07C00${else}\#B7B7B7${endif}${endif}; ${battery_percent BAT0}%]${endif}\
+${else}${if_existing /sys/class/power_supply/BAT1}^s[right;\#005885; :: ]\
+${if_match ${battery_percent BAT1} < 10 }^s[right;\#E00B00;!! low battery !! ${battery_percent BAT1}%]${else}\
+^s[right;${if_match ${battery_percent BAT1} < 20 }\#E00B00${else}\#B7B7B7${endif};bat:] \
+^s[right;${if_match ${battery_percent BAT1} < 20 }\#E00B00${else}${if_match ${battery_percent BAT1} < 30 }\#E07C00${else}\#B7B7B7${endif}${endif}; ${battery_percent BAT1}%]${endif}\
+${else}${endif}${endif}^s[right;\#005885; :: ]\
+\
+# cpu section - colors@10%;50%,85% - htop on clic ----------------------
+^s[right;${if_match ${cpu} < 80 }\#B7B7B7${else}\#E00B00${endif};cpu:](1;spawn;urxvtcd -e htop)\
+ ^s[right;${if_match ${cpu} < 10 }\#B7B7B7${else}${if_match ${cpu} < 50 }\#43E000${else}${if_match ${cpu} < 80 }\#E07C00${else}\#E00B00${endif}${endif}${endif}; ${cpu}% ]\
+^g[right;80;8;${cpu};100;\#222222;${if_match ${cpu} < 80 }\#7D7D7D${else}\#E07C00${endif};ckycpu] \
+^s[right;\#005885; :: ]\
+\
+# ram section ----------------------------------------------------------
+^s[right;\#B7B7B7;ram:](1;spawn;urxvtcd -e htop) \
+^s[right;${if_match ${memperc} < 80 }\#43E000${else}\#E00B00${endif}; $memperc%] ^s[right;\#B7B7B7; $mem]\
+^s[right;\#005885; :: ]\
+\
+# hdd section ----------------------------------------------------------
+^s[right;\#B7B7B7;hdd:](1;spawn;urxvtcd -e ncdu) \
+^s[right;\#008BE0; ${fs_used_perc /}% ] \
+^p[right;40;8;1;${fs_used_perc /};100;\#7D7D7D;\#222222]\
+^s[right;\#005885; :: ]\
+\
+# sound section --------------------------------------------------------
+^s[right;\#B7B7B7;vol: ](1;spawn;urxvtcd -T sound -e alsamixer)\
+(4;spawn;amixer set Master 2dB+)(5;spawn;amixer set Master 2dB-) \
+^p[right;40;8;1;${exec amixer get Master | tail -1 | sed 's/.*\[\([0-9]*%\)\].*/\1/' | cut -d% -f1};100;\#63b8ff;\#222222]\
+^s[right;\#005885; :: ]\
+\
+# date/time section ----------------------------------------------------
+^s[right;\#B7B7B7;${time %a %d/%m %I:%M %P}] ^s[right;\#005885; :: ]

@@ -1,0 +1,110 @@
+########################################################################
+# awesome conkyrc                                                      #
+# livarp_0.4 arpinux@2013                                              #
+# http://arpinux.org/livarp                                            #
+########################################################################
+#  Settings                                                            #
+########################################################################
+background yes
+use_xft yes
+xftfont Monospace:pixelsize=12
+xftalpha 1
+update_interval 1.0
+total_run_times 0
+own_window yes
+own_window_transparent yes
+own_window_argb_visual yes
+own_window_colour grey20
+own_window_type override
+own_window_title Infos System
+double_buffer yes
+minimum_size 300 800
+maximum_width 600
+draw_shades yes
+draw_outline no
+draw_borders no
+stippled_borders 10
+border_inner_margin 0
+border_width 1
+draw_graph_borders no
+default_color grey40
+color1 005885
+color2 grey60
+default_shade_color black
+default_outline_color white
+default_bar_size 100 3 
+alignment tl
+gap_x 5
+gap_y 0
+no_buffers yes
+uppercase no
+text_buffer_size 1024
+imlib_cache_size 0
+cpu_avg_samples 2
+show_graph_scale no
+show_graph_range no
+short_units yes
+override_utf8_locale yes
+use_spacer none
+if_up_strictness address
+## box chars ###########################################################
+# ─ │ ┌ ┐ └ ┘ ├ ┤ ┬ ┴ ┼                                                #
+########################################################################
+#  Output                                                              #
+########################################################################
+TEXT
+│
+│
+│
+├──┬─${color1}${nodename}${color}
+│  └─${color1}Debian${color}-${execi 28800 cat /etc/debian_version}-${color1}${kernel}${color}
+│
+│    ┌${color1}${time %I:%M}${color}
+├────┤${time %A}${color1}${time %d}${color}${time %B}
+│    └${color1}up${color}${uptime_short}
+│
+├──┬─${color1}cpu${color}   ${cpugraph 8,110 151515 aaaaaa}
+│  └─┬──${color1}${cpu cpu0}${color}%  ${color1}${freq_g}${color}Ghz  ${color1}${acpitemp}${color}°C
+│    ├───────Processes ${color1}$running_processes/${color}$processes
+│    │  name${goto 130}pid    cpu    mem
+│    ├─${color1}${top name 1}${goto 130}${top pid 1}${top cpu 1}%${top mem 1}%${color}
+│    ├─${color2}${top name 2}${goto 130}${top pid 2}${top cpu 2}%${top mem 2}%${color}
+│    └─${top name 3}${goto 130}${top pid 3}${top cpu 3}%${top mem 3}%
+│
+├──┬─${color1}ram${color}   ${memgraph 8,110 151515 aaaaaa}
+│  ├──${color1}${memperc}${color}%   ${color1}${mem}${color}/${memmax}
+│  ├────Buff${color1}${buffers}${color}Cache${color1}${cached}${color}Swap${color1}${swap}${color}
+│  │  name${goto 140}pid    mem    cpu
+│  ├─${color1}${top_mem name 1}${goto 130}${top_mem pid 1}${top_mem mem 1}%${top_mem cpu 1}%${color}
+│  ├─${color2}${top_mem name 2}${goto 130}${top_mem pid 2}${top_mem mem 2}%${top_mem cpu 2}%${color}
+│  └─${top_mem name 3}${goto 130}${top_mem pid 3}${top_mem mem 3}%${top_mem cpu 3}%
+│
+├──┬─${color1}hdd${color}
+│  └─┬─ / ${goto 100}${color1}${fs_used_perc /}${color}%   ${color1}${fs_used /}${color}/${fs_size /}
+│    └─${color1}i/o${color}read${color1}${diskio_read sda1}${color}/s write${color1}${diskio_write sda1}${color}/s ${diskiograph /dev/sda1 8,50 151515 aaaaaa}
+│
+${if_running mocp}├────┬─${color1}moc${color}${execpi 2 mocp -Q %state}${color}
+│    ├─${color1}${execpi 2 mocp -Q %song}${color}by${color1}${execpi 2 mocp -Q %artist}${color}
+│    ├─${color1}${execpi 2 mocp -Q %ct}${color}${execpi 2 mocp -Q %tt}${color}
+│    └─${color}volume${color}${if_mixer_mute}${color1}muted${color}${else}${color1}${mixer}${color}%${endif}
+│${else}│$endif
+${if_existing /sys/class/power_supply/BAT0}├────Battery0${color1}${battery BAT0}${color}${battery_time}${else}${if_existing /sys/class/power_supply/BAT1}├────Battery1${color1}${battery BAT1}${color}${battery_time}${else}│${endif}${endif}
+│${if_gw}
+└──┬─${color1}network${color}
+ ${if_up eth0}  ├───┬─${color1}wired${color}___${addrs eth0}/${color1}${texeci 600 ~/bin/ip.sh}${color}
+   │   ├─down${color1}${downspeed eth0}${color}/s${goto 150}${downspeedgraph eth0 8,100 151515 aaaaaa}
+   │   └─up${color1}${upspeed eth0}${color}/s${goto 150}${upspeedgraph eth0 8,100 151515 aaaaaa}${else}  ├─no eth0 connection${endif}
+ ${if_up wlan0}  ├──┬─${color1}wifi${color}___${addrs wlan0}/${color1}${texeci 600 ~/bin/ip.sh}${color}
+   │  │ ├─${color1}${wireless_essid wlan0}${color}qual${color1}${wireless_link_qual_perc wlan0}${color}%
+   │  │ └─${color1}${wireless_ap wlan0}${color}
+   │  ├─down${color1}${downspeed wlan0}${color}/s${goto 150}${downspeedgraph wlan0 8,100 151515 aaaaaa}
+   │  └─up${color1}${upspeed wlan0}${color}/s${goto 150}${upspeedgraph wlan0 8,100 151515 aaaaaa}${else}  ├─no wlan0 connection${endif}
+   │
+   └─${if_match ${tcp_portmon 1 65535 count} > 0}┬─${color}tcpConnections${color1}${tcp_portmon 1 65535 count}${color}
+     ${if_match ${tcp_portmon 1 65535 count} > 1}├─${tcp_portmon 1 65535 rhost 0}(${tcp_portmon 1 65535 rip 0}):${color1}${tcp_portmon 1 65535 rport 0}${color}${else}${if_match ${tcp_portmon 1 65535 count} == 1}└─${tcp_portmon 1 65535 rhost 0}(${tcp_portmon 1 65535 rip 0}):${color1}${tcp_portmon 1 65535 rport 0}${color}${else}${endif}${endif}
+     ${if_match ${tcp_portmon 1 65535 count} > 2}├─${tcp_portmon 1 65535 rhost 1}(${tcp_portmon 1 65535 rip 1}):${color1}${tcp_portmon 1 65535 rport 1}${color}${else}${if_match ${tcp_portmon 1 65535 count} == 2}└─${tcp_portmon 1 65535 rhost 1}(${tcp_portmon 1 65535 rip 1}):${color1}${tcp_portmon 1 65535 rport 1}${color}${else}${endif}${endif}
+     ${if_match ${tcp_portmon 1 65535 count} > 3}├─${tcp_portmon 1 65535 rhost 2}(${tcp_portmon 1 65535 rip 2}):${color1}${tcp_portmon 1 65535 rport 2}${color}${else}${if_match ${tcp_portmon 1 65535 count} == 3}└─${tcp_portmon 1 65535 rhost 2}(${tcp_portmon 1 65535 rip 2}):${color1}${tcp_portmon 1 65535 rport 2}${color}${else}${endif}${endif}
+     ${if_match ${tcp_portmon 1 65535 count} > 4}├─${tcp_portmon 1 65535 rhost 3}(${tcp_portmon 1 65535 rip 3}):${color1}${tcp_portmon 1 65535 rport 3}${color}${else}${if_match ${tcp_portmon 1 65535 count} == 4}└─${tcp_portmon 1 65535 rhost 3}(${tcp_portmon 1 65535 rip 3}):${color1}${tcp_portmon 1 65535 rport 3}${color}${else}${endif}${endif}
+     ${if_match ${tcp_portmon 1 65535 count} > 4 }└─${tcp_portmon 1 65535 rhost 4}(${tcp_portmon 1 65535 rip 4}):${color1}${tcp_portmon 1 65535 rport 4}${color}${else}${endif}${else}no${color1}Tcp${color}connection${endif}
+${else}
+┘${endif}

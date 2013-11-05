@@ -1,0 +1,59 @@
+/*UnityPanelWidget,
+.unity-panel {
+	background-image: -gtk-gradient (linear, left top, left bottom,
+		from (alpha (shade (@base2_color, 0.5), 0.8)),
+		to (alpha (shade (@theme_bg_color, 1.04), 0.8)));
+	border-top-color: alpha (shade (@theme_bg_color, 1.0), 0.88);
+	border-style: solid;
+	border-width: 1 0 0 0;
+
+	-unico-border-gradient: none;
+}*/
+
+UnityPanelWidget,
+.unity-panel {
+	background-image: none;
+	background-repeat:repeat;
+	background-color: @theme_bg_color;
+    border-radius: 0;
+    border-width: 0;
+}
+
+.unity-panel.menubar,
+.unity-panel .menubar {
+	color: @theme_text_color;
+    text-shadow: 1px 1px alpha(black, 0.34);
+}
+
+.unity-panel.menuitem,
+.unity-panel .menuitem {
+	icon-shadow: 1px 1px alpha(black, 0.32);
+}
+
+.unity-panel.menubar.menuitem:hover,
+.unity-panel.menubar .menuitem *:hover {
+    color: @theme_selected_fg_color;
+    text-shadow: 1px 1px alpha(black, 0.45);
+    background-color: transparent;
+    border-radius: 0;
+    border-width: 0 0 1px 0;
+    border-style: inset;
+    box-shadow: none;
+	
+	background-image: -gtk-gradient (radial, 
+										center 1.0, 0,
+										center 1.1, 0.7,
+										from(alpha(@theme_selected_bg_color, 0.4)),
+										to(transparent)),
+						linear-gradient(to bottom,
+                                      alpha(black, 0.0),
+                                      alpha(black, 0.0) 30%,
+                                      alpha(black, 0.12)
+                                      );
+	border-color: transparent;
+    border-image: linear-gradient(to right,
+                                  alpha(@theme_selected_bg_color,0.0),
+                                  alpha(@theme_selected_bg_color,1.0) 43%,
+                                  alpha(@theme_selected_bg_color,0.0)
+                                  ) 0 0 1 0;
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Livarp Help Center - configure startup applications</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang <a href="../../fr/config/startup.html">fr</a>|gb</h2><h1><a href="../../index.html" title="back to main menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>startup</h1>
+            <p>livarp startup applications are launched from two file types: your <b>~/.xinitrc</b> and the 'autostart' scripts placed in your <b>~/bin/start/*_start.sh</b>.</p>
+            <h2>~/.zprofile</h2>
+            <p>livarp_0.4 doesn't launch x-session by default and let you stay on tty with dvtm if you want.<br />
+            if you don't need this screen, you can launch directly your session selector with the auto-startx features. to enable this, you have to edit your ~/.zprofile file and comes with a result like this:</p>
+                <pre class="blockquote">
+# ask for startx
+#if [[ -t 0 && $(tty) =~ /dev/tty1 ]] && ! pgrep -u $USER startx &> /dev/null; then
+#    clear
+#    echo
+#    echo -e "${cyan}welcome to ${red}Debian${cyan} livarp system"
+#    echo
+#    echo -e "${red}           ------------------------------"
+#    echo -e "${red}           $NC Debian GNU/Linux livarp 04$NC"
+#    echo -e "${red}           ------------------------------"
+#    echo -e "${red} ${yellow} infos system"
+#    echo -e "${red} ${yellow} $NC `uname -a`"
+#    echo -e "${red} ${green} stats system"
+#    echo -e "${red} ${green} $NC`uptime`"
+#    echo -e "${red} ----------------------------------------$NC"
+#    echo ""
+#    echo ""
+#    echo -e " ${BLUE} start X [Y|n] ?  ${blue}>>$NC"
+#    read a
+#	if [ "$a" = "n" ] || [ "$a" = "N" ];then
+#        clear
+#        echo ""
+#		echo -e "${green}if there is a shell ... there is a way$NC"
+#		echo ""
+#        ## console layout config # safe to remove after installation
+#        ## ---------------------------------------------------------
+#        if [ -d /home/human ];then
+#            echo -e "${cyan} keyboard layout selection:"
+#            echo -e " ---------------------------$NC"
+#            echo ""
+#            echo " f : fr"
+#            echo " b : be"
+#            echo " e : es"
+#            echo " r : ru"
+#            echo " k : uk"
+#            echo " u : us"
+#            echo " d : de"
+#            echo ""
+#            echo -e "${cyan} type a letter to load your layout >>$NC"
+#            read kb
+#            case $kb in
+#                f) sudo loadkeys fr-pc ;;
+#                b) sudo loadkeys be-latin1 ;;
+#                e) sudo loadkeys es ;;
+#                r) sudo loadkeys ru ;;
+#                k) sudo loadkeys uk ;;
+#                u) sudo loadkeys us ;;
+#                d) sudo loadkeys de ;;
+#                *) sudo loadkeys us ;;
+#            esac
+#            ## launch dvtm console manager
+#            ## ---------------------------
+#            dvtm h
+#        fi
+#    else
+#        startx
+#    fi
+#fi
+
+# startx auto
+if [[ -t 0 && $(tty) =~ /dev/tty1 ]] && ! pgrep -u $USER startx &> /dev/null; then
+    startx
+fi</pre>
+            <h2>~/.xinitrc</h2>
+            <p>this file is read by xinit and launch your X interface and some commons apps for the 12 sessions. here you can configure your dualscreen, your touchpad, your startup wall or pass livarp in single-session mode without editing system files.</p>
+            <ul>
+            <li><b>dualscreen:</b> all sessions support dualscreen. to make it easier to configure, a little script is placed in your ~/bin/dualdetect.sh (edit and adapt it to your configuration). then uncomment the dualscreen section in your ~/.xinitrc.</li>
+            <li><b>touchpad:</b> for laptop users, touchpad/trackpad configuration is handled by synclient. the tapbutton1 feature is disable by default. to modify *pad behaviour, edit your ~/.xinitrc. more infos? man synclient.
+            </li>
+            <li><b>single session:</b>if you always use the same session, you can edit your ~/.xinitrc to launch this specific session directly without display the session-selector. the file includes this option: 
+                <p class="blockquote">## launch single session ##<br />
+                ## replace "your-wm" by your favorite window-manager<br />
+                #exec ck-launch-session ~/bin/start/your-wm_start.sh<br />
+                <br />
+                ## launch session selector script<br />
+                exec /usr/local/bin/dmenu-start.sh</p>
+            </li>
+            </ul>
+            <h2>autostart scripts</h2>
+            <p>the livarp 12 sessions are launched from scripts in your ~/bin/start/ directory.<br />
+            execpt for the openbox-session that uses its own autostart file (~/.config/openbox/autostart)<br />
+            and the 'pure-dwm' session that is launched directly after xinitrc.<br />
+            if you want to midify autostart applications, just edit thoose files. each session have a menu entry to do that.</p>
+            <p>note that livarp doesn't use regular Pekwm and Fluxbox autostart-scripts, but you can do it as ou want.<br />
+            note that openbox uses its own ~/.config/openbox/autostart script</p>
+            </div>
+        </div>
+    </div>
+    <div id="footer">livarp_0.4 help center - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

@@ -1,0 +1,15 @@
+#!/bin/bash
+# config menu for ratpoison
+# more infos : man ratmenu
+###########################
+exec ratmenu -style "snazzy" -label "config menu" -align "center" -fg "#222222" -bg "#005885" -font "-*-anorexia-*-*-normal-*-11-*-*-*-*-*-*-*" \
+    "xinitrc" "geany .xinitrc" \
+    "rat startup" "geany bin/start/ratpoison_start.sh" \
+    "ratpoisonrc" "geany .ratpoisonrc" \
+    "reload rat" "ratpoison -c restart" \
+    "rat menus" "geany .ratpoison/*_menu" \
+    "rat manual" "urxvtcd -e man ratpoison" \
+    "----" "" \
+    "back" ".ratpoison/rat_main_menu" \
+    "cancel" ""
+exit 0

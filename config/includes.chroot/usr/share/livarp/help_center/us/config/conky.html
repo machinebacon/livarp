@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Livarp Help Center - conky</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang <a href="../../fr/config/conky.html">fr</a>|gb</h2><h1><a href="../../index.html" title="back to main menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>conky</h1>
+            <p>Conky is an application that delivers real-time information about your system. This information is displayed on your desktop, in a conventional window in a status bar as dzen or a status bar included to window manager like dwm or wmfs.<br />
+            Conky comes with many internal options but can also make use of scripts (bash, python, lua ...), allowing it to display just about anything you want and how you want.<br />
+            conky configuration is made by editing its .conkyrc* type file in your ~/.conky directory on livarp.<br />
+            This file is divided into two parts:
+            <ul><li>"functions" determine the location, size, type of window, the text color...</li>
+                <li>"variables" determine the nature of the information to be displayed.</li></ul>
+            The separation is done by the line "TEXT" in the conkyrc and everything that comes after TEXT will be displayed in conky.<br />
+            If you want examples to build conky you can use conkys included on livarp or visit my page <a href="http://arpinux.org/x/doku.php/user_tools:conky:arpconky">gallerie'conky</a> (conkyrc, script, fonts, walls included).</p>
+            <h2>conky on livarp</h2>
+            <p>livarp used conky in different ways depending sessions:</p>
+            <ul><ul><li><b>conky</b> display in the <b>status bar</b> in dwm_reloaded &amp; wmfs sessions (conkyd*)</li>
+                    <li><b>conky</b> display on screen in vtwm, evilwm, pekwm, fluxbox &amp; openbox</li>
+            <p>you can configure different Conky by editing their respective files in ~ /.conky/* and named by the window manager in which they are used: ~/.conky/.conkyrc_dwm, ~/.conky/.conkyrc_evil ...</p>
+            <p>the other conkys in ~/.conky, named ~/.conky/livarp_cky* were used by <b>conky-switcher</b> on livarp_0.3.9 and are here to play with.</p>
+            <p><b>*</b><i>conkyd is a conky'copy, here to preserve statusbar display during a 'killall conky'.</i></p>
+            <h2>conky configuration</h2>
+            <p>livarp gives you many examples that let you make an idea about "how works conky". fortunately, conky man is in english and gives you all the available functions and variables for conkyrc type file (the french doc is longer... much more longer :) ).</p>
+            <p>so, simply open a terminal and type<text class="blockquote">man conky</text></p>
+            <p><i><b>Happy Conkying !!</b></i></p>
+            </div>
+        </div>
+    </div>
+    <div id="footer">livarp_0.4 help center - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

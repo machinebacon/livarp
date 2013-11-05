@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Centre d'Aide Livarp - shell config</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang fr|<a href="../../us/tips/shrc.html">gb</a></h2><h1><a href="../../index-fr.html" title="retour au menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>configurer le terminal</h1>
+            <p>
+                livarp utilise <b>zsh</b> comme interpréteur de commande par défaut (mais bash reste disponible). zsh est configuré depuis son fichier ~/.zshrc (bash depuis ~/.bashrc).<br />
+                le comportement de votre terminal est géré par ces fichiers: vous pouvez définir des alias, des fonctions..<br />
+                l'interface graphique de votre terminal est géré par le fichier ~/.Xresources.
+            </p>
+            <h2>zshrc/bashrc</h2>
+            <p>
+                les deux fichiers de configuration pour zsh et bash reprennent les mêmes alias et les mêmes fonctions. voici une petite liste des possibilités de votre shell:
+            </p>
+            <h3>les alias</h3>
+            <p>
+            <ul>
+                <li>contourner les fautes: alias cd..='cd ..', alias ...='cd ..', alias ....='cd ../..'</li>
+                <li>naviguer: alias gm='cd /media', alias gc='cd ~/.config', alias gb='cd ~/bin'</li>
+                <li>agenda: alias agenda='urxvtcd -T agenda -e calcurse'</li>
+                <li>g33k: alias starwars="telnet towel.blinkenlights.nl"</li>
+                <li>les commandes les plus utilisées: alias top10='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 10'</li>
+                <li>processus utilisant le réseau: alias ports='lsof -i -n -P'</li>
+                <li>derniers fichiers modifiés: alias mod60 et alias modd</li>
+            </ul>
+            <b>gestion des paquets</b>
+            <ul>
+                <li>alias debup='sudo apt-get update &amp;&amp; sudo apt-get dist-upgrade &amp;&amp; sudo apt-get clean'</li>
+                <li>alias debsh='apt-cache search'</li>
+                <li>alias debvs='apt-cache policy'</li>
+                <li>alias debcl='sudo apt-get clean'</li>
+                <li>alias debin='sudo apt-get --no-install-recommends install'</li>
+                <li>alias debrm='sudo apt-get autoremove --purge'</li>
+                <li>alias debgui='gksudo synaptic'</li>
+            </ul>
+            <b>exit &amp; reboot</b>
+            <ul>
+                <li>alias :q='exit'</li>
+                <li>alias oust='echo "bye $USER..."; sleep 2s &amp;&amp; sudo shutdown -h now'</li>
+                <li>alias comeback='echo "be back right now..."; sleep 2s &amp;&amp; sudo shutdown -r now'</li>
+            </ul>
+            </p>
+            <h3>les fonctions</h3>
+            <p>
+                <b>fonctions basiques</b>
+                <ul>
+                    <li>function ff: trouve un fichier dans le répertoire courant selon un nom ou une partie de nom</li>
+                    <li>function bak: générer un fichier de sauvegarde daté nommé *.bak</li>
+                    <li>function today: mini calendrier</li>
+                    <li>function space: générer une liste des dossiers utilisateurs classés par taille.</li>
+                    <li>function dduse: indication d'usage disque</li>
+                    <li>function mmuse: indication d'usage mémoire</li>
+                    <li>function my_ps: liste des processus utilisateurs en cours</li>
+                    <li>function pp: liste arborescente des processus en cours</li>
+                </ul>
+                <b>informations</b>
+                <ul>
+                    <li>function core: informations processeur</li>
+                    <li>function graph: informations sur la carte graphique</li>
+                    <li>function ethcard: informations sur la carte réseau ethernet</li>
+                    <li>function wfcard: informations sur la carte réseau sans fil</li>
+                    <li>function my_eip: adresse IP externe</li>
+                    <li>function ii: rassemble les infos système et utilisateurs</li>
+                </ul>
+                <b>archives</b>
+                <ul>
+                    <li>function extract: extraire une archive dans le répertoire courant</li>
+                    <li>mktar, mktgz, mktbz, mktxz: compresse un dossier respectivement en .tar, .tar.gz, .tar.bz2 et .tar.xz</li>
+                </ul>
+            </p>
+            <h2>Xresources</h2>
+            <p>
+                c'est ce fichier ~/.Xresources qui gère l'apparence, les couleurs, la police de votre terminal<br />
+                le fichier est assez simple à comprendre et se présente sous la forme "option = valeur".<br />
+                une fois modifié, vous pouvez recharger votre configuration avec la commande "xrdb -load ~/.Xresources".
+            </p>
+            </div>
+        </div>
+    </div>
+    <div id="footer">centre d'aide livarp_0.4- <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

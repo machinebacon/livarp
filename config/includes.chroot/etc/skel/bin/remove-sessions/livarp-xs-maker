@@ -1,0 +1,8 @@
+#!/bin/bash
+# this script is not available in live-session
+# ---------------------------------------------------------------------#
+if [ -d /home/human ]; then
+    echo "this script is not available in live session" | dzen2 -x 0 -y 0 -bg 'orange' -fg 'white' -p 5 &
+    exit
+fi
+exec xterm -e su-to-root -c /usr/share/livarp/rmss/livarp_xs_maker.sh

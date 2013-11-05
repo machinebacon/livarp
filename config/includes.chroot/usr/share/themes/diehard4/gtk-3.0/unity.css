@@ -1,0 +1,27 @@
+UnityPanelWidget,
+.unity-panel {
+    background-color: #0D151D;
+    border-color: #131F2A;
+    border-style: solid;
+    border-width: 1 0 0 0;
+}
+
+.unity-panel.menubar,
+.unity-panel .menubar {
+    color: #99A9B8;;
+}
+
+.unity-panel.menuitem,
+.unity-panel .menuitem {
+
+}
+
+.unity-panel.menubar.menuitem:hover,
+.unity-panel.menubar .menuitem *:hover {
+    color: @theme_selected_fg_color;    
+    background-color: #0D151D;
+    border-style: none;
+    border-width: 1 1 0 1;
+    border-radius: 3;
+    border-color: #131F2A;
+}

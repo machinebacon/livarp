@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Centre d'Aide Livarp - session dvtm</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang fr|<a href="../../us/sessions/dvtm.html">gb</a></h2><h1><a href="../../index-fr.html" title="retour au menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>la session dvtm</h1>
+            <p><b>DVTM</b> : le gestionnaire de terminal en console<br />
+            dvtm reprend le principe du gestionnaire de fenêtres 'tiling', popularisé par des wms comme dwm, mais en console. En tant que gestionnaire de fenêtres de terminal, dvtm tente de faciliter votre travail avec plusieurs applications en console..<br />
+            dvtm s'efforce d'adhérer à la philosophie UNIX. Il essaie de faire une chose, la gestion dynamique de fenêtres de la console, et de le faire bien. dvtm n'implémente pas la gestion des sessions. Contrairement à tmux il ne suit pas un modèle client/serveur. donc dvtm n'a pas de support pour les sessions qui sont partagées entre plusieurs utilisateurs sur des machines différentes. Ce sont des décisions de conception et elles sont considérées comme des caractéristiques, pas des erreurs. le code source de dvtm est relativement court (~ 3600 lignes de C ANSI), simple et donc facile à modifier.</p>
+            <h2>Layouts</h2>
+            <p>dvtm est un tiling window manager, c'est à dire qu'il affiche vos fenêtres (clients) afin qu'elles occupent la totalité de la surface de la console. les clients sont organisés de différentes façons (layouts) pour optimiser la visibilité de vos applications ouvertes.les layouts s'organisent autour du Master (zone principale) et du Stack (zone d'empilement des autres clients).</p>
+            <p>dvtm utilise par défaut 4 disposition (layouts) pour organiser vos fenêtres à l'écran.
+            <ul>
+                <li>Vertical Stack Tiling (defaut) : la moitié gauche de l'écran (master area) est utilisée par la fenêtre principale, les autres fenêtres s'empilent dans la moitié de droite.</li>
+                <li>Bottom Stack Tiling : la moitié supérieure de l'écran (master area) est utilisée par la fenêtre principale, les autres fenêtres s'empilent dans la moitié inférieure</li>
+                <li>Grid : organise les fenêtres à tailles égales sur l'écran.</li>
+                <li>Fullscreen : affiche uniquement la fenêtre principale en plein écran.</li>
+            </ul></p>
+            <h2>lancement</h2>
+            <p>dvtm est lancé par le fichier ~/.zprofile ou ~/.profile selon que vous utilisiez zsh ou bash. mais il peut se lancer depuis n'importe quel tty ou terminal sous X<br />
+            pour changer vos applications lancées au démarrage, éditer ce fichier: <text class="blockquote">vim .zprofile</text><br>
+            <img src="../../pics/livarp_startx.png" /><br />
+            <img src="../../pics/livarp_start_nox.png" /><br />
+            <img src="../../pics/session_dvtm_h.png" /><br />
+            <img src="../../pics/session_dvtm_ii.png" /></p>
+            <h2>configuration</h2>
+            <p>dvtm n'accepte que quelques options en ligne de commande:
+            <ul>
+                <li>-v affiche la version puis quitte.</li>
+                <li>-m mod détermine la combinaison de la touche de modification durant la session, écrasant la valeur définie dans config.h. ex: '-m ^w' définira 'MOD=CTRL+w'. utile si vous lancez plusieurs sessions de dvtm.</li>
+                <li>[command] : exécute 'command' après le lancement de dvtm.</li>
+                <li>-s status-fifo si 'status-fifo' est un 'pipe' valide, dvtm lit la sortie et l'affiche dans la barre de statut.</li>
+            </ul>
+            <h2>raccourcis clavier</h2>
+            <p>dvtm est entièrement pilotable depuis le clavier: control, lanceurs, navigation, manipulation des tags et clients...<br />
+            les raccourcis clavier/souris sont définis dans le fichier config.h des sources lors de la compilation.</p>
+            <p>Tous les raccourcis clavier dvtm démarrent par un modificateur commun (mentionné <b>MOD</b>). MOD par défaut est réglé sur <b>CTRL+g</b> mais cela peut être modifié en session avec l'indicateur '-m' de la ligne de commande ou lors de la compilation en changeant config.h.
+            <ul>
+                <li>MOD-c : ouvrir une nouvelle fenêtre de terminal.</li>
+                <li>Mod-x : ferme la fenêtre active.</li>
+                <li>Mod-l : agrandit la fenêtre principale de 5% (sauf en 'grid' ou 'fullscreen').</li>
+                <li>Mod-h : réduit la fenêtre principale de 5% (sauf en 'grid' ou 'fullscreen').</li>
+                <li>Mod-j : active la fenêtre suivante.</li>
+                <li>Mod-k : active la fenêtre précédente.</li>
+                <li>Mod-[1..n] : active la fenêtre 'n'.</li>
+                <li>Mod-. : minimise/restore la fenêtre.</li>
+                <li>Mod-u : active la fenêtre suivante non-minimisée.</li>
+                <li>Mod-i : active la fenêtre précédente non-minimisée.</li>
+                <li>Mod-m : active le mode fullscreen.</li>
+                <li>Mod-PageUp : remonte l'historique écran.</li>
+                <li>Mod-PageDown : descend l'historique écran.</li>
+                <li>Mod-Space : circule entre les dispositions (layouts).</li>
+                <li>Mod-Enter : échange entre la fenêtre active et la fenêtre principale.</li>
+                <li>Mod-t : disposition tiling vertical.</li>
+                <li>Mod-b : disposition tiling horizontal.</li>
+                <li>Mod-g : disposition en grille.</li>
+                <li>Mod-s : affiche/masque la barre de statut.</li>
+                <li>Mod-r : redessine l'écran.</li>
+                <li>Mod-G : annule la commande précédente.</li>
+                <li>Mod-a : active le multiplexing: la commande est envoyée à toutes les fenêtres non-minimisées.</li>
+                <li>Mod-X : verrouille l'écran.</li>
+                <li>Mod-B : (dés)active l'alarme sonore (désactivé par défaut).</li>
+                <li>Mod-M : (dés)active la capture de la souris.</li>
+                <li>Mod-q : quitte dvtm.</li>
+            </ul>
+            dvtm se termine automatiquement à la fermeture de la dernière fenêtre. si vous désirez quitter avant, utiliser le raccourcis 'MOD+q'.</p>
+            </div>
+        </div>
+    </div>
+    <div id="footer">centre d'aide livarp_0.4 - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

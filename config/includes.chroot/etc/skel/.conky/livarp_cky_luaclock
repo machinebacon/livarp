@@ -1,0 +1,29 @@
+########################################################################
+# conkyrc luaclock                                                     #
+# livarp_0.3.9 arpinux@2012                                            #
+# http://arpinux.org/livarp                                            #
+########################################################################
+## Setting                                                             #
+########################################################################
+update_interval 1
+total_run_times 0
+double_buffer yes
+no_buffers yes
+own_window yes
+own_window_type override
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_pager,skip_taskbar
+alignment tl
+gap_x 25
+gap_y 25
+border_inner_margin 0
+border_outer_margin 0
+minimum_size 190 190
+maximum_width 190
+# lua call #############################################################
+lua_load ~/.conky/luaclock.lua
+lua_draw_hook_pre widgets
+########################################################################
+## Output                                                              #
+########################################################################
+TEXT

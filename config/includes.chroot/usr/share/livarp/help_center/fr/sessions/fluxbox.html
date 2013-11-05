@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Centre d'Aide Livarp - session fluxbox</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang fr|<a href="../../us/sessions/fluxbox.html">gb</a></h2><h1><a href="../../index-fr.html" title="retour au menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>la session fluxbox</h1>
+            <p>fluxbox est un gestionnaire de fenêtre en mode 'floating' pour X. il est basé sur le code de blackbox et hérite de ses propriétés en ajoutant des fonctionnalités</p>
+            <ul><li>menu configurable</li>
+                <li>onglets des fenêtres configurables</li>
+                <li>barre de titre configurable (placement des boutons, nouveaux boutons, etc.)</li>
+                <li>changement d'espace de travail (workspace) avec la roulette de la souris</li>
+                <li>prise en charge des applications dockables KDE et GNOME</li>
+                <li>Un capteur de touche pour les combinaisons style emacs</li>
+                <li>Un slit : une fenêtre qui affiche les applications dockables (dock apps)</li>
+                <li>panel intégré avec indicateur de bureau, liste des clients, systray et horloge.</li>
+                <li>configurable depuis le menu</li>
+            </ul>
+            <h2>screenshot</h2>
+            <a href="../../pics/livarp_04_fluxbox.png"><img src="../../pics/livarp_04_fluxbox_thb.png" /></a>
+            <h2>lancement</h2>
+            <p>fluxbox est lancé par le script ~/bin/start/fluxbox_start.sh.<br />
+            pour changer vos applications lancées au démarrage, éditer ce fichier: <text class="blockquote">vim bin/start/fluxbox_start.sh</text> ou depuis le menu fluxbox:section config:éditer le script fluxstart</p>
+            <h2>composants</h2>
+            <p><b>fluxbox</b> est un gestionnaire de fenêtre très complet, un menu, un panel, un systray.. je n'ai ajouté qu'un conky</p>
+            <h2>configuration</h2>
+            <p>pour <b>conky</b>, il faut éditer son conkyrc: <text class="blockquote">vim .conky/conkyrc_fluxbox</text> ou depuis le menu fluxbox section config:conky.</p>
+            <h3>configuration de fluxbox</h3>
+            <p><b>fluxbox</b> se configure depuis plusieurs fichiers situés dans votre ~/.fluxbox. une partie de cette configuration s'effectue directement depuis le menu fluxbox:section config:fluxbox:configurer fluxbox. les entrées de menu sont très détaillées et écrivent dans le fichier ~/.fluxbox/init<br />
+            pour le reste, il faut éditer les fichiers de votre ~/.fluxbox:</p>
+            <ul><li>le fichier <b>apps</b> permet de déterminer les propriétés de certaines applications.</li></ul>
+            <p>vous pouvez remplir ce fichier par le menu des fenêtres en spécifiant 'se souvenir...'. mais toutes les options ne sont pas accessibles depuis le menu. pour plus de configuration, il faut éditer le fichier ~/.fluxbox/apps. la syntaxe est simple et quelques exemples vous seront donnés en fin de section:</p>
+            <pre class="blockquote">[app]/[group] (app-name) {count - optional}
+    [Property1]  {value1}
+    [Property2]  {value2}
+          ...
+[end]</pre> <p>une application est identifiée grâce à la commande xprop et peut être déterminé par</p>
+            <ul><ul><li>name - nom de la fenêtre (première partie de WM_CLASS)</li>
+                    <li>class - classe de la fenêtre (seconde partie de WM_CLASS)</li>
+                    <li>title - titre de la fenêtre ( WM_NAME )</li>
+                    <li>role - rôle de la fenêtre ( WM_WINDOW_ROLE )</li>
+            </ul></ul>
+            <p>l'option <b>[app]...[end]</b> détermine les propriétés d'une seule application.<br />
+            cette section débute avec<text class="blockquote">[app] (pattern) {count}</text>avec 'pattern' qui peut être un ou plusieurs identifiants (voir la section 'pattern'). 'count' est optionnel et détermine le nombre maximum de fenêtres concernées par la règle. si il est omit, toutes les fenêtres répondant à 'pattern' seront concernées.<br />
+            cette première ligne est suivie d'une série de propriétés (voir la section 'settings') et se termine par [end].
+            </p>
+            <p>l'option <b>[group]...[end]</b> détermine les propriétés de plusieurs application pour les regrouper en onglets.<br />
+            cette section débute avec<text class="blockquote">[group] (pattern) {count}</text>avec 'pattern' optionnel qui peut être un ou plusieurs identifiants (voir la section 'pattern'). 'count' est optionnel et détermine le nombre maximum de fenêtres concernées par la règle. si il est omit, toutes les fenêtres répondant à 'pattern' seront concernées.<br />
+            cette première ligne est suivie d'autant de ligne [app] que d'applications que vous souhaitez grouper. cette section se termine par [end].
+            </p>
+            <p>les <b>settings</b> sont les propriétés appliqués aux fenêtres répondant à 'pattern'<br />
+            le format est simple<text class="blockquote">[setting] {value}</text><br />
+            voici la liste des 'settings':</p>
+            <ul><ul><li>[Workspace] {number}: ouverture de l'applications sur un bureau spécifique. le 'number' commence à 0</li>
+                    <li>[Jump] {bool}: se rendre au bureau spécifié, à utiliser avec [Workspace]</li>
+                    <li>[Head] {number}: écran d'ouverture de l'application</li>
+                    <li>[Layer] {number}: niveau de profondeur de la fenêtre.valeur 2-au-dessus du dock, 4-au niveau du dock, 6-au-dessus, 8-normal, 10-en-dessous, 12-sur le bureau.</li>
+                    <li>[Dimensions] {width height}: taille de la fenêtre avec hauteur largeur en pixels</li>
+                    <li>[Position] (anchor) {X Y}: placement de la fenêtre. 'anchor' est optionnel et peut être TopLeft, Left, BottomLeft, Top, Center, Bottom, TopRight, Right ou BottomRight pour déterminer le point de départ de {X Y}, en pixels. si 'anchor' est omit, {X Y} sont comptés à partir du coin supérieur gauche.</li>
+                    <li>[Deco] {value}: configure le type de décoration des fenêtres. les valeurs possibles:
+                    <ul><li>NORMAL: décoration classique</li>
+                        <li>NONE: pas de décorations, sauf en onglet</li>
+                        <li>Border: simple bordure comme décoration</li>
+                        <li>TINY: barre de titre avec un bouton 'iconifier'</li>
+                        <li>TOOL: uniquement la barre de titre</li>
+                    </ul></li>
+                    <li>[Shaded] {bool}: la fenêtre est ouverte 'enroulée' sur la barre de titre</li>
+                    <li>[Tab] {bool}: la fenêtre a des onglets</li>
+                    <li>[FocusNewWindow] {bool}: le fenêtre prends le focus, ou pas</li>
+                    <li>[FocusHidden] {bool}: si true, la fenêtre n'apparait pas dans la liste des fenêtres du menu</li>
+                    <li>[IconHidden] {bool}: si true, la fenêtres n'apparait pas dans le boite à icone de la barre de tache</li>
+                    <li>[Hidden] {bool}: [FocusHidden]+[IconHidden]</li>
+                    <li>[Sticky] {bool}: visible sur tous les bureaux, ou pas</li>
+                    <li>[Minimized] {bool}: la fenêtre démarre minimisée</li>
+                    <li>[Maximized] {value}: la fenêtre apparait maximisée. 'value' peut être {yes} maximisée, {horz} maximisation horizontale, {vert} maximisation verticale ou {none} non maximisée.</li>
+                    <li>[Fullscreen] {bool}: fenêtre en plein écran, sans décorations</li>
+                    <li>[Close] {bool}: sauver les 'settings' lors de la fermeture de la fenêtre.</li>
+                    <li>[Alpha] {value [value]}: opacité de la fenêtre focus|unfocus entre 0 et 255(opaque).</li>
+            </ul></ul>
+            <p> les <b>pattern</b> sont les caractéristiques désignant les fenêtres.<br />
+            une 'pattern' ressemble à ça:<text class="blockquote">([propertyname[!]=]regexp)</text><br />
+            les propriétés successives sont placées entre ().<br />
+            si 'propertyname' est omit, il est remplacé par 'name'.<br />
+            'propertyname' n'est pas sensible à la casse, tandis que regexp l'est.<br />
+            si vous spécifiez plusieurs regexp, le "AND" est implicite: toutes les 'pattern' doivent correspondre pour que la propriété s'applique.<br />
+            on utilise '=' pour égal ou '!=' pour inégal.<br />
+            les 'propertyname' acceptés par fluxbox:</p>
+            <ul><ul><li>Name: expression, correspond à CLASSNAME (la première partie de WM_CLASS depuis xprop).</li>
+                    <li>Class: expression, correspond à CLASSCLASS (la seconde partie de WM_CLASS depuis xprop).</li>
+                    <li>Title: expression, correspond à WM_NAME depuis xprop).</li>
+                    <li>Role: expression, correspond à WM_WINDOW_ROLE depuis xprop(1)).</li>
+                    <li>Transient: yes/no, correspond à une fenêtre de transition (généralement une fenêtre popup).</li>
+                    <li>Maximized: yes/no, correspond à une fenêtre maximisée ou non.</li>
+                    <li>Minimized: yes/no, correspond à une fenêtre minimisée ou non.</li>
+                    <li>Shaded: yes/no, correspond à une fenêtre enroulée ou non.</li>
+                    <li>Stuck: yes/no, correspond à une fenêtre sticky (visible sur tous les bureaux) ou non.</li>
+                    <li>FocusHidden: yes/no, correspond à une fenêtre à laquelle on a demandé de ne pas apparaitre dans la liste des fenêtres, ou non.</li>
+                    <li>IconHidden: yes/no, correspond à une fenêtre à laquelle on a demandé de ne pas apparaitre dans la liste des icones, ou non.</li>
+                    <li>Urgent: yes/no, correspond à une fenêtre urgente.</li>
+                    <li>Workspace: un nombre, correspond au numéro du bureau dans lequel la fenêtre se trouve. les bureaux commencent à 0. vous pouvez utiliser [current] pour sélectionner les fenêtres du bureau actif.</li>
+                    <li>WorkspaceName: expression, correscpond au nom du bureau dans lequel la fenêtre se trouve.</li>
+                    <li>Head: un nombre, correpond au numéro de l'écran sur lequel la fenêtre se trouve. vous pouvez utiliser [mouse] pour sélectionner les fenêtres sur l'écran où se trouve la souris.</li>
+                    <li>Layer: expression, correspond au nom du niveau de la fenre: AboveDock, Dock, Top, Normal, Bottom ou Desktop</li>
+                    <li>Screen: un nombre, correspond au numéro de l'écran actif.</li>
+                    <li>@XPROP: expression, correspond à toute expression issue de xprop.</li>
+            </ul></ul>
+            <p><b>exemples:</b></p>
+            <ul><ul><li>afficher les deux premières fenêtres nommées *term ou *Term sur le bureau 1:</li></ul></ul>
+            <pre class="blockquote">[app] (name=.*[tT]erm) {2}
+  [Workspace]   {1}
+[end]</pre>
+            <ul><ul><li>affiche geany centré avec une taille spécifique, et ajuster cette valeur à la fermeture de l'application:</li></ul></ul>
+            <pre class="blockquote">[app] (name=geany)
+  [Dimensions]  {1022 747}
+  [Position]    (CENTER) {0 0}
+  [Close]       {yes}
+[end]</pre>
+            <ul><ul><li>pour luakit, on se place d'abord sur le bureau 1 puis on lance l'application.</li></ul></ul>
+            <pre class="blockquote">[app] (name=luakit)
+  [Workspace]   {1}
+  [Jump]        {yes}
+[end]</pre>
+            <ul><ul><li>lancer toutes les sessions de aterm sans décorations de fenêtres.</li></ul></ul>
+            <pre class="blockquote">[app] (name=aterm)
+  [Deco]        {NONE}
+[end]</pre>
+            <ul><ul><li>un groupe formé par les fenêtres de gimp s'ouvrent en derrière les autres fenêtres.</li></ul></ul>
+            <pre class="blockquote">[group]
+  [app] (name=gimp) (role=gimp-dock)
+  [app] (name=gimp) (role=gimp-toolbox)
+  [Layer]       {4}
+[end]</pre>
+            <p>pour plus de renseignements, consulter le man :)</p>
+            <ul><li>le fichier <b>keys</b> détermine vos raccourcis clavier/souris</li></ul>
+            <p>pour le configurer, éditer le fichier<text class="blockquote">vim .fluxbox/keys</text> ou depuis le menu fluxbox:section config:fluxbox:keys.<br />
+            la syntaxe est simple:</p>
+            <p class="blockquote"> - une commande: 'Mod1 p :Exec fbrun'<br />
+             - une action de la souris sur le bureau: 'OnDesktop Mouse1 :HideMenus'<br />
+             - une série d'actions: OnWindow Mod1 Mouse1 :MacroCmd {Raise} {Focus} {StartMoving}
+            </p>
+            <p>la liste complète des commandes acceptés par le fichier keys:<text class="blockquote">man fluxbox-keys</text></p>
+            <ul><li>le fichier <b>menu</b> configure votre menu fluxbox</li></ul>
+            <p>pour le configurer, éditer le fichier<text class="blockquote">vim .fluxbox/menu</text>ou depuis le menu fluxbox:section config:fluxbox:menu.<br />
+            la syntaxe est simple:</p>
+            <p class="blockquote">[tag] (label or filename) {command or filename}</p>
+            <p>voici les [tag] possibles:</p>
+<pre class="blockquote">[begin] (label)
+   debut de menu, obligatoire si vous voulez que votre menu soit pris
+   en compte. sinon, le menu par défaut sera affiché.
+
+[end]
+   fin de menu, ou de sous-menu.
+
+[exec] (label) {command}
+   insérer une commande dans le menu, la commande est exécutée lors du click.
+
+[exit] (label)
+   quitter fluxbox.
+
+[include] (file-or-directory-name)
+   inclure un fichier dans le menu. chemin absolu ou relatif (~/)
+   si le chemin spécifié est un dossier, tous les fichiers contenus
+   seront lus.
+
+[nop] (label)
+   insérer une ligne sans commande, utilisé pour organiser le menu en sections.
+
+[separator]
+   insérer un séparateur graphique.
+
+[style] (label) {filename}
+   insérer une ligne qui, une fois sélectionnée, applique le theme contenu
+   dans filename.
+
+[stylesmenu] (label) {directory}
+   liste tous les fichiers de style contenus dans le 'directory' et affiche
+   un menu de titre 'label' pour y accéder.
+
+[stylesdir] (directory)
+   liste tous les fichiers de style contenus dans le 'directory' et affiche
+   un sous-menu pour y accéder.
+
+[submenu] (label) {menutitle}
+   créer un sous-menu, doit finir par [end].
+
+[reconfig] (label)
+   relire le style et le menu. utile pour recharger fluxbox dans le relancer.
+
+[restart] (label) {command}
+   redémarrer fluxbox. si 'command' est spécifié (généralement un autre
+   gestionnaire de fenêtre), fluxbox exit puis lance la commande.
+
+[config] (label)
+   sous-menu de configuration par défaut de fluxbox.
+
+[wallpapers] (directory) {command}
+   cette entrée vous permet de lister les images de 'directory', puis
+   de créer un sous-menu vous permettant de choisir votre wallpaper qui
+   sera affiché par fbsetbg.
+   autre usage: cette entrée liste aussi tout autre type de fichier:
+   ex, choisir une playlist:[wallpapers] (~/Music/Playlists) {xmms}.
+
+[workspaces] (label)
+   insérer un sous-menu pour changer de bureau.
+</pre>
+            <h2>raccourcis clavier/souris</h2>
+            <p>configuré par le fichier ~/.fluxbox/keys, voici les raccourcis de la session fluxbox du livarp:</p>
+            <h3>menus:</h3>
+                <ul><li>menu fluxbox: clic-droit sur le bureau</li>
+                    <li>menu des fenêtres: Alt+Space</li>
+                    <li>fbrun: Alt+p ou Alt+F2</li>
+                    <li>dmenu: Alt+d</li>
+                    <li>fermer les menus: clic-gauche sur le bureau</li>
+                </ul>
+            <h3>control:</h3>
+                    <li>quitter fluxbox: Ctrl+Alt+suppr ou depuis le menu fluxbox:exit</li>
+                </ul>
+            <h3>fenêtres:</h3>
+                <ul><li>fermer le client: Alt+q</li>
+                    <li>client précédent/suivant: Alt(+Shift)+Tab</li>
+                    <li>maximiser/restaurer le client: Alt+F10</li>
+                    <li>minimiser/restaurer le client: Alt+F9</li>
+                    <li>plein écran: Alt+F11</li>
+                    <li>déplacer la fenêtre: Alt+clic-gauche</li>
+                    <li>redimensionner le client: Alt+clic-droit</li>
+                    <li>enrouler la fenêtre: double-clic-gauche sur la barre de titre</li>
+                    <li>inclure dans un onglet: clic-central sur la barre de titre</li>
+                    <li>onglet précédent/suivant: Super(+Shift)+Tab</li>
+                    <li>onglet 'n': Super+'n'</li>
+                    
+                </ul>
+            <h3>navigation:</h3>
+                <ul><li>bureau précédent/suivant: Ctrl+Gauche/Droite ou molette Haut/Bas sur le bureau ou la barre de fluxbox.</li>
+                    <li>bureau 'n': Ctrl+F'n'</li>
+                    <li>envoyer au bureau 'n': Super+F'n'</li>
+                    <li>envoyer et afficher le bureau 'n': Ctrl+Super+F'n'</li>
+                </ul>
+            <h3>lanceurs:</h3>
+                <ul><li>lanceur de terminal par défaut: Ctrl+Enter, Super+Enter ou Alt+F1</li>
+                    <li>lancer ranger: Alt+r</li>
+                    <li>lancer rox-filer: Alt+Shift+r</li>
+                    <li>lancer firefox: Alt+w</li>
+                    <li>lancer vim: Alt+e</li>
+                    <li>lancer geany: Alt+Shift+e</li>
+                    <li>lecteur de musique: Alt+z</li>
+                    <li>control du volume: Alt+v</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="footer">centre d'aide livarp_0.4 - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp_0.4">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

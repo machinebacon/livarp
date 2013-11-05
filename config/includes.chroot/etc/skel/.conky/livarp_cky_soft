@@ -1,0 +1,59 @@
+########################################################################
+# conkyrc soft                                                         #
+# livarp_0.3.9 arpinux@2012                                            #
+# http://arpinux.org/livarp                                            #
+########################################################################
+## Setting                                                             #
+########################################################################
+background yes
+use_xft yes
+xftfont D3 Euronism:pixelsize=17
+xftalpha 0.8
+update_interval 1.0
+total_run_times 0
+own_window yes
+own_window_transparent yes
+own_window_colour black
+own_window_type override
+own_window_title Conky Soft
+double_buffer yes
+minimum_size 200 50
+maximum_width 200
+draw_shades no
+draw_outline no
+draw_borders no
+border_inner_margin 0
+border_width 1
+draw_graph_borders no
+default_color grey30
+default_shade_color black
+default_outline_color white
+alignment ml
+gap_x 10
+gap_y 0
+no_buffers yes
+uppercase no
+text_buffer_size 1024
+top_name_width 10
+imlib_cache_size 0
+cpu_avg_samples 2
+show_graph_scale no
+show_graph_range no
+short_units yes
+override_utf8_locale yes
+use_spacer none
+if_up_strictness address
+##############################################
+#  Output                                    #
+##############################################
+TEXT
+${color grey40}${time %I:%M}${color}${time %P}
+${time %a}${color grey40}${time %d%m}${color}
+CPU${color grey40}${cpu}%${color}${acpitemp}°C
+RAM${color grey40}${memperc}%${color}
+${if_existing /sys/class/power_supply/BAT0}BAT${color grey40}${battery_short BAT0}${else}${if_existing /sys/class/power_supply/BAT1}BAT${color grey40}${battery_short BAT1}${endif}${endif}${color}
+SYS${color grey40}${fs_used_perc /}${color}%
+DL${color grey40}${if_up eth0}${downspeed eth0}/s${else}${if_up wlan0}${downspeed wlan0}/s${endif}${endif}${color}
+UP${color grey40}${if_up eth0}${upspeed eth0}/s${else}${if_up wlan0}${upspeed wlan0}/s${endif}${endif}${color}
+I/O${color grey40}${diskio}${color}
+Ut${color grey40}${uptime_short}${color}

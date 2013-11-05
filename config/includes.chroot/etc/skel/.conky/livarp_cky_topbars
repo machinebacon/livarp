@@ -1,0 +1,48 @@
+########################################################################
+# topbars conkyrc                                                      #
+# livarp_0.3.9 arpinux@2012                                            #
+# http://arpinux.org/livarp                                            #
+########################################################################
+## Setting                                                             #
+########################################################################
+update_interval 1
+total_run_times 0
+net_avg_samples 1
+cpu_avg_samples 2
+imlib_cache_size 0
+double_buffer yes
+no_buffers yes
+override_utf8_locale yes
+use_xft yes
+xftalpha 1
+xftfont Dinreg:size=10:bold
+text_buffer_size 2048
+own_window yes
+own_window_type override
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_pager,skip_taskbar
+alignment tr
+gap_x 5
+gap_y 20
+minimum_size 210 135
+maximum_width 210
+default_color white
+draw_shades yes
+default_shade_color black
+
+lua_load ~/.conky/topbars.lua
+lua_draw_hook_pre bar_stats
+########################################################################
+## Output                                                              #
+########################################################################
+TEXT
+Debian GNU/Linux livarp_0.4
+${voffset 20}${if_match ${cpu} < 10}${goto 14}\
+${else}${if_match ${cpu} < 100}${goto 10}\
+${else}${goto 6}${endif}${endif}${cpu}\
+${goto 40}${memperc}\
+${goto 70}${fs_used_perc}\
+${goto 100}${acpitemp}\
+${goto 130}${time %I}\
+${goto 160}${time %M}\
+${goto 190}${time %S}

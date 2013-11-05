@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Livarp Help Center - firewall</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang <a href="../../fr/admin/firewall.html">fr</a>|gb</h2><h1><a href="../../index.html" title="back to main menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>basic firewall</h1>
+            <p>
+                GNU/Linux is a secure system that works without anti-virus ... yes, but a little security will not hurt, especially if you have installed an SSH server, LAMP or Mail server.<br />
+                for this livarp uses iptables that will define the status of ports depending on the type of communications.<br />
+                you do not have to do anything to activate the firewall, iptables script concerned is in your /etc/init.d/ directory, which includes scripts launched at boot time.
+            </p>
+            <h2>configuration</h2>
+            <p>
+                to add or remove security rules, you ave to edit the /etc/firewall.rules file. this file is called by /etc/init.d/firewall.sh script to enable security rules. here is the default file for livarp:
+            </p>
+            <pre class="blockquote">
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT DROP [0:0]
+-A INPUT -m state --state INVALID -j DROP
+-A INPUT -p tcp --tcp-flags FIN,URG,PSH FIN,URG,PSH -j DROP
+-A INPUT -p tcp --tcp-flags ALL ALL -j DROP
+-A INPUT -p tcp --tcp-flags ALL NONE -j DROP
+-A INPUT -p tcp --tcp-flags SYN,RST SYN,RST -j DROP
+-A INPUT -m pkttype --pkt-type broadcast -j DROP
+-A INPUT -f -j LOG --log-prefix "[#1 iptables fragments : ]"
+-A INPUT -f -j DROP
+-A INPUT -i lo -j ACCEPT
+-A OUTPUT -o lo -j ACCEPT
+-A OUTPUT -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 111 -m state --state NEW -j REJECT --reject-with tcp-reset
+-A INPUT -p tcp --dport 22 -m recent --update --seconds 60 --hitcount 4 --name SSH --rsource -j LOG --log-prefix "[#1 : SSH brute-force ] : "
+-A INPUT -p tcp --dport 22 -m recent --update --seconds 60 --hitcount 4 --name SSH --rsource -j DROP
+-A INPUT -p tcp --dport 22 -m recent --set --name SSH --rsource
+-A INPUT -p tcp --dport 22 -j ACCEPT
+COMMIT</pre>
+            <p>
+                this file prohibits incoming call not initiated by the user or system,<br />
+                log invalids communications<br />
+                log brute force issue on the SSH protocol<br />
+                depending on your usage, you can remove some (ex: port 80 rules if you don't use web server). or add some rules:
+                <ul>
+                    <li>ping support :<br />
+                    <text class="blockquote">-A INPUT -p tcp -p icmp -j ACCEPT</text></li>
+                    <li>ftp support : launch connntrack for passive ftp (to be placed in your /etc/init.d/firewall.sh):<br />
+                    <text class="blockquote">modprobe ip_conntrack_ftp ip_conntrack ip_nat_ftp</text><br />
+                    then add in your /etc/firewall.rules :<br />
+                    <pre class="blockquote">
+-A OUTPUT -p tcp --dport 21 -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
+-A INPUT -p tcp --sport 21 -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
+-A OUTPUT -p tcp --dport 20 -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
+-A INPUT -p tcp --sport 20 -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT</pre></li>
+                    <li>smtp/smtps support:<br />
+                    <text class="blockquote">-A INPUT -p tcp --dports smtp,smtps,submission -j ACCEPT</text></li>
+                </ul>
+                once modified, you have to restart firewall service, as root in a terminal :<br />
+                <text class="blockquote"># /etc/init.d/firewall.sh restart</text>
+            </p>
+            </div>
+        </div>
+    </div>
+    <div id="footer">livarp_0.4 help center - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2012 :: http://arpinux.org -->

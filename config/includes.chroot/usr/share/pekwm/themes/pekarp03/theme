@@ -1,0 +1,221 @@
+# default theme for livarp-pekwm
+# 
+# ChangeLog:
+# * modarp 11-2011
+# * Update for 0.1.8 with templates enabled.
+# * Created for version 0.1.7
+#
+
+Require {
+  Templates = "True"
+}
+
+Define = "BaseDecor" {
+  Height = "12"
+  HeightAdapt = "False"
+
+  # increase first number to bring title text downwards
+  Pad = "0 0 2 0"
+  
+  Font = "Terminus:size=8#CENTER#XFT"
+  
+  Focused = "Empty"
+  Unfocused = "Empty"
+  
+  Tab {
+    Focused = "Solid #999999"
+    FocusedSelected = "Solid #D6D6D6"
+    Unfocused = "Solid #DBDBDB"
+    UnfocusedSelected = "Solid #DBDBDB"
+  }
+  Separator {
+    Focused = "Empty"
+    Unfocused = "Empty"
+  }
+  Font {
+    Focused = "Terminus:size=8#CENTER#XFT"
+  }
+  FontColor {
+    Focused = "#DBDBDB"
+    FocusedSelected = "#000000"
+    Unfocused = "#DBDBDB"
+    UnfocusedSelected = "#DBDBDB"
+  }
+  Border {
+    Focused {
+      TopLeft = "Solid #343434 1x1"
+      Top = "Solid #343434 1x1"
+      TopRight = "Solid #343434 1x1"
+      Left = "Solid #343434 1x1"
+      Right = "Solid #343434 1x1"
+      BottomLeft = "Solid #343434 1x1"
+      Bottom = "Solid #343434 1x1"
+      BottomRight = "Solid #343434 1x1"
+    }
+    Unfocused {
+      TopLeft = "Solid #DBDBDB 1x1"
+      Top = "Solid #DBDBDB 1x1"
+      TopRight = "Solid #DBDBDB 1x1"
+      Left = "Solid #DBDBDB 1x1"
+      Right = "Solid #DBDBDB 1x1"
+      BottomLeft = "Solid #DBDBDB 1x1"
+      Bottom = "Solid #DBDBDB 1x1"
+      BottomRight = "Solid #DBDBDB 1x1"
+    }
+  }
+}
+
+Define = "ButtonStates" {
+  Focused = "Solid #343434 0x0"
+  Unfocused = "Solid #D6D6D6 0x0"
+  Pressed = "Solid #000000 0x0"
+  Hover = "Solid #000000 0x0"
+}
+
+Define = "ButtonStatesRemote" {
+  @ButtonStates
+}
+
+Define = "ButtonStatesWarning" {
+  @ButtonStates
+  Focused = "Solid #ff0000 0x0"
+}
+
+Define = "BaseButtonDecor" {
+  @BaseDecor
+
+  Buttons {
+    Left = "Close" {
+      @ButtonStates
+
+      Button = "1" { Actions = "Close" }
+      Button = "2" { Actions = "Kill" }
+    }
+    Right { 
+      @ButtonStates
+
+      Button = "1" { Actions = "Toggle Maximized 1 1" }
+      Button = "2" { Actions = "Toggle Maximized 0 1" }
+      Button = "3" { Actions = "Toggle Maximized 1 0" }
+    }
+  }
+}
+
+PDecor {
+  Decor = "DEFAULT" {
+    Title {
+      @BaseButtonDecor
+    }
+  }
+
+  Decor = "REMOTE" {
+    Title {
+      @BaseButtonDecor
+
+      Tab {
+        Focused = "Solid #fffcec"
+        FocusedSelected = "Solid #fff9d6"
+      }
+
+      Buttons {
+        Left {
+          @ButtonStatesRemote
+        }
+        Right {
+          @ButtonStatesRemote
+        }
+      }
+    }
+  }
+
+  Decor = "WARNING" {
+    Title {
+      @BaseButtonDecor
+
+      Tab {
+        Focused = "Solid #ee5454"
+        FocusedSelected = "Solid #ff7474"
+      }
+
+      Buttons {
+        Left {
+          @ButtonStatesWarning
+        }
+        Right {
+          @ButtonStatesWarning
+        }
+      }
+    }
+  }
+
+  Decor = "MENU" {
+    @BaseDecor
+
+    Title {
+      Height = "0"
+      HeightAdapt = "False"
+      Focused = "Solid #343434"
+      Unfocused = "Solid #DBDBDB"
+    }
+  }
+
+  Decor = "WORKSPACEINDICATOR" {
+    @BaseDecor
+    Title {
+        Height = "0"
+        HeightAdapt = "False"
+    }
+  }
+}
+
+Harbour {
+    Texture = "SolidRaised #ffffff #000000 #000000 1 0"
+}
+
+Menu {
+    Pad = "2 2 4 4"
+    Focused {
+        Font = "Terminus:size=8#CENTER#XFT"
+        Background = "Solid #DBDBDB"
+        Item = "Solid #343434 1 0"
+        Separator = "Solid #9E9E9E 0x1"
+        Arrow = "Solid #343434 5x5"
+        Text = "#9E9E9E"
+    }
+    Unfocused {
+        Font = "Terminus:size=8#CENTER#XFT"
+        Background = "Solid #DBDBDB"
+        Item = "Solid #343434 1 0"
+        Separator = "Solid #343434 0x1"
+        Arrow = "Solid #343434 4x4"
+        Text = "#616161"
+    }
+    Selected {
+        Font = "Terminus:size=8#CENTER#XFT"
+        Background = "Solid #DBDBDB"
+        Item = "Solid #9E9E9E"
+        Arrow = "Solid #D6D6D6 5x5"
+        Text = "#D6D6D6"
+    }
+}
+
+CmdDialog {
+    Texture = "Solid #ffffff"
+    Text = "#000000"
+}
+
+Status {
+    Texture = "Solid #ffffff"
+    Text = "#000000"
+}
+
+WorkspaceIndicator {
+    @BaseDecor
+
+    Background = "Solid #ffffff"
+    Workspace = "Solid #cccccc"
+    WorkspaceActive = "Solid #aaaaaa"
+    Text = "#000000"
+    EdgePadding = "5"
+    WorkspacePadding = "2"
+}

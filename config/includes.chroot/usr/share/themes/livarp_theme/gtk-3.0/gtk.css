@@ -1,0 +1,1561 @@
+/* NOTES to contributors:
+ * use 4 spaces indents, and keep code ALIGNED and ORDERED */
+
+/* default */
+* {
+    engine: none;
+
+    background-clip: padding-box;
+    background-origin: border-box;
+
+    border-width: 1px;
+
+    -GtkArrow-arrow-scaling: 0.5;
+    -GtkButton-child-displacement-x: 0;
+    -GtkButton-child-displacement-y: 0;
+    -GtkButton-default-border: 0;
+    -GtkButton-image-spacing: 0;
+    -GtkButton-inner-border: 0;
+    -GtkButton-interior-focus: true;
+    -GtkCheckButton-indicator-size: 16;
+    -GtkCheckMenuItem-indicator-size: 16;
+    -GtkEntry-inner-border: 0;
+    -GtkEntry-progress-border: 0;
+    -GtkExpander-expander-size: 12;
+    -GtkHTML-link-color: #009900;
+    -GtkIMHtml-hyperlink-color: #009900;
+    -GtkMenu-horizontal-padding: 0;
+    -GtkMenu-vertical-padding: 0;  
+    -GtkMenuBar-internal-padding: 0;
+    -GtkMenuItem-arrow-scaling: 0.4;
+    -GtkNotebook-initial-gap: 0;
+    -GtkNotebook-tab-overlap: -1;
+    -GtkPaned-handle-size: 3;
+    -GtkProgressBar-min-horizontal-bar-height: 20;
+    -GtkProgressBar-min-vertical-bar-width: 20;
+    -GtkRange-slider-width: 8;
+    -GtkRange-stepper-size: 0;
+    -GtkRange-stepper-spacing: 0;
+    -GtkRange-trough-border: 1;
+    -GtkRange-trough-under-steppers: 1;
+    -GtkScrollbar-activate-slider: 1;
+    -GtkScrollbar-min-slider-length: 20;
+    -GtkScrollbar-slider-width: 8;
+    -GtkScrolledWindow-scrollbar-spacing: 0;
+    -GtkScrolledWindow-scrollbars-within-bevel: 1;
+    -GtkSeparatorMenuItem-horizontal-padding: 0;
+    -GtkTextView-error-underline-color: #9D2121;
+    -GtkToolbar-internal-padding: 1;
+    -GtkToolButton-icon-spacing: 6;
+    -GtkToolItemGroup-expander-size: 11;
+    -GtkTreeView-expander-size: 11;
+    -GtkTreeView-vertical-separator: 1;
+    -GtkWidget-focus-line-width: 0;
+    -GtkWidget-focus-padding: 0;
+    -GtkWidget-link-color: #009900;
+    -GtkWidget-separator-height: 0;
+    -GtkWidget-separator-width: 0;
+    -GtkWidget-visited-link-color: #009900;
+    -GtkWidget-wide-separators: false;
+    -GtkWindow-resize-grip-height: 10;
+    -GtkWindow-resize-grip-width: 10;
+    -WnckTasklist-fade-overlay-rect: 0;
+}
+
+GtkWindow {
+    color: #A1A1A1;
+    border-width: 0;
+}
+/*
+* {
+    color: inherit;
+    background-color: #222222;
+}
+*/
+/**********
+ * states *
+ **********/
+*:insensitive { color: #0F0F0F; }
+
+*:active { background-color: #222222; }
+
+*:active:hover:insensitive { background-color: #0F0F0F; }
+
+*:hover {
+    background-color: #0F0F0F;
+    color: #005885;
+}
+
+*:hover:insensitive { background-color: #0F0F0F; }
+
+*:selected,
+*:selected:focus {
+    background-color: #222222;
+    color: #005885;
+}
+
+/******************
+ * common effects *
+ ******************/
+.button,
+GtkSwitch.slider { background-color: #222222; }
+
+.button:insensitive,
+GtkSwitch.slider:insensitive { background-color: #222222; }
+
+.button.default {
+    background-color: #222222;
+    padding: 1px;
+}
+
+.button:active { background-color: #222222; color: #005885; }
+
+.button:focus,
+.button:hover:focus,
+.button:active:focus { background-color: #222222; color: #005885; }
+
+.entry {
+    background: #222222;
+    border: 1px solid #0F0F0F;
+    padding: 2px;
+}
+
+.entry:focus { background: #222222; }
+
+GtkScale.trough { border: 1px solid #222222; }
+
+.menubar .menuitem .scale.highlight.left,
+.scale.highlight.left,
+.scale.highlight.bottom { background-color: #222222; }
+
+GtkScale.slider:insensitive,
+GtkScale.trough:insensitive,
+.scale.highlight.left:insensitive,
+.scale.highlight.bottom:insensitive {
+    background-color: #222222;
+    border: 1px solid #222222;
+}
+
+/*************
+ * assistant *
+ *************/
+GtkAssistant .sidebar {
+    background-color: #0F0F0F;
+    border-right-color: #222222;
+    border-style: solid;
+    border-width: 0 1px 0 0;
+    padding: 6px;
+    color: #A1A1A1;
+}
+
+/**************
+ * background *
+ **************/
+.background {
+    background-color: #222222;
+    border-width: 0;
+}
+
+/**********
+ * button *
+ **********/
+.button {
+    background-color: #222222;
+    -GtkWidget-focus-padding: 0;
+    -GtkWidget-focus-line-width: 0;
+    padding: 1px;
+    color: #A1A1A1;
+}
+
+GtkSwitch.slider {
+    color: #A1A1A1;
+    padding: 1px;
+}
+
+.button:active {
+    background-color: #222222;
+    color: #005885;
+}
+
+.button:hover,
+.button:active:hover {
+    background-color: #222222;
+    color: #005885;
+}
+
+.button:focus,
+.button:hover:focus,
+.button:active:focus {
+    background-color: #222222;
+    color: #005885;
+}
+
+.button:insensitive { background-color: #0F0F0F; }
+
+.button:insensitive:active { background-color: #0F0F0F; }
+
+/* default button */
+.button.default {
+    background-color: #222222;
+    padding: 1px;
+}
+
+.button.default:hover { background-color: #222222; color: #A1A1A1; }
+
+.button.default:active { background-color: #222222; color: #005885; }
+
+.button.default:active:hover { background-color: #222222; color: #005885; }
+
+/* middle button */
+.linked .entry,
+.linked .button,
+.linked .button:active,
+.linked .button:active:hover,
+.linked .button:insensitive,
+.primary-toolbar .linked .entry,
+.primary-toolbar .linked .button,
+.primary-toolbar .linked .button:active,
+.primary-toolbar .linked .button:active:hover,
+.primary-toolbar .linked .button:insensitive {
+    border-width: 1px;
+    border-right-width: 0;
+}
+
+/* leftmost button */
+.linked .entry:first-child,
+.linked .button:first-child,
+.linked .button:active:first-child,
+.linked .button:active:hover:first-child,
+.linked .button:insensitive:first-child,
+.primary-toolbar .linked .entry:first-child,
+.primary-toolbar .linked .button:first-child,
+.primary-toolbar .linked .button:active:first-child,
+.primary-toolbar .linked .button:active:hover:first-child,
+.primary-toolbar .linked .button:insensitive:first-child {
+    border-width: 0px;
+    border-right-width: 0;
+}
+
+/* rightmost button */
+.linked .entry:last-child,
+.linked .button:last-child,
+.linked .button:active:last-child,
+.linked .button:active:hover:last-child,
+.linked .button:insensitive:last-child,
+.primary-toolbar .linked .entry:last-child,
+.primary-toolbar .linked .button:last-child,
+.primary-toolbar .linked .button:active:last-child,
+.primary-toolbar .linked .button:active:hover:last-child,
+.primary-toolbar .linked .button:insensitive:last-child {
+    border-width: 0px;
+}
+
+/* linked single button */
+.linked .entry:only-child,
+.linked .button:only-child,
+.linked .button:active:only-child,
+.linked .button:active:hover:only-child,
+.linked .button:insensitive:only-child,
+.primary-toolbar .linked .entry:only-child,
+.primary-toolbar .linked .button:only-child,
+.primary-toolbar .linked .button:active:only-child,
+.primary-toolbar .linked .button:active:hover:only-child,
+.primary-toolbar .linked .button:insensitive:only-child {
+    border-width: 0px;
+}
+
+/****************
+ * cell and row *
+ ****************/
+.cell {
+    background-color: #222222;
+    color: #A1A1A1;
+    border-width: 0;
+}
+
+row:selected,
+row:selected:focus {
+    background-color: #222222;
+    color: #005885;
+}
+
+/*******************
+ * check and radio *
+ *******************/
+.radio,
+.check {
+    background-color: #222222;
+    color: #005885;
+    border: 1px solid #005885;
+}
+
+.radio:selected:focused,
+.check:selected:focused {
+    background-color: #222222;
+}
+/*****************
+ * column-header *
+ *****************/
+column-header .button,
+column-header .button:active {
+    border-right: 1px solid #222222;
+    color: #005885;
+    padding: 1px;
+}
+
+column-header .button {
+    background-color: #222222;
+    padding: 1px;
+}
+
+column-header .button:hover {
+    background-color: #222222;
+    color: #005885;
+}
+
+column-header:last-child .button {
+    border-width: 0;
+}
+
+/****************
+ * drawing area *
+ ****************/
+GtkDrawingArea {
+    background-color: transparent;
+}
+
+/************
+* gucharmap *
+*************/
+GucharmapChartable {
+    background-color: #222222;
+}
+
+GucharmapChartable:active,
+GucharmapChartable:focus,
+GucharmapChartable:selected {
+    background-color: #222222;
+    color: #005885;
+}
+
+/***********
+ * gtkhtml *
+ ***********/
+GtkHTML {
+    background-color: #222222;
+    color: #A1A1A1;
+}
+
+/***********
+* calendar *
+************/
+GtkCalendar {
+    padding: 0;
+}
+
+GtkCalendar.view {
+    background-color: #222222;
+    border-color: #0F0F0F;
+    border-style: solid;
+    border-width: 1px;
+}
+
+GtkCalendar.header {
+    background-color: #222222;
+    border-color: #005885;
+    border-style: solid;
+    border-width: 1px;
+}
+
+GtkCalendar.button,
+GtkCalendar.button:insensitive {
+    background-color: transparent;
+}
+
+.highlight,
+GtkCalendar.highlight {
+    background-color: transparent;
+    color: #005885;
+    padding: 0;
+    border-width: 0;
+}
+
+/******************
+ * combobox entry *
+ ******************/
+.primary-toolbar GtkComboBox.combobox-entry .entry,
+.primary-toolbar GtkComboBox.combobox-entry .entry:active,
+.primary-toolbar GtkComboBox.combobox-entry .entry:focus,
+.primary-toolbar GtkComboBox.combobox-entry .entry:insensitive,
+GtkComboBox.combobox-entry .entry,
+GtkComboBox.combobox-entry .entry:active,
+GtkComboBox.combobox-entry .entry:focus,
+GtkComboBox.combobox-entry .entry:insensitive {
+    border-width: 1px 0 1px 1px;
+}
+
+.primary-toolbar GtkComboBox.combobox-entry .button,
+.primary-toolbar GtkComboBox.combobox-entry .button:hover,
+.primary-toolbar GtkComboBox.combobox-entry .button:active,
+.primary-toolbar GtkComboBox.combobox-entry .button:insensitive,
+GtkComboBox.combobox-entry .button,
+GtkComboBox.combobox-entry .button:hover,
+GtkComboBox.combobox-entry .button:active,
+GtkComboBox.combobox-entry .button:insensitive {
+    border-width: 1px;
+}
+
+/*********
+ * entry *
+ *********/
+.entry {
+    background-color: #222222;
+    border-style: solid;
+    padding: 1px 3px 1px 3px;
+    color: #A1A1A1;
+}
+
+.entry:focus {
+    border-color: #0F0F0F;
+}
+
+.entry:selected,
+.entry:selected:focus {
+    background-color: #222222;
+    color: #A1A1A1;
+}
+
+.entry:insensitive {
+    background-color: #222222;
+    color: #A1A1A1;
+}
+
+.entry.progressbar {
+    color: #A1A1A1;
+    border: 1px solid #222222
+}
+
+/************
+ * expander *
+ ************/
+.expander {
+    color: #A1A1A1;
+}
+
+.expander:hover {
+    color: #005885;
+}
+
+/*********
+ * frame *
+ *********/
+.frame {
+    border-width: 0px;
+}
+
+/************
+ * iconview *
+ ************/
+GtkIconView {
+    background-color: transparent;
+}
+
+GtkIconView.view.cell:selected,
+GtkIconView.view.cell:selected:focus {
+    background-color: #222222;
+    border-style: solid;
+    border-width: 1px;
+    color: #005885;
+    border-color: #0F0F0F;
+}
+
+.view.rubberband,
+.rubberband {
+    background-color: #182836;
+    border-color: #182836;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/*********
+ * image *
+ *********/
+GtkImage,
+GtkImage:active,
+GtkImage:insensitive {
+    background-color: transparent;
+}
+
+/*********
+ * label *
+ *********/
+GtkLabel,
+GtkLabel:active,
+GtkLabel:insensitive {
+    background-color: transparent;
+
+}
+
+/***********
+ * infobar *
+ ***********/
+.info {
+    background-color: #0F0F0F;
+    border-width: 0px;
+    color: #A1A1A1;
+}
+
+.warning {
+    background-color: #0F0F0F;
+    border-width: 0px;
+    color: #9D2121;
+}
+
+.question {
+    background-color: #0F0F0F;
+    border-width: 0px;
+    color: #A1A1A1;
+}
+
+.error {
+    background-color: #0F0F0F;
+    border-width: 0px;
+    color: #9D2121;
+}
+
+/************
+ * gtkstyle *
+ ************/
+.gtkstyle-fallback {
+    background-color: #222222;
+    color: #A1A1A1;
+}
+
+.gtkstyle-fallback:prelight {
+    background-color: #222222;
+    color: #005885;
+}
+
+.gtkstyle-fallback:active {
+    background-color: #222222;
+    color: #005885;
+}
+
+.gtkstyle-fallback:hover {
+    background-color: #222222;
+    color: #005885;
+}
+
+.gtkstyle-fallback:insensitive {
+    background-color: #222222;
+    color: #0F0F0F;
+}
+
+.gtkstyle-fallback:selected {
+    background-color: #222222;
+    color: #005885;
+}
+
+/*******************
+ * symbolic images *
+ *******************/
+.image {
+    color: #222222;
+}
+
+.image:hover {
+    background-color: #005885;
+    color: #A1A1A1;
+}
+
+.image:selected {
+    background-color: #005885;
+    color: #A1A1A1;
+}
+
+/*****************
+ * miscellaneous *
+ *****************/
+.floating-bar {
+    background-color: #222222;
+}
+
+.floating-bar.top {
+    border-top-width: 0;
+}
+
+.floating-bar.right {
+    border-right-width: 0;
+}
+
+.floating-bar.bottom {
+    border-bottom-width: 0;
+}
+
+.floating-bar.left {
+    border-left-width: 0;
+}
+
+.floating-bar .button {
+    -GtkButton-image-spacing: 0;
+    -GtkButton-inner-border: 0;
+    background-color: transparent;
+}
+
+.view.dim-label,
+.dim-label,
+.dim-label:hover,
+.dim-label:focus {
+    color: #A1A1A1;
+}
+
+.dim-label:selected,
+.dim-label:selected:focus {
+    color: #005885;
+}
+
+.dnd {
+    border-color: #0F0F0F;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.grip {
+    background-color: transparent;
+}
+
+/********
+ * menu *
+ ********/
+GtkTreeMenu.menu,
+GtkMenuToolButton.menu,
+GtkComboBox .menu {
+    background-color: #222222;
+}
+
+.primary-toolbar .button .menu,
+.toolbar .menu,
+.toolbar .primary-toolbar .menu,
+.menu {
+    background-color: #222222;
+    border-width: 0;
+    padding: 0px;
+    color: #A1A1A1;
+}
+
+.menu.button:hover,
+.menu.button:active,
+.menu.button:active:insensitive,
+.menu.button:insensitive,
+.menu.button {
+    background-color: #222222;
+    color: #005885;
+    border-width: 0;
+}
+
+/***********
+ * menubar *
+ ***********/
+.menubar {
+    -GtkWidget-window-dragging: true;
+    border-width: 0;
+    color: #A1A1A1;
+}
+
+.menubar:hover {
+    -GtkWidget-window-dragging: true;
+    border-width: 0;
+    color: #005885;
+}
+
+/***************
+ * menubaritem *
+ ***************/
+.menubar.menuitem,
+.menubar .menuitem {
+    border-width: 0;
+    padding: 1px 3px 1px 3px;
+}
+
+.menubar.menuitem:hover,
+.menubar .menuitem:hover {
+    background-color: #222222;
+    color: #005885;
+}
+
+.menubar .menuitem *:hover {
+    background-color: #222222;
+    color: #005885;
+}
+
+/************
+ * menuitem *
+ ************/
+GtkTreeMenu .menuitem {
+    padding: 0;
+    border-width: 0;
+}
+
+GtkTreeMenu .menuitem * {
+    color: #A1A1A1;
+}
+
+.menuitem,
+.menu .menuitem {
+    padding: 1px;
+}
+
+.menu .menuitem:active,
+.menu .menuitem:hover {
+    background-color: #222222;
+    color: #005885;
+}
+
+.menu .menuitem:active,
+.menu .menuitem *:active,
+.menu .menuitem:hover,
+.menu .menuitem *:hover {
+    background-color: #222222;
+    color: #005885;
+}
+
+.menu .menuitem:insensitive,
+.menu .menuitem *:insensitive {
+    color: #0F0F0F;
+}
+
+.menuitem.check,
+.menuitem.radio,
+.menuitem.check:hover,
+.menuitem.radio:hover,
+.menuitem.check:insensitive,
+.menuitem.radio:insensitive {
+    background-color: transparent;
+    color: #005885;
+}
+
+.menuitem.check:active,
+.menuitem.radio:active {
+    background-color: transparent;
+    color: #005885;
+}
+
+.menuitem GtkCalendar,
+.menuitem GtkCalendar.button,
+.menuitem GtkCalendar.header,
+.menuitem GtkCalendar.view {
+    background-color: transparent;
+    border: 0px;
+}
+
+.menuitem .entry {
+    background-color: #222222;
+    color: #A1A1A1;
+    border-color: #0F0F0F;
+}
+
+.menuitem .accelerator {
+    color: #A1A1A1;
+}
+
+.menuitem .accelerator:hover {
+    color: #005885;
+}
+
+.menuitem .accelerator:insensitive {
+    color: #0F0F0F;
+}
+
+/************
+ * notebook *
+ ************/
+.notebook {
+    background-color: #222222;
+    padding: 0;
+}
+
+.notebook tab {
+    background-color: #0F0F0F;
+    border-width: 0;
+}
+
+.notebook tab:active {
+    background-color: #005885;
+    color: #A1A1A1;
+}
+
+.notebook tab GtkLabel {
+    padding: 1px 1px 2px 2px;
+}
+
+.notebook tab.top {
+    padding: 2px;
+}
+
+.notebook tab.top:active {
+    padding: 0;
+    border-width: 0;
+}
+
+.notebook tab.right {
+    padding: 2px;
+}
+
+.notebook tab.right:active {
+    padding: 0;
+    border-width: 0;
+}
+
+.notebook tab.bottom {
+    padding: 2px;
+}
+
+.notebook tab.bottom:active {
+    padding: 0;
+    border-width: 0;
+}
+
+.notebook tab.left {
+    padding: 2px;
+}
+
+.notebook tab.left:active {
+    padding: 0;
+    border-width: 0;
+}
+
+/******************
+ * pane separator *
+ ******************/
+.pane-separator {
+    color: transparent;
+    background-color: transparent;
+}
+
+/*************************
+ * progressbar and scale *
+ *************************/
+GtkScale,
+GtkProgressBar {
+    border-width: 0;
+    padding: 0;
+}
+
+.progressbar, .progressbar row,
+.progressbar row:hover,
+.progressbar row:selected,
+.progressbar row:selected:focus {
+    background-color: #005885;
+    color: #A1A1A1;
+    border: 1px solid #222222;
+}
+
+.progressbar.vertical {
+    background-color: #005885;
+    color: #A1A1A1;
+    border-width: 0;
+    border: 1px solid #222222;
+}
+
+.trough,
+.trough row,
+.trough row:hover,
+.trough row:selected,
+.trough row:selected:focus {
+    background-color: #222222;
+    border: 1px solid #222222;
+}
+
+.trough.vertical {
+    background-color: #222222;
+    border: 1px solid #222222;
+}
+
+/* level bars as used for password quality or remaining power */
+GtkLevelBar {
+    -GtkLevelBar-min-block-width: 34;
+    -GtkLevelBar-min-block-height: 3;
+}
+
+GtkLevelBar.vertical {
+    -GtkLevelBar-min-block-width: 3;
+    -GtkLevelBar-min-block-height: 34;
+}
+
+.level-bar.trough {
+    padding: 2px;
+}
+
+.level-bar.fill-block {
+    background-color: #222222;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #005885;
+}
+
+.level-bar.indicator-continuous.fill-block {
+    padding: 2px;
+}
+
+.level-bar.indicator-discrete.fill-block.horizontal {
+    margin: 0 1px;
+}
+
+.level-bar.indicator-discrete.fill-block.vertical {
+    margin: 1px 0;
+}
+
+.level-bar.fill-block.level-high {
+    background-color: #222222;
+    border-color: #005885;
+}
+
+.level-bar.fill-block.level-low {
+    background-color: #222222;
+    border-color: #005885;
+}
+
+.level-bar.fill-block.empty-fill-block {
+    background-color: transparent;
+    border-color: #0F0F0F;
+}
+
+GtkScale {
+    -GtkRange-slider-width: 10;
+    -GtkRange-trough-border: 1;
+    -GtkScale-slider-length: 20;
+}
+
+GtkScale.vertical {
+    -GtkScale-slider-length: 20;
+}
+
+GtkScale.slider {
+    background-color: #005885;
+    color: transparent;
+}
+
+GtkScale.slider:hover {
+    background-color: #005885;
+}
+
+GtkScale.slider:insensitive {
+    background-color: #0F0F0F;
+}
+
+GtkScale.mark {
+    border-color: transparent;
+}
+
+GtkScale.trough {
+    background-color: #222222;
+    border-color: transparent;
+    border: 1px solid #222222;
+}
+
+GtkScale.trough.vertical {
+    background-color: #222222;
+    border-color: transparent;
+    border: 1px solid #222222;
+}
+
+.menubar .menuitem .scale.highlight.left,
+.scale.highlight.left {
+    background-color: #222222;
+    /* we will draw the border using box shadow for now */
+    border-color: transparent;
+}
+
+.scale.highlight.bottom {
+    background-color: #222222;
+    /* we will draw the border using box shadow for now */
+    border-color: transparent;
+}
+
+GtkScale.trough:insensitive,
+.scale.highlight.left:insensitive {
+    background-color: #222222;
+    border: 1px solid #0F0F0F;
+}
+
+GtkScale.trough.vertical:insensitive,
+.scale.highlight.bottom:insensitive {
+    background-color: #222222;
+    border: 1px solid #0F0F0F;
+}
+
+/*************
+ * scrollbar *
+ *************/
+.scrollbar {
+    background-color: #222222;
+    border-style: solid;
+}
+
+.scrollbar.trough,
+.scrollbar.trough.vertical {
+    background-color: #222222;
+    border: 1px solid #222222;
+}
+
+.scrollbar.trough.horizontal {
+    background-color: #222222;
+    border: 1px solid #222222;
+}
+
+.scrollbar.slider,
+.scrollbar.button,
+.scrollbar.slider.vertical,
+.scrollbar.button.vertical {
+    background-color: #005885;
+    border-width: 0px;
+}
+
+.scrollbar.slider.horizontal,
+.scrollbar.button.horizontal {
+    background-color: #005885;
+    border-width: 0px;
+}
+
+.scrollbar.slider:hover,
+.scrollbar.slider.vertical:hover {
+    background-color: #005885;
+}
+
+.scrollbar.slider.horizontal:hover {
+    background-color: #005885;
+}
+
+.scrollbar.button:insensitive,
+.scrollbar.button.vertical:insensitive {
+    background-color: #0F0F0F;
+}
+
+.scrollbar.button.horizontal:insensitive {
+   background-color: #0F0F0F;
+}
+
+/* overlay scrollbar */
+OsThumb {
+    color: #A1A1A1;
+}
+
+OsThumb:selected,
+OsScrollbar:selected {
+    background-color: #222222;
+}
+
+OsThumb:active,
+OsScrollbar:active {
+    background-color: #222222;
+}
+
+OsThumb:insensitive,
+OsScrollbar:insensitive {
+    background-color: #0F0F0F;
+}
+
+/*******************
+ * scrolled window *
+ *******************/
+GtkScrolledWindow.frame {
+}
+
+/*************
+ * separator *
+ *************/
+.view.separator,
+.separator {
+    color: transparent;
+}
+
+.button .separator,
+.button.separator {
+    color: #182836;
+}
+
+.button .separator:insensitive,
+.button.separator:insensitive {
+    color: #0F0F0F;
+}
+
+.menuitem.separator {
+    -GtkMenuItem-horizontal-padding: 0;
+    -GtkWidget-separator-height: 0;
+    color: transparent;
+}
+
+GtkComboBox .separator {
+    /* always disable separators */
+    -GtkWidget-wide-separators: true;
+    -GtkWidget-horizontal-separator: 0;
+    -GtkWidget-vertical-separator: 0;
+}
+
+/***********
+ * sidebar *
+ ***********/
+.sidebar,
+.sidebar.view,
+.sidebar .view {
+    background-color: #222222;
+}
+
+.sidebar .frame {
+    border-width: 0;
+}
+
+/**************
+ * spinbutton *
+ **************/
+.spinbutton.button:active,
+.spinbutton.button:insensitive,
+.spinbutton.button {
+    border-width: 0 0 0 1px;
+    background: #222222;
+}
+
+/***********
+ * spinner *
+ ***********/
+.menu.spinner,
+.primary-toolbar .spinner,
+.primary-toolbar .spinner {
+    color: #A1A1A1;
+}
+
+.spinner:active {
+     transition: 750ms linear loop;
+}
+
+/*************
+ * statusbar *
+ *************/
+GtkStatusbar {
+    padding-left: 2px;
+    color: #A1A1A1;
+}
+
+/**********
+ * switch *
+ **********/
+GtkSwitch {
+    background-color: #222222;
+    padding: 0;
+}
+
+GtkSwitch.trough {
+    background-color: #222222;
+    color: #A1A1A1;
+}
+
+GtkSwitch.trough:active {
+    background-color: #222222;
+    color: #005885;
+}
+
+GtkSwitch.trough:insensitive {
+    background-color: #222222;
+    color: #0F0F0F;
+}
+
+/************
+ * textview *
+ ************/
+GtkTextView {
+    background-color: #222222;
+    color: #005885;
+    
+}
+
+/***********
+ * toolbar *
+ ***********/
+.toolbar {
+    border-style: none;
+}
+
+/* primary-toolbar */
+.primary-toolbar,
+.primary-toolbar .toolbar,
+.primary-toolbar.toolbar {
+    -GtkWidget-window-dragging: true;
+    background-color: #222222;
+    padding-bottom: 1px;
+    color: #A1A1A1;
+}
+
+.primary-toolbar GtkComboBox,
+.primary-toolbar .button *,
+.primary-toolbar .button {
+    background-color: transparent;
+    padding: 0px 2px 0px 2px;
+    color: #A1A1A1;
+}
+
+.primary-toolbar .raised .button,
+.primary-toolbar .raised.button,
+.primary-toolbar .button:hover,
+.primary-toolbar .button:active,
+.primary-toolbar .button:insensitive {
+    background-color: #222222;
+    color: #005885;
+}
+
+.primary-toolbar .button:active {
+   background-color: #222222;
+   color: #005885;
+}
+
+.primary-toolbar .button:active:hover {
+   background-color: #222222;
+   color: #005885;
+}
+
+.primary-toolbar .button:active:insensitive,
+.primary-toolbar .button:insensitive {
+   background-color: #0F0F0F;
+}
+
+.primary-toolbar .button:active:insensitive {
+    background-color: #0F0F0F;
+}
+
+.primary-toolbar .entry,
+.primary-toolbar .entry:active,
+.primary-toolbar .entry:focus {
+    padding: 0px 2px 0px 2px;
+    background-color: #222222;
+    color: #005885;
+}
+
+.primary-toolbar GtkSeparatorToolItem,
+.primary-toolbar .separator,
+.primary-toolbar .separator:insensitive {
+    border-width: 0;
+}
+
+/* inline-toolbar */
+.inline-toolbar.toolbar {
+    -GtkToolbar-button-relief: normal;
+    background-color: #222222;
+    padding: 0px 2px 0px 2px;
+}
+
+.inline-toolbar.toolbar:last-child {
+    border-bottom-color: #0F0F0F;
+    border-color: transparent;
+    border-width: 0 1px 1px 1px;
+}
+
+.inline-toolbar.toolbar .button {
+    background-color: #222222;
+}
+
+.inline-toolbar.toolbar .button *:insensitive,
+.inline-toolbar.toolbar GtkToolButton .button:insensitive {
+    background-color: #0F0F0F;
+}
+
+/* middle button */
+.primary-toolbar .button.raised.linked,
+.primary-toolbar .button.raised.linked:active,
+.primary-toolbar .button.raised.linked:focus,
+.primary-toolbar .button.raised.linked:focus:active,
+.primary-toolbar .button.raised.linked:insensitive,
+.primary-toolbar .raised.linked .button,
+.primary-toolbar .raised.linked .button:active,
+.primary-toolbar .raised.linked .button:focus,
+.primary-toolbar .raised.linked .button:focus:active,
+.primary-toolbar .raised.linked .button:insensitive,
+.inline-toolbar.toolbar .button,
+.inline-toolbar.toolbar .button:active,
+.inline-toolbar.toolbar .button:focus,
+.inline-toolbar.toolbar .button:focus:active,
+.inline-toolbar.toolbar .button:insensitive,
+.inline-toolbar.toolbar GtkToolButton .button,
+.inline-toolbar.toolbar GtkToolButton .button:active,
+.inline-toolbar.toolbar GtkToolButton .button:focus,
+.inline-toolbar.toolbar GtkToolButton .button:focus:active,
+.inline-toolbar.toolbar GtkToolButton .button:insensitive {
+    border-right-width: 0;
+    border-left-width: 1px;
+    padding: 2px;
+}
+
+/* leftmost button */
+.primary-toolbar .button.raised.linked:first-child,
+.primary-toolbar .button.raised.linked:active:first-child,
+.primary-toolbar .button.raised.linked:focus:first-child,
+.primary-toolbar .button.raised.linked:focus:active:first-child,
+.primary-toolbar .button.raised.linked:insensitive:first-child,
+.primary-toolbar .raised.linked .button:first-child,
+.primary-toolbar .raised.linked .button:active:first-child,
+.primary-toolbar .raised.linked .button:focus:first-child,
+.primary-toolbar .raised.linked .button:focus:active:first-child,
+.primary-toolbar .raised.linked .button:insensitive:first-child,
+.inline-toolbar.toolbar .button:first-child,
+.inline-toolbar.toolbar .button:active:first-child,
+.inline-toolbar.toolbar .button:focus:first-child,
+.inline-toolbar.toolbar .button:focus:active:first-child,
+.inline-toolbar.toolbar .button:insensitive:first-child,
+.inline-toolbar.toolbar GtkToolButton:first-child .button,
+.inline-toolbar.toolbar GtkToolButton:first-child .button:active,
+.inline-toolbar.toolbar GtkToolButton:first-child .button:focus,
+.inline-toolbar.toolbar GtkToolButton:first-child .button:focus:active,
+.inline-toolbar.toolbar GtkToolButton:first-child .button:insensitive {
+    border-left-width: 1px;
+    border-right-width: 1px;
+    padding: 2px;
+}
+
+/* rightmost button */
+.primary-toolbar .button.raised.linked:last-child,
+.primary-toolbar .button.raised.linked:active:last-child,
+.primary-toolbar .button.raised.linked:focus:last-child,
+.primary-toolbar .button.raised.linked:focus:active:last-child,
+.primary-toolbar .button.raised.linked:insensitive:last-child,
+.primary-toolbar .raised.linked .button:last-child,
+.primary-toolbar .raised.linked .button:active:last-child,
+.primary-toolbar .raised.linked .button:focus:last-child,
+.primary-toolbar .raised.linked .button:focus:active:last-child,
+.primary-toolbar .raised.linked .button:insensitive:last-child,
+.inline-toolbar.toolbar .button:last-child,
+.inline-toolbar.toolbar .button:active:last-child,
+.inline-toolbar.toolbar .button:focus:last-child,
+.inline-toolbar.toolbar .button:focus:active:last-child,
+.inline-toolbar.toolbar .button:insensitive:last-child,
+.inline-toolbar.toolbar GtkToolButton:last-child .button,
+.inline-toolbar.toolbar GtkToolButton:last-child .button:active,
+.inline-toolbar.toolbar GtkToolButton:last-child .button:focus,
+.inline-toolbar.toolbar GtkToolButton:last-child .button:focus:active,
+.inline-toolbar.toolbar GtkToolButton:last-child .button:insensitive {
+    border-left-width: 0;
+    border-right-width: 1px;
+    padding: 2px;
+}
+
+/* single button */
+.primary-toolbar.toolbar .button:only-child,
+.primary-toolbar.toolbar .button:active:only-child,
+.primary-toolbar.toolbar .button:focus:only-child,
+.primary-toolbar.toolbar .button:focus:active:only-child,
+.primary-toolbar.toolbar .button:insensitive:only-child,
+.primary-toolbar.toolbar GtkToolButton:only-child .button,
+.primary-toolbar.toolbar GtkToolButton:only-child .button:active,
+.primary-toolbar.toolbar GtkToolButton:only-child .button:focus,
+.primary-toolbar.toolbar GtkToolButton:only-child .button:focus:active,
+.primary-toolbar.toolbar GtkToolButton:only-child .button:insensitive,
+.inline-toolbar.toolbar .button:only-child,
+.inline-toolbar.toolbar .button:active:only-child,
+.inline-toolbar.toolbar .button:focus:only-child,
+.inline-toolbar.toolbar .button:focus:active:only-child,
+.inline-toolbar.toolbar .button:insensitive:only-child,
+.inline-toolbar.toolbar GtkToolButton:only-child .button,
+.inline-toolbar.toolbar GtkToolButton:only-child .button:active,
+.inline-toolbar.toolbar GtkToolButton:only-child .button:focus,
+.inline-toolbar.toolbar GtkToolButton:only-child .button:focus:active,
+.inline-toolbar.toolbar GtkToolButton:only-child .button:insensitive {
+    border-right-width: 1px;
+    border-left-width: 1px;
+    padding: 2px;
+}
+
+/***********
+ * tooltip *
+ ***********/
+.tooltip {
+    padding: 2px;
+    background-color: #0F0F0F;
+    color: #005885;
+    font-weight: normal;
+}
+
+.tooltip * {
+    background-color: transparent;
+}
+
+/************
+ * treeview *
+ ************/
+GtkTreeView {
+}
+
+GtkTreeView.dnd {
+}
+
+GtkTreeView .entry {
+}
+
+GtkTreeView row:nth-child(even) {
+    background-color: #222222;
+}
+
+GtkTreeView row:nth-child(odd) {
+    background-color: #222222;
+}
+
+/************
+ * viewport *
+ ************/
+GtkViewport {
+    background-color: #222222;
+}
+
+GtkViewport.frame {
+    border-width: 0;
+}
+
+.view {
+    background-color: #222222;
+    color: #A1A1A1;
+}
+
+.view:selected,
+.view:selected:focus {
+    background-color: #222222;
+    color: #005885;
+}
+
+/* for breadcrumbs path bar */
+
+.nemo-pathbar-button,
+NemoPathbarButton {
+    background-image: -gtk-gradient(linear, left top, left bottom,
+                                     color-stop (1, shade(alpha(#222222, 1.0), 1)),
+                                     color-stop (1, shade(alpha(#222222, 1.0), 1)),
+                                     color-stop (1, shade(alpha(#222222, 1.0), 1)),
+                                     color-stop (1, shade(alpha(#222222, 1.0), 1)));
+    border-color: #0F0F0F;
+    color: #A1A1A1;
+    padding: 1px;
+}
+
+NemoPathbarButton:active {
+    background-image: -gtk-gradient(linear, left top, left bottom,
+                                     color-stop (1, shade(alpha(#222222, 1.0), 1)),
+                                     color-stop (1, shade(alpha(#222222, 1.0), 1)),
+                                     color-stop (1, shade(alpha(#222222, 1.0), 1)),
+                                     color-stop (1, shade(alpha(#222222, 1.0), 1)));
+    border-color: #005885;
+}
+
+NemoPathbarButton:hover {
+    background-image: -gtk-gradient(linear, left top, left bottom,
+                                     color-stop (1, shade(alpha(#222222, 1.0), 1)),
+                                     color-stop (1, shade(alpha(#222222, 1.0), 1)),
+                                     color-stop (1, shade(alpha(#222222, 1.0), 1)),
+                                     color-stop (1, shade(alpha(#222222, 1.0), 1)));
+    border-color: #005885;
+}
+
+NemoPathbarButton:active:hover {
+    background-image: -gtk-gradient(linear, left top, left bottom,
+                                     color-stop (1, shade(alpha(#222222, 1.0), 1)),
+                                     color-stop (1, shade(alpha(#222222, 1.0), 1)),
+                                     color-stop (1, shade(alpha(#222222, 1.0), 1)),
+                                     color-stop (1, shade(alpha(#222222, 1.0), 1)));
+    border-color: #005885;
+}
+
+
+/* For Places Sidebar diskfull indicators */
+
+NemoPlacesTreeView {
+    -NemoPlacesTreeView-disk-full-bg-color: shade(#222222, 1.0);
+    -NemoPlacesTreeView-disk-full-fg-color: shade(#A1A1A1, 1.0);
+    -NemoPlacesTreeView-disk-full-bar-width: 2px;
+    -NemoPlacesTreeView-disk-full-bottom-padding: 1px;
+    -NemoPlacesTreeView-disk-full-max-length: 70px;
+}
+
+NemoPlacesTreeView:selected {
+    -NemoPlacesTreeView-disk-full-bg-color: shade(#222222, 1.0);
+    -NemoPlacesTreeView-disk-full-fg-color: shade(#005885, 1.0);
+}
+
+NemoPlacesTreeView:hover {
+    color: #005885;
+}
+
+NemoPlacesTreeView:selected:hover {
+    color: #005885;
+}
+
+.breadcrumbs-no-displacement {
+    -GtkButton-child-displacement-x: 0;
+    -GtkButton-child-displacement-y: 0;
+}
+
+.nemo-inactive-pane .view {
+    background-color: #222222;
+    border: 0px;
+}
+
+/* nautilus */
+.nautilus-canvas-item {
+}
+
+.nautilus-desktop.nautilus-canvas-item {
+    background-color: #222222;
+    color: #A1A1A1;
+}
+
+.nautilus-desktop.nautilus-canvas-item:active {
+    color: #005885;
+}
+
+.nautilus-desktop.nautilus-canvas-item:selected {
+    color: #005885;
+}
+
+.nautilus-desktop.nautilus-canvas-item:prelight {
+}
+
+NautilusTrashBar.info,
+NautilusXContentBar.info,
+NautilusSearchBar.info,
+NautilusQueryEditor.info {
+    background-color: #222222;
+    border-color: #0F0F0F;
+    border-width: 1px 0px;
+    border-style: solid;
+}
+NautilusSearchBar .entry.image {
+    color: #A1A1A1;
+}
+
+.nautilus-cluebar-label {
+    font: bold;
+}
+
+NautilusFloatingBar {
+    background-color: #222222;
+    color: #005885;
+    background-image: none;
+    border-color: #0F0F0F;
+    border-style: solid;
+    border-image: none;
+    border-width: 1px;    
+}
+
+NautilusFloatingBar .button {
+    background-color: alpha (#222222, 0.0);
+    background-image: none;
+    border-style: none;
+    border-image: none;
+    -GtkButton-image-spacing: 0;
+    -GtkButton-inner-border: 0;
+}
+NautilusWindow .sidebar .frame {
+    padding: 0;
+    border-width: 0;
+    border-style: none;
+    border-color: shade (#222222, 1.2);   
+}
+
+NautilusWindow > GtkTable > .pane-separator {
+    border-width: 0;
+    border-style: none;
+}
+

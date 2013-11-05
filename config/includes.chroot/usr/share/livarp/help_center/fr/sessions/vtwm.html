@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Centre d'Aide Livarp - session vtwm</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang fr|<a href="../../us/sessions/vtwm.html">gb</a></h2><h1><a href="../../index-fr.html" title="retour au menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>la session vtwm</h1>
+            <p><b>vtwm aka Virtual Tabbed window Manager</b> né en 1992 sur les sources de twm. c'est un gestionnaire de fenêtre ultra basic mais avec de nombreuses options. ancien, il se configure depuis un unique fichier ~/.vtwmrc. c'est un 'floating', c'est à dire qu'il laisse l'utilisateur placer les fenêtres. il est rapide, réactif et très léger. il convient parfaitement pour les petites configurations matérielles.</p>
+            <h2>screenshot</h2>
+            <a href="../../pics/livarp_04_vtwm.png"><img src="../../pics/livarp_04_vtwm_thb.png" /></a>
+            <h2>lancement</h2>
+            <p>vtwm est lancé par le script ~/bin/start/vtwm_start.sh.<br />
+            pour changer vos applications lancées au démarrage, éditer ce fichier: <text class="blockquote">vim bin/start/vtwm_start.sh</text> ou depuis le menu vtwm:section config:startup</p>
+            <h2>composants</h2>
+            <p>la session vtwm du livarp dispose de plusieurs éléments:
+            <ul><li><b>IconManager:</b> une boite à icones servant aussi de tasklist. configuré depuis ~/.vtwmrc.</li>
+                <li><b>VirtualDesktop:</b> un pager simple. configuré depuis ~/.vtwmrc.</li>
+                <li><b>Menu vtwm:</b> déclenché par un clic-gauche sur le bureau. configuré depuis ~/.vtwmrc.</li>
+                <li><b>conky:</b> ultra minimal, indiquant la consommation cpu &amp; ram, la date &amp; l'heure. configuré depuis ~/.conky/.conkyrc_vtwm.</li>
+                <li><b>Menu livarp:</b> disponible au coin supérieur gauche de l'écran, affiche le menu et le systray, configuré depuis ~/.config/fbpanel/default.</li>
+            </ul></p>
+            <h2>configuration</h2>
+            <p>pour <b>conky</b>, il faut éditer son conkyrc: <text class="blockquote">vim .conky/conkyrc_vtwm</text> ou depuis le menu vtwm section config:conky.</p>
+            <p>pour <b>fbpanel</b>, il comprend le menu et le systray, si vous désirez ajouter des plugins, visitez la <a href="../config/menu.html">page dédiée</a>.</p>
+            <h3>la configuration de vtwm passe par l'édition du fichier ~/.vtwmrc</h3>
+            <ul><li>depuis le menu vtwm: section config:éditer</li>
+                <li>avec une commande: <text class="blockquote">vim .vtwmrc</text></li>
+            </ul></p>
+            <p>le fichier est commenté et contrôle l'intégralité des options de vtwm.<br />
+            une fois vos modifications apportées, relancer vtwm avec le raccourcis clavier Ctrl+Alt+r.</p>
+            <h2>raccourcis clavier/souris</h2>
+            <p>configurables depuis le fichier ~/.vtwmrc, voici la liste des raccourcis clavier de vtwm sur livarp:</p>
+            <h3>menus:</h3>
+                <ul><li>menu vtwm: clic gauche sur le bureau</li>
+                    <li>menu livarp: au coin supérieur gauche</li>
+                </ul>
+            <h3>control:</h3>
+                <ul><li>relancer vtwm: Ctrl+Alt+r</li>
+                    <li>quitter vtwm:Ctrl+Shift+q</li>
+                    <li>quitter livarp: Ctrl+Shift+Alt+q</li>
+                </ul>
+            <h3>fenêtres:</h3>
+                <ul><li>fermer le client: Super+q</li>
+                    <li>tuer le client: Super+x ou clic-central sur l'icone</li>
+                    <li>iconifier le client: Super+i</li>
+                    <li>maximiser le client: Super+m</li>
+                    <li>client précédent: Alt+Shit+Tab</li>
+                    <li>client suivant: Alt+Tab</li>
+                    <li>menu client: clic droit (titre)*</li>
+                    <li>déplacer / passer à l'arière-plan: Alt+clic-droit (fenêtre ou icone)*</li>
+                    <li>déplacer: clic-gauche (titre)*</li>
+                    <li>(des)iconifier: Alt+clic-central (fenêtre ou icone)*</li>
+                    <li>redimensionne / passe au premier-plan: Alt+clic-gauche (fenêtre ou icone)* ou clic-gauche (titre)*</li>
+                    <li>passe au premier/arrière-plan: clic-central (titre)*</li>
+                </ul>
+                *<i>titre, fenêtre, icone, fenêtre ou icone: raccourcis agissant sur le titre de la fenêtre, la fenêtre entière et/ou l'icone.</i>
+            <h3>navigation:</h3>
+                <ul><li>bureau de droite: Ctrl+Droite ou molette haut</li>
+                    <li>bureau de gauche:Ctrl+Gauche ou molette bas</li>
+                </ul>
+            <h3>lanceurs:</h3>
+                <ul><li>lanceur de terminal par défaut: Ctrl+Enter</li>
+                    <li>lanceur de terminal: Super+t</li>
+                    <li>lancer dmenu: Super+d</li>
+                    <li>lancer ranger: Super+r</li>
+                    <li>lancer rox-filer: Super+Shift+r</li>
+                    <li>lancer firefox: Super+w</li>
+                    <li>control du volume: Super+v</li>
+                </ul>
+            <h3>les boutons des fenêtres: de gauche à droite:</h3>
+            <p>fermer -- iconifier -- fixer -- plein-écran -- redimensionner</p>
+            </div>
+        </div>
+    </div>
+    <div id="footer">centre d'aide livarp_0.4 - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

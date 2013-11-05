@@ -1,0 +1,3 @@
+#!/bin/sh
+
+lb build noauto "${@}" 2>&1 | tee livarp_042-liquorix-`date +%Y%m%d-%H%M`.log

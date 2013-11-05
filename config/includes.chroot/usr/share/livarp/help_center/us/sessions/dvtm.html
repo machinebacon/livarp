@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Livarp Help Center - dvtm session</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang <a href="../../fr/sessions/dvtm.html">fr</a>|gb</h2><h1><a href="../../index.html" title="back to main menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>the dvtm session</h1>
+            <p><b>DVTM</b> : the Tiling window management for the console<br />
+            dvtm brings the concept of tiling window management, popularized by X11-window managers like dwm to the console. As a console window manager it tries to make it easy to work with multiple console based programs...<br />
+            dvtm strives to adhere to the Unix philosophy. It tries to do one thing, dynamic window management on the console, and to do it well. For example dvtm does not implement session management. In contrast to tmux it does not follow a client/server model, hence dvtm has no support for sessions which are shared between multiple users on different machines. These are design decisions and they are seen as features, not bugs. As a result dvtm's source code is relatively small (~3600 lines of ANSI C), simple and therefore easy to hack on..</p>
+            <h2>Layouts</h2>
+            <p>dvtm is a tiling window manager, it displays your windows (clients) so that they occupy the entire surface of the desk (tags). occupied tags are indicated by a small square. clients are organized in different ways (layouts) to optimize the visibility of your applications. layouts are organized around the Master (main zone) and Stack (stacking area from other clients).</p>
+            <p>dvtm uses 4 layouts by default to organize your work.
+            <ul>
+                <li>Vertical Stack Tiling (default) : the left half of the screen (master area) is used by the currently focused window the remaining windows are stacked on the right half of the screen.</li>
+                <li>Bottom Stack Tiling : top half is the master area bottom half is for the remaining windows.</li>
+                <li>Grid : every window gets an equally sized portion of the screen.</li>
+                <li>Fullscreen : only the selected window is shown and occupies the whole available display area.</li>
+            </ul></p>
+            <h2>launch</h2>
+            <p>dvtm is launched from ~/.zprofile or ~/.profile depends if you're using zsh or bash. but it could be launched from any tty console or terminal from X session.<br />
+            to add apps for startup: <text class="blockquote">vim .zprofile</text><br>
+            <img src="../../pics/livarp_startx.png" /><br />
+            <img src="../../pics/livarp_start_nox.png" /><br />
+            <img src="../../pics/session_dvtm_h.png" /><br />
+            <img src="../../pics/session_dvtm_ii.png" /></p>
+            <h2>configuration</h2>
+            <p>dvtm only contains a few simple command line options, the most important ones are briefly described below. Consult the manual page for the complete documentation:
+            <ul>
+                <li>-v prints the version and exits.</li>
+                <li>-m mod sets the modifier during runtime and thus overrides settings in config.h. So -m ^w will set the modifier to CTRL+w. This might be useful if you want to run multiple nested dvtm instances.</li>
+                <li>[command] : execute a command after dvtm is started.</li>
+                <li>-s status-fifo if 'status-fifo' is a valid named pipe dvtm will read it's content and display it in the statusbar.</li>
+            </ul>
+            <h2>keybinds</h2>
+            <p>dvtm is fully controllable from the keyboard: control, launchers, navigation, tags and clients manipulation...<br />
+            keybinds are configured in config.h file from sources during compilation.</p>
+            <p>All of dvtm keybindings start with a common modifier which from now on is refered to as <b>MOD</b>. By default MOD is set to <b>CTRL+g</b> however this can be changed at runttime with the -m command line flag or at compile time by changing config.h.
+            <ul>
+                <li>MOD-c : Create a new shell window.</li>
+                <li>Mod-x : Close focused window.</li>
+                <li>Mod-l : Increases the master area width about 5% (all except grid and fullscreen layout).</li>
+                <li>Mod-h : Decreases the master area width about 5% (all except grid and fullscreen layout).</li>
+                <li>Mod-j : Focus next window.</li>
+                <li>Mod-k : Focus previous window.</li>
+                <li>Mod-[1..n] : Focus the nth window..</li>
+                <li>Mod-. : Toggle minimization of current window.</li>
+                <li>Mod-u : Focus next non minimized window.</li>
+                <li>Mod-i : Focus prev non minimized window.</li>
+                <li>Mod-m : Maximize current window (change to fullscreen layout).</li>
+                <li>Mod-PageUp : Scroll up.</li>
+                <li>Mod-PageDown : Scroll down.</li>
+                <li>Mod-Space : Toggle between defined layouts (affects all windows)..</li>
+                <li>Mod-Enter : Zooms/cycles current window to/from master area.</li>
+                <li>Mod-t : Change to vertical stack tiling layout.</li>
+                <li>Mod-b : Change to bottom stack tiling layout.</li>
+                <li>Mod-g : Change to grid layout.</li>
+                <li>Mod-s : Shows/hides the status bar.</li>
+                <li>Mod-r : Redraw whole screen.</li>
+                <li>Mod-G : Escape the next typed key.</li>
+                <li>Mod-a : Toggle keyboard multiplexing mode, if activated keypresses are sent to all non minimized windows.</li>
+                <li>Mod-X : Lock screen.</li>
+                <li>Mod-B : Toggle bell (off by default).</li>
+                <li>Mod-M : Toggle dvtm mouse grabbing.</li>
+                <li>Mod-q : quit dvtm.</li>
+            </ul>
+            dvtm will automatically terminate once the last window is closed. If you want to quit earlier use 'MOD+q'.</p>
+            </div>
+        </div>
+    </div>
+    <div id="footer">livarp_0.4 help center - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

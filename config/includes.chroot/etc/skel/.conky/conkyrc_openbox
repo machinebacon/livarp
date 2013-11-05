@@ -1,0 +1,80 @@
+########################################################################
+# conkyrc openbox                                                      #
+# livarp_0.4 arpinux@2013                                              #
+# http://arpinux.org/livarp                                            #
+########################################################################
+## Setting                                                             #
+########################################################################
+background yes
+use_xft yes
+xftfont Aller Display:size=11
+xftalpha 1
+update_interval 1.0
+total_run_times 0
+own_window yes
+own_window_transparent yes
+own_window_colour 222222
+own_window_type normal
+own_window_title Infos System
+#own_window_hints sticky
+double_buffer yes
+minimum_size 180 100
+maximum_width 180
+draw_shades yes
+draw_outline no
+draw_borders no
+border_inner_margin 5
+border_width 2
+draw_graph_borders no
+default_color 005885
+color1 grey60
+color2 grey80
+color3 004569
+default_shade_color grey20
+default_outline_color white
+alignment tl
+gap_x 40
+gap_y 40
+no_buffers yes
+uppercase no
+text_buffer_size 1024
+top_name_width 10
+imlib_cache_size 0
+cpu_avg_samples 2
+show_graph_scale no
+show_graph_range no
+short_units yes
+override_utf8_locale yes
+use_spacer none
+if_up_strictness address
+##############################################
+#  Output                                    #
+##############################################
+TEXT
+${voffset -10}$hr${color1}
+$alignc ${color2}Debian  livarp_0.4.0
+${font Aller Light:size=10}$alignc $sysname-$kernel-$machine${font}${color1}
+${voffset 10}${font OpenLogos:size=200}${color3}J${font}${color}
+${voffset -263}$hr${color1}
+${voffset -5}${font Aller Light:size=10}\
+${alignc}${color2}${execi 600 echo "$USER"}${color1}@${color2}${nodename}${font}
+${color1}${time %a} ${color2}${time %d %m}${color1}\
+$alignr${color2}${time %I:%M}${color1} ${time %P}
+${font Aller Light:size=10}uptime\
+$alignr${color2}${uptime_short}${color1}${font}
+
+CPU${color2}${goto 45}${cpu}%${color1}\
+${font Aller Light:size=10}$alignr${color2}${acpitemp}${color1}°C${font}
+RAM${color2}${goto 45}${memperc}%${color1}\
+${font Aller Light:size=10}$alignr${color2}${mem}${color1}/${memmax}${font}
+SYS${color2}${goto 45}${fs_used_perc /}%${color1}\
+${font Aller Light:size=10}$alignr${color2}${fs_used /}${color1}/${fs_size /}${font}
+I/O${color2}${goto 45}${diskio}${color1}/s
+
+${if_gw}${color2}online\
+${font Aller Light:size=10}${alignr}${tcp_portmon 1 65535 count} ${color1}open port(s)${font}\
+${else}${color1}offline${endif}${color}
+
+${font Aller Light:size=10}${color1}menu ${goto 130}Super + m
+keys ${goto 130}Super + k${color}${font}
+${voffset -5}$hr${voffset -40} 

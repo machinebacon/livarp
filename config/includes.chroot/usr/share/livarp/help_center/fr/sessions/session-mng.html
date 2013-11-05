@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Centre d'Aide Livarp - gérer les sessions</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang fr|<a href="../../us/sessions/session-mng.html">gb</a></h2><h1><a href="../../index-fr.html" title="retour au menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>gestion des sessions</h1>
+            <p>ajouter, enlever, désinstaller, masquer les sessions, méthode manuelle, sélective ou complète, voici quelques outils pour gérer vos sessions.</p>
+            <h2>méthode manuelle</h2>
+            <p><b>note:</b> si vous désirez obtenir un livarp mono-session sans désinstaller/effacer quoique ce soit, utilisez plutôt ~/.xinitrc. visitez la  <a href="../config/startup.html">page dédiée</a>.</p>
+            <p>si vous désirez ajouter ou supprimer une session “manuellement”, il faut installer ou désinstaller les paquets et dossiers de configuration ainsi qu'ajouter ou effacer l'entrée dans le session-selector (/usr/local/bin/dmenu-start.sh).<br />
+            notez que les wms présents dans livarp sont très légers et n'encombrent pas trop votre disque.</p>
+            <p><ul><li>pour supprimer l'affichage d'une session, éditez le session-selector en root:</li></ul></p>
+            <p class="blockquote"># vim /usr/local/bin/dmenu-start.sh</p>
+            <p>puis effacer le(s) entrée(s) concernée(s) dans la "session list" puis dans "session launchers".</p>
+            <p><ul><li>pour ajouter une session, editez le session-selector de la même façon que précédement puis ajouter la session désirée dans la "session list" puis dans "session launchers" et assurez-vous de mettre à jour les numéro de session.<br />ici un exemple avec une session snapwm:</li></ul></p>
+            <p>le script d'origine dmenu-start.sh</p>
+            <pre class="blockquote">
+#!/bin/bash
+# a simple session-selector
+###########################
+# session list
+# ------------
+choice=`echo -e "01: vtwm\n02: dwm\n03: ratpoison\n04: wmfs\n05: dwm_reloaded\n06: spectrwm\n07: evilwm\n08: openbox\n09: pekwm\n10: awesome\n11: fluxbox\n12: scripts de lancement\n13: eteindre" | dmenu -fn "snap" -nb "#222222" -nf "#7D7D7D" -sb "#005885" -sf "#D7D7D7" -p "choisir ou editer une session:" | cut -d ':' -f 1`
+# session launchers
+# -----------------
+case $choice in
+    01) exec $HOME/bin/start/vtwm_start.sh ;;
+    02) exec /usr/bin/dwm ;;
+    03) exec $HOME/bin/start/ratpoison_start.sh ;;
+    04) exec $HOME/bin/start/wmfs_start.sh ;;
+    05) exec $HOME/bin/start/dwm_start.sh ;;
+    06) exec $HOME/bin/start/spectrwm_start.sh ;;
+    07) exec $HOME/bin/start/evilwm_start.sh ;;
+    08) exec /usr/bin/openbox-session ;;
+    09) exec $HOME/bin/start/pekwm_start.sh ;;
+    10) exec $HOME/bin/start/awesome_start.sh ;;
+    11) exec $HOME/bin/start/fluxbox_start.sh ;;
+    12) geany -s bin/start/*_start.sh .config/openbox/autostart .xinitrc; dmenu-start.sh ;;
+    13) sudo shutdown -h now ;;
+    *) dmenu-start.sh ;;
+esac
+exit 0
+</pre>
+            <p>le script modifié avec snapwm placé entre "dwm_reloaded" et "spectrwm"</p>
+            <pre class="blockquote">
+#!/bin/bash
+# a simple session-selector
+###########################
+# session list
+# ------------
+choice=`echo -e "01: vtwm\n02: dwm\n03: ratpoison\n04: wmfs\n05: dwm_reloaded\n06: snapwm\n07: spectrwm\n08: evilwm\n09: openbox\n10: pekwm\n11: awesome\n12: fluxbox\n13: scripts de lancement\n14: eteindre" | dmenu -fn "snap" -nb "#222222" -nf "#7D7D7D" -sb "#005885" -sf "#D7D7D7" -p "choisir ou editer une session:" | cut -d ':' -f 1`
+# session launchers
+# -----------------
+case $choice in
+    01) exec $HOME/bin/start/vtwm_start.sh ;;
+    02) exec /usr/bin/dwm ;;
+    03) exec $HOME/bin/start/ratpoison_start.sh ;;
+    04) exec $HOME/bin/start/wmfs_start.sh ;;
+    05) exec $HOME/bin/start/dwm_start.sh ;;
+    06) exec $HOME/bin/start/snapwm_start.sh ;;
+    07) exec $HOME/bin/start/spectrwm_start.sh ;;
+    08) exec $HOME/bin/start/evilwm_start.sh ;;
+    09) exec /usr/bin/openbox-session ;;
+    10) exec $HOME/bin/start/pekwm_start.sh ;;
+    11) exec $HOME/bin/start/awesome_start.sh ;;
+    12) exec $HOME/bin/start/fluxbox_start.sh ;;
+    13) geany -s bin/start/*_start.sh .config/openbox/autostart .xinitrc; dmenu-start.sh ;;
+    14) sudo shutdown -h now ;;
+    *) dmenu-start.sh ;;
+esac
+exit 0
+</pre>
+            <p>il ne vous reste plus qu'à configurer votre session snapwm depuis votre ~/bin/start/snapwm_start.sh.</p>
+            <h2>méthode sélective</h2>
+            <p>livarp dispose d'une série de script situé dans votre dossier ~/bin/remove-sessions permettant la désinstallation des sessions du livarp une par une.<br />
+            <b class="alarm">ATTENTION</b>: ces script utilisent les droits administrateurs et <b>suppriment</b> les fichiers et exécutables séclectionnés. les modifications sont définitives.<br />
+            <img src="../../pics/remove-sessions.png" /></p>
+            <p>notez qu'il faudra éditer le script /usr/local/bin/dmenu-start.sh afin d'éliminer les entrées des sessions que vous avez effacé.</p>
+            <h2>méthode complète</h2>
+            <p>livarp dispose d'un script qui permet d'éliminer toutes les sessions sauf <b>une</b>, transformant ainsi votre livarp en livarp-xs: le <b>livarp-xs-maker</b>.</p>
+            <p><b class="alarm">ATTENTION</b>: ce script s'exécute en root et <b>supprime</b> l'intégralité des fichiers et dossiers système/utilisateur des sessions <b>non</b>sélectionnées. les modifications sont définitives.</p>
+            <p><b class="alarm">ATTENTION</b>: assurez-vous de vous connecter dans la session que vous désirez garder pour lancer livarp-xs-maker.</p>
+            <p><b>livarp-xs-maker</b> se lance depuis les différents menus du livarp: section système. ou depuis le dossier /bin/remove-sessions/livarp-xs-maker.</p>
+            <p>le mot de passe administrateur vous sera demandé, puis une fenêtre de dialogue vous permettra de choisir la session que vous désirez conserver.<br />vous pourrez suivre le processus dans la fenêtre de terminal:</p>
+            <p><img src="../../pics/lxm_confirmation.png" /><br />
+            <img src="../../pics/lxm_selection.png" /><br />
+            <img src="../../pics/lxm_fin.png" /></p>
+            <p>lors de votre prochaine connexion, la session graphique sélectionnée se lancera automatiquement. bienvenue dans <b>livarp-xs</b> :) </p>
+            </div>
+        </div>
+    </div>
+    <div id="footer">centre d'aide livarp_0.4 - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

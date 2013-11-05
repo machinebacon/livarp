@@ -1,0 +1,2 @@
+#!/bin/bash
+exec xterm -e su-to-root -c /usr/share/livarp/install_packs/install_printer.sh

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=livarp_theme
+Comment=Slick and simple dark theme
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=livarp_theme
+MetacityTheme=livarp_theme
+IconTheme=livarp_icons
+CursorTheme=ATER_Blue
+ButtonLayout=:minimize,maximize,close

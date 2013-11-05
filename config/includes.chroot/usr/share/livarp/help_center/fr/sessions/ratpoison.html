@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Centre d'Aide Livarp - session reatpoison</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang fr|<a href="../../us/sessions/ratpoison.html">gb</a></h2><h1><a href="../../index-fr.html" title="retour au menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>la session ratpoison</h1>
+            <p>ratpoison est un gestionnaire de fenêtres simple sans grosse dépendances. pas de gadgets graphiques, pas de décoration de fenêtre, et aucune dépendance à l'égard du mulot :) . Il est largement calquée sur GNU Screen qui a fait des merveilles sur le marché du terminal virtuel. Toutes les interactions avec le gestionnaire de fenêtres se font avec le clavier. ratpoison fonctionne avec un combo-clavier (Control-t) comme touche de modification, qui permet de ne pas paralyser Emacs ou d'autres logiciels de qualité. ratpoison a été écrit par Shawn Betts.</p>
+            <h2>concept des frames</h2>
+            <p>ratpoison utilise le concept de cadres ou frames pour placer ou redimensionner les fenêtres: Au lieu de laisser les fenêtres se placer arbitrairement sur l'écran, celui-ci est divisé en cadres. les fenêtres se placent maximisées dans ces cadres. ratpoison se lance avec un cadre qui peut être divisé en plusieurs cadres plus petits. Chaque cadre peut être divisée en deux, horizontalement ou verticalement. Vous pouvez vous déplacer parmi eux, ou en créer de nouveaux.</p>
+            <p>Chaque cadre a une fenêtre ou plus qui lui est associée, qui est visible dans ce cadre. Si vous sélectionnez une fenêtre qui est associé à un cadre, le focus se déplace vers le cadre associé, plutôt que de déplacer la fenêtre dans le cadre actuel actuelle. Si vous sélectionnez une fenêtre qui n'est pas associée à un cadre, cette fenêtre sera ouverte dans le cadre actuel et redimensionnée pour s'adapter à ce cadre.<br />
+            Si la fenêtre associée ne remplit pas complètement le cadre, les différentes commandes de gravité contrôlent la façon dont elle est placé.<br />
+            Si aucune fenêtre n'était ouverte dans ce cadre avant la création du cadre, le bureau sera visible derrière elle.</p>
+            <p>une docuentation complète est disponible dans votre dossier ~/docs/ratpoison.pdf, reprise du wiki sur arpinux.org.</p>
+            <h2>screenshot</h2>
+            <a href="../../pics/livarp_04_ratpoison.png"><img src="../../pics/livarp_04_ratpoison_thb.png" /></a>
+            <p></p>
+            <h2>lancement</h2>
+            <p>ratpoison est lancé par le script ~/bin/start/ratpoison_start.sh.<br />
+            pour changer vos applications lancées au démarrage, éditer ce fichier: <text class="blockquote">vim bin/start/ratpoison_start.sh</text> ou depuis le menu fbpanel:section wms:ratpoison:éditer le script de lancement</p>
+            <h2>composants</h2>
+            <p>la session ratpoison du livarp est ultra minimale:
+            <ul><li><b>ratpoison:</b> le gestionaire de fenêtres lui-même, idéalement construit pour travailler.</li>
+                <li><b>Menu livarp:</b> disponible depuis le coin supérieur gauche de l'écran et géré par fbpanel. il inclut les applications livarp, le menu de configuration de ratpoison, et le systay (configuré depuis ~/.config/fbpanel/default ou depuis le menu lui-même).</li>
+                <li><b>Menu ratpoison:</b> géré par ratmenu et configurable depuis le fichier ~/.ratpoison/rat_main_menu.</li>
+            </ul></p>
+            <h2>configuration</h2>
+            <p>pour <b>fbpanel</b>, il faut éditer son fichier de configuration <text class="blockquote">vim .config/fbpanel/default</text> ou depuis le menu-lui-même section config:fbpanel:éditer le menu.<br />
+            si vous désirez ajouter des plugins, visitez la <a href="../config/menu.html">page dédiée</a>.</p>
+            <h3>la configuration de ratpoison passe par l'édition de ~/.ratpoisonrc.</h3>
+            <p> par défaut, ratpoison lit le fichier /etc/ratpoisonrc, mais vous pouvez créer le votre dans ~/.ratpoisonrc. en fait, ratpoison n'en a pas vraiment besoin mais ce fichier permet de définir quelques variables, des alias et de définir certains programmes à lancer au démarrage de ratpoison.<br />
+            notez que ce fichier est relu à chaque redémarrage de ratpoison “C-t :restart”.<br />
+            vous pouvez utiliser l'option “ratpoison -f” pour définir un fichier de configuration différent. vous trouverez une multitude d'exemple de 'ratpoisonrc' sur le net.</p>
+            <h2>raccourcis clavier/souris</h2>
+            <p>ratpoison est entièrement pilotable depuis le clavier: control, lanceurs, navigation, manipulation des tags et clients...<br />
+            les raccourcis clavier/souris sont définis dans le fichier ~/.ratpoisonrc. voici les raccourcis communs de la session ratpoison du livarp_0.4: (note: les raccourcis sont affichées depuis 'C-t + ?')</p>
+            <h3>menus:</h3>
+                <ul><li>menu livarp: coin supérieur gauche de l'écran</li>
+                    <li>menu ratpoison: C-t + m</li>
+                    <li>dmenu: C-t + d</li>
+                </ul>
+            <h3>control:</h3>
+                <ul><li>relancer ratpoison: C-t : restart</li>
+                    <li>quitter ratpoison: C-t : quit ou depuis le menu livarp:exit</li>
+                </ul>
+            <h3>fenêtres:</h3>
+                <ul><li>fermer le client: C-t + k</li>
+                    <li>client précédent: C-t + p</li>
+                    <li>client suivant: C-t + n, C-t + space, C-t + Enter</li>
+                </ul>
+            <h3>frames:</h3>
+                <ul><li>cadre précédent/suivant: C-t + Tab</li>
+                    <li>diviser horizontale du cadre: C-t + s</li>
+                    <li>diviser verticale du cadre: C-t + S</li>
+                    <li>effacer un cadre: C-t + R</li>
+                    <li>eliminer tous les cadres (retour au plein écran): C-t + Q</li>
+                </ul>
+            <h3>taille des frames</h3>
+            <p>ou comment redimensionner une frame avec la commande resize. le raccourcis par défaut: “C-t r”.<br />
+            la commande “resize” dépend de 2 arguments, qui définissent respectivement le redimensionnement horizontal et vertical du cadre. ex: pour agrandir le cadre actuel de 50px horizontalement et le réduire verticalement de 10 px, on utilisera la commande “resize 50 -10”.<br />
+            pour un redimensionnement depuis les raccoucis clavier (confirmation de la taille avec [Enter]):
+            <ul><li>agrandit la hauteur du cadre : C-t r C-p/Up</li>
+                <li>réduit la hauteur du cadre : C-t r C-n/Down</li>
+                <li>agrandit la largeur du cadre : C-t r C-f/Left/Right</li>
+                <li>réduit la largeur du cadre : C-t r C-b/Left/Right</li>
+                <li>valide la redimension : return</li>
+                <li>abandonne la redimension, rétablit la dimension originale : C-t r C-g/Esc</li>
+            </ul></p>
+            <h3>lanceurs:</h3>
+                <ul><li>lanceur de terminal par défaut: C-t c</li>
+                    <li>afficher l'invite de commande shell: C-t !</li>
+                    <li>afficher l'invite de commande ratpoison: C-t :</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="footer">centre d'aide livarp_0.4 - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

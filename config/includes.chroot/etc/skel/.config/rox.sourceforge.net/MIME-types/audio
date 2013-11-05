@@ -1,0 +1,2 @@
+#! /bin/sh
+exec urxvtcd -T sound --geometry 50x3+20+10 -e mplayer "$@"

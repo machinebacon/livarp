@@ -1,0 +1,82 @@
+########################################################################
+# conkyrc openbox_keys                                                 #
+# livarp_0.4 arpinux@2013                                              #
+# http://arpinux.org/livarp                                            #
+########################################################################
+## Setting                                                             #
+########################################################################
+background yes
+use_xft yes
+xftfont Aller Light:size=11
+xftalpha 1
+update_interval 1.0
+total_run_times 0
+own_window yes
+own_window_transparent yes
+own_window_colour 222222
+own_window_type normal
+own_window_title OpenBox Keybinds
+double_buffer yes
+minimum_size 250 300
+maximum_width 250
+draw_shades yes
+draw_outline no
+draw_borders no
+border_inner_margin 5
+border_width 2
+draw_graph_borders no
+default_color 005885
+color1 grey60
+color2 grey80
+color3 004569
+default_shade_color grey20
+default_outline_color white
+alignment tr
+gap_x 40
+gap_y 40
+no_buffers yes
+uppercase no
+text_buffer_size 1024
+top_name_width 10
+imlib_cache_size 0
+cpu_avg_samples 2
+show_graph_scale no
+show_graph_range no
+short_units yes
+override_utf8_locale yes
+use_spacer none
+if_up_strictness address
+##############################################
+#  Output                                    #
+##############################################
+TEXT
+${voffset -10}$hr${color1}
+$alignc ${color2}Debian  livarp_0.4.0${color}
+${voffset -5}$hr${color1}
+${voffset 10}${font OpenLogos:size=200}${goto 45}${color3}J${font}${color}
+${voffset -262}
+${color1}openbox menu${alignr}${color2}Super+m
+${color1}dmenu${alignr}${color2}Super+p
+${color1}fbpanel${alignr}${color2}topleft
+${color1}tint2${alignr}${color2}bottom
+
+${color1}terminal${alignr}${color2}Ctrl+Return
+${color1}cli filer${alignr}${color2}Super+r
+${color1}gui filer${alignr}${color2}Super+Shift+r
+${color1}editor${alignr}${color2}Super+e
+${color1}navigator${alignr}${color2}Super+w
+${color1}zik player${alignr}${color2}Super+z
+${color1}volume${alignr}${color2}Super+v
+${color1}conky${alignr}${color2}Super+c
+${color1}keybinds${alignr}${color2}Super+k
+
+${color1}close client${alignr}${color2}Alt+F4
+${color1}show desktop${alignr}${color2}Super+d
+${color1}goto deskX${alignr}${color2}Super+FX
+${color1}prev/next desk${alignr}${color2}Ctrl+Alt+Left/Right
+${color1}sendto deskX${alignr}${color2}Alt+Shift+x
+${color1}place on corners${alignr}${color2}Super+y/u/b/n
+${color1}screenshot${alignr}${color2}Print
+
+${color1}exit${alignr}${color2}Super+Shift+q
+${voffset -60} 

@@ -1,0 +1,6 @@
+welcome to livarp share dir
+
+this folder includes : 
+ - scripts launched by your /home/$USER/bin/clickmes directory (do not launch them directly)
+ - sources directory with dwm_reloaded and wmfs² sources
+ - sources.list.nonfree : the names says it all

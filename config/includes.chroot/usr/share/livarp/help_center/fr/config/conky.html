@@ -1,0 +1,405 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Centre d'Aide Livarp - conky</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang fr|<a href="../../us/config/conky.html">gb</a></h2><h1><a href="../../index-fr.html" title="retour au menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>conky</h1>
+            <p>Conky est une application qui délivre en temps réel des informations sur votre système. Ces informations s'affichent sur votre bureau, dans une fenêtre classique, dans une barre de status comme dzen ou dans une barre de statut propre à un gestionnaire de fenêtres, comme dwm ou wmfs.<br />
+            Conky est livré avec de nombreuses options internes mais peut aussi faire appel à des scripts (bash,python,lua…), ce qui lui permet d'afficher à peu près tout ce que vous voulez et comme vous le voulez.<br />
+            La configuration de Conky passe par l'édition du fichier de type .conkyrc* situé dans votre dossier ~/.conky sur livarp.<br />
+            Ce fichier se divise en deux parties:
+            <ul><li>les ”fonctions“ déterminent l'emplacement, la dimension, le type de fenêtre, la couleur du texte…</li>
+                <li>les ”variables“ déterminent la nature des informations à afficher.</li></ul>
+            La séparation se fait par la ligne “TEXT” dans le conkyrc; tout ce qui vient après TEXT sera affiché dans votre conky.<br />
+            Si vous désirez vous appuyer sur des exemples pour construire votre conky, vous pouvez vous inspirez des conkys présent sur livarp ou visiter ma page <a href="http://arpinux.org/x/doku.php/user_tools:conky:arpconky">gallerie'conky</a> (conkyrc, script, fonts, walls inclus).</p>
+            <h2>conky sur livarp</h2>
+            <p>livarp utilise conky de différentes manières selon les sessions:</p>
+            <ul><ul><li><b>conky</b> affiché dans la <b>barre de statut</b> pour dwm et wmfs (conkyd*)</li>
+                    <li><b>conky</b> affiché à l'écran pour les sessions vtwm, awesome, evilwm, pekwm, fluxbox et openbox</li>
+            <p>la configuration des différents conkys passe par l'édition de leurs fichiers respectifs situés dans ~/.conky/* et nommés par le gestionnaire de fenêtre dans lequel ils sont utilisés: ~/.conky/.conkyrc_dwm, ~/.conky/.conkyrc_evil ...</p>
+            <p>les autres conkys présents dans ~/.conky, nommés ~/.conky/livarp_cky* étaient utilisés par <b>conky-switcher</b> dans livarp_0.3.9 et sont là pour tester.</p>
+            <p><b>*</b><i>conkyd est une copie de conky destinée à préserver l'affichage des barres de status lors d'un 'killall conky'.</i></p>
+            <h2>configuration de conky</h2>
+            <p>livarp fournit assez d'exemples pour vous faire une idée du "comment fonctionne conky". un wiki complet en français est disponible <a href="http://arpinux.org/x/doku.php/user_tools:conky">en ligne</a>. je vous livre ici une liste simplifiée des fonctions et variable disponibles (traduction du man)</p>
+            <h3>les fonctions</h3>
+            <p><i>format:</i> <b>fonction</b> [arguments]: description</p>
+            <b><u>A</u></b>
+            <ul><li><b>alignment</b> [top_left,top_right,top_middle,bottom_left,bottom_right,bottom_middle,middle_left,middle_middle,middle_right]: position de conky sur l'écran</li>
+            <li><b>apend_file</b> [adresse_du_fichier]: prend en compte un fichier: les fonctions seront rejoutées à celles du conky en cours</li>
+            <b><u>B</u></b>
+            <li><b>background</b> [yes ou no]: si yes, conky sera lancé en “background”: il vous rendra la main</li>
+            <li><b>border_inner_margin</b> [nombre (pixels)]: espace en pixels entre le texte et la bordure</li>
+            <li><b>border_outer_margin</b> [nombre (pixels)]: espace en pixels entre la bordure et le bord de la fenêtre</li>
+            <li><b>border_width</b> [nombre (pixels)]: épaisseur de la bordure en pixels</li>
+            <b><u>C</u></b>
+            <li><b>colorN(0→9)</b> [hexadecimal “XXXXXX” sans ”#“]: couleur prédéfinie (de 0 à 9) à utiliser dans la zone TEXT</li>
+            <li><b>cpu_avg_samples</b> [nombre]: échantillon à prendre en compte pour le monitoring du cpu</li>
+            <b><u>D</u></b>
+            <li><b>default_bar_size</b> [nombre(pixels) hauteur longueur]: dimensions par défaut des barres, ex: 'default_bar_size 4 10'. très utile pour les fonctions execbar et execibar</li>
+            <li><b>default_color</b> [hexadécimal/couleur]: couleur par défaut du texte et des bordures, ex: 'default_color ffffff' ou 'default_color white'</li>
+            <li><b>default_gauge_size</b> [(pixels) hauteur longueur]: dimensions par défaut des compteurs, ex 'default_gauge_size 15 15'</li>
+            <li><b>default_graph-size</b> [(pixels) hauteur longueur]: dimensions par défaut des graphiques, ex 'default_graph-size 4 10'</li>
+            <li><b>default_outline_color</b> [hexadécimal/couleur]: couleur par défaut du contour de la police</li>
+            <li><b>default_shade_color</b> [hexadécimal/couleur]: couleur par défaut de l'ombre de la police et des graphiques</li>
+            <li><b>disable_auto_reload</b> [yes ou no]: si yes, conky ne recharge pas son fichier de configuration après une modification</li>
+            <li><b>diskio_avg_samples</b> [nombre]: échantillon à prendre en compte pour le monitoring du la lecture/écriture</li>
+            <li><b>display</b> [nombre]: choix de l'écran pour l'affichage</li>
+            <li><b>double_buffer</b> [yes ou no]: si yes, utilise l'extension Xdbe: permet d'éliminer le clignotement. Il est recommandé d'utiliser une fenêtre propre pour Conky afin de limiter la taille du double tampon</li>
+            <li><b>draw_borders</b> [yes ou no]: si yes, conky affiche une bordure autour du texte</li>
+            <li><b>draw_graph_borders</b> [yes ou no]: si yes, conky dessine une bordure autour des graphiques</li>
+            <li><b>draw_outline</b> [yes ou no]: si yes, conky utilise la police avec un contour</li>
+            <li><b>draw_shades</b> [yes ou no]: si yes, conky affiche les ombres sous le texte et les graphiques</li>
+            <b><u>E</u></b>
+            <li><b>extra_newline</b> [yes ou no]: si yes et si 'out_to_console yes', conky rajoute une ligne en fin de fichier. Utile pour “piper” conky dans une wibox d'awesome</li>
+            <b><u>F</u></b>
+            <li><b>font</b> [nom_de_la_police]: détermine la police utilisée par conky. -- obsolète -- voir xftfont</li>
+            <li><b>format_human_readable</b> [yes ou no]: si yes, conky tente d'afficher les valeurs dans un format lisible (Kib,Mib,Gib). si no, conky affiche toutes les valeurs en bytes</li>
+            <b><u>G</u></b>
+            <li><b>gap_x</b> [nombre (pixels)]: marge en pixels entre le bord de l'écran et le coté droit/gauche de la fenêtre conky</li>
+            <li><b>gap_y</b> [nombre (pixels)]: marge en pixels entre le bord de l'écran et le haut/bas de la fenêtre conky</li>
+            <b><u>H</u></b>
+            <li><b>hddtemp_host</b> [XXX.X.X.X]: hôte sur lequel se connecte hddtemp, défaut: 127.0.0.1</li>
+            <li><b>hddtemp_port</b>: port utilisé par hddtemp, défaut: 7634</li>
+            <b><u>I</u></b>
+            <li><b>if_up_sctrictness</b> [up, link, address]: détermine comment conky évalue la connexion réseau</li>
+            <li><b>imap</b>: serveur gloal IMAP; arguments : “host user pass [-i interval] [-f folder] [-p port] [-e command]”. Port par défaut: 143, dossier par défaut: 'INBOX', intervalle par défaut: 5 minutes. Si le mot de passe est '*', il vous sera demandé au démarrage de Conky.</li>
+            <li><b>imlib_cache_flush_interval</b> [nombre(secondes)]: intervalle de rafraichissement du cache imlib en secondes</li>
+            <li><b>imlib_cache_size</b> [nombre (bytes)]: taille du cache imlib, par défaut: 4MiB. Si conky affiche de nombreuses images, il est conseillé de le désactiver avec 'imlib_cache_size 0'</li>
+            <b><u>L</u></b>
+            <li><b>lua_draw_hook_post</b> [nom_de_la_fonction]: FIXME</li>
+            <li><b>lua_draw_hook_pre</b> [nom_de_la_fonction]: FIXME</li>
+            <li><b>lua_load</b> [adresse du/des script(s)]: conky charge le(s) script(s) lua, ex: 'lua_load ~/.conky/clock.lua'.</li>
+            <li><b>lua_shutdown_hook</b> [nom_de_la_fonction]: vide le cache de la 'fonction' afin préserver le système à l'extinction</li>
+            <li><b>lua_startup_hook</b> [nom_de_la_fonction]: FIXME</li>
+            <b><u>M</u></b>
+            <li><b>mail_spool</b>: mail spool pour la vérification des mails</li>
+            <li><b>max_port_monitor_connections</b> [nombre]: nombre maximum de scan par port, par défaut 256.</li>
+            <li><b>max_specials</b> [nombre]: nombre maximal de variables spéciales; fonts, offsets, aligns… par défaut 512</li>
+            <li><b>max_user_text</b> [nombre (bytes)]: taille maximale du buffer utilisateur, par défaut 16384 bytes</li>
+            <li><b>maximum_width</b> [nombre (pixels)]: largeur maximale de la fenêtre conky en pixels</li>
+            <li><b>minimum_size</b> [largeur hauteur (pixels)]: dimension minimale de la fenêtre conky, ex: 'minimum_size 200 500'</li>
+            <li><b>mpd_host</b>: hôte pour mpd music player daemon</li>
+            <li><b>mpd_password</b>: mot de passe du serveur mpd</li>
+            <li><b>mpd_port</b>: port pour mpd</li>
+            <li><b>music_player_interval</b> [nombre (seconds)]: intervalle de vérification des données des lecteurs audio, par défaut: celui de conky</li>
+            <b><u>N</u></b>
+            <li><b>net_avg_samples</b> [nombre]: échantillon à prendre en compte pour le monitoring du net</li>
+            <li><b>no_buffers</b> [yes ou no]: si oui, conky ne prend pas en compte le buffer dans le calcul de l'utilisation mémoire</li>
+            <b><u>O</u></b>
+            <li><b>out_to_console</b> [yes ou no]: si yes, envoi des informations de conky au STDOUT. Utile pour “piper” conky dans une statusbar</li>
+            <li><b>out_to_ncurses</b> [yes ou no]: si yes, comme 'out_to_console' mais avec un rafraichissement de l'affichage au lieu d'une succession d'informations</li>
+            <li><b>out_to_stderr</b> [yes ou no]: si yes, envoi des informations de conky au STDERR</li>
+            <li><b>out_to_x</b> [yes ou no]: si no, pas d'affichage dans X: vérifier qu'aucune fonction graphique ne soit enclenchée, et vérifier l'envoi des informations vers STDOUT ou STDERR</li>
+            <li><b>override_utf8_locale</b> [yes ou no]: si yes, conky force l'encodage local utf-8. requiert XFT</li>
+            <li><b>overwrite_file</b> [adresse_du_fichier]: écrase le fichier donné en argument</li>
+            <li><b>own_window</b> [yes ou no]: si yes, conky dessine sa propre fenêtre</li>
+            <li><b>own_window_class</b> [nom 'WM_CLASS']: determine manuellement le 'WM-CLASS' de conky, par défaut: Conky</li>
+            <li><b>own_window_color</b> [hexadécimal/couleur]: couleur de la fenêtre conky, ex: 'own_window_color 000000' ou 'own_window_color black'</li>
+            <li><b>own_window_hints</b> [undecorated,below,above,sticky,skip_taskbar,skip_pager]: si 'own_window yes', configure les propriétés de conky dans le WM. si 'own_window_type desktop', certaines valeurs sont définies par défaut. si 'own_window_type override', ces valeurs sont ignorées.</li>
+            <li><b>own_window_title</b> [titre]: determine manuellement le titre de la fenêtre conky, par défaut: 'hôte - conky'</li>
+            <li><b>own_window_argb_visual</b> [yes ou no]: ARGB est utilisé pour les effets de transparence. Notez que vous aurez besoin d'un gestionnaire composite pour cela. Cette option fonctionne avec la fonction 'own_window_type override'.</li>
+            <li><b>own_window_argb_value</b> [nombre (0~255)]: niveau de transparence pour conky, où 0=transparent et 255=opaque. Notez que si 'own_window_transparent yes', cette fonction n'a pas d'effet.</li>
+            <li><b>own_window_transparent</b> [yes ou no]: si yes, conky est transparent: comme 'own_window_argb_value 0'</li>
+            <li><b>own_window_type</b> [normal,desktop,dock,panel,override]: si 'own_window yes', determine le type de fenêtre utilisé par conky, par défaut: 'normal': conky est traité comme les autre fenêtres et est controlé par le WM.<br />
+            'desktop': aucune décoration, pas dans la barre des taches, visible sur tous les bureaux virtuels.<br />
+            'dock': conky est placé dans le dock et en prend les propriétés, utile pour les wm possédant cette option (*box, pekwm..).<br />
+            'panel': conky adopte les propriétés d'une barre de tache: pas de décoration, non-recouvrable par les fenêtres maximisées, visible sur tous les bureaux.<br />
+            'override': conky n'est pas contrôlé par le WM, les 'hints'(conseils) sont ignorés. Cette option peut être utile pour les tilingWM (dwm,awesome,xmonad…).</li>
+            <b><u>P</u></b>
+            <li><b>pad_percents</b>: FIXME</li>
+            <li><b>pop3</b>: serveur global POP3; arguments : “host user pass [-i interval] [-p port] [-e command]”. Port par défaut : 110, intevalle par défaut : 5 minutes. Si le mot de passe est '*', il vous sera demandé au démarrage de Conky</li>
+            <b><u>S</u></b>
+            <li><b>short_units</b> [yes ou no]: réduit l'affichage des unités: kiB=k, GiB=G, … 'no' par défaut</li>
+            <li><b>show_graph_range</b> [yes ou no]: si yes, conky affiche l'amplitude des graphiques. 'no' par défaut</li>
+            <li><b>show_graph_scale</b> [yes ou no]: si yes, affiche la valeur maximale dans les graphiques</li>
+            <li><b>stippled_borders</b> [nombre (pixels)]: si 'draw_borders yes', taille en pixels des pointillés de la bordure de conky</li>
+            <b><u>T</u></b>
+            <li><b>temperature_unit</b> [farenheit ou celsius]: détermine les unités de température, par défaut: celsius</li>
+            <li><b>templateN</b> [nombre (0~9)]: determine un modèle à utiliser après TEXT.FIXME expliquer la syntaxe des modèles</li>
+            <li><b>text_buffer_size</b> [nombre (bytes)]: taille du buffer utilisé par conky, par défaut/minimum: 256. Ce tampon est utilisé pour stocker les informations renvoyées par les variables. tester plusieurs valeurs pour choisir entre la quantité de variables affichées et les performances de conky</li>
+            <li><b>times_in_seconds</b> [yes ou no]: si yes, les variables de temps sont affichées en secondes. cette fonctions n'affecte pas $time, $tztime, ou $utime</li>
+            <li><b>top_cpu_separate</b> [yes ou no]: si yes, la variable 'top' renvoie l'usage d'1 processeur, si no, 'top' renvoi l'usage des processeurs combinés.</li>
+            <li><b>top_name_width</b> [nombre]: longueur des noms des processus renvoyés par 'top', par défaut: 15</li>
+            <li><b>total_run_times</b> [nombre]: nombre de rechargements de conky avant de quitter. 0 fait tourner conky indéfiniment</li>
+            <b><u>U</u></b>
+            <li><b>update_interval</b> [nombre (secondes)]: fréquence de rafraichissement de conky</li>
+            <li><b>update_interval_on_battery</b> [nombre (secondes)]: fréquence de rafraichissement de conky sur battery</li>
+            <li><b>uppercase</b> [yes ou no]: si yes, affiche les caractères en majuscules</li>
+            <li><b>use_spacer</b> [left,right,none]: ajoute un espace avant ou après certaines variables pour les empêcher de bouger. ne fonctionne qu'avec une police à chasse fixe</li>
+            <li><b>use_xft</b> [yes ou no]: si yes, conky utilise les polices 'xft', active l'anti-crenelage</li>
+            <b><u>X</u></b>
+            <li><b>xftalpha</b> [nombre (0~1)]: opacité de la police définie par 'xftfont', 0=transparent, 1=opaque</li>
+            <li><b>xftfont</b> [nom_de_la_police:size=nombre]: si 'use_xft yes', détermine la police par défaut utilisée par conky. ex: 'xftfont Terminus:pixelsize=10' - 'xftfont Aller:size=8:bold'</li>
+            <li><b>TEXT</b>: ici commence l'affichage des variables</li></ul>
+            <h3>les variables</h3>
+            <p><i>format:</i> <b>variable</b> [arguments]: description</p>
+            <b><u>A</u></b>
+            <ul><li><b>acpiacadapter</b>: indique l'état du chargeur acpi: branché/débranché</li>
+            <li><b>acpifan</b>: indique les infos du capteur acpi pour le ventilateur</li>
+            <li><b>acpitemp</b>: indique la temperature captée par acpi</li>
+            <li><b>addr</b> [interface]: adresse IP pour l'interface désignée, ex: '${addr eth0}'</li>
+            <li><b>addrs</b> [interface]: comme 'addr' pour linux seulement</li>
+            <li><b>adt746xcpu</b>: température du capteur therm_adt746x</li>
+            <li><b>adt746xfan</b>: vitesse du ventilateur captée par therm_adt746x</li>
+            <li><b>alignc</b> [nombre ('n'pixels)]: alignement du texte au centre de la ligne, avec un décallage de 'n'(en option), ex: '${alignc 10}'</li>
+            <li><b>alignr</b> [nombre ('n'pixels)]: alignement du texte à droite de la ligne, avec un décallage de 'n', ex: '${alignr 5}'</li>
+            <b><u>B</u></b>
+            <li><b>battery</b> [nom_de_la_batterie]: affiche le statut de la batterie et la charge en pourcentage, ex: '${battery BAT0}'</li>
+            <li><b>battery_bar</b> [hauteur,longueur][nom_de_la_batterie]: affiche une barre de progression de la charge de la batterie, ex: ${battery_bar 4,40 BAT0}'</li>
+            <li><b>battery_percent</b> [nom_de_la_batterie]: affiche la charge de la batterie en pourcentage, ex: '${battery BAT0}%'</li>
+            <li><b>battery_short</b> [nom_de_la_batterie]: affiche le statut de la batterie en format court et la charge en pourcentage</li>
+            <li><b>battery_time</b> [nom_de_la_batterie]: temps restant avant la (de)charge complète de la batterie</li>
+            <li><b>blink</b> ['text' ou 'variable']: fait clignoter 'text' et/ou 'conky_variables' au rhytme de 'update_interval'</li>
+            <li><b>buffers</b> [nombre (bytes)]: taille de la mémoire tampon</li>
+            <b><u>C</u></b>
+            <li><b>cached</b> [nombre (bytes)]: taille de la mémoire en cache</li>
+            <li><b>color</b> [#hexadécimal/couleur]: change la couleurdu texte qui suit, ex: '${color #01AB2C}${cpu cpu0}%${color}'. notez la variable '${color}' en fin de ligne pour rétablir la couleur par défaut.</li>
+            <li><b>colorN</b>: change la couleur du texte qui suit en utilisant un couleur prédéfinie par la fonction 'colorN'. ex: '${color1}${cpu cpu0}%${color2}${cpugraph cpu0 6,40}${color}'.</li>
+            <li><b>conky_build_arch</b>: architecture du processeur sur lequel conky a été construit</li>
+            <li><b>conky_build_date</b>: date à laquelle conky a été construit</li>
+            <li><b>conky_version</b>: version du conky utilisé</li>
+            <li><b>cpu</b> [cpu'x']: utilisation du/des processeur(s) 'x' en pourcentage. '${cpu}' ou '${cpu cpu0}', affiche l'utilisation totale des processeurs. '${cpu cpux}' ou x>=1, affiche l'utilisation individuelle des processeurs.</li>
+            <li><b>cpubar</b> [cpux hauteur,longueur]: affiche une barre d'état pour l'utilisation du/des processeur(s), ex: '${cpubar cpu0 10,60}'</li>
+            <li><b>cpugauge</b> [cpux hauteur,largeur]: affiche un compteur d'utilisation du/des processeurs 'x', ex: '${cpugauge cpu2 25,25}'</li>
+            <li><b>cpugraph</b> [hauteur,longueur couleur1 couleur2 scale -t -l]: affiche un graphique de progression de l'usage du/des processeurs. ex: '${cpugraph cpu0 20,120 222222 D7D7D7 -t}'</li>
+            <li><b>curl</b> [url temps (minutes)]: récupère des données d'une adresse 'url' à un intervalle 'temps', par défaut: 15 minutes</li>
+            <b><u>D</u></b>
+            <li><b>desktop</b>: numéro du bureau sur lequel conky est affiché</li>
+            <li><b>desktop_name</b>: nom du bureau sur lequel conky est affiché</li>
+            <li><b>desktop_number</b>: nombre total de bureaux sur lequel conky peut s'afficher</li>
+            <li><b>disk_protect</b> [disque]: état de protection du disque 'disque' si supporté par le noyau</li>
+            <li><b>diskio</b> [disque]: affiche la quantité de données en lecture/écriture sur le disque 'disque', ex: '${diskio /dev/sda}/s'.</li>
+            <li><b>diskio_read</b> [disque]: affiche la quantité de donnée en lecture sur le disque 'disque'</li>
+            <li><b>diskio_write</b> [disque]: affiche la quantité de donnée en écriture sur le disque 'disque'</li>
+            <li><b>diskiograph</b> [disque hauteur,longueur couleur1 couleur2 scale -t -l]: affiche un graphique de progression des données en lecture/écriture sur le disque 'disque'. ex: '${diskiograph /dev/sda3 15,70 ffffff 000000 -t}'</li>
+            <li><b>diskiograph_read</b> [disque hauteur,longueur couleur1 couleur2 scale -t -l]: affiche un graphique de progression des données en lecture sur le disque 'disque'</li>
+            <li><b>diskiograph_write</b> [disque hauteur,longueur couleur1 couleur2 scale -t -l]: affiche un graphique de progression des données en écriture sur le disque 'disque'</li>
+            <li><b>downspeed</b> [interface]: affiche la quantité de données téléchargées pour 'interface', ex: '${downspeed eth0}/s'</li>
+            <li><b>downspeedf</b> [interface]: affiche la quantitée de données téléchargées en KiB pour 'interface'</li>
+            <li><b>downspeedgraph</b> [interface hauteur,longueur couleur1 couleur2 scale -t -l]: affiche un graphique des données téléchargées pour 'interface', ex: '${downspeedgraph eth0 10,60 FFFFFF 000000}'</li>
+            <li><b>draft_mails</b> [maildir intervalle]: affiche le nombre de mails marqué comme brouillons dans 'maildir'</li>
+            <b><u>E</u></b>
+            <li><b>else</b>: texte à afficher si la condition “if” n'est pas valide, ex: '${if_up eth0}réseau ethernet disponible${else}pas de réseau ethernet${endif}'</li>
+            <li><b>endif</b>: fin un bloc 'if'/'else'</li>
+            <li><b>exec</b> [commande]: execute une commande au rhytme de 'update_interval',et affiche son résultat dans conky, ex: '${exec cat ~/todo | grep important}'. préférez la commande '$execi' pour préserver vos ressources. voir aussi "texec*"</li>
+            <li><b>execbar</b> [commande]: affiche une barre d'état de la 'commande' si celle-ci renvoie un résultat entre 0et100. les dimensions de la barre peuvent être réglées grâce à 'default_bar_size'</li>
+            <li><b>execgauge</b> [commande]: affiche un compteur d'état de la 'commande' si celle-ci renvoie un résultat entre 0et100. les dimensions du compteur peuvent être géglées grâce à 'default_gauge_size'</li>
+            <li><b>execgraph</b> [-t -l commande]: affiche un graphique d'état de la 'commande' si celle-ci renvoie un résultat entre 0et100. les dimensions du graphique peuvent être réglées grâce à 'default_graph_size'. si le premier argument est '-t' ou '-l', pensez à le faire précéder d'un espace ' '</li>
+            <li><b>execi</b> [intervalle commande]: idem que 'exec' mais la 'commande' se lance à un 'intervalle' spécifique. l''intervalle' doit être >= 'update_interval'. voir aussi '$texeci'.</li>
+            <li><b>execibar</b> [intervalle commande]: idem que 'execbar' mais la 'commande' se lance à un 'intervalle' spécifique</li>
+            <li><b>execigauge</b> [intervalle commande]: idem que 'execgauge' mais la 'commande' se lance à un 'intervalle' spécifique</li>
+            <li><b>execigraph</b> [-t -l commande]: idem que 'execgraph' mais la 'commande' se lance à un 'intervalle' spécifique</li>
+            <li><b>execp</b> [commande]: exécute une commande et affiche son résultat dans conky. accepte la syntaxe de conky. vous pouvez inclure des expressions telles que '${color1}text${color}' dans votre 'commande'</li>
+            <li><b>execpi</b> [intervalle commande]: idem que 'execp' mais la 'commande' se lance à un 'intervalle' spécifique</li>
+            <b><u>F</u></b>
+            <li><b>flagged_mails</b> [maildir intervalle]: affiche le nombre de mails 'marqués' dans 'maildir'</li>
+            <li><b>font</b> [nom_de_la_police:size=nombre]: spécifie une police particulière pour le texte qui suit, ex: '${font Terminus:pixelsize=10}${color1}heure:${time %I:%M}${font}${color}'. notez que '${font}' restaure la police par défaut</li>
+            <li><b>forwarded_mails</b> [maildir intervalle]: affiche le nombre de mails marqués comme 'transférés' dans 'maildir'</li>
+            <li><b>freq</b> [n]: affiche la fréquence du processeur 'n'>=1 en MHz.</li>
+            <li><b>freq_g</b> [n]: affiche la fréquence du processeur 'n'>=1 en GHz.</li>
+            <li><b>fs_bar</b> [hauteur,longeur fs]: affiche une barre d'état pour l'occupation de 'fs', ex: '${fs_bar /home/arp 6,20}'</li>
+            <li><b>fs_bar_free</b> [hauteur,longeur fs]: affiche une barre d'état pour l'espace libre sur 'fs'</li>
+            <li><b>fs_free</b> [fs]: affiche l'espace disponible sur 'fs', ex: ${fs_free /media/backup/}'</li>
+            <li><b>fs_free_perc</b> [fs]: affiche le pourcentage d'espace disponible sur 'fs'</li>
+            <li><b>fs_size</b> [fs]: affiche la taille de 'fs'</li>
+            <li><b>fs_type</b> [fs]: affiche le type de système de fichiers de 'fs' (ext2,ext3,ext4,vfat,ntfs..)</li>
+            <li><b>fs_used</b> [fs]: affiche l'espace utilisé sur 'fs'</li>
+            <li><b>fs_used_perc</b> [fs]: affiche le pourcentage d'espace utilisé sur 'fs'</li>
+            <b><u>G</u></b>
+            <li><b>gid_name</b> [gid]: affiche le groupe correspondant à 'gid'</li>
+            <li><b>goto</b> [x]: déplace le prochain élément au pixel 'x'</li>
+            <li><b>gw_iface</b>: affiche l'interface du router ou 'multiple' ou 'aucun' selon l'état</li>
+            <li><b>gw_ip</b>: affiche l'IP de la passerelle par défaut ou 'multiple' ou 'aucune' selon l'état</li>
+            <b><u>H</u></b>
+            <li><b>hddtemp</b> [disque]: affiche la température du 'disque'. nécessite que le démon hddtemp soit lancé et accessible par l'utilisateur</li>
+            <li><b>head</b> [fichier nombre check]: affiche les 'n'(nombre) premières lignes du 'fichier' spécifié. l'intervalle de vérification est défini par 'check' en secondes, par defaut , check=2sec</li>
+            <li><b>hr</b> [nombre ('n'pixels)]: trace une ligne horizontale d'épaisseur 'n'</li>
+            <li><b>hwmon</b> [dev type n factor offset]: affiche les informations transmises par la sonde hwmon de sysfs (Linux2.6). 'dev' peut être ignoré si vous n'avez qu'un seul capteur. le type peut être 'in'/'vol' pour voltage, 'fan' ou 'temp'. 'n' est le numéro de la sonde (voir /sys/class/hwmon).'factor' et 'offset' sont optionnels et autorisent le recalcul des données entrantes</li>
+            <b><u>I</u></b>
+            <li><b>i2c</b> [dev type n factor offset]: affiche les informations transmises par la sonde i2s de sysfs (Linux2.6). 'dev' peut être ignoré si vous n'avez qu'un seul capteur. le type peut être 'in'/'vol' pour voltage, 'fan' ou 'temp'. 'n' est le numéro de la sonde (voir /sys/bus/i2c/devices/). 'factor' et 'offset' sont optionnels et autorisent le recalcul des données entrantes</li>
+            <li><b>ibm_brightness</b>: affiche la luminosité de l'écran des ordinateurs portables Ibm™</li>
+            <li><b>ibm_fan</b>: affiche la vitesse de rotation du ventilateur des ordinateurs portables Ibm™</li>
+            <li><b>ibm_temps</b> [nombre (0~7)]: affiche les températures 'n' des ordinateurs portables Ibm™. ex: 'T°cpu = ${ibm_temps 0}°C'. cpu:O, hdd:2, gpu:3</li>
+            <li><b>ibm_volume</b>: affiche le volume interne des ordinateurs portables Ibm™ (de 0~14)</li>
+            <li><b>iconv_start</b> [encodage entrée/sortie]: convertiseur d'encodage, utilise iconv, doit être stoppé avec 'iconv_stop'</li>
+            <li><b>iconv_stop</b>: arrêt de la conversion de l'encodage enclenchée par 'iconv-start'</li>
+            <li><b>if_empty</b> [variable]: si la 'variable' est vide, affiche tout entre '$if_empty' et son '$endif'</li>
+            <li><b>if_existing</b> [fichier expression]: si le 'fichier' existe, affiche tout entre '$if_exist' et son '$endif'. le second paramêtre est optionnel et rajoute une précision sur le fichier.</li>
+            <li><b>if_gw</b>: si il existe au moins une passerelle, affihe tout entre '$if_gw' et son '$endif'</li>
+            <li><b>if_match</b> [expression]: si 'expression' remplit les conditions, affiche tout entre '$if_match' et son '$endif'. ex: '${if_match “${ibm_temps 0}” >= “80” }${color red}${ibm_temps 0}°C${else}${color green}${ibm_temps 0}°C${endif}'.</li>
+            <li><b>if_mixer_mute</b> [mixer]: si le 'mixer' est en sourdine, affiche tout entre '$if_mixer_mute' et son '$endif', par défaut mixer=Master.</li>
+            <li><b>if_mounted</b> [point_de_montage]: si le 'point_de_montage' est monté, affiche tout entre '$if_mounted' et son '$endif'</li>
+            <li><b>if_mpd_playing</b>: si le serveur mpd est en lecture ou en pause, affiche tout entre '$if_mpd_playing' et son '$endif'</li>
+            <li><b>if_running</b> [processus]: si le 'processus' est en cours, affiche tout entre '$if_running' et son '$endif'</li>
+            <li><b>if_up</b> [interface]: si 'interface' est active, affiche tout entre '$if_up' et son '$endif'. voir aussi 'if_up_strictness'</li>
+            <li><b>if_updatenr</b> [nombre d'updates 'n']: si conky s'est relancé 'n' fois, affiche tout entre '$if_updatenr' et son '$endif'</li>
+            <li><b>image</b> [adresse -p x,y -s LxH -n -f intervalle]: affiche l'image selon son 'adresse' à la position -p ou 'x' est le décallage horizontal en pixels depuis le coin supérieur gauche de conky, et 'y' le décallage vertical. possibilité de '-s' redimensionner l'image en indiquant sa 'L'argeur et sa 'H'auteur, de ne pas mettre l'image en cache '-n', ou de vider le cache '-f' à un 'intervalle' déterminé</li>
+            <li><b>imap_messages</b>: affiche le nombre de message dans votre boîte mail IMAP (voir imap). vous pouvez définir des boîtes IMAP individuelles avec les arguments suivants: “host user pass [-i interval] [-p port] [-e command]”. Port par défaut : 110, intervalle par défaut : 5 minutes. Si le mot de passe est '*', il vous sera demander au démarrage de Conky</li>
+            <li><b>imap_unseen</b>: idem que 'imap_messages' pour les nauveaux messages</li>
+            <li><b>include</b> [adresse]: prend en compte le ficher indiqué par 'adresse', les fonctions se rajoutent aux fonctions du conky en cours, les avariables se placent à l'endroit où 'include' est lancé</li>
+            <b><u>K</u></b>
+            <li><b>kernel</b>: affiche la version du kernel utilisé</li>
+            <b><u>L</u></b>
+            <li><b>laptop_mode</b>: retourne les valeurs de /proc/sys/vm/laptop_mode</li>
+            <li><b>lines</b> [fichier]: affiche le nombre de lignes contenues dans le 'fichier'</li>
+            <li><b>loadavg</b> [1,2,3]: affiche la charge moyenne processeur; 1=dernière minute, 2=dernières 5 minutes, 3=dernières 15 minutes</li>
+            <li><b>loadgraph</b> [hauteur,longueur couleur1 couleur2 scale -t -l]: affiche un graphique de progression de la charge moyenne système</li>
+            <b><u>M</u></b>
+            <li><b>machine</b>: affiche l'architecture du noyau, ex: i686</li>
+            <li><b>mails</b> [boîte_mail intervalle]: affiche le nombre de messages de votre 'boîte_mail' mbox et maildir supportés</li>
+            <li><b>mboxscan</b> [-n 'nombre_de_messages' -fw 'longueur du mail' -sm 'longueur_du_sujet' mbox]: affiche un résumé des 'n' derniers messages de 'mbox', ex: '${mboxscan -n 10 "/home/arp/mailbox"}'</li>
+            <li><b>mem</b>: affiche la quantité de mémoire vive utilisée</li>
+            <li><b>membar</b> [hauteur,longueur]: affiche une barre d'état de l'utilisation de la mémoire vive</li>
+            <li><b>memeasyfree</b>: affiche la quantité de mémoire vive disponible, en incluant buffer/cache</li>
+            <li><b>memfree</b>: affiche la quantité de mémoire vive disponible</li>
+            <li><b>memgauge</b> [hauteur,largeur]: affiche un compteur d'état de la quantité de mémoire vive utilisée</li>
+            <li><b>memgraph</b> [hauteur,longueur couleur1 couleur2 scale -t -l]: affiche un graphique de la progression d'utilisation de la mémoire vive</li>
+            <li><b>memmax</b>: affiche la quantité maximale de mémoire vive</li>
+            <li><b>memperc</b>: affiche le pourcentage d'utilisation de la mémoire vive</li>
+            <li><b>mixer</b> [sortie]: affiche le volume de 'sortie' du mixer, par défaut sortie=Master mais vous pouvez utiliser tout autre canal</li>
+            <li><b>mixerbar</b> [sortie]: affiche une barre d'état du volume de 'sortie'</li>
+            <li><b>mixerl</b> [sortie]: affiche le volume gauche de 'sortie'</li>
+            <li><b>mixerlbar</b> [sortie]: affiche une barre d'état du volume gauche de 'sortie'</li>
+            <li><b>mixerr</b> [sortie]: affiche le volume droit de 'sortie'</li>
+            <li><b>mixerrbar</b> [sortie]: affiche une barre d'état du volume droit de 'sortie'</li>
+            <li><b>moc_album</b>: affiche l'album courrant en lecture dans moc</li>
+            <li><b>moc_artist</b>: affiche l'artiste en lecture dans moc</li>
+            <li><b>moc_bitrate</b>: affiche le debit du morceau en lecture dans moc</li>
+            <li><b>moc_curtime</b>: affiche le temps courant du morceau en lecture dans moc</li>
+            <li><b>moc_file</b>: affiche le nom complet du fichier en lecture dans moc</li>
+            <li><b>moc_rate</b>: affiche le classement du morceau en lecture dans moc</li>
+            <li><b>moc_song</b>: affiche le nom du morceau en lecture dans moc</li>
+            <li><b>moc_state</b>: affiche l'état de moc, 'en lecture' 'en pause' 'stoppé'...</li>
+            <li><b>moc_timeleft</b>: affiche le temps restant dans le morceau en lecture dans moc</li>
+            <li><b>moc_title</b>: affiche le titre du morceau en lecture dans moc</li>
+            <li><b>moc_totaltime</b>: affiche la durée totale du morceau en lecture dans moc</li>
+            <li><b>monitor</b>: affice le numéro du moniteur sur lequel tourne conky</li>
+            <li><b>monitor_number</b>: affiche le nombre de moniteurs</li>
+            <li><b>mpd_album</b>: affiche l'album en lecture dans mpd</li>
+            <li><b>mpd_artist</b>: affiche l'artiste en lecture dans mpd</li>
+            <li><b>mpd_bar</b> [hauteur,longueur]: affiche une barre d'état du morceau en lecture dans mpd</li>
+            <li><b>mpd_bitrate</b>: affiche le debit du morceau en lecture dans mpd</li>
+            <li><b>mpd_elapsed</b>: affiche le temps restant de la lecture en cours dans mpd</li>
+            <li><b>mpd_file</b>: affiche le nom complet du fichier en lecture dans mpd</li>
+            <li><b>mpd_length</b>: affiche la durée du morceau en lecture dans mpd</li>
+            <li><b>mpd_name</b>: affiche le nom du morceau en lecture dans mpd</li>
+            <li><b>mpd_percent</b>: affiche le pourcentage de progression du morceau en lecture dans mpd</li>
+            <li><b>mpd_random</b>: affiche le statut du mode aléatoire</li>
+            <li><b>mpd_repeat</b>: affiche le statut du mode répétition</li>
+            <li><b>mpd_smart</b>[nombre 'n']: affiche le nom, sous la forme 'artiste - titre' selon les informations disponibles. taille maxi='n'</li>
+            <li><b>mpd_status</b>: affiche le statut de mpd</li>
+            <li><b>mpd_title</b> [nombre 'n']: : affiche le titre du morceau en lecture dans mpd. taille maxi='n'</li>
+            <li><b>mpd_track</b>: affiche le numéro du morceau en lecture dans mpd</li>
+            <li><b>mpd_vol</b>: affiche le volume de mpd</li>
+            <b><u>N</u></b>
+            <li><b>nameserver</b> [index]: affiche les informations de 'nameserver', voir /etc/resolv.conf</li>
+            <li><b>new_mails</b> [boîte_mail intervalle]: affiche le nombre de messages non-lus dans votre 'boîte_mail', vérifié tous le 'intervalles' en minutes</li>
+            <li><b>nodename</b>: affiche le nom d'hôte du système</li>
+            <li><b>nvidia</b> [threshold temp ambient gpufreq memfreq imagequality]: affiche les informations relative à votre carte grapique nvidia™</li>
+            <b><u>O</u></b>
+            <li><b>offset</b> [nombre (pixels)]: déplace le prochain élément de 'n' pixels</li>
+            <li><b>outlinecolor</b> [hexadécimal/couleur]: change la couleur du contour de la police</li>
+            <b><u>P</u></b>
+            <li><b>pb_battery</b> [status,percent,time]: affiche des informations sur la batterie des pwerbook/ibook™</li>
+            <li><b>platform</b> [dev type n factor offset]: affiche les informations transmises par la sonde platform de sysfs (Linux2.6). 'dev' peut être ignoré si vous n'avez qu'un seul capteur. le type peut être 'in'/'vol' pour voltage, 'fan' ou 'temp'. 'n' est le numéro de la sonde (voir /sys/bus/platform/devices/). 'factor' et 'offset' sont optionnels et autorisent le recalcul des données entrantes</li>
+            <li><b>pop3_unseen</b>: affiche le nombre de message dans votre boîte mail POP3 (voir pop3). vous pouvez définir des boîtes pop3 individuelles avec les arguments suivants: “host user pass [-i interval] [-p port] [-e command]”. Port par défaut : 110, intervalle par défaut : 5 minutes. Si le mot de passe est '*', il vous sera demander au démarrage de Conky</li>
+            <li><b>pop3_used</b>: affiche l'espace utilisé dans votre boîte mail POP3 (voir pop3). vous pouvez définir des boîtes pop3 individuelles avec les arguments suivants: “host user pass [-i interval] [-p port] [-e command]”. Port par défaut : 110, intervalle par défaut : 5 minutes. Si le mot de passe est '*', il vous sera demander au démarrage de Conky</li>
+            <li><b>pre_exec</b> [shell commande]: execute une commande une fois avant que conky n'affiche quoi que ce soit, puis affiche le résultat dans la zone TEXT</li>
+            <li><b>processes</b>: nombre total de processus (actif/au repos)</li>
+            <b><u>R</u></b>
+            <li><b>read_tcp</b> [hôte port]: affiche les caractères visibles en se connectant via 'hôte' sur 'port' tcp</li>
+            <li><b>replied_mails</b> [maildir intervalle]: nombre de mails auxquels vous avez répondus dans votre 'maildir'</li>
+            <li><b>rss</b> [adresse intervalle action nombre'n' space_in_front]: télécharge les flux rss à un 'intervalle' déterminé (par défaut 15 minutes), et renvoi les 'actions': feed_title, item_title('n'), item_desc('n'), 'item_titles'. possibilité d'utiliser 'spaces_in_front' pour ajouter un espace avant chaque 'action'. ex(archwiki): '${rss http://planet.archlinux.org/rss20.xml 1 item_titles 10 }', affichera les dix premiers articles de archlinux planet</li>
+            <li><b>running_processes</b>: affiche le nombre de processus actifs</li>
+            <li><b>running_threads</b>: affiche le nombre de tâches en cours</li>
+            <b><u>S</u></b>
+            <li><b>scroll</b> [longueur('l') step text]: affiche un 'text' défilant de 'l' caractères avec un défilement de 'step' caractères. 'text' peut contenir des variables, si une variable renvoi plusieurs lignes, elles seront placées à la suite avec un "|" de séparation. si vous changer la couleur , elle sera restaurée à la fin de '$scroll'. la fin et le début de 'text' sont séparés par 'l' espaces</li>
+            <li><b>seen_mails</b> [maildir intervalle]: affiche le nombre de mails marqués comme "lus" dans votre 'maildir'</li>
+            <li><b>shadecolor</b> [hexadécimal/couleur]: change la couleur de l'ombre des textes/graphs/bordures</li>
+            <li><b>sony_fanspeed</b>: affiche la vitesse de rotation des ordinateurs portables SonyVAIO™</li>
+            <li><b>stippled_hr</b> ['n' pixels]: trace une ligne horizontale en pointillés d'épaisseur 'n'</li>
+            <li><b>swap</b>: affiche l'utilastion de l'espace d'échange 'swap'</li>
+            <li><b>swapbar</b> [hauteur,longueur]: affiche une barre d'état de l'utilisation de la swap</li>
+            <li><b>swapfree</b>: affiche la place disponible dans la swap</li>
+            <li><b>swapmax</b>: affiche la taille totale de la swap</li>
+            <li><b>swapperc</b>: affiche le pourcentage d'utilisation de la swap</li>
+            <li><b>sysname</b>: affiche le nom du système, ex: Linux</li>
+            <b><u>T</u></b>
+            <li><b>tab</b> [longueur'l',debut]: insère une tabulation de 'l' pixels commencant à la colonne 'début'</li>
+            <li><b>tail</b> [fichier 'n'lignes check]: affiche les 'n' dernières lignes du 'fichier' vérifié tous les 'check'</li>
+            <li><b>tcp_portmon</b>: moniteur de ports TCP. Les numéros de port doivent doivent être dans l'intervalle 1 à 65535. Les arguments possibles sont: 'count' nombre total de connexions dans l'intervalle spécifié, 'rip' adresse ip distante, 'rhost' nom de l'hôte distant, 'rport' numéro du port distant, 'rservice' nom du service distant (depuis /etc/services), 'lip' adresse ip locale, 'lhost' nom de l'hôte local, 'lport' numéro du port local, 'lservice' nom du service local (depuis /etc/services).<br />
+            L'index de connexion fournit l'accès à chaque connexion au moniteur de port. Celui-ci vous retourne les informations pour des valeurs d'index comprises entre les connexions 0 et n-1. Les valeurs au-dessus de n-1 sont ignorées. Pour l'argument 'count', l'index de connection ne doit pas être spécifié mais est requis pour tous les autres arguments. Examples:<br />
+            '${tcp_portmon 6881 6999 count}' affiche le nombre de connexions dans la plage d'ip bittorrent.<br />
+            '${tcp_portmon 22 22 rip 0}' affiche l'adresse ip distante de la première connexion ssh<br />
+            '${tcp_portmon 22 22 rip 9}' affiche l'adresse ip distante de la dixième connexion ssh<br />
+            '${tcp_portmon 1 1024 rhost 0}' affiche le nom d'hôte distant de la première connexion sur le port indiqué (1024 ici)<br />
+            '${tcp_portmon 1 1024 rport 4}' affiche le port distant de la cinquième connexion sur le port indiqué<br />
+            '${tcp_portmon 1 65535 lservice 14}' affiche le nom du service local de la quinzième connexion dans la plage complète (1 à 65535)<br />
+            NB: les variables du moniteur de port qui partage le même port font référence au même moniteur, ainsi plusieurs références à une plage particulière pour différentes infos et différents index utilisent en interne le même moniteur. Autrement dit Conky ne crée pas de moniteurs redondants</li>
+            <li><b>texeci</b> [intervalle commande]: exécute 'commande' toutes les 'intervalle' secondes et affiche la sortie. idem que $execi, excepté que la commande est exécutée dans une tâche porpre. utilisez cette variable si vous avez un script assez lent afin que Conky continue le rafraîchissement. mettez un intervalle plus long que le temps d'éxécution que votre script.</li>
+            <li><b>threads</b>: affiche le nombre total de tâches</li>
+            <li><b>time</b> [format]: affiche la date, l'heure… voir 'man stfrtime'</li>
+            <li><b>to_bytes</b> [nombre]: si 'nombre' est suivi d'une unités de meure(KiB,MB,GiB..), il est convertit en bytes sans unités</li>
+            <li><b>top</b> [type numéro]: classement (de 1~10) des processus selon leur utilisation processeur. les 'types' sont: 'name','pid','cpu','mem','mem_res','mem_vsize','time','io_perc','io_read','io_write'.</li>
+            <li><b>top_io</b> [type numéro]: idem que 'top' mais les processus sont classés par la quantité de données en lecture/écriture pendant l'intervalle de lecture</li>
+            <li><b>top_mem</b> [type numéro]: idem que 'top' mais les processus sont classés par leur taux d'occupation mémoire</li>
+            <li><b>top_time</b> [type numéro]: idem que 'top' mais les processus sont classés par leur temps cpu</li>
+            <li><b>totaldown</b> [interface]: affiche la quantité totale de données téléchargées (limité à 4GB)</li>
+            <li><b>trashed_mails</b> [maildir intervalle]: affiche le nombre de mails dans la poubelle de 'maildir'</li>
+            <li><b>tztime</b> [timezone format]: idem que 'time' mais pour un fuseau horraire spécifique. voir /usr/share/zoneinfo</li>
+            <b><u>U</u></b>
+            <li><b>uid_name</b> [uid]: affiche le nom de l'utisateur 'uid'</li>
+            <li><b>unflagged_mails</b> [maildir intervalle]: affiche le nombre de mails non classée dans 'maildir'</li>
+            <li><b>unforwarded_mails</b> [maildir intervalle]: affiche le nombre de mails classés non transférés dans 'maildir'</li>
+            <li><b>unreplied_mails</b> [maildir intervalle]: affiche le nombre de mails classés sans réponses dans 'maildir'</li>
+            <li><b>unseen_mails</b> [maildir intervalle]: affiche le nombre de nouveaux mails dans 'maildir'</li>
+            <li><b>updates</b> [nombre d'updates]: pour le débug</li>
+            <li><b>upspeed</b> [interface]: affiche la quantité de données téléversées pour 'interface'</li>
+            <li><b>upspeedf</b> [interface]: affiche la quantité de données téléversées en KiB avec une décimale pour 'interface'</li>
+            <li><b>upspeedgraph</b> [interface hauteur,longueur couleur1 couleur2 scale -t -l]: affiche un graphique des données téléversées pour 'interface', ex: '${upspeedgraph wlan0 10,60 FFFFFF 000000}'</li>
+            <li><b>uptime</b>: affiche le temps de connexion</li>
+            <li><b>uptime_short</b>: affiche le temps de connexion en format court</li>
+            <li><b>user_names</b>: affiche le nom des utilisateurs connectés</li>
+            <li><b>user_number</b>: affiche le nombre d'utilisateurs connectés</li>
+            <li><b>user_terms</b>: affiche une liste des consoles en utilisation</li>
+            <li><b>user_times</b>: affiche les temps de connexion des utilisateurs</li>
+            <li><b>user_time</b> [console]: affiche le temps de connexion de l'utilisateur connecté en 'console'</li>
+            <li><b>utime</b> [format]: affiche l'heure UTC</li>
+            <b><u>V</u></b>
+            <li><b>voffset</b> [nombre'n' (pixels)]: décallage vertical de 'n' pixels pour l'élément suivant</li>
+            <li><b>voltage_mv</b> ['n']: affiche la consommation du cpu 'n' en mVolt</li>
+            <li><b>voltage_v</b> ['n']: affiche la consommation du cpu 'n' en Volt</li>
+            <b><u>W</u></b>
+            <li><b>wireless_ap</b> [interface]: affiche le point d'accès MAC du réseau</li>
+            <li><b>wireless_bitrate</b> [interface]: affiche le débit du réseau sans-fil</li>
+            <li><b>wireless_essid</b> [interface]: affiche le point d'accès ESSID du réseau</li>
+            <li><b>wireless_link_bar</b> [hauteur,longueur interface]: affiche une barre d'état de la qualité du réseau</li>
+            <li><b>wireless_link_qual</b> [interface]: affiche la qualité du signal sans-fil</li>
+            <li><b>wireless_link_qual_max</b> [interface]: affiche la qualité maximale du signal disponible sur le réseau</li>
+            <li><b>wireless_link_qual_perc</b> [interface]: affiche la qualité du signal en pourcentage</li>
+            <li><b>wireless_mode</b> [interface]: affiche le mode du réseau (Managed/Ad-Hoc/Master)</li>
+            <li><b>words</b> [fichier]: affiche le nombre de mots dans le 'fichier'</li>
+            </ul>
+            <p>&nbsp;</p>
+            <p><i><b>Happy Conkying !!</b></i></p>
+            </div>
+        </div>
+    </div>
+    <div id="footer">centre d'aide livarp_0.4 - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

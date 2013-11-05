@@ -1,0 +1,51 @@
+##############################################
+#  Settings
+##############################################
+background yes
+use_xft yes
+#xftfont Aller Light:pixelsize=14
+xftfont Zero Twos:pixelsize=11
+xftalpha 0.8
+update_interval 1.0
+total_run_times 0
+own_window yes
+own_window_transparent no
+own_window_colour gray25
+own_window_type override
+own_window_title Infos System
+double_buffer yes
+minimum_size 99 10
+maximum_width 99
+draw_shades no
+draw_outline no
+draw_borders yes
+border_inner_margin 0
+border_width 1
+draw_graph_borders yes
+default_color 005885
+default_shade_color black
+default_outline_color gray
+alignment tl
+gap_x 6
+gap_y 5
+no_buffers yes
+uppercase no
+text_buffer_size 1024
+imlib_cache_size 0
+cpu_avg_samples 2
+show_graph_scale no
+show_graph_range no
+short_units yes
+override_utf8_locale yes
+use_spacer left
+if_up_strictness address
+##############################################
+#  Output
+##############################################
+TEXT
+${alignc}${color gray80}${voffset 2}LIVARP   DEBIAN
+${voffset -5}$hr
+ ${cpubar 11,60 222222 D7D7D7}${voffset 1}${alignr 3}${cpu}%
+${voffset +5} ${membar 11,60 222222 D7D7D7}${voffset 1}${alignr 3}${memperc}%
+${voffset -4}$hr
+${voffset -2}${goto 6}${time %d/%m} ${alignr 3}${time %I:%M}

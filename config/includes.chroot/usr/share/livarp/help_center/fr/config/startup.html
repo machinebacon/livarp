@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Centre d'Aide Livarp - scripts de lancement</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang fr|<a href="../../us/config/startup.html">gb</a></h2><h1><a href="../../index-fr.html" title="retour au menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>démarrage</h1>
+            <p>les applications au démarrage du livarp sont lancées depuis deux types de fichiers: votre <b>~/.xinitrc</b> et les scripts de type 'autostart' dans votre <b>~/bin/start/*_start.sh</b>.</p>
+            <h2>~/.zprofile</h2>
+            <p>livarp_0.4 ne lance pas de session graphique par défaut et vous laisse le choix de rester en console avec dvtm.<br />
+            si vous souhaitez lancer votre sélecteur de session en mode automatique, sans passer par le sélecteur en console, il faut éditer le fichier ~/.zprofile pour obtenir un résultat de ce type</p>
+                <pre class="blockquote">
+# Si on est dans une console, et qu'aucune instance de X n'est détecté,
+# demander si startx doit être lancé
+#if [[ -t 0 && $(tty) =~ /dev/tty1 ]] && ! pgrep -u $USER startx &> /dev/null; then
+#    clear
+#    echo
+#    echo -e "${cyan}welcome to ${red}Debian${cyan} livarp system"
+#    echo
+#    echo -e "${red}           ------------------------------"
+#    echo -e "${red}           $NC Debian GNU/Linux livarp 04$NC"
+#    echo -e "${red}           ------------------------------"
+#    echo -e "${red} ${yellow} informations systeme"
+#    echo -e "${red} ${yellow} $NC `uname -a`"
+#    echo -e "${red} ${green} statistiques"
+#    echo -e "${red} ${green} $NC`uptime`"
+#    echo -e "${red} ----------------------------------------$NC"
+#    echo ""
+#    echo ""
+#    echo -e " ${BLUE} on lance la session X [O|n] ?  ${blue}>>$NC"
+#    read a
+#	if [ "$a" = "n" ] || [ "$a" = "N" ];then
+#        clear
+#        echo ""
+#		echo -e "${green}if there is a shell ... there is a way$NC"
+#		echo ""
+#        ## console layout config # safe to remove after installation
+#        ## ---------------------------------------------------------
+#        if [ -d /home/human ];then
+#            echo -e "${cyan} selection du clavier:"
+#            echo -e " ---------------------------$NC"
+#            echo ""
+#            echo " f : fr"
+#            echo " b : be"
+#            echo " e : es"
+#            echo " r : ru"
+#            echo " k : uk"
+#            echo " u : us"
+#            echo " d : de"
+#            echo ""
+#            echo -e "${cyan} entrer la lettre de votre disposition >>$NC"
+#            read kb
+#            case $kb in
+#                f) sudo loadkeys fr-pc ;;
+#                b) sudo loadkeys be-latin1 ;;
+#                e) sudo loadkeys es ;;
+#                r) sudo loadkeys ru ;;
+#                k) sudo loadkeys uk ;;
+#                u) sudo loadkeys us ;;
+#                d) sudo loadkeys de ;;
+#                *) sudo loadkeys us ;;
+#            esac
+#            ## launch dvtm console manager
+#            ## ---------------------------
+#            dvtm h
+#        fi
+#    else
+#        startx
+#    fi
+#fi
+
+# startx automatique
+if [[ -t 0 && $(tty) =~ /dev/tty1 ]] && ! pgrep -u $USER startx &> /dev/null; then
+    startx
+fi</pre>
+            <h2>~/.xinitrc</h2>
+            <p>ce fichier lu par xinit permet de lancer l'interface graphique X et de lancer les paramêtres communs aux 12 sessions du livarp. c'est ici que vous pourrez configurer votre double écran, votre touchpad, votre écran d'accueil et aussi choisir de tranformer livarp 12sessions en single-session rapidement sans toucher aux dossiers système.</p>
+            <ul>
+            <li><b>dualscreen:</b> toutes les sessions du livarp supportent le double-écran. afin d'en faciliter la gestion, un script d'auto-détection est placé dans votre dossier ~/bin (à éditer selon votre configuration). il vous suffit ensuite de décommenter l'entrée concerné dans votre fichier ~/.xinitrc.</li>
+            <li><b>touchpad:</b> pour les utilisateurs d'ordinateur portable, la configuration du touchpad/trackpad est assuré par synclient. la frappe sur le *pad est désactivée par défaut. afin de modifier ces réglages, il vous suffit d'éditer votre fichier ~/.xinitrc. pour plus de précisions sur les options possibles, man synclient.
+            </li>
+            <li><b>single session:</b> si vous utilisez régulièrement la même session, vous pouvez éditer ~/.xinitrc afin de lancer cette session directement sans passer par le session-selector. le fichier est prévu pour ça:
+                <p class="blockquote">## launch single session ##<br />
+                ## replace "your-wm" by your favorite window-manager<br />
+                #exec ck-launch-session ~/bin/start/your-wm_start.sh<br />
+                <br />
+                ## launch session selector script<br />
+                exec /usr/local/bin/dmenu-start.sh</p>
+            </li>
+            </ul>
+            <h2>script autostart</h2>
+            <p>les 12 sessions du livarp sont lancées par des script placés dans votre dossier ~/bin/start/.<br />
+            excepté pour la session openbox qui utilise son propre fichier autostart (~/.config/openbox/autostart)<br />
+            et la session 'pure-dwm' lancée directement après le xinitrc.<br />
+            si vous désirez modifier les applications lancées au démarrage de vos sessions, il vous suffit d'éditer ces scripts. des entrées de menu vous permettent de le faire dans chaque session.</p>
+            <p>notez que livarp n'utilise pas les fichiers de type “autostart” traditionnels de Pekwm et Fluxbox, mais rien ne vous empêche de vous en servir.<br />
+            notez que openbox utilise son propre script ~/.config/openbox/autostart.</p>
+            </div>
+        </div>
+    </div>
+    <div id="footer">centre d'aide livarp_0.4 - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

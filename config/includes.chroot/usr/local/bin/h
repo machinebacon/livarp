@@ -1,0 +1,46 @@
+#! /bin/bash
+# dvtm h file
+###################
+
+## colors --------------------------------------------------------------
+green='\e[0;32m'      # green on default
+bGREEN='\e[0;42;30m'  # black on green
+red='\e[0;31m'        # red on default
+bBLUE='\e[0;44;30m'   # black on blue
+blue='\e[0;34m'       # blue on default
+bCYAN='\e[46;30m'     # black on cyan
+cyan='\e[0;36m'       # cyan on default
+yellow='\e[0;33m'     # yellow on default
+## No Color
+NC='\e[0m'
+## background colors ---------------------------------------------------
+RED='\e[41m'
+BLUE='\e[44m'
+CYAN='\e[46m'
+GREEN='\e[42m'
+YELLOW='\e[43m'
+## output --------------------------------------------------------------
+clear
+echo ""
+echo -e "     ${green}-- welcome to livarp_0.4 --$NC"
+echo ""
+echo -e "     ${BLUE} available commands $NC"
+echo ""
+echo -e "  ${bGREEN} file manager    $NC ranger"
+echo -e "  ${bGREEN} editor          $NC vim & nano"
+echo -e "  ${bGREEN} web browser     $NC links2"
+echo -e "  ${bGREEN} irc client      $NC weechat-curses"
+echo -e "  ${bGREEN} zik-player      $NC mocp"
+echo -e "  ${bGREEN} radio-player    $NC cli_radio"
+echo -e "  ${bGREEN} volume control  $NC alsamixer"
+echo -e "  ${bGREEN} lock            $NC vlock"
+echo ""
+echo -e "  ${bBLUE} monitor      $NC htop"
+echo -e "  ${bBLUE} session      $NC screen"
+echo -e "  ${bBLUE} unarchiver   $NC extract"
+echo ""
+echo -e " ${green} to display dvtm help, hit [h]+Enter"
+echo -e " ${red} to display dvtm keys, hit [k]+Enter$NC"
+echo -n " hit Enter to leave"
+read anykey
+exit 0

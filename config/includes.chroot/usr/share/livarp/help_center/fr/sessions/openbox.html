@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Centre d'Aide Livarp - session openbox</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang fr|<a href="../../us/sessions/openbox.html">gb</a></h2><h1><a href="../../index-fr.html" title="retour au menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>la session openbox</h1>
+            <p>Openbox est un gestionnaire de fenêtres léger et ultra configurable utilisant le langage xml pour sa configuration. Openbox se préoccupe de la gestion de vos fenêtres à l'écran – rien d'autre. Cela signifie qu'installer Openbox ne vous donne pas accès à un menu pour choisir votre fond d'écran, une barre de tâche ni un “panel” intégré. Il vous donne en revanche l'opportunité d'ajouter d'autres programmes pour exécuter ces tâches – et souvent de manière plus configurable pour votre bureau.<br />
+            c'est le cas sur livarp avec tint2 comme panel par défaut, fbpanel comme menu alternatif et conky en mode fenêtré.</p>
+            <h2>screenshot</h2>
+            <a href="../../pics/livarp_04_openbox.png"><img src="../../pics/livarp_04_openbox_thb.png" /></a>
+            <h2>lancement</h2>
+            <p>openbox est lancé par le script session-selector qui renvoi au fichier ~/.config/openbox/autostart.<br />
+            pour changer vos applications lancées au démarrage, éditer ce fichier: <text class="blockquote">vim  ~/.config/openbox/autostart</text> ou depuis le menu openbox:section config:openbox:éditer le script de lancement</p>
+            <h2>composants</h2>
+            <p>la session openbox se compose de pusieurs éléments
+            <ul><li><b>conky:</b> s'affiche à gauche de votre écran en mode fenêtré, cad qu'il se comporte comme une fenêtre classique. configurable depuis ~/.conky/conkyrc_openbox ou depuis le menu openbox: section config:conky</li>
+                <li><b>Menu livarp:</b> disponible depuis le coin supérieur gauche de l'écran et géré par fbpanel. il inclut les applications livarp, le menu de configuration d'openbox et le systay (configuré depuis ~/.config/fbpanel/default ou depuis le menu lui-même).</li>
+                <li><b>tint2:</b> le panel par défaut de cette session, configurable depuis ~/.config/tint2/tint2rc, depuis le menu openbox, section config:tint2, ou depuis le menu livarp section wms:openbox:tint2.</li>
+            </ul></p>
+            <h2>configuration</h2>
+            <p>pour <b>conky</b>, il faut éditer son conkyrc: <text class="blockquote">vim .conky/conkyrc_openbox</text>ou depuis le menu openbox section config:conky.</p>
+            <p>pour <b>fbpanel</b>, il faut éditer son fichier de configuration <text class="blockquote">vim .config/fbpanel/default</text>ou depuis le menu-lui-même section config:fbpanel:éditer le menu.<br />
+            si vous désirez ajouter des plugins, visitez la <a href="../config/menu.html">page dédiée</a>.</p>
+            <h3>configurer openbox depuis <b>obconf</b> et <b>obmenu</b> en mode graphique</h3>
+            <p>disponibles depuis le menu openbox:section config:openbox:obconf/obmenu:
+            <ul><li>obconf dispose de plusieurs onglets gérant tous une partie d'openbox. vous pourrez gérer les décorations des fenêtres Openbox, le thème des menus, la police utilisée<br />
+            les thèmes Openbox au format “obt” peuvent être installés ou créés depuis obconf.</li>
+                <li>obmenu gère graphiquement le menu openbox.</li></ul>
+            </p>
+            <h3>configurer openbox depuis son rc.xml</h3>
+            <p>la configuration d'openbox tient dans le fichier ~/.config/openbox/rc.xml.<br />
+            chaque section gère une partie d'openbox. petite explication des sections (une liste complète avec exemples est situé dans votre ~/docs/openbox.pdf):
+            <ul>
+                <li>resistance : La force avec laquelle une fenêtre résiste lorsqu'on la déplace contre un bord de l'écran ou contre une autre fenêtre.</li>
+                <li>focus : Paramètres de suivi des fenêtres (fenêtre active).</li>
+                <li>placement : Positionnement des fenêtres nouvellement ouvertes.</li>
+                <li>theme : Apparence gérée par Openbox.</li>
+                <li>desktops : Gestion des bureaux virtuels.</li>
+                <li>resize : Paramètres du redimensionnement.</li>
+                <li>margins : Paramètres des marges (empêche les fenêtres de recouvrir une certaine zone).</li>
+                <li>dock : Paramètres du dock (peut servir à Tint2 ou d'autres “dockapps”).</li>
+                <li>keyboard &amp; mouse : Paramètres des fonctions dédiées à des raccourcis clavier et souris. Voir le bas de la page pour une liste des raccourcis.</li>
+                <li>menu : Paramètres globaux du menu situé dans le fichier ~.config/openbox/menu.xml - plus de détail dans la section menu du wiki.</li>
+                <li>applications : Permet d'appliquer des règles aux applications voulues. On peut désigner une application de différentes façons (utiliser la commande “xprop” peut être utile):
+                <ul><li>application name=“nom_du_programme”</li>
+                <li>application class=“catégorie_du_programme</li></ul>
+                On peut utiliser “*” à la place du nom ou de la catégorie pour appliquer à tous les programmes. Ainsi, on indique une des deux lignes, puis en dessous la règle à appliquer. le fichier xml présente des exemples très explicites.</li>
+            </ul></p>
+            <h2>raccourcis clavier/souris</h2>
+            <p>les raccoucis d'openbox sont définis par son rc.xml. voici les raccoucis par défaut de la session openbox du livarp_0.4</p>
+            <h3>menus:</h3>
+                <ul><li>menu livarp: coin supérieur gauche de l'écran</li>
+                    <li>menu openbox: clic droit sur le bureau ou Super+m</li>
+                    <li>dmenu: Super+p</li>
+                </ul>
+            <h3>control:</h3>
+                <ul>
+                    <li>quitter openbox: Super+Shift+q, depuis le menu openbox:exit ou le menu livarp:exit</li>
+                </ul>
+            <h3>fenêtres:</h3>
+                <ul><li>fermer le client: Alt+F4</li>
+                    <li>client précédent/suivant: Alt+Tab</li>
+                    <li>maximiser/restaurer le client: double-clic sur la barre de titre</li>
+                    <li>redimensionner le client: Alt+clic-droit</li>
+                    <li>placer la fenêtre aux coins: Super+y/u/b/n</li>
+                </ul>
+            <h3>navigation:</h3>
+                <ul><li>bureau précédent/suivant: Ctrl+Alt+Gauche/Droite</li>
+                    <li>bureau 'x': Super+Fx</li>
+                </ul>
+            <h3>lanceurs:</h3>
+                <ul><li>lanceur de terminal par défaut: Ctrl+Enter</li>
+                    <li>lancer ranger: Super+r</li>
+                    <li>lancer rox-filer: Super+Shift+r</li>
+                    <li>lancer firefox: Super+w</li>
+                    <li>lancer geany: Super+e</li>
+                    <li>lecteur de musique: Super+z</li>
+                    <li>control du volume: Super+v</li>
+                    <li>afficher conky: Super+c</li>
+                    <li>afficher les raccourcis: Super+k</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="footer">centre d'aide livarp_0.4 - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

@@ -1,0 +1,5 @@
+#!/bin/sh
+# clone conky to statusbar use
+##############################
+set -e
+cp -a /usr/bin/conky /usr/local/bin/conkyd

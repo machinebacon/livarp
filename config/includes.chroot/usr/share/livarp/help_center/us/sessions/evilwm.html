@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Livarp Help Center - evilwm session</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang <a href="../../fr/sessions/evilwm.html">fr</a>|gb</h2><h1><a href="../../index.html" title="back to main menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>the evilwm session</h1>
+            <p><b>evil</b> is the minimal floating window-manager par excellence! no panel, no menu, no window decorations except for a 1px border, no shortcuts except for a terminal with [Ctrl+Alt+Return] keybind, nothing to disrupt the work ... as they said in the <a href="http://www.6809.org.uk/evilwm/">main page</a>: "'Minimalist' here doesn't mean it's too bare to be usable - it just means it omits a lot of the stuff that make other window managers unusable."</p>
+            <a href="../../pics/livarp_04_evilwm.png"><img src="../../pics/livarp_04_evilwm_thb.png" /></a>
+            <h2>startup</h2>
+            <p>evilwm is launched from the ~/bin/start.evil_start.sh script.<br />
+            to modify startup applications, simply edit this file: <text class="blockquote">vim bin/start/evil_start.sh</text> or from the evil menu:section config:evilwm:edit startup script</p>
+            <h2>components</h2>
+            <p>minimal evilwm session includes:
+            <ul><li><b>fbpanel:</b> with a menu and the systray. available from top-left corner.</li>
+                <li><b>conky:</b> in-line config to stay out-of-your-work, editable from its configuration file ~/.conky/conkyrc_evil <text class="blockquote">vim .conky/conkyrc_evil</text> or from the evilwm menu:section config:evil:conky</li>
+            </ul>
+            </p>
+            <h2>configuration</h2>
+            <p>evil accepts a configuration file (optionnal, livarp doesn't use it) but works with options passed as arguments:</p>
+            <p>how livarp launches evilwm
+            <pre class="blockquote">while true; do
+    evilwm -snap 10 -term urxvtcd -nosoliddrag 2> ~/.evilwm.log
+done</pre></p>
+            <p>meaning: launch evilwm in a loop with errors passed to a log file, terminal by default is urxvtc, snap distance=10px, and no solid drag window to preserve resources.</p>
+            <h3>evilwm options</h3>
+            <ul><li>-dis­play string : specifies the X display to run on</li>
+            <li>-term terminal_name : specifies an alternative program to run when spawning a new terminal</li>
+            <li>-fn font­name : specify a font to use when resizing or displaying window titles.</li>
+            <li>-fg #RRGGBB : frame colour of currently active window.</li>
+            <li>-fc #RRGGBB : frame colour of active fixed windows.</li>
+            <li>-bg #RRGGBB : frame colour of inactive windows.</li>
+            <li>-bw n_in_pixel : width of window borders in pixels.</li>
+            <li>-snap n_in_pixel- : enable snap-to-border support. num gives the proximity in pixels to snap to.</li>
+            <li>-mask1 modi­fiers* : [Ctrl][Alt] by default</li>
+            <li>-mask2 modi­fiers* : [Alt] by default</li>
+            <li>-alt­mask modi­fier* : [Shift] by default</li>
+            <li>-app name/class : match an application by instance name and class (for help in finding these, use the xprop tool to extract the WM_CLASS property). Subsequent -geometry, -dock, -vdesk and -fixed options will apply to this match.</li>
+            <li>-g geo­me­try : apply a geometry (using a standard X geometry string) to applications matching the last -app.</li>
+            <li>-v vdesk : specify a default virtual desktop for applications matching the last -app.</li>
+            <li>-f : specify that application is to start with a fixed client window (-s is also accepted to be compatible with previous versions).</li>
+            <li>-noso­lid­drag : draw a window outline while moving or resizing.</li>
+            <li>-V : evilwm version</li>
+            </ul>
+            <i>*override the default keyboard modifiers used to grab keys for window manager functionality. mask1 is used for most keyboard controls (default: control+alt), and mask2 is used for mousebutton controls and cycling windows (default: alt). altmask is used to modify the behaviour of certain controls (default: shift). Modifiers may be separated with + signs. Valid modifiers are shift, lock, control, alt, mod1, mod2, mod3, mod4, mod5.</i>
+            <h2>utilisation</h2>
+            <p>evilwm is very simple:
+            <ul><li>follow focus: focus follow pointer</li>
+                <li>raise on clic: click to raise windows</li>
+                <li>floating wm: window are displayed free, or you have to specify properties with the -app options (see options section)</li>
+            </ul></p>
+            <p>evilwm is fully driven by keyboard:</p>
+            <pre class="blockquote">modifier            key/button   fouctions
+[Alt]               clic gauche     Move window raise window
+                    clic central    resize window
+                    clic droit      lower window
+                    [Tab]           cycle through windows on screen.
+[Ctrl][Alt]         return          Spawn new xterm
+                    i               Show information about current window
+                    =               Maximise current window vertically (toggle).
+                    x               Maximise current window (toggle).
+                    d               Toggle visible state of docks (e.g., pagers and launch bars).
+                    f               Fix or unfix current window.
+                    1-8             Switch virtual desktop.
+                    left,right      Previous/Next virtual desktop.
+                    a               va/revient au/du précédent bureau
+                    s               switch/permute les écrans
+                    escape          Delete current window
+                    insert          Lower current window
+                    h,j,k,l         Move window left, down, up or right (16 pixels).
+                                    Holding Shift resizes the window instead
+                    y,u,b,n         Move window to top-left, top-right, bottom-left or bottom-right of screen.</pre>
+            </div>
+        </div>
+    </div>
+    <div id="footer">livarp_0.4 help center - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

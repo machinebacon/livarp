@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Livarp Help Center - openbox session</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang <a href="../../fr/sessions/openbox.html">fr</a>|gb</h2><h1><a href="../../index.html" title="back to main menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>openbox session</h1>
+            <p>Openbox is a ultra configurable and light window manager for X. he uses xml as format for its configuration files. Openbox is a window manager, not a desktop environment. Openbox is only responsible for maintaining the windows you open on your screen -- nothing else. That means installing Openbox won't give you easy menu access to wallpaper options, a taskbar or system panel, or most of those other doo-dads. It does, however, give you a framework to incorporate other programs that do those things -- and usually with a greater degree of freedom over the style and interface.<br />
+            that's i've done on livarp with tint2 as default panel, fbpanel as alternative menu and conky in normal-window mode.</p>
+            <h2>screenshot</h2>
+            <a href="../../pics/livarp_04_openbox.png"><img src="../../pics/livarp_04_openbox_thb.png" /></a>
+            <h2>startup</h2>
+            <p>openbox from the session-selector script and calls ~/.config/openbox/autostart file.<br />
+            to change our apps on startup, simply edit this file: <text class="blockquote">vim  ~/.config/openbox/autostart</text> or from the openbox menu:section config:openbox:edit startup script</p>
+            <h2>components</h2>
+            <p>openbox session has several components:
+            <ul><li><b>conky:</b> is diplayed on the left side of your screen in normal-window mode, that mean that you can close or minimize it. configurable from its ~/.conky/conkyrc_openbox or from the openbox menu: section config:conky</li>
+                <li><b>livarp menu:</b> available from top-left corner and handled by fbpanel. it includes a complete menu of installed applications, configuration section and a systray (configurable from ~/.config/fbpanel/default or from the menu itself).</li>
+                <li><b>tint2:</b> the default panel of this session, configurable from its ~/.config/tint2/tint2rc, from openbox menu:section config:tint2, or from livarp menu:section wms:openbox:tint2.</li>
+            </ul></p>
+            <h2>configuration</h2>
+            <p><b>conky</b>, edit its conkyrc: <text class="blockquote">vim .conky/conkyrc_openbox</text>or from the openbox menu:section config:conky.</p>
+            <p><b>fbpanel</b>, edit its main configuration file:<text class="blockquote">vim .config/fbpanel/default</text>or from the menu itself:section config:fbpanel:edit fbpanel.<br />
+            if you want to add plugins, visit the <a href="../config/menu.html">dedicated page</a>.</p>
+            <h3>configuring openbox from <b>obconf</b> and <b>obmenu</b> in graphic mode</h3>
+            <p>available from the openbox menu:section config:openbox:obconf/obmenu:
+            <ul><li>obconf has several tabs that define all parts of the openbox configuration. you can define windows decorations, openbox and menu theme, desktop margins and the font to use.<br />
+            openbox themes can be installed/created in ".obt" format from obconf.</li>
+                <li>obmenu is a gui editor for the openbox menu.</li></ul>
+            </p>
+            <h3>configuring openbox from its rc.xml</h3>
+            <p>full openbox configuration stands in one file: ~/.config/openbox/rc.xml.<br />
+            each section describe a part of openbox. here is a little list of rc.xml sections:
+            <ul>
+                <li>resistance : strength: Tells Openbox how much resistance (in pixels) there is between two windows before it lets them overlap.<br />
+                screen_edge_strength: Basically the same as strength but between window and the screen edge.</li>
+                <li>focus : focusNew: Openbox will automatically give focus to new windows when they are created, otherwise the focus will stay as it is.<br />
+                followMouse: Makes focus follow mouse. e.g. when the mouse is being moved the focus will be given to window under the mouse cursor.<br />
+                focusLast: When switching desktops, focus the last focused window on that desktop again, regardless of where the mouse is. Only applies followMouse is set.<br />
+                focusDelay: The time (in milliseconds) Openbox will wait before giving focus to the window under mouse cursor. Only applies if followMouse is set.<br />
+                underMouse: Focus windows under the mouse not only when the mouse moves, but also when it enters another window due to other reasons (e.g. the window the mouse was in moved/closed/iconified etc). Only applies if followMouse is set.<br />
+                raiseOnFocus: Also raises windows to top when they are focused. Only applies if followMouse is set.</li>
+                <li>placement : policy can be either Smart or UnderMouse.<br />
+                Smart will cause new windows to be placed automatically by Openbox.<br />
+                UnderMouse makes new windows to be placed under the mouse cursor.</li>
+                <li>theme : name: The name of the Openbox theme to use.<br />
+                titleLayout tells in which order and what buttons should be in a window's titlebar. The following letters can be used, each only once: N :window icon, L :window label (aka. title), I: iconify, M: maximize, C: close, S: shade (roll up/down), D: omnipresent (on all desktops).<br />
+                keepBorder tells if windows should keep the border drawn by Openbox when window decorations are turned off.<br />
+                animateIconify adds a little iconification animation if enabled. font Specifies the font to use for a specific element of the window. Place can be either of: ActiveWindow: Title bar of the active window, InactiveWindow: Title bar of the inactive window, MenuHeader: Titles in the menu, MenuItem: Items in the menu, OnScreenDisplay: Text in popups such as window cycling or desktop switching popups.<br />
+                Childnodes for each place are name, specifying the font to use (defaults to sans, an alias for all sans serif fonts), size in px, weight, either normal or bold and slant, either italic or normal.</li>
+                <li>desktops : number: The number of virtual desktops to use.<br />
+                firstdesk: The number of the desktop to use when first started.<br />
+                popupTime Time (in milliseconds) to show the popup when switching desktops. Can be set to 0 to disable the popup completely.<br />
+                names Each name tag names your desktops, in ascending order. Unnamed desktops will be named automatically depending on the locale. You can name more desktops than specified in number if you want.</li>
+                <li>resize : drawContents: Resize the program inside the window while resizing. When disabled the unused space will be filled with a uniform color during a resize.<br />
+                popupShow: When to show the move/resize popup. Always always shows it, Never never shows it, Nonpixel shows it only when resizing windows that have specified they are resized in increments larger than one pixel, usually terminals.<br />
+                popupPosition: Where to show the popup.<br />
+                Top: shows the popup above the titlebar of the window.<br />
+                Center: shows it centered on the window.<br />
+                Fixed shows it in a fixed location on the screen specified by popupFixedPosition.<br />
+                popupFixedPosition: Specifies where on the screen to show the position when Fixed. Both x and y take coordinates</li>
+                <li>margins : Each tag specifies the amount of pixels to reserve at the respective edge of the screen. New windows will not be placed in those areas, and maximized windows will not cover them.</li>
+                <li>dock : The dock is only shown when one or more dockapps are running.<br />
+                position: Specify where to show the dock. Can be one of TopLeft, Top, TopRight, Right, BottomRight, Bottom, BottomLeft, Left and Floating.<br />
+                stacking: Which window layer to put the dock in. Can be one of above, normal, below. The dock can be raised and lowered by left and middle clicking on it, among windows in the specified layer.<br />
+                direction: Specify if dockapps should be laid out in a Vertical or Horizontal direction.<br />
+                floatingX and floatingY When position is set to Floating, these specify the pixel position of the dock. Cannot currently use the slightly extended format described at the bottom of this page.<br />
+                autoHide: Whether to hide the dock automatically when the mouse is not over it.<br />
+                hideDelay and showDelay specify (in milleseconds) the delays for hiding and showing the dock when the mouse leaves and enters it, respectively.<br />
+                moveButton Specifies which button to use for moving individual dockapps around in the dock, see the bindings page for details.<br />
+                noStrut: Specifies that the dock should not set a strut, which means it won't stop windows from being placed or maximized over it. When position is set to Floating, this is always on, since openbox doesn't guess which edge it should belong to based on just the position. You can use margins to emulate that if you want.</li>
+                <li>keyboard &amp; mouse : see openbox keybinds on bottom of this page</li>
+                <li>menu : configure how the menu ~.config/openbox/menu.xml act in openbox - more details on the menu section of this doc.</li>
+                <li>applications : allow you to define rules on specific applications identified from xprop properties. the rc.xml file has some examples to let you start rules config.</li>
+            </ul></p>
+            <h2>keys/mousebinds</h2>
+            <p>keybinds and mousebinds are defined in the openbox rc.xml. here are the default keybinds on livarp_0.4 openbox session:</p>
+            <h3>menus:</h3>
+                <ul><li>menu livarp: top-left corner of the screen</li>
+                    <li>menu openbox: right-click on desktop or Super+m</li>
+                    <li>dmenu: Super+p</li>
+                </ul>
+            <h3>control:</h3>
+                <ul>
+                    <li>quit openbox: Super+Shift+q, or from openbox menu:exit or livarp menu:exit</li>
+                </ul>
+            <h3>windows:</h3>
+                <ul><li>close client: Alt+F4</li>
+                    <li>previous/next client: Alt+Tab</li>
+                    <li>toggle maximize client: double-click on titlebar</li>
+                    <li>resize le client: Alt+right-click</li>
+                    <li>send client to screen corners: Super+y/u/b/n</li>
+                </ul>
+            <h3>navigation:</h3>
+                <ul><li>previous/next screen: Ctrl+Alt+Left/Right</li>
+                    <li>desktop 'x': Super+Fx</li>
+                </ul>
+            <h3>launchers:</h3>
+                <ul><li>open default: Ctrl+Enter</li>
+                    <li>open ranger: Super+r</li>
+                    <li>open rox-filer: Super+Shift+r</li>
+                    <li>open firefox: Super+w</li>
+                    <li>open geany: Super+e</li>
+                    <li>music player: Super+z</li>
+                    <li>volume control: Super+v</li>
+                    <li>display conky: Super+c</li>
+                    <li>display keybinds: Super+k</li>
+                </ul>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="footer">livarp_0.4 help center - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

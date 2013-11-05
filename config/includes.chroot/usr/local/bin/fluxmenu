@@ -1,0 +1,2 @@
+#! /bin/bash
+exec python /usr/local/bin/fluxmenu_datas/fluxMenu.py

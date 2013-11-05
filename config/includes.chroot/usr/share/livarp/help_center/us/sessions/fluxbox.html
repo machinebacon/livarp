@@ -1,0 +1,303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Livarp Help Center - fluxbox session</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang <a href="../../fr/sessions/fluxbox.html">fr</a>|gb</h2><h1><a href="../../index.html" title="back to main menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>the fluxbox session</h1>
+            <p>fluxbox is a 'floating' window manager for X. it is based on blackbox code and inherits its properties by adding features</p>
+            <ul><li>editable menu</li>
+                <li>editable tabs</li>
+                <li>editable titlebar (buttons placement, new buttons, etc.)</li>
+                <li>navigate through workspace with mouse scroll</li>
+                <li>support for Gnome or KDE dockapps</li>
+                <li>editable keybinds, keychains support</li>
+                <li>slit: a separate tool for dock apps</li>
+                <li>complete toolbar with workspace indicator/switcher, lasklist, systray, date time and hour.</li>
+                <li>mostly configurable from menu</li>
+            </ul>
+            <h2>screenshot</h2>
+            <a href="../../pics/livarp_04_fluxbox.png"><img src="../../pics/livarp_04_fluxbox_thb.png" /></a>
+            <h2>startup</h2>
+            <p>fluxbox is launched by the ~/bin/start/fluxbox_start.sh script.<br />
+            to change startup applications, simply edit this file:<text class="blockquote">vim bin/start/fluxbox_start.sh</text> or from the fluxbox menu:section config:edit fluxstart</p>
+            <h2>components</h2>
+            <p><b>fluxbox</b> is a very complete window manager: menu, panel, systray.. i've just added a conky.</p>
+            <h2>configuration</h2>
+            <p>to configure <b>conky</b>, simply edit its conkyrc:<text class="blockquote">vim .conky/conkyrc_fluxbox</text> or from the fluxbox menu:section config:conky.</p>
+            <h3>fluxbox configuration</h3>
+            <p><b>fluxbox</b> is configured by some files in your ~/.fluxbox. most part of this configuration can be done by the fluxbox menu itself::section config:fluxbox:fluxbox config. fluxbox config menu is very complete and write in the ~/.fluxbox/init file.<br />
+            to adjust configuration, you have to edit ~/.fluxbox files:</p>
+            <ul><li>the <b>apps</b> file: defines some rules for your applications: a very powerfull feature.</li></ul>
+            <p>you can add properties to this file through the window menu ('remember' tab) but you can't add all options. to define more properties, you have to edit your ~/.fluxbox/apps. syntax is pretty easy and some examples will close this section:</p>
+            <pre class="blockquote">[app]/[group] (app-name) {count - optional}
+    [Property1]  {value1}
+    [Property2]  {value2}
+          ...
+[end]</pre> <p>an application is identified by xprop through various properties</p>
+            <ul><ul><li>name - name of the window (first part of WM_CLASS)</li>
+                    <li>class - window class (second part of WM_CLASS)</li>
+                    <li>title - window title ( WM_NAME )</li>
+                    <li>role - window role ( WM_WINDOW_ROLE )</li>
+            </ul></ul>
+            <p><b>[app]...[end]</b> sections provide settings for individual application windows.<br />
+            These sections begin with a line of the format<text class="blockquote">[app] (pattern) {count}</text>The pattern can be one or more patterns which match windows. For more details, see 'pattern'. if you specify more than one pattern, they must ALL match for the settings to be applied.. The {count} is optional. If specified, then the entry will only match at most that many windows at any time. If omitted, the default is to apply the settings to all matching windows.<br />
+            This opening [apps] line is followed by any number of settings for the application. See 'settings' for more details.<br />
+            Each of these sections ends with the single line: [end]</p>
+            <p><b>[group]...[end]</b> The primary purpose of [group] sections is to group windows together. All windows in a group will be tabbed together automatically.<br />
+            These sections begin with a line of the format<text class="blockquote">[group] (pattern) {count}</text>Where the pattern item is optional. If specified, this pattern must match for the group to take effect. It is common to use non-window-specific patterns such as (workspace) here. See 'pattern' for more details.<br />
+            This is followed by any number of [app] lines. These have a simiar format to the [app] section detailed above in APP SECTIONS, but do not contain any settings and do not have an associated [end] line.<br />
+            As with [app] sections, each of these sections ends with the single line: [end]
+            </p>
+            <p><b>settings</b> are properties applied to window corresponding to 'pattern'<br />
+            format is simple<text class="blockquote">[setting] {value}</text><br />
+            here is the 'settings' list:</p>
+            <ul><ul><li>[Workspace] {number}: Forces the application to open on the number workspace specified. Workspaces are set by number, beginning with 0.</li>
+                    <li>[Jump] {bool}: Changes the active workspace to the remembered one when the application is opened. This is only useful when used in conjunction with [Workspace].</li>
+                    <li>[Head] {number}: Forces the application to open on the number head specified (Xinerama only). </li>
+                    <li>[Layer] {number}: Specify the layer to open the window on (by number). Each layer has a number. The named ones are: 2-AboveDock, 4-Dock, 6-Top, 8-Normal, 10-Bottom, 12-Desktop.</li>
+                    <li>[Dimensions] {width height}: Opens the application with the specified width and height, in pixels. </li>
+                    <li>[Position] (anchor) {X Y}: Position the application at a particular spot. By default the upper-left corner is placed at screen coordinates (X,Y). If you specify an anchor, say BottomRight, then the lower-right corner of the window is positioned (X,Y) pixels from the lower-right corner of the screen.<br >
+                    anchor may be set to one of: TopLeft, Left, BottomLeft, Top, Center, Bottom, TopRight, Right or BottomRight</li>
+                    <li>[Deco] {value}: Specify the decoration state. There are several predefined value sets:
+                    <ul><li>NORMAL: Standard decorations</li>
+                        <li>NONE: No decorations TAB Like TAB except keep the tabs</li>
+                        <li>Border: Like NONE except keep the X window border</li>
+                        <li>TINY: Titlebar with only an iconify button</li>
+                        <li>TOOL: Titlebar only</li>
+                    </ul></li>
+                    <li>[Shaded] {bool}: Whether the window is Shaded (rolled-up) or not.</li>
+                    <li>[Tab] {bool}: Whether the window has tabs enabled</li>
+                    <li>[FocusNewWindow] {bool}: If enabled, a new window will grab X focus as soon as it is opened. If disabled, a new window will not grab X focus as soon as it is opened. </li>
+                    <li>[FocusHidden] {bool}: If enabled, the window will not appear in NextWindow/PrevWindow lists. </li>
+                    <li>[IconHidden] {bool}: If enabled, the window will not appear in the icon area of the toolbar. </li>
+                    <li>[Hidden] {bool}: A shortcut for setting both FocusHidden and IconHidden at the same time. </li>
+                    <li>[Sticky] {bool}: Specify if an application should be sticky (shown on all workspaces) or not. </li>
+                    <li>[Minimized] {bool}: Application should start minimized</li>
+                    <li>[Maximized] {value}: Application should start maximized. value may be: {yes} Fully maximized, {horz} Horizontally maximized, {vert} Vertically maximized ou {none} Not maximized.</li>
+                    <li>[Fullscreen] {bool}: Application should start in fullscreen mode (fully maximized without any decorations).</li>
+                    <li>[Close] {bool}: Save settings on close. By default, application settings are not updated when a window is closed.</li>
+                    <li>[Alpha] {value [value]}: Set the alpha value for this window. If two values are given, they correspond to the focused and unfocused transparency, respectively. One number only will be used for both values. value is an integer between 0 and 255.</li>
+            </ul></ul>
+            <p><b>pattern:</b> A pattern looks like this:<text class="blockquote">([propertyname[!]=]regexp)</text><br />
+            Match definitions are enclosed in parentheses (…), and if no propertyname is given then Name is assumed. The regexp can contain any regular expression, or the special value [current], which matches the corresponding value of the currently focused window.<br />
+            propertyname is not case sensitive, whereas the regexp is.<br />
+            If you specify multiple (pattern) arguments, this implies an AND condition - All specified patterns must match.<br />
+            You can use = to test for equality or != to test for inequality.<br />
+            The following values are accepted for propertyname:</p>
+            <ul><ul><li>Name: A string, corresponding to the CLASSNAME property (The first field of WM_CLASS from the output of the xprop(1) utility). .</li>
+                    <li>Class: A string, corresponding to the CLASSCLASS property (The second field of WM_CLASS from the output of the xprop(1) utility).</li>
+                    <li>Title:  A string, corresponding to the window title (WM_NAME from xprop(1)).</li>
+                    <li>Role: A string, corresponding to the ROLE property (WM_WINDOW_ROLE from xprop(1)). </li>
+                    <li>Transient: Either yes or no, depending on whether the window is transient (typically, a popup dialog) or not. </li>
+                    <li>Maximized: Either yes or no, depending on whether the window is maximized or not.</li>
+                    <li>Minimized: Either yes or no, depending on whether the window is minimized (iconified) or not. </li>
+                    <li>Shaded: Either yes or no, depending on whether the window is shaded or not. </li>
+                    <li>Stuck: Either yes or no, depending on whether the window is sticky (on all workspaces) or not. </li>
+                    <li>FocusHidden: Either yes or no, depending on whether the window has asked to be left off the focus list (or, the alt-tab list), or not.</li>
+                    <li>IconHidden: Either yes or no, depending on whether the window has asked to be left off the icon list (or, the taskbar), or not.</li>
+                    <li>Urgent: Either yes or no, depending on whether the window has the urgent hint set.</li>
+                    <li>Workspace: A number corresponding to the workspace number to which the window is attached. The first workspace here is 0. You may also use [current] to match the currently visible workspace. </li>
+                    <li>WorkspaceName: A string corresponding to the name of the workspace to which the window is attached.</li>
+                    <li>Head: The number of the display head to which the window is attached. You may match this against the special value [mouse] which refers to the head where the mouse pointer currently resides. </li>
+                    <li>Layer: The string name of the window’s layer, which is one of AboveDock, Dock, Top, Normal, Bottom, Desktop</li>
+                    <li>Screen: The number of the currently used screen. If the setup of the running xserver involves independent screens (not Xinerama), the $DISPLAY environment contains something like :0.1 or :1.0. The part after the dot (.) is the number of the screen.</li>
+                    <li>@XPROP: A string, corresponding to any xproperty (Use either the xprop(1) utility or the SetXProp command to set a xproperty to a window).</li>
+            </ul></ul>
+            <p><b>examples:</b></p>
+            <ul><ul><li>Put the first two windows which end with 'term' on workspace 1:</li></ul></ul>
+            <pre class="blockquote">[app] (name=.*[tT]erm) {2}
+  [Workspace]   {1}
+[end]</pre>
+            <ul><ul><li>Center geany with a specific size, and update these values when the window is close:</li></ul></ul>
+            <pre class="blockquote">[app] (name=geany)
+  [Dimensions]  {1022 747}
+  [Position]    (CENTER) {0 0}
+  [Close]       {yes}
+[end]</pre>
+            <ul><ul><li>When starting luakit, jump to workspace 1 first and start it there.</li></ul></ul>
+            <pre class="blockquote">[app] (name=luakit)
+  [Workspace]   {1}
+  [Jump]        {yes}
+[end]</pre>
+            <ul><ul><li>start all aterm without decorations.</li></ul></ul>
+            <pre class="blockquote">[app] (name=aterm)
+  [Deco]        {NONE}
+[end]</pre>
+            <ul><ul><li>a group with the gimp dock and toolbox appears on layer 4 (bottom).</li></ul></ul>
+            <pre class="blockquote">[group]
+  [app] (name=gimp) (role=gimp-dock)
+  [app] (name=gimp) (role=gimp-toolbox)
+  [Layer]       {4}
+[end]</pre>
+            <p>for more infos: man fluxbox-apps :)</p>
+            <ul><li>the <b>keys</b> file defines your keybinds/mousebinds</li></ul>
+            <p>to modify fluxbox keys, simlply edit the file<text class="blockquote">vim .fluxbox/keys</text> or from the fluxbox menu:section config:fluxbox:keys.<br />
+            keys syntax:</p>
+            <p class="blockquote"> - a command: 'Mod1 p :Exec fbrun'<br />
+             - an action on desktop: 'OnDesktop Mouse1 :HideMenus'<br />
+             - a group of actions: OnWindow Mod1 Mouse1 :MacroCmd {Raise} {Focus} {StartMoving}
+            </p>
+            <p>for complete list of fluxbox keys possibilities:<text class="blockquote">man fluxbox-keys</text><br />
+            livarp fluxbox keys available on bottom of this page.</p>
+            <ul><li>the <b>menu</b> file defines your fluxbox root menu (available with right-click on desktop)</li></ul>
+            <p>to modify your menu, simply edit the file<text class="blockquote">vim .fluxbox/menu</text>or from the fluxbox menu::section config:fluxbox:menu.<br />
+            fluxbox menu syntax:</p>
+            <p class="blockquote">[tag] (label or filename) {command or filename}</p>
+            <p>available [tag]:</p>
+<pre class="blockquote">[begin] (label)
+   This tells Fluxbox to start parsing the menu file. This tag is required
+   for Fluxbox to read your menu file. If it cannot find it, the system
+   default menu is used in it's place.
+
+[end]
+   This tells Fluxbox that it is at the end of a menu. This can either be a 
+   submenu or the main root menu. There must be at least one of these tags in 
+   our menu to correspond to the required [begin] tag.
+
+[exec] (label) {command}
+   Inserts a command item into the menu. When you select the menu item from 
+   the menu, Fluxbox runs command.
+
+[exit] (label)
+   Inserts an item that shuts down and exits Fluxbox. Any open windows are 
+   reparented to the root window before Fluxbox exits.
+
+[include] (file-or-directory-name)
+   Parses the file specified by filename inline with the current menu. The 
+   filename can be the full path to a file or it can begin with ~/, which 
+   will be expanded into your home directory. If the path is a directory, 
+   then all files in the directory are included.
+
+[nop] (label)
+   Insert a non-operational item into the current menu. This can be used to 
+   help format the menu into blocks or sections if so desired. This tag does 
+   support a label, but one is not required in which case a blank item will 
+   be used instead.
+
+[separator]
+   This will create a nice separation line. Useful for splitting up sections 
+   in a pretty way.
+
+[style] (label) {filename}
+   This tells Fluxbox to insert an item that, when selected, reads style file
+   named filename and apply the new textures, colors and fonts to the current
+   running session.
+
+[stylesmenu] (label) {directory}
+   Reads all filenames from the specified directory, assuming that they are 
+   all valid style files, and creates menu items in the current menu for 
+   every filename, that, when selected by the user will apply the selected 
+   style file to the current session. The labels that are created in the menu
+   are the filenames of the style files.
+
+[stylesdir] (directory)
+   Creates a submenu entry with label (that is also the title of the new 
+   (submenu), and inserts in that submenu all filenames in the specified 
+   directory, assuming that they are all valid style files (directories are 
+   ignored) in the same way as the [stylesdir] command does. Both [stylesdir]
+   and [stylesmenu] commands make it possible to install style files without 
+   editing your init file.
+
+[submenu] (label) {menutitle}
+   This tells Fluxbox to create and parse a new menu. This menu is inserted 
+   as a submenu into the parent menu. These menus are parsed recursively, so 
+   there is no limit to the number of levels or nested submenus you can have.
+   The title for the new menu is optional, if none is supplied, the new 
+   menu's title is the same as the item label. An [end] tag is required to 
+   end the submenu.
+
+[reconfig] (label)
+   When selected this item re-reads the current style and menu files and 
+   applies any changes. This is useful for creating a new style or theme,
+   as you don't have to constantly restart Fluxbox every time you save your 
+   style. However, Fluxbox automagically rereads the menu whenever it 
+   changes.
+
+[restart] (label) {command}
+   This tells Fluxbox to restart. If command is supplied, it shuts down and 
+   runs the command (which is commonly the name of another windowmanager). 
+   If the command is omitted, Fluxbox restarts itself.
+
+[config] (label)
+   Inserts a Fluxbox native submenu item, containing numerous configuration
+   options concerning window placement, focus style, window moving style, 
+   etc.
+
+[wallpapers] (directory) {command}
+   This allows you to list your backgrounds. This tag is built in to use 
+   fbsetbg(1) and allows you to simply click on an image to set your 
+   wallpaper. See? Fluxbox makes it easy… This item can also be hacked to
+   perform a command over directory content (it doesn't dive in subdirs,
+   it's a hack). For instance, to choose between playlists
+   [wallpapers] (~/Music/Playlists) {xmms} will perfectly work.
+
+[workspaces] (label)
+   This tells Fluxbox to insert a link to the workspaces menu directly into 
+   your menu. This is handy for those users who can't access the workspace 
+   menu directly (e.g. if you don't have a 3 button mouse, it is rather hard 
+   to middle click to show the workspace menu).
+</pre>
+            <h2>keybinds/mousebinds</h2>
+            <p>configured by the ~/.fluxbox/keys file, here are the livarp fluxbox release shortcuts:</p>
+            <h3>menus:</h3>
+                <ul><li>fluxbox menu: right-click on desktop</li>
+                    <li>windows menu: Alt+Space</li>
+                    <li>fbrun: Alt+p or Alt+F2</li>
+                    <li>dmenu: Alt+d</li>
+                    <li>close menus: left-click on desktop</li>
+                </ul>
+            <h3>control:</h3>
+                    <li>quit fluxbox: Ctrl+Alt+Del or from the fluxbox menu:exit</li>
+                </ul>
+            <h3>windows:</h3>
+                <ul><li>close window: Alt+q</li>
+                    <li>previous/next window: Alt(+Shift)+Tab</li>
+                    <li>toggle maximize window: Alt+F10</li>
+                    <li>toggle minimize window: Alt+F9</li>
+                    <li>fullscreen: Alt+F11</li>
+                    <li>move window: Alt+left-clic</li>
+                    <li>resize window: Alt+right-click</li>
+                    <li>shade window: double-left-click on window title</li>
+                    <li>start tabbing: middle-click on window title</li>
+                    <li>previous/next tab: Super(+Shift)+Tab</li>
+                    <li>tab 'n': Super+'n'</li>
+                    
+                </ul>
+            <h3>navigation:</h3>
+                <ul><li>previous/next workspace: Ctrl+Left/Right or scroll Down/Up on desktop or toolbar.</li>
+                    <li>workspace 'n': Ctrl+F'n'</li>
+                    <li>send to workspace 'n': Super+F'n'</li>
+                    <li>send to and display workspace 'n': Ctrl+Super+F'n'</li>
+                </ul>
+            <h3>launchers:</h3>
+                <ul><li>default terminal: Ctrl+Enter, Super+Enter or Alt+F1</li>
+                    <li>launch ranger: Alt+r</li>
+                    <li>launch rox-filer: Alt+Shift+r</li>
+                    <li>launch luakit: Alt+w</li>
+                    <li>launch firefox: Alt+Shift+w</li>
+                    <li>launch vim: Alt+e</li>
+                    <li>launch geany: Alt+Shift+e</li>
+                    <li>music player: Alt+z</li>
+                    <li>volume control: Alt+v</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="footer">livarp_0.4 help center - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

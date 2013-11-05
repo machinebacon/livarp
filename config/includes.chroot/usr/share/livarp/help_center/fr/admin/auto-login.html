@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Centre d'Aide Livarp - connexion automatique</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang fr|<a href="../../us/admin/auto-login.html">gb</a></h2><h1><a href="../../index-fr.html" title="retour au menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>connexion automatique</h1>
+            <p>si vous êtes le seul utilisateur de votre machine et que vous désirez ne pas taper votre login/mot de passe à chaque démarrage, vous opterez pour l'auto-login.<br />il suffit d'éditer votre fichier /etc/inittab en root</p>
+            <p class="blockquote">sudo vim /etc/inittab<br />
+            ou<br />
+            sudo geany /etc/inittab</p>
+            <p>puis de modifier les lignes 55 et 56 </p>
+            <xmp class="blockquote">#autologin: replace the first line with this one, edit with your username.
+#1:2345:respawn:/bin/login -f your_login tty1 </dev/tty1 >/dev/tty1 2>1
+1:2345:respawn:/sbin/getty 38400 tty1</xmp>
+            <p>pour obtenir un résultat de ce type</p>
+            <xmp class="blockquote">#autologin: replace the first line with this one, edit with your username.
+1:2345:respawn:/bin/login -f arpinux tty1 </dev/tty1 >/dev/tty1 2>1
+#1:2345:respawn:/sbin/getty 38400 tty1</xmp>
+            <p>en remplacant 'arpinux' par votre login.</p>
+            </div>
+        </div>
+    </div>
+    <div id="footer">centre d'aide livarp_0.4 - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

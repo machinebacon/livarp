@@ -1,0 +1,41 @@
+TODO:
+
+
+* Fix the drag 'n' drop so that dropping over items (anything but submenu or begin)
+  wouldn't be possible (needs to write some kind of copy_tree -function)
+
+* Make the icon-selector dialog, that would show preferred icons
+  (maybe using freedesktop's specs to find them?) and also all found icons in paths.
+  I think the "all icons" could be sorted so that the ones that could be correct are
+  first in the list. Like fbgm does the search...
+
+* Do the configuration-dialog and make it possible to save it and load on program start.
+  What could be good solution? Maybe some xml in ~/.fluxbox ? or a plain text-file.
+  The dialog should be changed to be a window 'cause I don't know how to handle dialogs :D
+
+* Menu and submenu sorting (by name?)
+
+(* Separator to show up as a line instead of blank  <= I tried the treeview's separator,
+  it is no good because it cannot be selected. All separators would then be very static.
+  I'll stay with current "----" unless someone suggests anything better.)
+
+* Icons next to name in treeview.
+
+* Help -> About and all its subdialogs
+
+* Maybe a little smarter default menu on File -> New. Like the default menu on fluxbox.
+
+* Menu generator(s) should be made, but more important is to make it possible to call an
+  external generator (fluxbox-generate_menu) and after it has finished, reload the menu.
+
+* A context menu for right mouse button on treeview, to show things like "delete" and "add->exec"?
+  It should also have items like "Recursive visible" and "recursive hide", better names though
+
+* Maybe some list similar to denu's showing all installed programs (freedesktop?) allowing faster
+  selection of programs and their icons etc, but still that select-a-file-by-hand should be there 
+  like it is now. I find it very intuitive...
+
+* Buttons for duplicating an entry and also for moving an entry up and down. Cut'n'paste? Also
+  external drag and drop from f.e. filemanager could be cool.
+
+* Bugfixes :D

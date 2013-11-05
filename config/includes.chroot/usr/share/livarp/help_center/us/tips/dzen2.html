@@ -1,0 +1,281 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Livarp Help Center - dzen2</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang <a href="../../fr/tips/dzen2.html">fr</a>|gb</h2><h1><a href="../../index.html" title="back to main menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>howto use dzen2</h1>
+            <p>dzen2 is a messages, notifications and menus software for X11. it was designed to be lightweight, fast and to support different scripts languages.<br />
+            dzen2 supports XFT fonts (in options), colors and formatting, icons, graphics and actions of the keyboard/mouse. dzen2 is available in most GNU/Linux distributions. the version integrated in livarp comes from svn repositories: dzen2-0.9.5.</p>
+            <p>livarp uses dzen2 for notifications but it can be used to display infos from conky. your ~/bin directory includes the <b>dzenbar.sh</b> script that reads ~/.conky/conkyrc_dzen output to collect informations, then display it in a clickable statusbar.</p>
+            <img src="../../pics/tips/dzenbar_title.png" /><br />
+            <h2>configuration</h2>
+            <h3>options</h3>
+            <p>dzen accepts different options, the format options will be discribed later: </p>
+            <p class="blockquote">
+            options.....argments.................description<br />
+            -fg.........#RRGGBB,color............text color<br />
+            -bg.........#RRGGBB,color............background color<br />
+            -fn.........police xft ou classic....font to use<br />
+            -ta.........l(eft),c(enter),r(ight)..title text alignment<br />
+            -sa..................................slave text alignment<br />
+            -tw.........x(pixels)................title window width<br />
+            -w...................................window width<br />
+            -h...................................lines height, by default: font height +2px<br />
+            -x...................................horizontal position from top_left_corner of the screen<br />
+            -y...................................vertical position from top of the screen<br />
+            -l..........n(number)................number of displayed lines in the slave window<br />
+            -m...................................menu mode (see menu section of this help)<br />
+            -e...................................events &amp; actions (see events &amp; actions section of this help)<br />
+            -p..........s(econdes)...............last value persists 's' secondes (option)<br />
+            -u...................................update title &amp; slave window simultaneous<br />
+            -xs.........n(number)................number of the xinerama screen to use<br />
+            -v...................................dzen2 version</p>
+            <h3>display</h3>
+            <p>dzen display title and slave window this way:</p>
+            <img src="../../pics/tips/dzen_titre.png" /> <img src="../../pics/tips/dzen_titre_esclave.png" />
+            <p>the first lines passed to dzen becomes the title window while the other are displayed in the slave window.</p>
+            <h3>stop</h3>
+            <p>dzen2 suspend display:
+            <ul>
+            <li>when button3 is pressed (right cick by default)</li>
+            <li>when 'ESC' is pressed under some conditions</li>
+            <li>when the file passed to dzen ends (EOF), or if the '-p' option is used:</li>
+                <ul><li>'-p' without arguments fixes the window</li>
+                <li>'-p n' fixes the window for 'n' seconds</li></ul></ul>
+            </p>
+            <h2>utilisations</h2>
+            <p>note that above descriptions are for default configuration. you can modify it with the '-e' option (see events &amp; actions section).</p>
+            <h3>option -l: slave window</h3>
+            <p>-l option is used to display several lines when the pointer comes to the title window. number of lines to be displayed is passed as argument (-l 5 display 5 lines).<br />
+            when the cursor leave the slave window, this window auto-hide, you can fix the window wit ha middle-click.<br />
+            scroll up/down with the mouse scrolls the window slave text if it's too small for the text.<br />
+            example: a good way to understand how slave window works (right click to exit dzen2):</p>
+            <p class="blockquote">cat ~/.bashrc | dzen2 -l 30 -p</p>
+            <h3>option -e: events &amp; actions</h3>
+            <p>dzen can configure some keybind/mousebind to interract with its display.<br />
+            option -e syntax: -e 'event1=action1:option1:…option'n',…,action'm';…'<br />
+            each event can be associated to severals actions that can have severals options.(limited to 64 for each but you can modify it in the sources, action.h file).</p>
+            <ul><li>example</li></ul>
+            <p class="blockquote">-e 'button1=exec:xterm:firefox;entertitle=uncollapse;button3=exit'</p>
+            <ul><li>explanation</li>
+                <ul><li>button1=exec:xterm:firefox; : press button1 launches xtem and firefox. here, xterm and firefox are the options of the action to event button1.</li>
+                <li>entertitle=uncollapse; : slave window is displayed when pointer comes on title window</li>
+                <li>button3=exit : dzen2 exits with button3 on title window.</li></ul>
+            </ul>
+            <p>events list for dzen2</p>
+            <ul>
+            <li>onstart : Perform actions right after startup.</li>
+            <li>onexit : Perform actions just before exiting.</li>
+            <li>onnewinput : Perform actions if there is new input for the slave window.</li>
+            <li>button1 : Mouse button1 released</li>
+            <li>button2 : Mouse button2 released</li>
+            <li>button3 : Mouse button3 released</li>
+            <li>button4 : Mouse button4 released</li>
+            <li>button5 : Mouse button5 released</li>
+            <li>button6 : Mouse button6 released</li>
+            <li>button7 : Mouse button7 released</li>
+            <li>entertitle : Mouse enters the title window</li>
+            <li>leavetitle : Mouse leaves the title window</li>
+            <li>enterslave : Mouse enters the slave window</li>
+            <li>leaveslave : Mouse leaves the slave window</li>
+            <li>sigusr1 : SIGUSR1 received</li>
+            <li>sigusr2 : SIGUSR2 received</li>
+            <li>key_KEYNAME : Keyboard events(*)</li>
+            </ul>
+            <p>keyboard events:<br />
+            Every key can be bound to an action (see below). The format is:<br />
+            key_KEYNAME where KEYNAME is the name of the key as defined in keysymdef.h (usually: /usr/include/X11/keysymdef.h).<br />
+            The part after 'XK_' in keysymdef.h must be used for KEYNAME.</p>
+            <p>supported actions:</p>
+            <ul>
+            <li>exec:command1:..:n : execute all given options</li>
+            <li>menuexec : executes selected menu entry</li>
+            <li>exit:retval : exit dzen and return 'retval'</li>
+            <li>print:str1:…:n : write all given options to STDOUT</li>
+            <li>menuprint : write selected menu entry to STDOUT</li>
+            <li>collapse : collapse (roll-up) slave window</li>
+            <li>uncollapse : uncollapse (roll-down) slave window</li>
+            <li>togglecollapse : toggle collapsed state</li>
+            <li>stick : stick slave window</li>
+            <li>unstick : unstick slave window</li>
+            <li>togglestick : toggle sticky state</li>
+            <li>hide : hide title window</li>
+            <li>unhide : unhide title window</li>
+            <li>togglehide : toggle hide state</li>
+            <li>raise : raise window to view (above all others)</li>
+            <li>lower : lower window (behind all others)</li>
+            <li>scrollhome : show head of input</li>
+            <li>scrollend : show tail of input</li>
+            <li>scrollup:n : scroll slave window n lines up   (default n=1)</li>
+            <li>scrolldown:n : scroll slave window n lines down (default n=1)</li>
+            <li>grabkeys : enable keyboard support</li>
+            <li>ungrabkeys : disable keyboard support</li>
+            <li>grabmouse : enable mouse support (only needed with specific windowmanagers, such as fluxbox)</li>
+            <li>ungrabmouse : release mouse (only needed with specific windowmanagers, such as fluxbox)</li>
+            </ul>
+            <p>if no events/actions are specified dzen defaults to:<br />
+            <ul><li>title only mode</li></ul>
+            <p class="blockquote">-e 'button3=exit:13'</p>
+            <ul><li>multiple lines and vertical menu mode</li></ul>
+            <pre class="blockquote">-e 'entertitle=uncollapse,grabkeys;
+    enterslave=grabkeys;leaveslave=collapse,ungrabkeys;
+    button1=menuexec;button2=togglestick;button3=exit:13;
+    button4=scrollup;button5=scrolldown;
+    key_Escape=ungrabkeys,exit'</pre>
+            <ul><li>horizontal menu mode</li></ul>
+            <pre class="blockquote">-e 'enterslave=grabkeys;leaveslave=ungrabkeys;
+    button4=scrollup;button5=scrolldown;
+    key_Left=scrollup;key_Right=scrolldown;
+    button1=menuexec;button3=exit:13
+    key_Escape=ungrabkeys,exit'</pre>
+            <h3>option -m: menu</h3>
+            <p>Dzen provides two menu modes, vertical and horizontal menus. You can access these modes by adding 'v'(ertical) or 'h'(horizontal) to the '-m' option. If nothing is specified dzen defaults to vertical menus.</p>
+            <ul><li>vertical menu, both invocations are equivalent:</li></ul>
+            <pre class="blockquote">dzen2 -p -l 4 -m < file
+dzen2 -p -l 4 -m v < file</pre>
+            <ul><li>horizontal menu:</li></ul>
+            <pre class="blockquote">dzen2 -p -l 4 -m h < file</pre>
+            <p>all actions beginning with "menu" work on the selected menu entry.<br />
+            menu mode only makes sense if '-l <n>' is specified<br />
+            horizontal menus have no title window, so all actions affecting the title window will be silently discarded in this mode..
+            </p>
+            <h3>option -u: simultaneous updates</h3>
+            <p>This option provides facilities to update the title and slave window at the same time.<br />
+            the way it works is best described by an example: we want to display an updating clock in the title and some log output in the slave window:</p>
+            <pre class="blockquote">while true; do
+    date                # output goes to the title window
+    dmesg | tail -n 10  # output goes to the slave window
+    sleep 1
+done | dzen2 -l 10 -u</pre>
+            <p>For this to work correctly it is essential to provide exactly the number of lines to the slave window as defined by the parameter to '-l'.</p>
+            <h3>in-text formating &amp; control language</h3>
+            <p>this feature allows to dynamically (at runtime) format the text dzen displays and control its behaviour.<br />
+            currently the following commands are supported:</p>
+            <ul>
+            <li>colors</li>
+                <ul>
+                <li>^fg(color): set foreground color</li>
+                <li>^fg(): without arguments, sets default fg color</li>
+                <li>^bg(color): set background color</li>
+                <li>^bg(): without arguments, sets default bg color</li>
+                </ul>
+            <li>graphics</li>
+                <ul>
+                <li>^i(path): draw icon specified by path. supported formats: XBM and optionally XPM</li>
+                <li>^r(WIDTHxHEIGHT): draw a rectangle with the dimensions WIDTHxHEIGHT</li>
+                <li>^ro(WIDTHxHEIGHT): rectangle outline</li>
+                <li>^c(RADIUS): draw a circle with size RADIUS pixels</li>
+                <li>^co(RADIUS): circle outline</li>
+                </ul>
+            <li>positioning</li>
+                <ul>
+                <li>^p(+/-X): move X pixels to the right or left of the current position (on the X axis)</li>
+                <li>^p(+/-X;+/-Y): move X pixels to the right or left and Y pixels up or down of the current position (on the X and Y axis).</li>
+                <li>^pa(args): takes the same parameters as described above but positions at the absolute X and Y coordinates.</li>
+                </ul>
+            <li>interaction</li>
+                <ul>
+                <li>^ca(BTN, CMD) … ^ca(): Used to define 'clickable areas' anywhere inside the title window</li>
+                    <ul>
+                    <li>BTN denotes the mouse button (1=left, 2=right, 3=middle, etc.)</li>
+                    <li>CMD denotes the command that should be spawned when the specific area has been clicked with the defined button.</li>
+                    <li>… : denotes any text or formating commands dzen accepts</li>
+                    <li>^ca(): without arguments denotes the end of this clickable area</li>
+                    </ul>
+                <li>example: this command displays "[mpd|vol]"</li><p class="blockquote">^ca(1,mpc toggle)^ca(3,mpc stop)[^ca(4,mpc prev)^ca(5,mpc next)mpd^ca()^ca()|^ca(4,mpc volume +3)^ca(5,mpc volume -3)vol^ca()^ca()]^ca()^ca()</p>
+                    <ul>
+                    <li>the block […] play/stop on left/right click</li>
+                    <li>mpd block scroll up/down the playlist while you scroll up/down with the mouse</li>
+                    <li>vol block increase/decrease the volume while you scroll up/down with the mouse</li>
+                    </ul>
+                </ul>
+            <li>actions as commands</li>
+            <p> see “events &amp; actions” section for details about commands.</p>
+                <ul>
+                <li>^togglecollapse()</li>
+                <li>^collapse()</li>
+                <li>^uncollapse()</li>
+                <li>^togglestick()</li>
+                <li>^stick()</li>
+                <li>^unstick()</li>
+                <li>^togglehide()</li>
+                <li>^hide()</li>
+                <li>^unhide()</li>
+                <li>^raise()</li>
+                <li>^lower()</li>
+                <li>^scrollhome()</li>
+                <li>^scrollend()</li>
+                <li>^exit()</li>
+                </ul>
+            <li>other commands</li>
+                <ul>
+                <li>^tw(): draw to title window. this command has some annoyances, as only the input after the command will be drawn to the title window, so it is best used only once and as first command per line.</li>
+                <li>^cs(): clear slave window. this command must be the first and only command per line</li>
+                <li>^ib(VALUE): ignore background setting, VALUE can be either 1 to ignore or 0 to not ignore the bg color set with ^bg(color). This command is useful in combination with ^p() and ^pa() in order to position the input inside other already drawn input.</li>
+                </ul>
+            </ul>
+            <p>These commands can appear anywhere and in any combination in dzen's input.<br />
+            The color can be specified either as symbolic name (e.g. red,darkgreen, etc.) or as #rrggbb hex-value (e.g. #ffffaa).</p>
+            <p>&nbsp;</p>
+            <h2>some examples</h2>
+            <ul><li>colored text</li></ul>
+            <p class="blockquote">echo "^fg(red)I'm red text ^p(+20)^fg(blue)I am blue" | dzen2 -w 300 -p</p>
+            <img src="../../pics/tips/dzen_wiki1.png" />
+            <ul><li>colored text &amp; background</li></ul>
+            <p class="blockquote">echo "^bg(#ffaaaa)The ^fg(yellow)text to ^bg(blue)^fg(orange)colorize" | dzen2 -w 300 -p</p>
+            <img src="../../pics/tips/dzen_wiki2.png" />
+            <ul><li>display "^"</li></ul>
+            <p class="blockquote">echo "^fg(grey70)Some text containing ^^ characters" | dzen2 -w 300 -p</p>
+            <img src="../../pics/tips/dzen_wiki3.png" />
+            <ul><li>xbm images</li></ul>
+            <p class="blockquote">echo "^i(dzicons/mail.xbm) I am an envelope ^fg(yellow)and ^i(dzicons/bat_full_02.xbm) I'm a baterry." | dzen2 -w 300 -p</p>
+            <img src="../../pics/tips/dzen_wiki4.png" />
+            <ul><li>rectangles</li></ul>
+            <p class="blockquote">echo "6x4 rectangle ^r(6x4) ^fg(red)12x8 ^r(12x8) ^fg(yellow)and finally 100x15 ^r(100x15)" | dzen2 -w 300 -p</p>
+            <img src="../../pics/tips/dzen_wiki5.png" />
+            <ul><li>rectangles &amp; positions</li></ul>
+            <p class="blockquote">echo "^ib(1)^fg(red)^ro(100x15)^p(-98)^fg(blue)^r(20x10)^fg(orange)^p(3)^r(40x10)^p(4)^fg(darkgreen)^co(12)^p(2)^c(10)" | dzen2 -x 20 -y 20 -w 120 -p</p>
+            <img src="../../pics/tips/dzen-colors.png" />
+            <ul><li>display message and timeout after 10 seconds</li></ul>
+            <p class="blockquote">(echo "This is a message"; sleep 10) | dzen2 -bg darkred -fg grey80</p>
+            <img src="../../pics/tips/dzen_wiki6.png" />
+            <ul><li>Displays "Header" in the title window and the output of cal in the 8 lines high slave window</li></ul>
+            <p class="blockquote">(echo Header; cal; sleep 20) | dzen2 -w 300 -l 8</p>
+            <img src="../../pics/tips/dzen_wiki7.png" />
+            <ul><li>Display updating messages</li></ul>
+            <p class="blockquote">(echo Header; while true; do echo test$((i++)); sleep 1; done) | dzen2 -w 300 -l 12</p>
+            <img src="../../pics/tips/dzen_wiki8.png" />
+            <ul><li>simple menu:</li></ul>
+            <pre class="blockquote">dzen2 -w 200 -l 4 -p -m < dzenmenu.txt</pre>
+            <p>where dzenmenu.txt is (each entry after “Menu” is a command to execute) </p>
+            <p class="blockquote">Menu<br />
+            urxvtc<br />
+            rox-filer<br />
+            firefox<br />
+            geany</p>
+            <img src="../../pics/tips/dzen_wiki9.png" />
+            <ul><li>horizontal menu without menu-file</li></ul>
+            <p class="blockquote">echo -e "xterm\nxclock\nxeyes\nxfontsel" | dzen2 -w 300 -l 4 -m h -p</p>
+            <img src="../../pics/tips/dzen_wiki10.png" />
+            <p>have fun with dzen2 :)</p>
+            </div>
+        </div>
+    </div>
+    <div id="footer">livarp_0.4 help center - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

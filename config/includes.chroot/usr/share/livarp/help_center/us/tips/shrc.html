@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Livarp Help Center - shell config</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang <a href="../../fr/tips/shrc.html">fr</a>|gb</h2><h1><a href="../../index.html" title="back to main menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>configure the Shell</h1>
+            <p>
+                livarp uses <b>zsh</b> as default shell (but bash is still availble). zsh is configured from ~/.zshrc (bash from ~/.bashrc).<br />
+                bash and zsh configuration are defined in those files: you can set alias or functions...<br />
+                terminal gui interface is configured by ~/.Xresources.
+            </p>
+            <h2>zshrc/bashrc</h2>
+            <p>
+                both of the configuration files for zsh or bash includes same alias and functions. below a little list of your shell capacities:
+            </p>
+            <h3>alias</h3>
+            <p>
+            <ul>
+                <li>bad typing: alias cd..='cd ..', alias ...='cd ..', alias ....='cd ../..'</li>
+                <li>goto: alias gm='cd /media', alias gc='cd ~/.config', alias gb='cd ~/bin'</li>
+                <li>agenda: alias agenda='urxvtcd -T agenda -e calcurse'</li>
+                <li>g33k: alias starwars="telnet towel.blinkenlights.nl"</li>
+                <li>top10 used commands: alias top10='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 10'</li>
+                <li>processes opening ports: alias ports='lsof -i -n -P'</li>
+                <li>latest modified files: alias mod60 et alias modd</li>
+            </ul>
+            <b>package managment</b>
+            <ul>
+                <li>alias debup='sudo apt-get update &amp;&amp; sudo apt-get dist-upgrade &amp;&amp; sudo apt-get clean'</li>
+                <li>alias debsh='apt-cache search'</li>
+                <li>alias debvs='apt-cache policy'</li>
+                <li>alias debcl='sudo apt-get clean'</li>
+                <li>alias debin='sudo apt-get --no-install-recommends install'</li>
+                <li>alias debrm='sudo apt-get autoremove --purge'</li>
+                <li>alias debgui='gksudo synaptic'</li>
+            </ul>
+            <b>exit &amp; reboot</b>
+            <ul>
+                <li>alias :q='exit'</li>
+                <li>alias oust='echo "bye $USER..."; sleep 2s &amp;&amp; sudo shutdown -h now'</li>
+                <li>alias comeback='echo "be back right now..."; sleep 2s &amp;&amp; sudo shutdown -r now'</li>
+            </ul>
+            </p>
+            <h3>functions</h3>
+            <p>
+                <b>basic functions</b>
+                <ul>
+                    <li>function ff: find a file in a directory by its name or part of the name</li>
+                    <li>function bak: generate a backup file named *.bak</li>
+                    <li>function today: mini calendar</li>
+                    <li>function space: generate a list with user directories sorted by size.</li>
+                    <li>function dduse: disk usage</li>
+                    <li>function mmuse: memory usage</li>
+                    <li>function my_ps: lists user active process</li>
+                    <li>function pp: lists active process in a tree </li>
+                </ul>
+                <b>informations</b>
+                <ul>
+                    <li>function core: cpu informations</li>
+                    <li>function graph: graphic card informations</li>
+                    <li>function ethcard: ethernet card informations</li>
+                    <li>function wfcard: wireless card informations</li>
+                    <li>function my_eip: external IP address</li>
+                    <li>function ii: full system &amp; user informations</li>
+                </ul>
+                <b>archives</b>
+                <ul>
+                    <li>function extract: extract an archive in the current disrectory</li>
+                    <li>mktar, mktgz, mktbz, mktxz: compress a directory in an archive in .tar, .tar.gz, .tar.bz2 or .tar.xz format.</li>
+                </ul>
+            </p>
+            <h2>Xresources</h2>
+            <p>
+                ~/.Xresources file configure interface, colors, fonts and some options of your terminal emulator.<br />
+                this file is pretty easy to understand. the syntax is "option = string".<br />
+                once modified, you have to reload your Xresources config by running "xrdb -load ~/.Xresources" in a terminal.
+            </p>
+            </div>
+        </div>
+    </div>
+    <div id="footer">livarp_0.4 help center - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

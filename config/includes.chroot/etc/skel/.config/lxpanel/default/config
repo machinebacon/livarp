@@ -1,0 +1,4 @@
+[Command]
+FileManager=rox %s
+Terminal=urxvtcd
+Logout=dmenu-quit.sh

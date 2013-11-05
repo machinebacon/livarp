@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Centre d'Aide Livarp - pare-feu simplifié</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang fr|<a href="../../us/admin/firewall.html">gb</a></h2><h1><a href="../../index-fr.html" title="retour au menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>pare-feu simplifié</h1>
+            <p>
+                GNU/Linux est un système sécurisé qui fonctionne sans anti-virus ... certes, mais un peu de sécurité ne fait pas de mal, surtout si vous avez installé un serveur SSH, un serveur LAMP ou Mail.<br />
+                pour cela, livarp utilise iptables qui va définir l'état des ports selon le type de communications.<br />
+                vous n'avez rien à faire pour activer ce pare-feu, le script iptables concerné se trouve dans votre dossier /etc/init.d/ qui rassemble les scripts lancés au démarrage de votre machine.
+            </p>
+            <h2>configuration</h2>
+            <p>
+                pour ajouter ou enlever des règles de sécurité, il faut éditer le fichier /etc/firewall.rules. c'est ce fichier qui est appellé par /etc/init.d/firewall.sh. voici le fichier par défaut:
+            </p>
+            <pre class="blockquote">
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT DROP [0:0]
+-A INPUT -m state --state INVALID -j DROP
+-A INPUT -p tcp --tcp-flags FIN,URG,PSH FIN,URG,PSH -j DROP
+-A INPUT -p tcp --tcp-flags ALL ALL -j DROP
+-A INPUT -p tcp --tcp-flags ALL NONE -j DROP
+-A INPUT -p tcp --tcp-flags SYN,RST SYN,RST -j DROP
+-A INPUT -m pkttype --pkt-type broadcast -j DROP
+-A INPUT -f -j LOG --log-prefix "[#1 iptables fragments : ]"
+-A INPUT -f -j DROP
+-A INPUT -i lo -j ACCEPT
+-A OUTPUT -o lo -j ACCEPT
+-A OUTPUT -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 111 -m state --state NEW -j REJECT --reject-with tcp-reset
+-A INPUT -p tcp --dport 22 -m recent --update --seconds 60 --hitcount 4 --name SSH --rsource -j LOG --log-prefix "[#1 : SSH brute-force ] : "
+-A INPUT -p tcp --dport 22 -m recent --update --seconds 60 --hitcount 4 --name SSH --rsource -j DROP
+-A INPUT -p tcp --dport 22 -m recent --set --name SSH --rsource
+-A INPUT -p tcp --dport 22 -j ACCEPT
+COMMIT</pre>
+            <p>
+                ce fichier interdit toute communication entrante non-initiée par l'utilisateur ou le système,<br />
+                log les communication invalides<br />
+                log les tentatives de passage en force sur le protocole ssh<br />
+                selon votre utilisation, vous pouvez effacer certaines règles (celles du port 80 si vous n'avez pas de serveur web par exemple). ou en rajouter:
+                <ul>
+                    <li>support du ping :<br />
+                    <text class="blockquote">-A INPUT -p tcp -p icmp -j ACCEPT</text></li>
+                    <li>support ftp : lancer connntrack pour le ftp passif (à placer dans le script /etc/init.d/firewall.sh):<br />
+                    <text class="blockquote">modprobe ip_conntrack_ftp ip_conntrack ip_nat_ftp</text><br />
+                    puis ajouter dans votre firewall.rules :<br />
+                    <pre class="blockquote">
+-A OUTPUT -p tcp --dport 21 -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
+-A INPUT -p tcp --sport 21 -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
+-A OUTPUT -p tcp --dport 20 -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
+-A INPUT -p tcp --sport 20 -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT</pre></li>
+                    <li>support smtp/smtps :<br />
+                    <text class="blockquote">-A INPUT -p tcp --dports smtp,smtps,submission -j ACCEPT</text></li>
+                </ul>
+                une fois vos modifications effectuées, relancer le service firewal avec la commande:<br />
+                <text class="blockquote"># /etc/init.d/firewall.sh restart</text>
+            </p>
+            </div>
+        </div>
+    </div>
+    <div id="footer">centre d'aide livarp_0.4 - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

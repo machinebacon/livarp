@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Livarp Help Center - vtwm session</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang <a href="../../fr/sessions/vtwm.html">fr</a>|gb</h2><h1><a href="../../index.html" title="back to main menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>the vtwm session</h1>
+            <p><b>vtwm aka Virtual Tabbed window Manager</b> is born in 1992 from twm sources. vtwm is an ultra basic window-manager but full of options. old-style, its complete configuration stands in one text file ~/.vtwmrc. vtwm is a 'floating' wm, windows are free on screen. it is fast, responsive and lightweight. it is ideal for small hardware resources.</p>
+            <h2>screenshot</h2>
+            <a href="../../pics/livarp_04_vtwm.png"><img src="../../pics/livarp_04_vtwm_thb.png" /></a>
+            <h2>startup</h2>
+            <p>vtwm is launched by the ~/bin/start/vtwm_start.sh script.<br />
+            to change startup applications, edit this file: <text class="blockquote">vim bin/start/vtwm_start.sh</text> or from the vtwm menu:section config:startup</p>
+            <h2>components</h2>
+            <p>livarp vtwm session has several elements:
+            <ul><li><b>IconManager:</b> icon box and tasklist. configured from ~/.vtwmrc.</li>
+                <li><b>VirtualDesktop:</b> a simple pager. configued from ~/.vtwmrc.</li>
+                <li><b>Vtwm menu:</b> available with left-click on desktop. configured from ~/.vtwmrc.</li>
+                <li><b>conky:</b> ultra minimal, displaying cpu &amp; ram conso, date &amp; time. configured from ~/.conky/.conkyrc_vtwm.</li>
+                <li><b>Livarp menu:</b> available on top-let corner, display livarp menu and systray. configured from ~/.config/fbpanel/default.</li>
+            </ul>
+            </p>
+            <h2>configuration</h2>
+            <p>to configure <b>conky</b>, you have to edit its conkyrc: <text class="blockquote">vim .conky/conkyrc_vtwm</text> or from the vtwm menu:section config:conky.</p>
+            <p><b>fbpanel</b> with menu and systray. you can add plugins. please visit the <a href="../config/menu.html">dedicated page.</a>.</p>
+            <h3>vtwm configuration stands in one file: ~/.vtwmrc</h3>
+            <ul><li>available from vtwm menu: section config:edit</li>
+                <li>with a command: <text class="blockquote">vim .vtwmrc</text></li>
+            </ul></p>
+            <p>the file is commented and control all vtwm options.<br />
+            after modifications, you have to reload vtwm with the Ctrl+Alt+r keybind.</p>
+            <h2>keybinds/mousebinds</h2>
+            <p>editable from ~/.vtwmrc, here is a list from livarp vtwm key/mousebinds:</p>
+            <h3>menus:</h3>
+                <ul><li>vtwm menu: left-click on desktop</li>
+                    <li>livarp menu: top-left corner of the screen</li>
+                </ul>
+            <h3>control:</h3>
+                <ul><li>reload vtwm: Ctrl+Alt+r</li>
+                    <li>quit vtwm:Ctrl+Shift+q</li>
+                    <li>quit livarp: Ctrl+Shift+Alt+q</li>
+                </ul>
+            <h3>windows:</h3>
+                <ul><li>close client: Super+q</li>
+                    <li>kill client: Super+x or middle-click on icon</li>
+                    <li>iconify client: Super+i</li>
+                    <li>maximize client: Super+m</li>
+                    <li>previous client: Alt+Shit+Tab</li>
+                    <li>next client: Alt+Tab</li>
+                    <li>client menu: right-click (title)*</li>
+                    <li>move / lower: Alt+right-click (window or icon)*</li>
+                    <li>move: left-click (title)*</li>
+                    <li>toggle iconify: Alt+middle-click (window or icon)*</li>
+                    <li>resize / raise: Alt+left-click (window or icon)* or left-click (title)*</li>
+                    <li>toggle lower/raise: middle-click (title)*</li>
+                </ul>
+                *<i>title, window, icon, window or icon: key/mousebinds on window title, window , icon and/or both.</i>
+            <h3>navigation:</h3>
+                <ul><li>desktop on right: Ctrl+Right or scroll up</li>
+                    <li>desktop on left:Ctrl+Left or scroll down</li>
+                </ul>
+            <h3>shortcuts:</h3>
+                <ul><li>launch default terminal: Ctrl+Enter</li>
+                    <li>launch terminal: Super+t</li>
+                    <li>launch dmenu: Super+d</li>
+                    <li>launch ranger: Super+r</li>
+                    <li>launch rox-filer: Super+Shift+r</li>
+                    <li>launch firefox: Super+w</li>
+                    <li>volume control: Super+v</li>
+                </ul>
+            <h3>window title buttons, from left to right:</h3>
+            <p>close -- iconify -- nail(fix) -- fullscreen -- resize</p>
+            </div>
+        </div>
+    </div>
+    <div id="footer">livarp_0.4 help center - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

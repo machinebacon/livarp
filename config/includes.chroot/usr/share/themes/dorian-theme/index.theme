@@ -1,0 +1,10 @@
+[X-GNOME-Metatheme]
+Name=dorian-theme
+Type=X-GNOME-Metatheme
+Comment=Darkly Elegant
+Encoding=UTF-8
+GtkTheme=dorian-theme
+MetacityTheme=dorian-theme
+IconTheme=gnome
+CursorTheme=Adwaita
+CursorSize=24

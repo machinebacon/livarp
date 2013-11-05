@@ -1,0 +1,346 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Livarp Help Center - pekwm session</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang <a href="../../index-fr.html">fr</a>|gb</h2><h1><a href="../../index.html" title="back to main menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>the pekwm session</h1>
+            <p><b>PeKwm</b> is a window manager for X developped by Claes Nästèn. extremly configurable, based on aewm++, pekwm proposes tab navigation, keybinds &amp; keychains, editable menu, autoproperties for clients... all in differents configuration files .. many files :D</p>
+            <h2>screenshot</h2>
+            <a href="../../pics/livarp_04_pekwm.png"><img src="../../pics/livarp_04_pekwm_thb.png" /></a>
+            <h2>startup</h2>
+            <p>pekwm is launched by the ~/bin/start/pekwm_start.sh script.<br />
+            to change your startup applications, simply edit this file: <text class="blockquote">vim bin/start/pekwm_start.sh</text> or from the pekwm menu:section pekwm:config:edit pekwm startup</p>
+            <h2>components</h2>
+            <p><b>pekwm</b> has many features, but i've added <b>conky</b> <b>fbpanel</b> and <b>lxpanel</b> as tasklist (icons-only), on top-right corner of your screen (configurable from lxpanel itself with a right-click:add/delete applets).</p>
+            <h2>configuration</h2>
+            <p>to configure <b>conky</b>, simply edit its conkyrc: <text class="blockquote">vim .conky/conkyrc_pekwm</text> or from the pekwm menu:section config:conky.</p>
+            <p><b>lxpanel</b>, has its own configuration editor in graphic mode. right-click on panel to enable lxpanel configuration. for more info, visit lxpanel <a href="../config/panel.html">dedicated page</a>.</p>
+            <p><b>fbpanel</b> includes menu &amp; systray, please visit the <a href="../config/menu.html">dedicated page</a>.</p>
+            <h3>pekwmconfiguration</h3>
+            <p>you can configure pekwm by editing its configuration files available in ~/.pekwm/*</p>
+            <ul><li><b>~/.pekwm/start:</b> here you can add applications to be launched on pekwm startup. note that it also gets re-run every time pekwm is restarted. so, you may add startup apps in your ~/bin/start/pekwm_start.sh if you don't want to run processes two times.<br />
+            you can use it to display a random wallpaper:</li></ul>
+            <p class="blockquote">#!/bin/sh<br />
+# PekWM start file<br />
+# This file is a simple shell script; It gets run on pekwm startup, after <br />
+# the theme and all config has loaded if it is set executable<br />
+# (chmod +x start).<br />
+#<br />
+# This is different from ~/.xinitrc because a normal configuration of <br />
+# .xinitrc you'll run all commands, then launch the window manager last.<br />
+#<br />
+# It also gets re-run every time pekwm is restarted.<br />
+# <br />
+# As for it's usefulness, well, it's up to you. I actually set my background<br />
+# from my start file; since it runs after the theme gets loaded, this <br />
+# effectively overrides whatever's in the theme.<br />
+# <br />
+# There's probably a few other good uses for it, too. I mainly pushed for it<br />
+# because when I was doing fluxbox's docs, people used to complain that there<br />
+# wasn't one, and I wanted to avoid that for pekwm. ;) --eyez<br />
+ <br />
+# random wallpaper script #<br />
+# depends on feh '# apt-get install feh' #<br />
+find [adresse_du_dossier] -type f -name '*.jpg' -o -name '*.png' | shuf -n 1 | xargs feh --no-xinerama --bg-scale &amp;</p>
+            <ul><li><b>~/.pekwm/config:</b> the main pekwm configuration file. here you can define default files, number and names of workspaces, windows properties, pekwm launcher configuration... <br />
+            general syntax and accepted options: </li></ul>
+            <pre class="blockquote">## path of pekwm files##
+## Path could be relative or absolute
+Files {
+    Keys = "~/.pekwm/keys"
+    Mouse = "~/.pekwm/mouse"
+    Menu = "~/.pekwm/menu"
+    Start = "~/.pekwm/start"
+    AutoProps = "~/.pekwm/autoproperties"
+    Theme = "/usr/share/pekwm/themes/default"
+    Icons = "~/.pekwm/icons/"
+}
+
+## window move/resize ##
+MoveResize {
+    EdgeAttract   distance from screen edge required for the window to snap against it
+    EdgeResist    distance from screen edge required for the window moving to start being resisted
+    WindowAttract distance from other clients that a window will snap against them to in pixels
+    WindowResist  The distance from other clients that a window movement will start being resisted
+    OpaqueMove    If true, turns on opaque Moving
+    OpaqueResize  If true, turns on opaque Resizing
+}
+## propriétés des bureaux
+Screen {
+    Workspaces             Number of workspaces enabled
+    WorkspacesPerRow       Number of workspaces on each row. 0=all workspaces on a single row
+    WorkspaceNames         List of names for workspaces separated by ;
+    ShowFrameList          display a list of all available frames on the workspace
+    ShowStatusWindow       display a size/position info window when moving or resizing
+    ShowStatusWindowCenteredOnRoot display a center/size/position info window
+    ShowClientID           Should Client IDs be displayed in window
+    ShowWorkspaceIndicator Show WorkspaceIndicator for N milliseconds
+    PlaceNew               place the client, if False, open on top-left corner
+    FocusNew               Toggles if new windows should be focused when they pop up
+
+    TrimTitle          This string contains what pekwm uses to trim down overlong window titles
+    FullscreenAbove    Toggles restacking of windows when going to and from fullscreen mode
+    FullscreenDetect   detect screen when fullsecreen is called
+    HonourRandr        Toggles reading of XRANDR information
+    HonourAspectRatio  Toggles if pekwm respects the aspect ratio of clients
+    EdgeSize           How many pixels from the edge of the screen should screen edges be
+    EdgeIndent         Toggles if the screen edge should be reserved space
+    PixmapCacheSize    Determines how many unused pixmaps are stored on the image cache
+    DoubleClickTime    Time, in milliseconds, between clicks to be counted as a doubleclick
+
+    ## Placement-subsection
+    ## Model (string):
+    ## Smart: Tries to place windows where no other window is present
+    ## MouseCentered: Places the center of the window underneath the mouse pointer position 
+    ## MouseTopLeft: Places the top-left corner of the window under the pointer
+    ## MouseNotUnder: Places windows on screen corners avoiding the mouse cursor position
+    ## CenteredOnParent: Places transient windows at center of their parent window
+    Placement {
+        Model = "CenteredOnParent Smart MouseNotUnder"
+        Smart {
+            Row          Whether to use row or column placement, if true, uses row
+            TopToBottom  If false, the window is placed starting from the bottom
+            LeftToRight  If false, the window is placed starting from the right
+            OffsetX      Pixels to leave between new and old windows and screen edges
+            OffsetY      Pixels to leave between new and old windows and screen edges
+        }
+    }
+
+    ## define if a window should have a unique name in the window list
+    ## if true, name will be followed by a number
+    UniqueNames  {
+        SetUnique  Decides if the feature is used or not
+        Pre        String to place before the unique client number
+        Post       String to place after the unique client number
+    }
+}
+
+## menu configuration
+Menu {
+    DisplayIcons  display icons in menu
+
+    Icons = "DEFAULT" {    ## icon size of the "DEFAULT" menu
+        Minimum = "16x16"
+        Maximum = "16x16"
+    }
+
+    # different icon size depending on menus
+
+    # Icons = "Wallpaper" {
+    #     Minimum = "64x64"
+    #     Maximum = "64x64"
+    # }
+
+    # Definition of the behavior of the mouse on menu items:
+    # values: "ButtonPress ButtonRelease DoubleClick Motion"
+    
+    Select = "Motion MotionPressed"       ## selection on hover
+    Enter = "MotionPressed ButtonPress"   ## enter on click
+    # Enter = "Motion"                    ## enter on hover
+    Exec = "ButtonRelease"                ## execute when release
+}
+
+## command dialog configuration
+CmdDialog {
+    HistoryUnique       avoid repetition in history
+    HistorySize         history size
+    HistoryFile         history record file
+    HistorySaveInterval history interval record
+}
+
+## harbour configuration
+Harbour {
+    OnTop         Whether or not the harbour is "always on top"
+    MaximizeOver  Controls whether maximized clients will cover the harbour 
+    Placement     position
+    Orientation   orientation
+    Head          screen
+    ## dockapps configuration
+    DockApp {
+        SideMin  minimal size
+        SideMax  maximal size 0=unlimited
+    }
+}</pre>
+            <ul><li><b>~/.pekwm/keys:</b> keybinds/mousebinds/keychains configuration file. pekwm supports keychanins to enable second keybind level.<br />
+            take care to not produce duplicated entries whem modify. note: comment/disable uneeded entries before editing.<br />
+            as pekwm files are in english, this file is pretty easy to understand (french doc is longer :) )<br />
+            livarp pekwm shortcuts available on bottom of this page</li></ul>
+            <ul><li><b>~/.pekwm/mouse:</b> mouse action on wondows, menus.. </li></ul>
+            <pre class="blockquote">## values ##
+ButtonPress:   a simple click
+ButtonRelease: command executed on click release
+DoubleClick:   double-click
+Motion:        Clicking, holding, and Dragging
+Enter:         how to act when mouse pointer enters an action place
+Leave:         how to act when mouse pointer leaves an action place
+EnterMoving:   Defines how to act when a dragged window enters a ScreenEdge
+
+## boutons ##
+1: left click
+2: middle click
+3: right click
+4: scroll up
+5: scroll down
+
+## basic actions ##
+Focus:          give focus
+Raise:          put client above others
+ActivateClient: activate the client in a client group
+Move:           move client
+Resize:         resize client
+Close:          close client</pre>
+            <ul><li><b>~/.pekwm/vars:</b> you may have noticed the ' INCLUDE = "vars" ' line on top of some pekwm files. that's what this file is about. it includes your prefered regular apps. here is an example:</li></ul>
+            <pre class="blockquote">$TERM="urxvtc"
+$FILER="urxvtc -name filer -e ranger"
+$GFILER="rox-filer"
+$WEB="uzbl http://start.arpinux.org"
+$GWEB="firefox"
+$EDIT="urxvtc -name editor -e vim"
+$GEDIT="geany"
+$ZIK="urxvtc -name player -e mocp -T transparent-background"
+$VOL="urxvtc -e alsamixer"
+$JAB="urxvtc -e mcabber"</pre>
+            <ul><li><b>~/.pekwm/menu:</b> The root menu is what you get when you left-click on the root window (also called the desktop). You can also configure the window menu, which you get when you right-click on a window title. </li></ul>
+            <p> As previously indicated, the root and window menus follow the rules defined in Common Syntax. There aren't many possible options, and they're all either within the main menu, or within a submenu. This is all handled by a single file.</p>
+            <p class="blockquote"># Menu config for pekwm<br />
+<br />
+  # Variables<br />
+  INCLUDE = "vars"<br />
+<br />
+  RootMenu = "Pekwm" {<br />
+  	Entry = "terminal" { Actions = "Exec $TERM &amp;" }<br />
+  	Entry = "execute.." { Actions = "ShowCmdDialog" }<br />
+<br />
+  	Separator {}<br />
+<br />
+  	Submenu = "goto..." {<br />
+  		SubMenu = "workspace" {<br />
+  			COMMAND = "/usr/share/pekwm/scripts/pekwm_ws_menu.sh send"<br />
+  		}<br />
+  		Entry = "client.." { Actions = "ShowMenu GotoClient True" }<br />
+  	}<br />
+  	Submenu = "Pekwm" {<br />
+  		Submenu = "themes" {<br />
+  			Entry { Actions = "Dynamic /usr/share/pekwm/scripts/pekwm_themeset.sh /usr/share/pekwm/themes" }<br />
+  			Entry { Actions = "Dynamic /usr/share/pekwm/scripts/pekwm_themeset.sh ~/.pekwm/themes" }<br />
+  		}<br />
+  		Entry = "reload" { Actions = "Reload" }<br />
+  		Entry = "restart" { Actions = "Restart" }<br />
+  		Entry = "quit" { Actions = "Exit" }<br />
+  	}<br />
+  	<br />
+	Separator {}<br />
+<br />
+	INCLUDE = "debian-menu"<br />
+}<br />
+<br />
+WindowMenu = "window menu" {<br />
+  	Entry = "toggle sticky" { Actions = "Toggle Sticky" }<br />
+  	Entry = "toggle shaded" { Actions = "Toggle Shaded" }<br />
+  	Entry = "iconified " { Actions = "Set Iconified" }<br />
+  	Entry = "command.." { Actions = "ShowCmdDialog" }<br />
+<br />
+  	Submenu = "maximisation" {<br />
+  		Entry = "full" { Actions = "Toggle Maximized True True" }<br />
+  		Entry = "horizontal" { Actions = "Toggle Maximized True False" }<br />
+  		Entry = "vertical" { Actions = "Toggle Maximized False True" }<br />
+  	}<br />
+  	Submenu = "fill free space" {<br />
+  		Entry = "full" { Actions = "MaxFill True True" }<br />
+  		Entry = "horizontal" { Actions = "MaxFill True False" }<br />
+  		Entry = "vertical" { Actions = "MaxFill False True" }<br />
+  	}<br />
+  	Submenu = "placement" {<br />
+  		Entry = "raise client " { Actions = "Raise" }<br />
+  		Entry = "lower client" { Actions = "Lower" }<br />
+  		Entry = "always on top" { Actions = "Toggle AlwaysOnTop" }<br />
+  		Entry = "always below" { Actions = "Toggle AlwaysBelow" }<br />
+  	}<br />
+  	Submenu = "decorations" {<br />
+  		Entry = "toggle decorations" { Actions = "Toggle DecorBorder; Toggle DecorTitlebar" }<br />
+  		Entry = "toggle borders" { Actions = "Toggle DecorBorder" }<br />
+  		Entry = "toggle titlebar" { Actions = "Toggle DecorTitlebar" }<br />
+  	}<br /><br />
+  	Submenu = "Skip" {<br />
+  		Entry = "Menus" { Actions = "Toggle Skip Menus" }<br />
+  		Entry = "Focus Toggle" { Actions = "Toggle Skip FocusToggle" }<br />
+  		Entry = "Snap" { Actions = "Toggle Skip Snap" }<br />
+  	}<br />
+  	SubMenu = "sendto..." {<br />
+  		COMMAND = "/usr/share/pekwm/scripts/pekwm_ws_menu.sh send"<br />
+  	}<br />
+  	Separator {}<br />
+  	Entry = "close" { Actions = "Close" }<br />
+  	Submenu = "kill" { Entry = "Kill application" { Actions = "Kill" } }<br />
+  }</p>
+            <ul><li><b>~/.pekwm/autoproperties:</b> aka the rules files: defines some specific properties for your applications. this file is well commented and easy to understand as it's in english (the french doc is longer :) )</li></ul>
+            <ul><li><b>~/.pekwm/themes ,/scripts, /icons</b>
+                <ul><li>the ~/.pekwm/themes directory includes downloaded/created themes if ou want them to be detected/used by pekwm</li>
+                <li>the ~/.pekwm/scripts directory includes scripts used by pekwm dynamics menus</li>
+                <li>the ~/.pekwm/icons directory includes icons used by pekwm themes</li>
+                </ul></li>
+            </ul>
+            <h2>keybinds/mousebinds</h2>
+            <p>configured by the ~/.pekwm/keys file, here are the livarp pekwm session shortcuts:</p>
+             <h3>menus:</h3>
+                <ul><li>fbpanel menu: available on top-left corner of your screen</li>
+                    <li>pekwm menu: right-click on desktop or Super+R</li>
+                    <li>hide menus: Super+x</li>
+                    <li>dmenu: Alt+d</li>
+                    <li>run command dialog: Super+d</li>
+                </ul>
+            <h3>control:</h3>
+                    <li>reload pekwm: Ctrl+Alt+r</li>
+                    <li>quit pekwm: Ctrl+Shift+Alt+q, from the pekwm menu:exit or lxpanel:logout</li>
+                </ul>
+            <h3>windows:</h3>
+                <ul><li>close client: Super+q</li>
+                    <li>shade client: Super+s</li>
+                    <li>iconify client: Super+i</li>
+                    <li>prev/next client: Alt(+Shift)+Tab</li>
+                    <li>prev/next client-group: Ctrl+Alt(+Shift)+Tab</li>
+                    <li>prev/next tabbed client: Super(+Shift)+Tab</li>
+                    <li>maximize: Super+m</li>
+                    <li>fullscreen: Super+f</li>
+                    <li>move: Alt+clic-gauche</li>
+                    <li>resize: Alt+clic-droit</li>
+                </ul>
+            <h3>navigation:</h3>
+                <ul><li>prev/next workspace: Ctrl+Alt+Left/Right</li>
+                    <li>workspace 'n': Super+'n'</li>
+                    <li>sendto workspace 'n': Super+F'n'</li>
+                    <li>sendto &amp; goto prev/next workspace: Ctrl+Alt+Shift+Left/Right</li>
+                </ul>
+            <h3>launchers:</h3>
+                <ul><li>default terminal: Ctrl+Enter or Super+e</li>
+                    <li>launch ranger: Alt+r</li>
+                    <li>launch rox-filer: Alt+Shift+r</li>
+                    <li>launch firefox: Alt+w</li>
+                    <li>launch vim: Alt+e</li>
+                    <li>launch geany: Alt+Shift+e</li>
+                    <li>music player: Alt+z</li>
+                    <li>volume control: Alt+v</li>
+                </ul>
+            <h3>keychains:</h3>
+            <p>allows you to enable a second keybind level with a first keybind. complete list available in the ~/.pekwm/keys file: section "CHAINS".</p>
+            </div>
+        </div>
+    </div>
+    <div id="footer">livarp_0.4 help center - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

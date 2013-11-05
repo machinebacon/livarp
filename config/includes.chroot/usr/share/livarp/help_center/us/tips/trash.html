@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Livarp Help Center - empty trash</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang <a href="../../fr/tips/trash.html">fr</a>|gb</h2><h1><a href="../../index.html" title="back to main menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>empty trash</h1>
+            <p>as you may have noticed, Rox-Filer doesn't use a trash, but some apps does (like transmission…) so, you may want to empty the trashcan sometimes :) if so, just delete the ~/.local/share/Trash directory: </p>
+            <h2>with ranger cli-manager:</h2>
+            <ul>
+            <li>open ranger: Alt+r</li>
+            <li>display hidden files: “zh” in ranger client</li>
+            <li>select ~/.local, then 'share' then 'Trash'</li>
+            <li>delete the directory: in ranger client, type ”:delete” then “y” when it asks you “delete seriously ?”</li>
+            </ul>
+            <h2>with Rox-Filer:</h2>
+            <ul>
+            <li>open rox: Alt+Shift+r</li>
+            <li>display hidden files: Ctrl+h</li>
+            <li>navigate through ~/.local/share</li>
+            <li>delete the Trash directory by right-clic on it then “delete” in the menu. or select it then Ctrl+x.</li>
+            </ul>
+            <h2>with a command:</h2>
+            <p class=blockquote>$ rm -f -R /home/$USER/.local/share/Trash</p>
+            </div>
+        </div>
+    </div>
+    <div id="footer">livarp_0.4 help center - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

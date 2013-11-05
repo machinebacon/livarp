@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Livarp Help Center - ranger cli manager</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang <a href="../../fr/tips/ranger.html">fr</a>|gb</h2><h1><a href="../../index.html" title="back to main menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>ranger: python-cli file-manager</h1>
+            <p><b>ranger</b> is a file browser written in python adopting vim keyboard shortcuts. very light, it is nonetheless highly configurable: shortcuts definitions, applications associated with file types, use of external scripts ...<br />
+            ranger uses vim keyboard and mc too:</p>
+            <xmp>    <F1> help
+    <F3> display_file
+    <F4> edit
+    <F5> copy
+    <F6> cut
+    <F7> console mkdir
+    <F8> console delete seriously?
+    <F10> exit
+</xmp>
+            <p>ranger uses vim for actions and navigation as well as directional arrows.</p>
+            <pre>
+    yy copy
+    pp paste
+    dd cut
+    / find
+    n find next
+    ….
+</pre>
+            <p>ranger provides an organization with columns to visualize the folder tree but also text files directly.</p>
+            <img src="../../pics/ranger.png" />
+            <p>ranger provides direct help in the console client: start typing a keybind, ranger shows you available keybind starting with your first letter: here starting with 'g'</p>
+            <img src="../../pics/ranger_keybinds.png" />
+            <p>ranger supports bookmarks: go to a dirctory, then type 'm', ranger asks you to type a second letter: it will become the bookmark identifier. you just have to type " ' " then your id-letter to acces to configured bookmarks.</p>
+            <p>ranger provides tabs: open a tab with "gn" (gonew) , navigate through tabs with " g'n' " or [Tab]</p>
+            <img src="../../pics/ranger_tabs.png" />
+            <p>ranger complete configuration is placed in your ~/.config/ranger/ . there you can define shortcuts, panel tree view, sort, file type associations ...</p>
+            </div>
+        </div>
+    </div>
+    <div id="footer">livarp_0.4 help center - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

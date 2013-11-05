@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Centre d'Aide Livarp - speed boot</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang fr|<a href="../../us/admin/speed-boot.html">gb</a></h2><h1><a href="../../index-fr.html" title="retour au menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>accélérer le démarrage</h1>
+            <h2>passer GRUB</h2>
+            <p>si livarp est le seul système d'exploitation présent sur votre machine, vous n'avez pas besoin des 5 secondes d'attente dans grub au démarrage de votre ordi. pour “passer grub”, il suffit de réduire le temps d'attente. pour cela, éditez le fichier /etc/default/grub:</p>
+            <p class="blockquote">sudo vim /etc/default/grub</p>
+            <p>puis remplacer</p>
+            <p class="blockquote">GRUB_TIMEOUT=5</p>
+            <p>par</p>
+            <p class="blockquote">GRUB_TIMEOUT=0</p>
+            <p>enregistrer et fermer avec ':wq' dans vim puis actualiser GRUB avec la commande:</p>
+            <p class="blockquote">sudo update-grub</p>
+            <p>ainsi, au prochain démarrage, l'écran de grub ne sera pas affiché et livarp se chargera automatiquement.</p>
+            <h2>boot-up-manager</h2>
+            <p>bum est un logiciel qui permet de gérer graphiquement les services lancés au démarrage de votre machine Debian sans avoir à mettre les mains dans la console.<br />
+            il s'installe simplement:</p>
+            <p class="blockquote"># apt-get install bum</p>
+            <p>et se lance en root:</p>
+            <p class="blockquote"># bum</p>
+            <h2>readahead</h2>
+            <p>le projet vient de Fedora, le paquet sur Debian est readahead-fedora. le but est de précharger les modules nécessaires au processus de démarrage. pour l'installer, depuis un terminal sur Debian:</p>
+            <p class="blockquote"># apt-get install readahead-fedora</p>
+            <p>rien à faire d'autre, le démon se lance et accélère le boot.</p>
+            </div>
+        </div>
+    </div>
+    <div id="footer">centre d'aide livarp_0.4 - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->

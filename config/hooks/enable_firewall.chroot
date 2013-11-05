@@ -1,0 +1,5 @@
+#!/bin/sh
+# basic firewall initialization
+###############################
+set -e
+update-rc.d firewall.sh defaults

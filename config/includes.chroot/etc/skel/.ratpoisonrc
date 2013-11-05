@@ -1,0 +1,26 @@
+# ratpoison config and startup file
+# set options and startup applications and commands
+###################################################
+
+## set some variables -----------------------------
+# font to use on status message
+set font "Droid Sans Mono-11"
+# status text color
+set fgcolor DeepSkyBlue4
+# status background color
+set bgcolor gray20
+# border focus color
+set fwcolor DeepSkyBlue4
+# border unfocused color
+set bwcolor gray20
+
+## bind some keys ---------------------------------
+# dmenu with C-t d
+bind d exec dmenu-bind.sh
+# livarp ratmenu with C-t m
+unbind m
+bind m exec .ratpoison/rat_main_menu
+
+## open a terminal on startup/restart -------------
+exec (sleep 4s && urxvtcd)
+

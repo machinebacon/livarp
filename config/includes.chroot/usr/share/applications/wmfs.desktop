@@ -1,0 +1,6 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=wmfs
+Comment=Window Manager From Scratch
+Exec=ck-launch-session wmfs
+Icon=wmfs

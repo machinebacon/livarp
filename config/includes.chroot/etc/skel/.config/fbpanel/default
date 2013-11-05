@@ -1,0 +1,989 @@
+################################
+## fbpanel configuration file ##
+##      livarp_0.4 menu       ##
+################################
+# DESCRIPTION
+# Configuration file consists of mandatory 'Global' block that MUST come first,
+# and optionally one or more 'Plugin' block.
+# Lines having '#' as first non-blank char or blank lines are ignored
+# Keywords are not case-sensitive
+# Values are case-sensitive
+# Value of variable is a text from first non-blank char after '='
+# till the last non-blank char. '#' is NOT treated as coment in this context
+
+# 'Global' block describes global parameters like position, size and
+# some NETWM settings
+
+# Global {
+
+#     # screen edge
+#     # legal values are: left, right, top, bottom
+#     edge = bottom
+
+#     # allignment of a panel
+#     # legal values are: left, right, center
+#     allign = left
+
+#     # length of margin (in pixels)
+#     # legal values are numbers
+#     margin = 0
+
+#     # widthtype specifies how panel width is calculated
+#     # legal values are: request, pixel, percent
+#     #   request - follow widgets' size requests. can shrink or grow dynamically
+#     #   pixel   - occupy fixed number of pixels, then 'width' variable holds a number
+#     #   percent - be 'width' precent of an edge.
+#     widthType = percent
+
+#     # numerical value of width (not applicable for 'request' widthtype)
+#     # legal values are numbers
+#     width = 80
+
+#     # heighttype specifies how panel height is calculated
+#     # legal values are: pixel
+#     #   pixel   - ocupy fixed number of pixels, then 'height' variable holds a number
+#     heightType = pixel
+
+#     # numerical value of height (if applicable)
+#     # legal values are numbers
+#     height = 28
+
+
+#     # Identify panel window type as dock
+#     # legal values are boolean
+#     setDockType = true
+
+#     # Reserve panel's space so that it will not be covered by maximazied windows
+#     # legal values are boolean
+#     # setPartialStrut = true
+
+
+#     # Transparency stuff:
+#     # tintColor is a color to composite on root background given as #RRGGBB or as name
+#     # alpha is transparency of the tint color.
+#     # transparent = true
+#     # tintColor = #FFFFFF
+#         or
+#     # tintColor = white
+#     # alpha = 127
+
+#     # Autohide
+#     # autoHide = false
+#     # heightWhenHidden = 2
+
+# }
+
+
+
+# 'Plugin' block specifies a plugin to load. It has same syntax for both
+# builtin and external plugins.
+
+# First parameter is 'type'. It's mandatory and must come first
+# Legal values are plugin names. Names of builtin plugins are:
+# separator   - visual separator
+# wincmd      - 'show desktop' button
+# taskbar     - lists all opened windows (tasks)
+# launchbar   - bar with launch button
+# image       - just shows an image
+# dclock      - digital clock
+# space       - just seize space
+# pager       - thumbnailed view of the desktop
+# tray        - tray for XEMBED icons (aka docklets)
+
+# expand - specifies if plugin can accomodate extra space or not [optional]
+# padding - extra padding around plugin  [optional]
+# config {} - block of plugin's private configuration.
+#             This part is plugin  dependant
+
+
+#
+# Plugin {
+#     type = wincmd
+#     config {
+#         image = ~/.fbpanel/images/Desktop2.png
+#         tooltip = Left click to iconify all windows. Middle click to shade them.
+#     }
+# }
+
+## Config Start ##
+
+Global {
+    edge = top
+    allign = left
+    margin = 0
+    widthtype = request
+    width = 100
+    height = 18
+    transparent = true
+    tintcolor = #222222
+    alpha = 255
+    setdocktype = true
+    setpartialstrut = true
+    autohide = true
+    heightWhenHidden = 0
+    roundcorners = false
+    roundcornersradius = 1
+    layer = none
+    MaxElemHeight = 32
+}
+
+Plugin {
+    type = menu
+    config {
+        IconSize = 18
+        #icon = start-here
+        image = ~/.config/fbpanel/icons/livarp.png
+        item {
+            name = terminal
+            icon = terminal
+            action = urxvtcd
+        }
+        item {
+            name = root terminal
+            icon = gksu-root-terminal
+            action = gksu urxvtcd
+        }
+        item {
+            name = file-manager
+            icon = file-manager
+            action = rox-filer
+        }
+        item {
+            name = file-manager(cli)
+            icon = file-manager
+            action = urxvtc -e ranger
+        }
+        item {
+            name = web browser
+            icon = firefox
+            action = firefox http://arpinux.org/livarp_start
+        }
+        separator {
+        }
+        menu {
+            name = cli-apps
+            icon = terminal
+            item {
+                name = terminal
+                icon = terminal
+                action = urxvtcd
+            }
+            item {
+                name = root terminal
+                icon = gksu-root-terminal
+                action = urxvtcd -e su
+            }
+            item {
+                name = file-manager
+                icon = file-manager
+                action = urxvtcd -e ranger
+            }
+            item {
+                name = editor
+                icon = vim
+                action = urxvrcd -e vim
+            }
+            item {
+                name = music
+                icon = gnome-sound-properties
+                action = urxvtcd -e mocp
+            }
+            item {
+                name = web browser
+                icon = links2
+                action = urxvtcd -e links2 http://arpinux.org/livarp_start
+            }
+            item {
+                name = disk usage
+                icon = baobab
+                action = urxvtcd -e ncdu
+            }
+        }
+        menu {
+            name = applications
+            icon = applications-accessories
+            menu {
+                name = internet
+                icon = applications-internet
+                item {
+                    name = firefox browser
+                    icon = firefox
+                    action = firefox http://arpinux.org/livarp_start
+                }
+                item {
+                    name= claws-mail
+                    icon = claws-mail
+                    action = claws-mail
+                }
+                item {
+                    name = weechat
+                    icon = pidgin
+                    action = urxvtcd -e weechat-curses
+                }
+                item {
+                    name = filezilla
+                    icon = filezilla
+                    action = filezilla
+                }
+                item {
+                    name = transmission
+                    icon = transmission
+                    action = transmission-gtk
+                }
+            }
+            menu {
+                name = graphics
+                icon = gnome-graphics
+                item {
+                    name = gthumb
+                    icon = gthumb
+                    action = gthumb
+                }
+                item {
+                    name = gcolor2
+                    icon = gcolor
+                    action = gcolor2
+                }
+                item {
+                    name = select color
+                    icon = color-line
+                    action = xcolorsel
+                }
+                item {
+                    name = select font
+                    icon = fonts
+                    action = xfontsel
+                }
+                menu {
+                    name = screenshot
+                    icon = gnome-screenshot
+                    item {
+                        name = now
+                        icon = desktop
+                        action = screenshot -a
+                    }
+                    item {
+                        name = in 5 sec.
+                        icon = emblem-urgent
+                        action = screenshot -d
+                    }
+                    item {
+                        name = active window in 2 sec..
+                        icon = display-capplet
+                        action = screenshot -w
+                    }
+                    item {
+                        name = select a zone
+                        icon = stock_leave-fullscreen
+                        action = screenshot -z
+                    }
+                }
+            }
+            menu {
+                name = media
+                icon = applications-multimedia
+                item {
+                    name = mplayer
+                    icon = mplayer
+                    action = gnome-mplayer
+                }
+                item {
+                    name = mocp
+                    icon = gnome-sound-properties
+                    action = urxvtcd -e mocp
+                }
+                item {
+                    name = moc config
+                    icon = gtk-edit
+                    action = geany .moc/config
+                }
+                item {
+                    name = xfburn
+                    icon = brasero
+                    action = xfburn
+                }
+                item {
+                    name = volume
+                    icon = gnome-settings-sound
+                    action = urxvtcd -T sound -e alsamixer
+                }
+                item {
+                    name = ogg converter
+                    icon = oggconvert
+                    action = oggconvert
+                }
+                item {
+                    name = video encoder
+                    icon = winff
+                    action = winff
+                }
+            }
+            menu {
+                name = office
+                icon = applications-office
+                item {
+                    name = text editor
+                    icon = geany
+                    action = geany
+                }
+                item {
+                    name = pdf viewer
+                    icon = evince
+                    action = evince
+                }
+                item {
+                    name = agenda
+                    icon = calendar
+                    action = urxvtcd -e calcurse
+                }
+                item {
+                    name = vim
+                    icon = vim
+                    action = urxvtcd -T editor -e vim
+                }
+            }
+            menu {
+                name = utils
+                icon = applications-utilities
+                item {
+                    name = catfish
+                    icon = gnome-searchtool
+                    action = catfish
+                }
+                item {
+                    name = archiver
+                    icon = file-roller
+                    action = file-roller
+                }
+                item {
+                    name = calculator
+                    icon = gnome-calculator
+                    action = xcalc
+                }
+                item {
+                    name = htop
+                    icon = htop
+                    action = urxvtcd -e htop
+                }
+                item {
+                    name = xosview
+                    icon = xosview
+                    action = xosview
+                }
+                item {
+                    name = pyrenamer
+                    icon = pyrenamer
+                    action = pyrenamer
+                }
+                item {
+                    name = fslint
+                    icon = fslint_icon
+                    action = fslint-gui
+                }
+                item {
+                    name = force quit
+                    icon = force-exit
+                    action = xkill
+                }
+            }
+        }
+        menu {
+            name = configuration
+            icon = preferences-other
+            item {
+                name = user interface
+                icon = gnome-settings-theme
+                action = lxappearance
+            }
+            item {
+                name = wallpaper
+                icon = background
+                action = nitrogen
+            }
+            item {
+                name = volume
+                icon = gnome-settings-sound
+                action = urxvtcd -T sound -e alsamixer
+            }
+            item {
+                name = display
+                icon = gnome-display-properties
+                action = arandr
+            }
+            item {
+                name = ~xinitrc
+                icon = gtk-edit
+                action = geany .xinitrc
+            }
+            menu {
+                name = xcompmgr
+                icon = desktop-effects
+                item {
+                    name = no effect
+                    icon = dialog-close
+                    action = killall xcompmgr
+                }
+                item {
+                    name = light effect
+                    icon = notification-display-brightness-off
+                    action = xcompmgr_livarp -l
+                }
+                item {
+                    name = full effect
+                    icon = notification-display-brightness-full
+                    action = xcompmgr_livarp -f
+                }
+                item {
+                    name = configure
+                    icon = gtk-edit
+                    action = urxvtcd -e sudo vim /usr/local/bin/xcompmgr_livarp
+                }
+                item {
+                    name = man xcomp
+                    icon = terminal
+                    action = urxvtcd -e man xcompmgr
+                }
+            }
+            menu {
+                name = screensaver
+                icon = xscreensaver
+                item {
+                    name = config screensaver
+                    icon = drakconf
+                    action = xscreensaver-demo
+                }
+                item {
+                    name = reload screensaver
+                    icon = gtk-refresh
+                    action = xscreensaver-command -restart
+                }
+                item {
+                    name = disable screensaver
+                    icon = dialog-close
+                    action = xscreensaver-command -exit
+                }
+            }
+            menu {
+                name = fbpanel
+                icon = gnome-settings-ui-behavior
+                item {
+                    name = edit config
+                    icon = drakmenustyle
+                    action = geany .config/fbpanel/default
+                }
+                item {
+                    name = reload fbpanel
+                    icon = gtk-refresh
+                    action = killall -USR1 fbpanel
+                }
+            }
+        }
+        menu {
+            name = wm's
+            icon = glade
+            menu {
+                name = vtwm
+                image = ~/.config/fbpanel/icons/vtwm.png
+                item {
+                    name = edit startup script
+                    icon = gtk-edit
+                    action = geany bin/start/vtwm_start.sh
+                }
+                item {
+                    name = edit conkyrc
+                    icon = gtk-edit
+                    action = geany .conky/conkyrc_vtwm
+                }
+                item {
+                    name = edit vtwmrc
+                    icon = gtk-edit
+                    action = geany .vtwmrc
+                }
+                item {
+                    name = reload vtwm
+                    icon = gtk-refresh
+                    action = xdotool key Ctrl+Alt+r
+                }
+                item {
+                    name = man vtwm
+                    icon = terminal
+                    action = urxvtcd -e man vtwm
+                }
+                item {
+                    name = vtwm main page
+                    icon = web-browser
+                    action = firefox http://www.vtwm.org/
+                }
+                item {
+                    name = vtwm keys
+                    icon = gnome-settings-accessibility-keyboard
+                    action = urxvtcd --geometry 60x45+50+50 -e vtwm_keys.sh
+                }
+            }
+            menu {
+                name = ratpoison
+                image = ~/.config/fbpanel/icons/ratpoison.png
+                item {
+                    name = edit startup script
+                    icon = gtk-edit
+                    action = geany bin/start/ratpoison_start.sh
+                }
+                item {
+                    name = edit ratpoisonrc
+                    icon = gtk-edit
+                    action = geany .ratpoisonrc
+                }
+                item {
+                    name = restart rapoison
+                    icon = gtk-refresh
+                    action = ratpoison -c restart
+                }
+                item {
+                    name = man ratpoison
+                    icon = terminal
+                    action = urxvtcd -e man ratpoison
+                }
+                item {
+                    name = wiki ratpoison (fr)
+                    icon = system-help
+                    action = firefox http://arpinux.org/x/doku.php/wms:ratpoison
+                }
+                item {
+                    name = ratpoison main page
+                    icon = web-browser
+                    action = firefox http://www.nongnu.org/ratpoison/
+                }
+                item {
+                    name = ratpoison keys
+                    icon = gnome-settings-accessibility-keyboard
+                    action = .ratpoison/ratkeys.sh
+                }
+            }
+            menu {
+                name = dwm_reloaded
+                image = ~/.config/fbpanel/icons/dwm.png
+                item {
+                    name = edit startup script
+                    icon = gtk-edit
+                    action = geany bin/start/dwm_start.sh
+                }
+                item {
+                    name = edit statusbar
+                    icon = gtk-edit
+                    action = geany .conky/conkyrc_dwm
+                }
+                item {
+                    name = man dwm
+                    icon = terminal
+                    action = urxvtcd -e man dwm
+                }
+                item {
+                    name = wiki dwm (fr)
+                    icon = system-help
+                    action = firefox http://arpinux.org/x/doku.php/wms:dwm
+                }
+                item {
+                    name = dwm main page
+                    icon = web-browser
+                    action = firefox http://dwm.suckless.org
+                }
+                item {
+                    name = dwm_reloaded keys
+                    icon = gnome-settings-accessibility-keyboard
+                    action = urxvtcd --geometry 60x45+50+50 -e dwm_keys.sh
+                }
+            }
+            menu {
+                name = wmfs
+                image = ~/.config/fbpanel/icons/wmfs.png
+                item {
+                    name = edit startup script
+                    icon = gtk-edit
+                    action = geany bin/start/wmfs_start.sh
+                }
+                item {
+                    name = edit wmfsrc
+                    icon = gtk-edit
+                    action = geany .config/wmfs/wmfsrc
+                }
+                item {
+                    name = reload wmfs
+                    icon = gtk-refresh
+                    action = wmfs -c reload
+                }
+                item {
+                    name = edit statusbar
+                    icon = gtk-edit
+                    action = geany .conky/conkyrc_wmfs
+                }
+                item {
+                    name = edit launchers-bar
+                    icon = gtk-edit
+                    action = geany .conky/conkyrc_wmfs_launchers
+                }
+                item {
+                    name = man wmfs
+                    icon = terminal
+                    action = urxvtcd -e man wmfs
+                }
+                item {
+                    name = wiki wmfs
+                    icon = system-help
+                    action = firefox https://github.com/xorg62/wmfs/wiki
+                }
+                item {
+                    name = wmfs keys
+                    icon = gnome-settings-accessibility-keyboard
+                    action = keybind_help.sh
+                }
+                item {
+                    name = wmfs shortcuts
+                    icon = key_bindigs
+                    action = shortcuts_help.sh
+                }
+            }
+            menu {
+                name = spectrwm
+                image = ~/.config/fbpanel/icons/spectrwm.png
+                item {
+                    name = edit startup script
+                    icon = gtk-edit
+                    action = geany bin/start/spectrwm_start.sh
+                }
+                item {
+                    name = edit spectrwm.conf
+                    icon = gtk-edit
+                    action = geany .spectrwm.conf
+                }
+                item {
+                    name = reload spectrwm
+                    icon = gtk-refresh
+                    action = xdotool key Alt+q
+                }
+                item {
+                    name = edit statusbar
+                    icon = gtk-edit
+                    action = geany bin/spectrwm_status.sh
+                }
+                item {
+                    name = wiki spectrwm (fr)
+                    icon = system-help
+                    action = firefox http://arpinux.org/x/doku.php/wms:scrotwm
+                }
+                item {
+                    name = man spectrwm
+                    icon = terminal
+                    action = urxvtcd -e man spectrwm
+                }
+                item {
+                    name = spectrwm main page
+                    icon = web-browser
+                    action = firefox https://opensource.conformal.com/wiki/spectrwm
+                }
+                item {
+                    name = spectrwm keys
+                    icon = gnome-settings-accessibility-keyboard
+                    action = urxvtcd --geometry 70x55+50+50 -e spectrwm_keys.sh
+                }
+            }
+            menu {
+                name = awesome
+                image = ~/.config/fbpanel/icons/awesome.png
+                item {
+                    name = edit startup script
+                    icon = gtk-edit
+                    action = geany bin/start/awesome_start.sh
+                }
+                item {
+                    name = edit config.lua
+                    icon = gtk-edit
+                    action = geany .config/awesome/config.lua
+                }
+                item {
+                    name = goto full awesome config
+                    icon = file-manager
+                    action = rox .config/awesome/config/
+                }
+                item {
+                    name = man awesome
+                    icon = terminal
+                    action = urxvtcd -e man awesome
+                }
+                item {
+                    name = awesome main page
+                    icon = web-browser
+                    action = firefox http://awesome.naquadah.org/
+                }
+                item {
+                    name = awesome keys
+                    icon = gnome-settings-accessibility-keyboard
+                    action = urxvtcd --geometry 60x35+50+50 -e awesome_keys.sh
+                }
+            }
+            menu {
+                name = evilwm
+                image = ~/.config/fbpanel/icons/evilwm.png
+                item {
+                    name = edit startup script
+                    icon = gtk-edit
+                    action = geany bin/start/evilwm_start.sh
+                }
+                item {
+                    name = edit conky
+                    icon = gtk-edit
+                    action = geany .conky/conkyrc_evil
+                }
+                item {
+                    name = man evil
+                    icon = terminal
+                    action = urxvtc -e man evilwm
+                }
+                item {
+                    name = wiki evilwm (fr)
+                    icon = system-help
+                    action = firefox http://arpinux.org/x/doku.php/wms:evilwm
+                }
+                item {
+                    name = evilwm main page
+                    icon = web-browser
+                    action = firefox http://www.6809.org.uk/evilwm/
+                }
+                item {
+                    name = evil keys
+                    icon = gnome-settings-accessibility-keyboard
+                    action = urxvtcd --geometry 60x35+50+50 -e evil_keys.sh
+                }
+            }
+            menu {
+                name = pekwm
+                image = ~/.config/fbpanel/icons/pekwm_logo.png
+                item {
+                    name = edit startup script
+                    icon = gtk-edit
+                    action = geany bin/start/pekwm_start.sh
+                }
+                item {
+                    name = edit conkyrc
+                    icon = gtk-edit
+                    action = geany .conky/conkyrc_pekwm
+                }
+                item {
+                    name = wiki pekwm (fr)
+                    icon = system-help
+                    action = firefox http://arpinux.org/x/doku.php/wms:pekwm
+                }
+                item {
+                    name = pekwm main page
+                    icon = web-browser
+                    action = firefox http://pekwm.org
+                }
+                item {
+                    name = pekwm keys
+                    icon = gnome-settings-accessibility-keyboard
+                    action = urxvtcd --geometry 70x55+50+50 -e pekwm_keys.sh
+                }
+            }
+            menu {
+                name = fluxbox
+                image = ~/.config/fbpanel/icons/fluxbox.png
+                item {
+                    name = edit startup script
+                    icon = gtk-edit
+                    action = geany bin/start/fluxbox_start.sh
+                }
+                item {
+                    name = edit conky
+                    icon = gtk-edit
+                    action = geany .conky/conkyrc_fluxbox
+                }
+                item {
+                    name = man fluxbox
+                    icon = terminal
+                    action = urxvtcd -e man fluxbox
+                }
+                item {
+                    name = fluxbox main page
+                    icon = web-browser
+                    action = firefox http://fluxbox.org
+                }
+            }
+            menu {
+                name = openbox
+                image = ~/.config/fbpanel/icons/openbox.png
+                item {
+                    name = edit startup script
+                    icon = gtk-edit
+                    action = geany .config/openbox/autostart
+                }
+                item {
+                    name = edit conky
+                    icon = gtk-edit
+                    action = geany .conky/conkyrc_openbox
+                }
+                menu {
+                    name = tint2 config
+                    icon = drawer
+                    item {
+                        name = edit tint2rc
+                        icon = gtk-edit
+                        action = geany .config/tint2/tint2rc
+                    }
+                    item {
+                        name = reload tint2
+                        icon = gtk-refresh
+                        action = killall -USR1 tint2
+                    }
+                }
+                item {
+                    name = configure openbox
+                    icon = obconf
+                    action = obconf
+                }
+                item {
+                    name = configure openbox-menu
+                    icon = gtk-edit
+                    action = fluxmenu
+                }
+                item {
+                    name = edit rc.xml
+                    icon = gtk-edit
+                    action = geany .config/openbox/rc.xml
+                }
+                item {
+                    name = edit menu.xml
+                    icon = gtk-edit
+                    action = geany .config/openbox/menu.xml
+                }
+                item {
+                    name = man openbox
+                    icon = terminal
+                    action = urxvtcd -e man openbox
+                }
+                item {
+                    name = openbox main page
+                    icon = web-browser
+                    action = firefox http://openbox.org
+                }
+                item {
+                    name = openbox keys
+                    icon = gnome-settings-accessibility-keyboard
+                    action = conky -q -c .conky/conkyrc_openbox_keys
+                }
+            }
+        }
+        menu {
+            name = system
+            icon = applications-system
+            item {
+                name = gparted
+                icon = gparted
+                action = gksu gparted
+            }
+            item {
+                name = default applications
+                icon = applications-system
+                action = urxvtcd -e sudo update-alternatives --all
+            }
+            item {
+                name = disk usage
+                icon = baobab
+                action = urxvtcd -e ncdu
+            }
+            item {
+                name = click'me's
+                icon = deb
+                action = rox bin/clickmes
+            }
+            item {
+                name = package manager
+                icon = synaptic
+                action = gksu synaptic
+            }
+            item {
+                name = root terminal
+                icon = gksu-root-terminal
+                action = gksu urxvtcd
+            }
+            item {
+                name = info system
+                icon = hardinfo
+                action = hardinfo
+            }
+            item {
+                name = livarp-xs-maker
+                icon = cdrom_unmount
+                action = bin/remove-sessions/livarp-xs-maker
+            }
+        }
+        separator {
+        }
+        menu {
+            name = Debian menu
+            image = ~/.config/fbpanel/icons/distributor-logo-debian.png
+            systemmenu {
+            }
+    	}
+        item {
+            name = livarp help center
+            icon = system-help
+            action = firefox /usr/share/livarp/help_center/index.html
+        }
+        separator {
+        }
+        item {
+            name = exit
+            icon = gnome-shutdown
+            action = dmenu-quit.sh
+        }
+    }
+}
+Plugin {
+    type = space
+    config {
+        size = 5
+    }
+}
+
+Plugin {
+    type = tray
+}
+Plugin {
+    type = space
+    config {
+        size = 5
+    }
+}
+
+# 'icons' plugin lets you customize window icons.
+# these changes apply to entire desktop
+Plugin {
+    type = icons
+    config {
+        DefaultIcon = /usr/share/fbpanel/images/default.xpm
+        application {
+            icon = gnome-terminal
+            ClassName = XTerm
+        }
+        application {
+            icon = gnome-terminal
+            ClassName = mlterm
+        }
+        application {
+            icon = gnome-terminal
+            ClassName = URxvt
+        }
+        application {
+            icon = gnome-emacs
+            ClassName = Emacs
+        }
+        application {
+            icon = mozilla-firefox
+            ClassName = Firefox-bin
+        }
+        application {
+            icon = mozilla-firefox
+            ClassName = Firefox
+        }
+    }
+}
+## Config End ##

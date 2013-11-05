@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../style.css" type="text/css" />
+    <link rel="Shortcut Icon" href="../../favicon.ico" type="image/x-icon" />
+<!-- Page Title -->
+    <title>Centre d'Aide Livarp - fslint</title>
+</head>
+<!-- Page Content -->
+<body>
+    <div id="container">
+        <div id="header">
+            <h2>lang fr|<a href="../../us/tips/fslint.html">gb</a></h2><h1><a href="../../index-fr.html" title="retour au menu"><img class="sansbordure" src="../../livarp-weblogo-040.png" /></a></h1>
+        </div>
+        <div id="links">
+            <div class="categorie">
+            <h1>verifier et nettoyer avec fslint</h1>
+            <img class="sansbordure" src="../../pics/fslint.png"/>
+            <p><a href="http://www.pixelbeat.org/fslint/">FSlint</a> est un utilitaire complet, permettant de nettoyer vos fichiers, éliminer les doublons, vérifier l'encodage, afficher les paquets installés... l'interface graphique est écrite en pyGTK.<br />
+            fslint est présent dans la section applications:outils du menu livarp.</p>
+            <h2>fonctionnalités</h2>
+            <p><ul>
+            <li>Déduplication : détection des doublons sur la base de leur taille et de leur somme de contrôle MD5 et SHA1. Une fois les doublons détectés il est possible de les supprimer ou de les fusionner via un lien en dur.</li>
+            <li>Paquets installés: Donne la liste des paquets installés sur le système.</li>
+            <li>Nettoyage : Permet de supprimer les fichiers temporaires.</li>
+            <li>Lien morts : Permet de détecter et supprimer si voulu les liens morts.</li>
+            <li>Correction des extensions : Détecter et corriger les extensions qui ne correspondent pas au type réel.</li>
+            <li>Nommer les conflits: Liste les programmes ayant un nom identique mais un chemin différent.</li>
+            <li>Suppression des dossiers vides.</li>
+            <li>Correction des noms avec plusieurs espaces de suite.</li>
+            <li>Renommage des fichiers utilisant des caractères incorrects (lettres non permises pour le nommages de fichiers comme /!*@~[]…)</li>
+            <li>Suppression de paquets (à éviter : préférer apt ou synaptic en graphique)</li>
+            </ul>
+            FSlint classe après la recherche les fichiers par ordres de place perdu par la duplication non nécessaire des données. Les fichiers les plus volumineux seront donc placé en tête de liste.</p>
+            <h2>utilisation</h2>
+            <p>Par défaut la recherche est effectuée dans le home. Les chemins dossiers à analyser peuvent être modifiés via les boutons « Ajouter » et « Enlever ». en haut à hauche de la fenêtre.<br />
+            L'onglet « paramètres avancés de recherche » permet de spécifier des répertoires à exclure ou des options complémentaires pour la recherche (via des paramètres de la commande find).</p>
+            </div>
+        </div>
+    </div>
+    <div id="footer">centre d'aide livarp_0.4 - <a href="http://arpinux.org">arpinux</a>@2013 - <a href="https://gitorious.org/livarp">sources</a></div>
+</body>
+</html>
+
+<!-- cc BY-NC-SA License :: arpinux :: 2013 :: http://arpinux.org -->
